@@ -1,0 +1,81 @@
+{
+  "palette": {
+    "navy": "oklch(0.28 0.12 255)",
+    "navy_light": "oklch(0.38 0.10 255)",
+    "navy_dark": "oklch(0.20 0.13 255)",
+    "steel_50": "oklch(0.97 0.005 240)",
+    "steel_100": "oklch(0.94 0.008 240)",
+    "steel_200": "oklch(0.88 0.010 240)",
+    "steel_400": "oklch(0.70 0.010 240)",
+    "steel_600": "oklch(0.50 0.012 240)",
+    "steel_800": "oklch(0.28 0.008 240)",
+    "cyan": "oklch(0.68 0.14 205)",
+    "cyan_muted": "oklch(0.68 0.14 205 / 0.15)",
+    "white": "oklch(1.00 0 0)",
+    "near_black": "oklch(0.14 0.010 250)"
+  },
+  "semantic": {
+    "primary": "navy",
+    "primary_foreground": "white",
+    "accent": "cyan",
+    "background": "white",
+    "surface": "steel_50",
+    "surface_alt": "steel_100",
+    "border": "steel_200",
+    "text_primary": "near_black",
+    "text_secondary": "steel_600",
+    "text_muted": "steel_400"
+  },
+  "typography": {
+    "font_display": "Inter Tight",
+    "font_display_weights": [600, 700],
+    "font_body": "Inter",
+    "font_body_weights": [400, 500],
+    "font_mono": "JetBrains Mono",
+    "scale": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "3.75rem",
+      "7xl": "4.5rem"
+    },
+    "display_clamp": "clamp(2.5rem, 5vw + 1rem, 4.5rem)",
+    "hero_clamp": "clamp(2rem, 4vw + 1rem, 3.75rem)"
+  },
+  "spacing": {
+    "section_y": "clamp(4rem, 8vw, 8rem)",
+    "container_max": "1280px",
+    "container_px": "clamp(1rem, 5vw, 3rem)",
+    "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128]
+  },
+  "radius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "xl": "1rem",
+    "2xl": "1.5rem",
+    "full": "9999px"
+  },
+  "shadow": {
+    "card": "0 1px 3px 0 oklch(0% 0 0 / 0.08), 0 4px 16px -4px oklch(0% 0 0 / 0.10)",
+    "elevated": "0 4px 24px -4px oklch(0% 0 0 / 0.14)",
+    "navy_glow": "0 0 32px -4px oklch(0.28 0.12 255 / 0.30)"
+  },
+  "motion": {
+    "duration_fast": "150ms",
+    "duration_normal": "300ms",
+    "duration_slow": "500ms",
+    "ease_out": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "ease_in_out": "cubic-bezier(0.45, 0, 0.55, 1)",
+    "stagger_word": "0.04s",
+    "aurora_1": "22s",
+    "aurora_2": "28s",
+    "aurora_3": "34s"
+  }
+}

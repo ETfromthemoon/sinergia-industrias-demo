@@ -1,0 +1,45 @@
+{
+  "brand": {
+    "name": "Sinergia Industrias",
+    "tagline": "Ingeniería de procesos. Tecnología que funciona.",
+    "description": "Consultora chilena B2B especializada en cumplimiento de Ley REP, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos para empresas medianas y grandes.",
+    "differentiators": [
+      "Ready Partner Oficial Odoo en Chile",
+      "Especialistas en cumplimiento Ley REP 20.920",
+      "Equipo de ingenieros certificados con experiencia operacional real",
+      "Enfoque integral: normativa + tecnología + procesos"
+    ],
+    "target_audience": {
+      "primary": "Gerentes y directores de operaciones, TI y sustentabilidad en empresas medianas y grandes en Chile",
+      "pain_points": [
+        "No saben si cumplen con la Ley REP y temen multas",
+        "Procesos manuales que frenan el crecimiento",
+        "ERP desconectado o mal implementado",
+        "Datos sin analizar que no sirven para decidir"
+      ]
+    },
+    "tone": {
+      "primary": "serio y directo",
+      "secondary": "técnico pero accesible",
+      "avoid": ["transforma", "potencia", "revoluciona", "soluciones integrales", "a tu medida", "de vanguardia", "innovador"]
+    },
+    "contact": {
+      "email": "info@sinergiaindustrias.cl",
+      "phone": "+56994584617",
+      "phone_display": "+56 9 9458 4617",
+      "address": "Calle Limache 3421, Reitz II oficina 724, Viña del Mar, Chile",
+      "whatsapp": "+56994584617"
+    }
+  },
+  "visual_direction": {
+    "name": "Azul ingeniería + acero",
+    "description": "Registro serio y corporativo de ingeniería industrial. Base blanca/gris acero con azul corporativo profundo (navy). Un acento técnico contenido (cyan). Grids visibles, líneas finas, datos y métricas. Transmite precisión, normativa y confianza.",
+    "references": [
+      "Stripe (precisión técnica, tipografía fuerte)",
+      "Linear (dark sections, micro-motion sutil)",
+      "ABB Group (ingeniería industrial seria)",
+      "Siemens corporate (azul + acero, rigor)"
+    ],
+    "mood": "Preciso. Confiable. Sin adornos innecesarios."
+  }
+}
