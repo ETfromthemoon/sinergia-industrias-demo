@@ -1,5 +1,25 @@
 # Redesign Report — Sinergia Industrias (Inicio)
 
+## v2 — Dirección "Blueprint técnico / Swiss data" (upgrade de talla mundial)
+
+Tras la primera versión, se rediseñó la UI completa hacia un sistema de **plano de ingeniería Swiss**:
+
+- **Grid de plano siempre visible** (líneas finas 32px + 160px) en lugar de aurora difusa — atmósfera técnica coherente con el rubro.
+- **Hero asimétrico** (2 columnas): titular Swiss a escala brutal (clamp hasta 5.25rem, tracking -0.025em) + **panel técnico con esquema hub-and-spoke animado** (SINERGIA → REP/PROC/ODOO/DATA) con dashes de datos fluyendo por conectores manhattan, crosshairs de esquina y readout de coordenadas.
+- **Tipografía mono** (JetBrains Mono) con índices `[ 01 ]`, códigos `MÓD.03`, coordenadas y etiquetas de sección.
+- **Métricas con count-up** (NumberTicker easeOutExpo) + regla cyan en hover.
+- **Servicios en bento de hairlines**: tarjeta Odoo dominante (navy, grid oscuro, chips de módulos) + REP/PROC + DATA en franja ancha.
+- **Ley REP**: panel de control oscuro con checklist enumerado y crosshairs.
+- **Método**: stepper con **beam que se dibuja** (scaleX) al hacer scroll.
+- **Contacto**: formulario enmarcado tipo instrumento (FORM.CONTACTO) con labels mono.
+- **Navbar** transparente→sólido en scroll, con índices mono.
+- **Animación tenue corporativa**: scan line, dash-flow, status-pulse, reveals por scroll, count-up, beam draw, hover border-light, magnetic CTA. Todo respeta `prefers-reduced-motion`.
+
+**Verificación visual:** screenshots Playwright (desktop 1440 + mobile 375/320/768) — 0 overflow horizontal, build limpio. La captura vía MCP preview no alcanza `document_idle` por las animaciones infinitas (pitfall §S); se usó Playwright con espera por timeout como evidencia.
+
+---
+
+
 ## Resumen
 
 | | Antes | Después |

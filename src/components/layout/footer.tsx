@@ -2,49 +2,42 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Inicio", href: "/" },
-  { label: "Ley REP", href: "#servicios" },
+  { label: "Áreas de servicio", href: "#servicios" },
+  { label: "Cumplimiento Ley REP", href: "#servicios" },
   { label: "Implementación Odoo", href: "#servicios" },
-  { label: "Procesos", href: "#servicios" },
-  { label: "Nosotros", href: "#metodo" },
+  { label: "Metodología", href: "#metodo" },
   { label: "Contacto", href: "#contacto" },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-navy-dark border-t border-white/10 py-14 px-4">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-          {/* Brand */}
+    <footer className="relative overflow-hidden bg-navy-dark px-4 pt-16 pb-10">
+      <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-60" />
+      <div className="relative mx-auto max-w-6xl">
+        <div className="mb-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+          {/* brand */}
           <div>
             <div className="mb-4 flex items-center gap-2.5">
-              <span className="inline-flex size-8 items-center justify-center rounded-lg bg-white/10 text-white text-xs font-bold font-mono">
+              <span className="inline-flex size-8 items-center justify-center bg-white/10 font-mono text-xs font-bold text-white">
                 SI
               </span>
-              <span className="font-display text-base font-semibold text-white">
-                Sinergia Industrias
-              </span>
+              <span className="font-display text-base font-semibold text-white">Sinergia Industrias</span>
             </div>
-            <p className="text-sm text-steel-400 leading-relaxed max-w-xs">
-              Ingeniería de procesos. Tecnología que funciona.
+            <p className="max-w-xs text-sm leading-relaxed text-steel-400">
+              Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
             </p>
-            <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60">
+            <p className="mt-4 inline-block border border-white/15 px-3 py-1.5 mono-label text-white/60">
               Ready Partner Oficial Odoo
             </p>
           </div>
 
-          {/* Nav */}
+          {/* nav */}
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
-              Servicios
-            </p>
-            <ul className="space-y-2.5">
+            <p className="mono-label mb-5 text-white/30">Navegación</p>
+            <ul className="space-y-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.label}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-steel-400 hover:text-white transition-colors"
-                  >
+                  <Link href={l.href} className="text-sm text-steel-400 transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -52,30 +45,28 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* contact */}
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
-              Contacto
-            </p>
-            <ul className="space-y-2.5 text-sm text-steel-400">
+            <p className="mono-label mb-5 text-white/30">Contacto</p>
+            <ul className="space-y-3 text-sm text-steel-400">
               <li>
-                <a href="mailto:info@sinergiaindustrias.cl" className="hover:text-white transition-colors">
+                <a href="mailto:info@sinergiaindustrias.cl" className="transition-colors hover:text-white">
                   info@sinergiaindustrias.cl
                 </a>
               </li>
               <li>
-                <a href="tel:+56994584617" className="hover:text-white transition-colors">
+                <a href="tel:+56994584617" className="tabular transition-colors hover:text-white">
                   +56 9 9458 4617
                 </a>
               </li>
-              <li>Calle Limache 3421, Reitz II of. 724</li>
+              <li>Calle Limache 3421, of. 724</li>
               <li>Viña del Mar, Chile</li>
               <li className="pt-1">
                 <a
                   href="https://www.linkedin.com/company/sinergia-industrias"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
                 >
                   LinkedIn
                   <ExternalLink className="size-3" />
@@ -85,11 +76,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Sinergia Industrias SpA. Todos los derechos reservados.
-          </p>
-          <p className="text-xs text-white/20">Viña del Mar, Chile</p>
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="mono-label text-white/30">© {new Date().getFullYear()} SINERGIA INDUSTRIAS SPA</p>
+          <p className="mono-label tabular text-white/20">VIÑA DEL MAR · -33.02 / -71.55</p>
         </div>
       </div>
     </footer>

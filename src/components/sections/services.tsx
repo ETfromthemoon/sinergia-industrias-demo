@@ -1,102 +1,137 @@
 "use client";
 import { motion } from "motion/react";
-import { ShieldCheck, GitBranch, Layers, BarChart3 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ShieldCheck, GitBranch, Layers, BarChart3, ArrowUpRight } from "lucide-react";
+import { SectionLabel } from "@/components/ui/section-label";
 
-type Service = {
+function ServiceCard({
+  index,
+  icon: Icon,
+  title,
+  body,
+  className,
+  delay,
+}: {
+  index: string;
   icon: React.ElementType;
   title: string;
   body: string;
-  tag: string;
-  highlight?: boolean;
-};
+  className?: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      className={`group relative flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-steel-50 ${className ?? ""}`}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* top cyan rule on hover */}
+      <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+      <div className="mb-6 flex items-start justify-between">
+        <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
+          <Icon className="size-5 text-navy" />
+        </div>
+        <span className="mono-label text-steel-400">MÓD.{index}</span>
+      </div>
+      <h3 className="font-display mb-3 text-xl font-semibold text-foreground">{title}</h3>
+      <p className="text-sm leading-relaxed text-muted-foreground">{body}</p>
+      <ArrowUpRight className="mt-6 size-5 text-steel-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
+    </motion.div>
+  );
+}
 
-const SERVICES: readonly Service[] = [
-  {
-    icon: ShieldCheck,
-    title: "Cumplimiento Ley REP",
-    body: "Calculamos, documentamos y gestionamos tus obligaciones bajo la ley 20.920. Sin ambigüedades, sin multas, sin sorpresas al momento del reporte.",
-    tag: "Ley 20.920",
-  },
-  {
-    icon: GitBranch,
-    title: "Levantamiento de procesos",
-    body: "Mapeamos cómo opera tu empresa hoy, identificamos los cuellos de botella reales y entregamos un plan técnico para corregirlos. No solo diagnóstico: propuesta ejecutable.",
-    tag: "Diagnóstico operacional",
-  },
-  {
-    icon: Layers,
-    title: "Implementación ERP Odoo",
-    body: "Somos Ready Partner Oficial Odoo en Chile. Implementamos y configuramos el sistema para que tu equipo de finanzas, bodega, RRHH y operaciones trabajen sobre una sola plataforma.",
-    tag: "Ready Partner Odoo",
-    highlight: true,
-  },
-  {
-    icon: BarChart3,
-    title: "Levantamiento de datos",
-    body: "Extraemos y ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que realmente pasa y las decisiones se tomen con información real.",
-    tag: "Business Intelligence",
-  },
-];
+const ODOO_MODULES = ["Finanzas", "Inventario", "RRHH", "Ventas", "Operaciones", "Reportería"];
 
 export function ServicesSection() {
   return (
     <section id="servicios" className="bg-background py-24 px-4">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-cyan">
-            Lo que hacemos
+        {/* header */}
+        <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <SectionLabel index="01" className="mb-5">
+              Áreas de servicio
+            </SectionLabel>
+            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Cuatro áreas.
+              <br />
+              Un solo equipo.
+            </h2>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Cada módulo opera por separado o integrado. Conectamos cumplimiento, procesos y
+            tecnología en un mismo sistema.
           </p>
-          <h2 className="font-display text-4xl font-bold text-foreground sm:text-5xl">
-            Cuatro áreas. Un solo equipo.
-          </h2>
-        </motion.div>
+        </div>
 
-        {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          {SERVICES.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={s.title}
-                className={`group relative rounded-2xl border p-8 transition-all duration-300 hover:shadow-navy/20 hover:shadow-lg ${
-                  s.highlight
-                    ? "border-navy/30 bg-navy/3"
-                    : "border-steel-200 bg-white hover:border-navy/25"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {s.highlight && (
-                  <span className="absolute right-4 top-4 rounded-full bg-cyan/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan">
-                    Oficial
-                  </span>
-                )}
-                <div className="mb-5 inline-flex rounded-xl border border-steel-200 bg-steel-50 p-3 transition-colors group-hover:border-navy/20 group-hover:bg-navy/5">
-                  <Icon className="size-5 text-navy" />
+        {/* bento — hairline grid */}
+        <div className="grid grid-cols-1 gap-px border border-steel-200 bg-steel-200 lg:grid-cols-3 lg:grid-rows-2">
+          {/* ODOO — dominant */}
+          <motion.div
+            className="group relative flex flex-col justify-between bg-navy p-8 lg:col-span-2 lg:row-span-2"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {/* dark blueprint texture */}
+            <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-70" />
+            <div className="relative">
+              <div className="mb-6 flex items-start justify-between">
+                <div className="inline-flex border border-white/20 bg-white/5 p-3">
+                  <Layers className="size-5 text-cyan" />
                 </div>
-                <h3 className="font-display mb-3 text-xl font-semibold text-foreground">
-                  {s.title}
-                </h3>
-                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                <Badge
-                  variant="outline"
-                  className="border-steel-200 text-muted-foreground text-xs"
+                <span className="border border-cyan/40 bg-cyan/10 px-2.5 py-1 mono-label text-cyan">
+                  OFICIAL
+                </span>
+              </div>
+              <span className="mono-label text-white/40">MÓD.03</span>
+              <h3 className="font-display mt-2 text-3xl font-bold text-white">
+                Implementación ERP Odoo
+              </h3>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-steel-300">
+                Somos Ready Partner Oficial Odoo en Chile. Una sola plataforma para que finanzas,
+                bodega, RRHH y operaciones trabajen con los mismos datos, en tiempo real.
+              </p>
+            </div>
+            <div className="relative mt-8 flex flex-wrap gap-2">
+              {ODOO_MODULES.map((mod) => (
+                <span
+                  key={mod}
+                  className="border border-white/15 px-3 py-1.5 text-xs text-white/70 transition-colors group-hover:border-cyan/40"
                 >
-                  {s.tag}
-                </Badge>
-              </motion.div>
-            );
-          })}
+                  {mod}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* REP */}
+          <ServiceCard
+            index="01"
+            icon={ShieldCheck}
+            title="Cumplimiento Ley REP"
+            body="Calculamos, documentamos y reportamos tus obligaciones bajo la ley 20.920. Sin multas, sin sorpresas."
+            delay={0.1}
+          />
+          {/* PROC */}
+          <ServiceCard
+            index="02"
+            icon={GitBranch}
+            title="Levantamiento de procesos"
+            body="Mapeamos tu operación, identificamos los cuellos de botella reales y entregamos un plan técnico ejecutable."
+            delay={0.18}
+          />
+          {/* DATA — wide strip */}
+          <ServiceCard
+            index="04"
+            icon={BarChart3}
+            title="Levantamiento de datos"
+            body="Ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que realmente pasa y las decisiones se tomen con información real."
+            className="lg:col-span-3"
+            delay={0.24}
+          />
         </div>
       </div>
     </section>

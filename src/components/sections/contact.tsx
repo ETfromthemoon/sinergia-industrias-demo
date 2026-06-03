@@ -1,10 +1,10 @@
 "use client";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/ui/magnetic";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { SectionLabel } from "@/components/ui/section-label";
+import { CornerTicks } from "@/components/ui/blueprint-frame";
 
 const SERVICES_OPTIONS = [
   "Ley REP",
@@ -14,148 +14,125 @@ const SERVICES_OPTIONS = [
   "Otro",
 ];
 
+const CONTACT_ROWS = [
+  { icon: Mail, code: "EML", label: "info@sinergiaindustrias.cl", href: "mailto:info@sinergiaindustrias.cl" },
+  { icon: Phone, code: "TEL", label: "+56 9 9458 4617", href: "tel:+56994584617" },
+  { icon: MapPin, code: "LOC", label: "Calle Limache 3421, of. 724 · Viña del Mar", href: null },
+];
+
+const inputCls =
+  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
+
 export function ContactSection() {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="contacto" className="bg-background border-t border-steel-200 py-24 px-4">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-start">
-            {/* Left: header + contact data */}
+      <section id="contacto" className="relative overflow-hidden border-t border-steel-200 bg-background py-24 px-4">
+        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid -z-10 opacity-60" />
+
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            {/* LEFT — header + contact data */}
             <motion.div
               initial={{ opacity: 0, x: -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-cyan">
+              <SectionLabel index="04" className="mb-6">
                 Contacto
-              </p>
-              <h2 className="font-display mb-6 text-4xl font-bold text-foreground sm:text-5xl leading-tight">
+              </SectionLabel>
+              <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl">
                 ¿Por dónde
                 <br />
                 empezamos?
               </h2>
-              <p className="mb-10 text-base leading-relaxed text-muted-foreground">
-                Cuéntanos qué necesita tu empresa. Una conversación de 30 minutos es suficiente
-                para saber si podemos ayudarte y cómo.
+              <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
+                Cuéntanos qué necesita tu empresa. Una conversación de 30 minutos basta para saber
+                si podemos ayudarte y cómo.
               </p>
 
-              <Magnetic>
-                <Link
-                  href="https://wa.me/56994584617?text=Hola,%20quiero%20conversar%20sobre%20un%20proyecto"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "mb-10 rounded-full bg-navy text-white px-8 py-3 text-base font-semibold shadow-navy hover:bg-navy-dark transition-colors duration-200"
-                  )}
-                >
-                  Conversemos tu proyecto →
-                </Link>
-              </Magnetic>
+              <div className="mt-10">
+                <Magnetic>
+                  <Link
+                    href="https://wa.me/56994584617?text=Hola,%20quiero%20conversar%20sobre%20un%20proyecto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
+                  >
+                    Escríbenos por WhatsApp
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                </Magnetic>
+              </div>
 
-              <ul className="space-y-5">
-                <li className="flex items-start gap-4">
-                  <Mail className="mt-0.5 size-5 shrink-0 text-navy" />
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Email</p>
-                    <a
-                      href="mailto:info@sinergiaindustrias.cl"
-                      className="text-sm font-medium text-foreground hover:text-navy transition-colors"
-                    >
-                      info@sinergiaindustrias.cl
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <Phone className="mt-0.5 size-5 shrink-0 text-navy" />
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Teléfono / WhatsApp</p>
-                    <a
-                      href="tel:+56994584617"
-                      className="text-sm font-medium text-foreground hover:text-navy transition-colors"
-                    >
-                      +56 9 9458 4617
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <MapPin className="mt-0.5 size-5 shrink-0 text-navy" />
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Dirección</p>
-                    <p className="text-sm font-medium text-foreground">
-                      Calle Limache 3421, Reitz II of. 724
-                      <br />
-                      Viña del Mar, Chile
-                    </p>
-                  </div>
-                </li>
+              {/* contact rows — technical readout */}
+              <ul className="mt-12 divide-y divide-steel-200 border-y border-steel-200">
+                {CONTACT_ROWS.map((row) => {
+                  const Icon = row.icon;
+                  const content = (
+                    <>
+                      <span className="mono-label w-10 shrink-0 text-steel-400">{row.code}</span>
+                      <Icon className="size-4 shrink-0 text-navy" />
+                      <span className="text-sm text-foreground">{row.label}</span>
+                    </>
+                  );
+                  return (
+                    <li key={row.code}>
+                      {row.href ? (
+                        <a
+                          href={row.href}
+                          className="flex items-center gap-4 py-4 transition-colors hover:text-navy"
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <div className="flex items-center gap-4 py-4">{content}</div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
 
-            {/* Right: form */}
+            {/* RIGHT — framed form */}
             <motion.div
-              className="rounded-2xl border border-steel-200 bg-steel-50 p-8"
+              className="relative border border-steel-200 bg-white"
               initial={{ opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <form
-                action={`mailto:info@sinergiaindustrias.cl`}
-                method="GET"
-                className="space-y-5"
-              >
+              <CornerTicks className="text-navy" size={12} />
+              <div className="flex items-center justify-between border-b border-steel-200 px-6 py-3">
+                <span className="mono-label text-navy">FORM.CONTACTO</span>
+                <span className="mono-label text-cyan-deep">* REQUERIDO</span>
+              </div>
+              <form action="mailto:info@sinergiaindustrias.cl" method="GET" className="space-y-5 p-6 sm:p-8">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="nombre" className="mb-1.5 block text-xs font-medium text-foreground">
+                    <label htmlFor="nombre" className="mono-label mb-2 block text-muted-foreground">
                       Nombre *
                     </label>
-                    <input
-                      id="nombre"
-                      name="nombre"
-                      type="text"
-                      required
-                      placeholder="Tu nombre"
-                      className="w-full rounded-xl border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 transition-colors"
-                    />
+                    <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" className={inputCls} />
                   </div>
                   <div>
-                    <label htmlFor="empresa" className="mb-1.5 block text-xs font-medium text-foreground">
+                    <label htmlFor="empresa" className="mono-label mb-2 block text-muted-foreground">
                       Empresa *
                     </label>
-                    <input
-                      id="empresa"
-                      name="empresa"
-                      type="text"
-                      required
-                      placeholder="Nombre de tu empresa"
-                      className="w-full rounded-xl border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 transition-colors"
-                    />
+                    <input id="empresa" name="empresa" type="text" required placeholder="Tu empresa" className={inputCls} />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-foreground">
+                  <label htmlFor="email" className="mono-label mb-2 block text-muted-foreground">
                     Email *
                   </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="correo@empresa.cl"
-                    className="w-full rounded-xl border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 transition-colors"
-                  />
+                  <input id="email" name="email" type="email" required placeholder="correo@empresa.cl" className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="servicio" className="mb-1.5 block text-xs font-medium text-foreground">
-                    ¿En qué podemos ayudarte?
+                  <label htmlFor="servicio" className="mono-label mb-2 block text-muted-foreground">
+                    Área de interés
                   </label>
-                  <select
-                    id="servicio"
-                    name="servicio"
-                    className="w-full rounded-xl border border-steel-200 bg-white px-4 py-3 text-sm text-foreground focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 transition-colors appearance-none"
-                  >
+                  <select id="servicio" name="servicio" className={`${inputCls} appearance-none`}>
                     {SERVICES_OPTIONS.map((s) => (
                       <option key={s} value={s}>
                         {s}
@@ -165,19 +142,11 @@ export function ContactSection() {
                 </div>
                 <button
                   type="submit"
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "w-full rounded-xl bg-navy text-white text-base font-semibold hover:bg-navy-dark transition-colors duration-200"
-                  )}
+                  className="group flex w-full items-center justify-center gap-2 bg-navy py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
                 >
                   Enviar mensaje
+                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
-                <p className="text-center text-xs text-muted-foreground">
-                  También puedes escribirnos directamente a{" "}
-                  <a href="mailto:info@sinergiaindustrias.cl" className="text-navy underline underline-offset-2">
-                    info@sinergiaindustrias.cl
-                  </a>
-                </p>
               </form>
             </motion.div>
           </div>
