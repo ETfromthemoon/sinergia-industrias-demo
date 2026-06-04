@@ -96,7 +96,7 @@ export function ContactSection() {
 
             {/* RIGHT — framed form */}
             <motion.div
-              className="relative border border-steel-200 bg-white"
+              className="relative border border-steel-200 bg-white shadow-elevated"
               initial={{ opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

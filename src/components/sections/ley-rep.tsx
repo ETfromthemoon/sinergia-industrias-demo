@@ -18,6 +18,7 @@ export function LeyRepSection() {
     <MotionConfig reducedMotion="user">
       <section className="relative overflow-hidden bg-navy-dark py-24 px-4">
         <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark" />
+        <div aria-hidden className="grain pointer-events-none absolute inset-0" />
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20 lg:items-center">
           {/* LEFT — copy */}

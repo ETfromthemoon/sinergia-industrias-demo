@@ -6,7 +6,21 @@ import { motion } from "motion/react";
  * Central SINERGIA node distributes to four service modules via
  * manhattan-routed connectors with flowing cyan data dashes.
  * viewBox 520×440, scales responsively.
+ *
+ * Colors are literal rgb/rgba (not var()→oklch): oklch does NOT render in SVG
+ * fill/stroke under Chromium headless (Playwright), and this panel now sits on
+ * the dark carbon hero, so the HUD palette is tuned for a dark glass surface.
  */
+
+const C = {
+  cyan: "rgb(86, 190, 220)",
+  cyanDim: "rgba(86, 190, 220, 0.85)",
+  core: "rgb(44, 64, 132)",
+  line: "rgba(255, 255, 255, 0.16)",
+  chip: "rgba(255, 255, 255, 0.05)",
+  chipBorder: "rgba(255, 255, 255, 0.18)",
+  textDim: "rgba(255, 255, 255, 0.45)",
+} as const;
 
 type NodeDef = {
   id: string;
@@ -54,7 +68,7 @@ export function ProcessSchematic() {
           key={c.id}
           d={c.d}
           fill="none"
-          stroke="var(--steel-300)"
+          stroke={C.line}
           strokeWidth="1.5"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -69,7 +83,7 @@ export function ProcessSchematic() {
           key={`flow-${c.id}`}
           d={c.d}
           fill="none"
-          stroke="var(--cyan)"
+          stroke={C.cyan}
           strokeWidth="1.5"
           strokeDasharray="3 13"
           className="animate-dash-flow"
@@ -83,7 +97,7 @@ export function ProcessSchematic() {
           cx={j.x}
           cy={j.y}
           r="3"
-          fill="var(--navy)"
+          fill={C.cyan}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -98,16 +112,16 @@ export function ProcessSchematic() {
         viewport={{ once: true }}
         transition={{ delay: 0.15, duration: 0.5 }}
       >
-        <rect x="204" y="180" width="112" height="80" fill="var(--navy)" />
+        <rect x="204" y="180" width="112" height="80" fill={C.core} />
         <rect
           x="204"
           y="180"
           width="112"
           height="80"
           fill="none"
-          stroke="var(--navy)"
-          strokeWidth="6"
-          opacity="0.15"
+          stroke={C.cyan}
+          strokeWidth="1.25"
+          opacity="0.55"
         />
         <text
           x="260"
@@ -124,7 +138,7 @@ export function ProcessSchematic() {
           x="260"
           y="234"
           textAnchor="middle"
-          fill="var(--cyan)"
+          fill={C.cyan}
           fontSize="9"
           letterSpacing="2"
         >
@@ -148,17 +162,17 @@ export function ProcessSchematic() {
               y={n.y}
               width={W}
               height={H}
-              fill="white"
-              stroke="var(--steel-300)"
+              fill={C.chip}
+              stroke={C.chipBorder}
               strokeWidth="1.5"
             />
             {/* top accent rule */}
-            <rect x={n.x} y={n.y} width={W} height="3" fill="var(--cyan)" />
+            <rect x={n.x} y={n.y} width={W} height="3" fill={C.cyan} />
             <text
               x={cx}
               y={n.y + 24}
               textAnchor="middle"
-              fill="var(--navy)"
+              fill="white"
               fontSize="14"
               fontWeight="700"
               letterSpacing="1"
@@ -169,7 +183,7 @@ export function ProcessSchematic() {
               x={cx}
               y={n.y + 38}
               textAnchor="middle"
-              fill="var(--steel-400)"
+              fill={C.textDim}
               fontSize="8"
               letterSpacing="1.5"
             >

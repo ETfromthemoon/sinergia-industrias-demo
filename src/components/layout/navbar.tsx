@@ -25,7 +25,9 @@ export function Navbar() {
     <motion.header
       className={cn(
         "fixed top-0 z-50 w-full border-b transition-colors duration-300",
-        scrolled ? "border-steel-200 bg-white/90 backdrop-blur-md" : "border-transparent bg-transparent"
+        scrolled
+          ? "border-steel-200 bg-white/90 backdrop-blur-md"
+          : "border-white/10 bg-transparent"
       )}
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -34,10 +36,22 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* logo */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <span className="inline-flex size-8 items-center justify-center bg-navy font-mono text-xs font-bold text-white transition-colors group-hover:bg-navy-dark">
+          <span
+            className={cn(
+              "inline-flex size-8 items-center justify-center font-mono text-xs font-bold transition-colors",
+              scrolled
+                ? "bg-navy text-white group-hover:bg-navy-dark"
+                : "bg-white/10 text-white ring-1 ring-inset ring-white/25 group-hover:bg-white/20"
+            )}
+          >
             SI
           </span>
-          <span className="font-display text-base font-semibold tracking-tight text-foreground">
+          <span
+            className={cn(
+              "font-display text-base font-semibold tracking-tight transition-colors",
+              scrolled ? "text-foreground" : "text-white"
+            )}
+          >
             Sinergia Industrias
           </span>
         </Link>
@@ -48,9 +62,21 @@ export function Navbar() {
             <Link
               key={l.label}
               href={l.href}
-              className="group flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className={cn(
+                "group flex items-center gap-1.5 text-sm transition-colors",
+                scrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/70 hover:text-white"
+              )}
             >
-              <span className="mono-label text-steel-400 transition-colors group-hover:text-cyan-deep">
+              <span
+                className={cn(
+                  "mono-label transition-colors",
+                  scrolled
+                    ? "text-steel-400 group-hover:text-cyan-deep"
+                    : "text-white/40 group-hover:text-cyan"
+                )}
+              >
                 {l.index}
               </span>
               {l.label}
@@ -61,7 +87,12 @@ export function Navbar() {
         {/* CTA */}
         <Link
           href="#contacto"
-          className="bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
+          className={cn(
+            "px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
+            scrolled
+              ? "bg-navy text-white hover:bg-navy-dark"
+              : "bg-white text-carbon hover:bg-cyan"
+          )}
         >
           Conversemos
         </Link>

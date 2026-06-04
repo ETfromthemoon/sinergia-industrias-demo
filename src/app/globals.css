@@ -19,6 +19,14 @@
   --cyan:           oklch(0.68 0.14 205);
   --cyan-deep:      oklch(0.58 0.13 215);
 
+  /* Signal — industrial accent (amber). Use sparingly: 1–2 hits per view. */
+  --signal:         oklch(0.78 0.16 67);
+  --signal-deep:    oklch(0.70 0.16 58);
+
+  /* Carbon — dramatic dark surface for the hero (deeper, less chroma than navy-dark) */
+  --carbon:         oklch(0.16 0.04 256);
+  --carbon-2:       oklch(0.115 0.03 258);
+
   /* Blueprint */
   --grid-line:      oklch(0.92 0.008 240);
   --grid-line-bold: oklch(0.86 0.010 240);
@@ -90,6 +98,10 @@
   --color-steel-600:   var(--steel-600);
   --color-cyan:        var(--cyan);
   --color-cyan-deep:   var(--cyan-deep);
+  --color-signal:      var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-carbon:      var(--carbon);
+  --color-carbon-2:    var(--carbon-2);
   --color-grid:        var(--grid-line);
   --color-grid-bold:   var(--grid-line-bold);
   --color-card:        var(--card);
@@ -105,6 +117,8 @@
   --shadow-card:    0 1px 3px 0 oklch(0% 0 0 / 0.08), 0 4px 16px -4px oklch(0% 0 0 / 0.10);
   --shadow-elevated: 0 4px 24px -4px oklch(0% 0 0 / 0.14);
   --shadow-navy:    0 0 32px -4px oklch(0.28 0.12 255 / 0.30);
+  --shadow-glow-cyan: 0 0 48px -8px oklch(0.68 0.14 205 / 0.32);
+  --shadow-panel-dark: 0 24px 60px -20px oklch(0 0 0 / 0.65), 0 0 0 1px oklch(1 0 0 / 0.04);
 
   --font-heading:           var(--font-sans);
   --color-sidebar-ring:           var(--sidebar-ring);
@@ -158,6 +172,28 @@
   background-size: 40px 40px;
 }
 
+/* ── Premium dark atmosphere ────────────────────────── */
+/* Film grain — subtle filmic texture over dark surfaces */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.10;
+}
+
+/* Aurora — soft navy→cyan→signal glow for the dark hero */
+.aurora-dark {
+  background:
+    radial-gradient(55% 45% at 78% 10%, oklch(0.68 0.14 205 / 0.16), transparent 70%),
+    radial-gradient(52% 56% at 10% 92%, oklch(0.32 0.13 256 / 0.30), transparent 72%),
+    radial-gradient(40% 40% at 96% 88%, oklch(0.78 0.16 67 / 0.09), transparent 70%);
+  animation: aurora-drift 22s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes aurora-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.02); }
+  50%      { transform: translate3d(0, -1.6%, 0) scale(1.07); }
+}
+
 /* Slow horizontal scan line — tenue */
 @keyframes scan-y {
   0%   { transform: translateY(0); opacity: 0; }
@@ -187,11 +223,21 @@
   animation: status-pulse 2.4s ease-in-out infinite;
 }
 
+/* Reveal fade for HeroBackdrop */
+@keyframes backdrop-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-scan,
   .animate-dash-flow,
-  .animate-status {
+  .animate-status,
+  .aurora-dark {
     animation: none;
+  }
+  [style*="backdrop-reveal"] {
+    animation: none !important;
   }
 }
 

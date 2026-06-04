@@ -13,6 +13,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-dark px-4 pt-16 pb-10">
       <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-60" />
+      <div aria-hidden className="grain pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* brand */}
@@ -26,7 +27,8 @@ export function Footer() {
             <p className="max-w-xs text-sm leading-relaxed text-steel-400">
               Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
             </p>
-            <p className="mt-4 inline-block border border-white/15 px-3 py-1.5 mono-label text-white/60">
+            <p className="mt-4 inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
+              <span className="inline-block size-1.5 rounded-full bg-signal" />
               Ready Partner Oficial Odoo
             </p>
           </div>

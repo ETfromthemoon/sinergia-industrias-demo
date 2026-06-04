@@ -65,8 +65,8 @@ export function ServicesSection() {
           </p>
         </div>
 
-        {/* bento — hairline grid */}
-        <div className="grid grid-cols-1 gap-px border border-steel-200 bg-steel-200 lg:grid-cols-3 lg:grid-rows-2">
+        {/* bento — hairline grid, lifted off the page for depth */}
+        <div className="grid grid-cols-1 gap-px border border-steel-200 bg-steel-200 shadow-elevated lg:grid-cols-3 lg:grid-rows-2">
           {/* ODOO — dominant */}
           <motion.div
             className="group relative flex flex-col justify-between bg-navy p-8 lg:col-span-2 lg:row-span-2"
@@ -75,8 +75,14 @@ export function ServicesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* dark blueprint texture */}
+            {/* dark blueprint texture + cyan glow (echoes the hero panel) */}
             <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-70" />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.68 0.14 205 / 0.13), transparent 70%)" }}
+            />
+            <div aria-hidden className="grain pointer-events-none absolute inset-0" />
             <div className="relative">
               <div className="mb-6 flex items-start justify-between">
                 <div className="inline-flex border border-white/20 bg-white/5 p-3">
