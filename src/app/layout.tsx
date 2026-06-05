@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -9,10 +9,13 @@ const inter = Inter({
   display: "swap",
 });
 
-const interTight = Inter_Tight({
+// Space Grotesk: geometric grotesque with technical character.
+// Differentiates from Inter's neutrality — the right call for the
+// Swiss / Blueprint industrial direction (Neue Haas spirit, Google-hosted).
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -39,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("h-full antialiased", inter.variable, interTight.variable, jetbrainsMono.variable)}
+      className={cn("h-full antialiased", inter.variable, spaceGrotesk.variable, jetbrainsMono.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

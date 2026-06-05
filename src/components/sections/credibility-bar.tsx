@@ -31,12 +31,18 @@ export function CredibilityBar() {
             transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="mono-label mb-3 text-steel-400">[{m.code}]</span>
-            <span className="font-display text-4xl font-bold tracking-tight text-navy lg:text-5xl">
+            <span
+              className="font-display text-4xl font-bold tracking-tight lg:text-5xl"
+              style={{ color: m.code === "EMP" ? "var(--signal)" : "var(--navy)" }}
+            >
               <NumberTicker value={m.value} suffix={m.suffix} />
             </span>
             <span className="mt-2 text-xs leading-tight text-muted-foreground">{m.label}</span>
-            {/* hover accent rule */}
-            <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+            {/* hover accent rule — signal for EMP, cyan for the rest */}
+            <span
+              className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
+              style={{ background: m.code === "EMP" ? "var(--signal)" : "var(--cyan)" }}
+            />
           </motion.div>
         ))}
       </div>
