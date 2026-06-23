@@ -2,11 +2,14 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Áreas de servicio", href: "#servicios" },
-  { label: "Cumplimiento Ley REP", href: "#servicios" },
-  { label: "Implementación Odoo", href: "#servicios" },
-  { label: "Metodología", href: "#metodo" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/" },
+  { label: "Ley REP", href: "/ley-rep" },
+  { label: "Implementación Odoo", href: "/implementacion-odoo" },
+  { label: "Levantamiento de Procesos", href: "/levantamiento-de-procesos" },
+  { label: "Levantamiento de Datos", href: "/levantamiento-de-datos" },
+  { label: "Casos de Éxito", href: "/casos-de-exito" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export function Footer() {

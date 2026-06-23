@@ -1,0 +1,208 @@
+"use client";
+import { motion, MotionConfig } from "motion/react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Magnetic } from "@/components/ui/magnetic";
+import { cn } from "@/lib/utils";
+
+type PageHeroProps = {
+  eyebrow: string;
+  headline: string;
+  headlineAccent?: string;
+  subhead: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  badge?: string;
+  variant?: "dark" | "light";
+  index?: string;
+};
+
+export function PageHero({
+  eyebrow,
+  headline,
+  headlineAccent,
+  subhead,
+  ctaLabel = "Conversemos tu proyecto",
+  ctaHref = "/contacto",
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  badge,
+  variant = "dark",
+  index = "00",
+}: PageHeroProps) {
+  const isDark = variant === "dark";
+
+  return (
+    <MotionConfig reducedMotion="user">
+      <section
+        className={cn(
+          "relative overflow-hidden px-4 pb-20 pt-32 lg:pb-28 lg:pt-40",
+          isDark ? "bg-carbon" : "bg-steel-50"
+        )}
+        style={
+          isDark
+            ? {
+                background:
+                  "linear-gradient(157deg, var(--carbon) 0%, var(--carbon-2) 72%, var(--carbon) 100%)",
+              }
+            : undefined
+        }
+      >
+        {/* Atmosphere */}
+        {isDark && (
+          <>
+            <div aria-hidden className="aurora-dark pointer-events-none absolute inset-0 -z-10" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark -z-10" />
+            <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[1]" />
+          </>
+        )}
+        {!isDark && (
+          <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid -z-10 opacity-50" />
+        )}
+
+        {/* Large faded index */}
+        <div
+          aria-hidden
+          className="pointer-events-none select-none absolute left-0 top-1/2 -translate-y-[52%] -z-10 leading-none"
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontWeight: 700,
+            fontSize: "clamp(8rem, 18vw, 14rem)",
+            color: isDark ? "oklch(1 0 0 / 0.035)" : "oklch(0.28 0.12 255 / 0.04)",
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+          }}
+        >
+          {index}
+        </div>
+
+        {/* Corner crosshairs */}
+        {isDark && (
+          <>
+            <svg aria-hidden className="pointer-events-none absolute top-5 left-5 z-[2]" width="18" height="18">
+              <path d="M9 0 L9 7 M0 9 L7 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
+            </svg>
+            <svg aria-hidden className="pointer-events-none absolute top-5 right-5 z-[2]" width="18" height="18">
+              <path d="M9 0 L9 7 M11 9 L18 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
+            </svg>
+          </>
+        )}
+
+        {/* Top rule */}
+        <div
+          aria-hidden
+          className="absolute top-0 inset-x-0 h-px"
+          style={{
+            background: isDark
+              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.30) 35%, oklch(0.68 0.14 205 / 0.30) 65%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.12) 35%, oklch(0.28 0.12 255 / 0.12) 65%, transparent 100%)",
+          }}
+        />
+
+        <div className="relative z-10 mx-auto max-w-5xl">
+          {/* Eyebrow */}
+          <motion.div
+            className={cn("mb-8 flex items-center gap-3", isDark ? "" : "")}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.5 }}
+          >
+            <span className={cn("mono-label", isDark ? "text-white/70" : "text-navy")}>
+              <span className={cn("inline-block size-1.5 rounded-full mr-2", isDark ? "bg-cyan animate-status" : "bg-cyan")} />
+              {eyebrow}
+            </span>
+            {badge && (
+              <span className={cn(
+                "border px-2.5 py-1 mono-label",
+                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-signal/40 bg-signal/10 text-signal-deep"
+              )}>
+                {badge}
+              </span>
+            )}
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            className={cn(
+              "font-display font-bold leading-[0.98] tracking-tight text-[clamp(2.5rem,6vw,4.5rem)]",
+              isDark ? "text-white" : "text-foreground"
+            )}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {headline}
+            {headlineAccent && (
+              <span
+                className={cn("block", isDark ? "text-cyan" : "text-navy")}
+                style={isDark ? { textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" } : undefined}
+              >
+                {headlineAccent}
+              </span>
+            )}
+          </motion.h1>
+
+          {/* Subhead */}
+          <motion.p
+            className={cn(
+              "mt-7 max-w-xl text-base leading-relaxed lg:text-lg",
+              isDark ? "text-steel-300" : "text-muted-foreground"
+            )}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.55 }}
+          >
+            {subhead}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="mt-9 flex flex-wrap items-center gap-4"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.5 }}
+          >
+            <Magnetic>
+              <Link
+                href={ctaHref}
+                className={cn(
+                  "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200",
+                  isDark
+                    ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.68_0.14_205_/_0.5)]"
+                    : "bg-navy text-white hover:bg-navy-dark"
+                )}
+              >
+                {ctaLabel}
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </Magnetic>
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <Link
+                href={secondaryCtaHref}
+                className={cn(
+                  "mono-label underline-offset-4 transition-colors hover:underline",
+                  isDark ? "text-white/65 hover:text-cyan" : "text-muted-foreground hover:text-navy"
+                )}
+              >
+                {secondaryCtaLabel} →
+              </Link>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Bottom hairline */}
+        <div
+          aria-hidden
+          className="absolute bottom-0 inset-x-0 h-px"
+          style={{
+            background: isDark
+              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.10) 50%, transparent 100%)",
+          }}
+        />
+      </section>
+    </MotionConfig>
+  );
+}
