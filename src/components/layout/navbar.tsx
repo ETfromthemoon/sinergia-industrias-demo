@@ -7,15 +7,15 @@ import { cn } from "@/lib/utils";
 
 const MAIN_LINKS = [
   { label: "Inicio", href: "/", index: "00" },
-  { label: "Casos de éxito", href: "/casos-de-exito", index: "03" },
-  { label: "Nosotros", href: "/nosotros", index: "04" },
+  { label: "Casos de éxito", href: "/casos-de-exito", index: "05" },
+  { label: "Nosotros", href: "/nosotros", index: "06" },
 ];
 
 const SOLUTIONS_LINKS = [
   { label: "Ley REP", href: "/ley-rep", index: "01" },
   { label: "Implementación Odoo", href: "/implementacion-odoo", index: "02" },
-  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos", index: "05" },
-  { label: "Levantamiento de datos", href: "/levantamiento-de-datos", index: "06" },
+  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos", index: "03" },
+  { label: "Levantamiento de datos", href: "/levantamiento-de-datos", index: "04" },
 ];
 
 export function Navbar() {
@@ -119,17 +119,20 @@ export function Navbar() {
             </button>
             {solutionsOpen && (
               <motion.div
-                className="absolute top-full left-0 mt-1 w-64 border border-steel-200 bg-white shadow-elevated"
-                initial={{ opacity: 0, y: -4 }}
+                className="absolute top-full left-0 w-64 border border-steel-200 bg-white shadow-elevated"
+                initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
               >
+                {/* invisible bridge to prevent mouseleave gap */}
+                <div className="absolute inset-x-0 bottom-full h-3 -top-3 bg-transparent" aria-hidden />
                 {SOLUTIONS_LINKS.map((l) => {
                   const active = pathname === l.href;
                   return (
                     <Link
                       key={l.label}
                       href={l.href}
+                      onClick={closeMenus}
                       className={cn(
                         "flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-steel-50",
                         active ? "text-navy font-semibold" : "text-muted-foreground"
