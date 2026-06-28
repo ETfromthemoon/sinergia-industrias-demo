@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/ui/magnetic";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
+import { useFormSubmit, FormSubmitFeedback } from "@/components/ui/form-submit";
 
 const SERVICES_OPTIONS = [
   "Ley REP",
@@ -24,6 +25,8 @@ const inputCls =
   "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
 
 export function ContactSection() {
+  const { status, message, handleSubmit } = useFormSubmit();
+
   return (
     <MotionConfig reducedMotion="user">
       <section id="contacto" className="relative overflow-hidden border-t border-steel-200 bg-background py-24 px-4">
@@ -107,7 +110,9 @@ export function ContactSection() {
                 <span className="mono-label text-navy">FORM.CONTACTO</span>
                 <span className="mono-label text-cyan-deep">* REQUERIDO</span>
               </div>
-              <form action="mailto:info@sinergiaindustrias.cl" method="GET" className="space-y-5 p-6 sm:p-8">
+              <form onSubmit={handleSubmit} className="space-y-5 p-6 sm:p-8">
+                <input type="hidden" name="_subject" value="Nuevo contacto web — Sinergia Industrias" />
+                <input type="hidden" name="_captcha" value="false" />
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="nombre" className="mono-label mb-2 block text-muted-foreground">
@@ -140,13 +145,17 @@ export function ContactSection() {
                     ))}
                   </select>
                 </div>
-                <button
-                  type="submit"
-                  className="group flex w-full items-center justify-center gap-2 bg-navy py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
-                >
-                  Enviar mensaje
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                {status !== "success" && (
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="group flex w-full items-center justify-center gap-2 bg-navy py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "loading" ? "Enviando..." : "Enviar mensaje"}
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </button>
+                )}
+                <FormSubmitFeedback status={status} message={message} />
               </form>
             </motion.div>
           </div>

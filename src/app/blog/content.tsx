@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
+import { useFormSubmit, FormSubmitFeedback } from "@/components/ui/form-submit";
 
 const POSTS = [
   {
@@ -64,6 +65,8 @@ const POSTS = [
 ];
 
 export default function BlogContent() {
+  const { status, message, handleSubmit } = useFormSubmit();
+
   return (
     <main>
       <PageHero
@@ -181,22 +184,31 @@ export default function BlogContent() {
                 </p>
 
                 <form
-                  action="mailto:info@sinergiaindustrias.cl?subject=Suscripci%C3%B3n%20Blog"
-                  method="GET"
+                  onSubmit={handleSubmit}
                   className="mx-auto mt-8 flex max-w-md gap-2"
                 >
+                  <input type="hidden" name="_subject" value="Suscripción Blog — Sinergia Industrias" />
                   <input
                     type="email"
+                    name="email"
                     placeholder="tu@email.com"
                     required
                     className="flex-1 border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-cyan focus:outline-none transition-colors"
                   />
-                  <button
-                    type="submit"
-                    className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.68_0.14_205_/_0.5)]"
-                  >
-                    Suscribirme
-                  </button>
+                  {status !== "success" ? (
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.68_0.14_205_/_0.5)] disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
+                    >
+                      {status === "loading" ? "..." : "Suscribirme"}
+                    </button>
+                  ) : (
+                    <div className="bg-cyan/20 px-6 py-3 text-sm font-semibold text-cyan shrink-0 flex items-center gap-2">
+                      ✓ Suscrito
+                    </div>
+                  )}
+                  <FormSubmitFeedback status={status} message={message} />
                 </form>
               </div>
             </motion.div>
