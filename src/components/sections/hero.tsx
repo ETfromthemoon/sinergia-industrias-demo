@@ -6,6 +6,7 @@ import { Magnetic } from "@/components/ui/magnetic";
 import { ProcessSchematic } from "@/components/ui/process-schematic";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { Award, ShieldCheck, ArrowRight } from "lucide-react";
+import { OdooLogo } from "@/components/ui/odoo-logo";
 import { HeroBackdrop } from "@/components/ui/hero-backdrop";
 
 const LINE_1 = "Procesos que";
@@ -224,7 +225,7 @@ export function HeroSection() {
               transition={{ delay: 1.05, duration: 0.5 }}
             >
               <span className="flex items-center gap-2 text-sm text-white/80">
-                <Award className="size-4 text-signal" />
+                <OdooLogo size={18} />
                 Ready Partner <span className="font-semibold">Odoo</span>
               </span>
               <span className="flex items-center gap-2 text-sm text-white/80">

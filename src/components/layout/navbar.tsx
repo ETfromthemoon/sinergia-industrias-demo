@@ -6,7 +6,6 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const MAIN_LINKS = [
-  { label: "Inicio", href: "/", index: "00" },
   { label: "Casos de éxito", href: "/casos-de-exito", index: "05" },
   { label: "Nosotros", href: "/nosotros", index: "06" },
 ];

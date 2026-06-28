@@ -4,6 +4,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
+import { OdooLogo } from "@/components/ui/odoo-logo";
 import { motion, MotionConfig } from "motion/react";
 import { Target, Eye, Cpu } from "lucide-react";
 
@@ -176,7 +177,7 @@ export default function NosotrosContent() {
                 </p>
 
                 <span className="inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
-                  <span className="inline-block size-1.5 rounded-full bg-signal" />
+                  <OdooLogo size={14} />
                   Ready Partner Oficial Odoo
                 </span>
               </div>
@@ -375,7 +376,7 @@ export default function NosotrosContent() {
 
               <div className="flex flex-col items-center gap-4">
                 <div className="inline-flex border border-navy/20 bg-navy/5 p-3">
-                  <Cpu className="size-6 text-navy" />
+                  <OdooLogo size={28} />
                 </div>
 
                 <span className="mono-label text-steel-600">READY PARTNER OFICIAL</span>
@@ -385,7 +386,7 @@ export default function NosotrosContent() {
                 </span>
 
                 <span className="inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
-                  <span className="inline-block size-1.5 rounded-full bg-signal" />
+                  <OdooLogo size={14} />
                   Ready Partner Oficial Odoo
                 </span>
               </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { OdooLogo } from "@/components/ui/odoo-logo";
 
 const NAV_LINKS = [
   { label: "Inicio", href: "/" },
@@ -31,7 +32,7 @@ export function Footer() {
               Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
-              <span className="inline-block size-1.5 rounded-full bg-signal" />
+              <OdooLogo size={14} />
               Ready Partner Oficial Odoo
             </p>
           </div>
