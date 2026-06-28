@@ -93,40 +93,6 @@ export default function NosotrosContent() {
             >
               Vamos e iremos siempre por la innovación, el conocimiento y el autoaprendizaje en todo ámbito. Creamos y crearemos Sinergia en conjunto.
             </motion.p>
-
-            {/* ── Founder images ──────────────────── */}
-            <motion.div
-              className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.28, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="relative border border-steel-200 bg-white overflow-hidden">
-                <CornerTicks className="text-navy" size={10} />
-                <img
-                  src="https://www.sinergiaindustrias.cl/web/image/4063-24242599/iStock-1423496913.jpg"
-                  alt="Fundador Sinergia Consultores"
-                  className="w-full h-72 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-carbon/80 to-transparent p-4">
-                  <span className="mono-label text-white/70 text-xs">FUNDADOR · SINERGIA</span>
-                </div>
-              </div>
-              <div className="relative border border-steel-200 bg-white overflow-hidden">
-                <CornerTicks className="text-navy" size={10} />
-                <img
-                  src="https://www.sinergiaindustrias.cl/web/image/4070-32124bf4/iStock-1368145760.jpg"
-                  alt="Fundador Sinergia Consultores"
-                  className="w-full h-72 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-carbon/80 to-transparent p-4">
-                  <span className="mono-label text-white/70 text-xs">FUNDADOR · SINERGIA</span>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </section>
       </MotionConfig>
@@ -195,7 +161,7 @@ export default function NosotrosContent() {
 
               <div className="flex flex-col items-center text-center gap-6">
                 <div className="inline-flex border border-navy/20 bg-navy/5 p-4">
-                  <Cpu className="size-8 text-navy" />
+                  <OdooLogo size={28} />
                 </div>
 
                 <div>

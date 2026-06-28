@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "motion/react";
-import { ShieldCheck, GitBranch, Layers, BarChart3, ArrowUpRight } from "lucide-react";
+import { ShieldCheck, GitBranch, BarChart3, ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { OdooLogo } from "@/components/ui/odoo-logo";
 
 function ServiceCard({
   index,
@@ -86,7 +87,7 @@ export function ServicesSection() {
             <div className="relative">
               <div className="mb-6 flex items-start justify-between">
                 <div className="inline-flex border border-white/20 bg-white/5 p-3">
-                  <Layers className="size-5 text-cyan" />
+                  <OdooLogo size={24} />
                 </div>
                 <span className="border border-cyan/40 bg-cyan/10 px-2.5 py-1 mono-label text-cyan">
                   OFICIAL
