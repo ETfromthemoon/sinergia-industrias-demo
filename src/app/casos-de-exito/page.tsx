@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHero } from "@/components/layout/page-hero";
-import { CtaBand } from "@/components/sections/cta-band";
 import { CasosGrid } from "./casos-grid";
 
 export const metadata: Metadata = {
@@ -25,10 +24,6 @@ export default function CasosDeExitoPage() {
           subhead="Una mirada a los proyectos donde aplicamos ingeniería de procesos, implementación Odoo y cumplimiento Ley REP para industrias en Chile."
         />
         <CasosGrid />
-        <CtaBand
-          title="¿Tu empresa podría ser el próximo caso?"
-          subhead="Conversemos sobre tu proyecto. Una conversación de 30 minutos basta para saber si podemos ayudarte."
-        />
       </main>
       <Footer />
     </>
