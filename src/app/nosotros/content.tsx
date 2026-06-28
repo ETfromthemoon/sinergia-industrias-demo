@@ -1,6 +1,6 @@
 "use client";
 
-import { PageHero } from "@/components/layout/page-hero";
+import { VideoHero } from "@/components/layout/video-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
@@ -43,9 +43,7 @@ export default function NosotrosContent() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────── */}
-      <PageHero
-        variant="dark"
-        index="03"
+      <VideoHero
         eyebrow="Ingeniería de procesos"
         headline="Transformamos empresas,"
         headlineAccent="creando sinergia"
@@ -55,6 +53,7 @@ export default function NosotrosContent() {
         ctaHref="/contacto"
         secondaryCtaLabel="Casos de éxito"
         secondaryCtaHref="/casos-de-exito"
+        videoId="Tody2AVL6ys"
       />
 
       {/* ── Historia y visión ────────────────────── */}
