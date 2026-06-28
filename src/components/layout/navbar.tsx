@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const MAIN_LINKS = [
   { label: "Casos de éxito", href: "/casos-de-exito", index: "05" },
   { label: "Nosotros", href: "/nosotros", index: "06" },
+  { label: "Blog", href: "/blog", index: "07" },
 ];
 
 const SOLUTIONS_LINKS = [
@@ -89,17 +90,7 @@ export function Navbar() {
 
         {/* desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
-          {MAIN_LINKS.map((l) => {
-            const active = pathname === l.href || (l.href === "/" && pathname === "/");
-            return (
-              <Link key={l.label} href={l.href} className={linkCls(active)}>
-                <span className={indexCls(active)}>{l.index}</span>
-                {l.label}
-              </Link>
-            );
-          })}
-
-          {/* Solutions dropdown */}
+          {/* Solutions dropdown — first, numbering 01-04 */}
           <div
             className="relative"
             onMouseEnter={() => setSolutionsOpen(true)}
@@ -145,6 +136,16 @@ export function Navbar() {
               </motion.div>
             )}
           </div>
+
+          {MAIN_LINKS.map((l) => {
+            const active = pathname === l.href || (l.href === "/" && pathname === "/");
+            return (
+              <Link key={l.label} href={l.href} className={linkCls(active)}>
+                <span className={indexCls(active)}>{l.index}</span>
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* mobile burger + CTA */}
@@ -181,7 +182,7 @@ export function Navbar() {
           transition={{ duration: 0.2 }}
         >
           <div className="divide-y divide-steel-200 px-4 py-4">
-            {[...MAIN_LINKS, ...SOLUTIONS_LINKS].map((l) => {
+            {[...SOLUTIONS_LINKS, ...MAIN_LINKS].map((l) => {
               const active = pathname === l.href;
               return (
                 <Link

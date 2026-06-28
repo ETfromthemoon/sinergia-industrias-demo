@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Levantamiento de Datos", href: "/levantamiento-de-datos" },
   { label: "Casos de Éxito", href: "/casos-de-exito" },
   { label: "Nosotros", href: "/nosotros" },
+  { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },
 ];
 
