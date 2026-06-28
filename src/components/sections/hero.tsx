@@ -305,7 +305,6 @@ export function HeroSection() {
               {/* Panel footer */}
               <div className="flex items-center justify-between border-t border-white/10 px-4 py-2.5">
                 <span className="mono-label text-white/40">VIÑA DEL MAR · CL</span>
-                <span className="mono-label tabular text-white/40">-33.02 / -71.55</span>
               </div>
             </div>
 
