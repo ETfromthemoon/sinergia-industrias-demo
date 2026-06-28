@@ -67,25 +67,17 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* logo */}
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span
+        <Link href="/" className="group flex items-center">
+          <img
+            src="/sinergia-logo.png"
+            alt="Sinergia Industrias"
             className={cn(
-              "inline-flex size-8 items-center justify-center font-mono text-xs font-bold transition-colors",
+              "h-8 w-auto transition-all duration-300",
               scrolled || !isHome
-                ? "bg-navy text-white group-hover:bg-navy-dark"
-                : "bg-white/10 text-white ring-1 ring-inset ring-white/25 group-hover:bg-white/20"
+                ? "brightness-0"
+                : "brightness-0 invert"
             )}
-          >
-            SI
-          </span>
-          <span
-            className={cn(
-              "font-display text-base font-semibold tracking-tight transition-colors",
-              scrolled || !isHome ? "text-foreground" : "text-white"
-            )}
-          >
-            Sinergia Industrias
-          </span>
+          />
         </Link>
 
         {/* desktop nav */}

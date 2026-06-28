@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos. Ready Partner Oficial Odoo.",
   keywords:
     "Ley REP, Odoo Chile, levantamiento de procesos, consultoría industrial, ERP Chile, gestión residuos",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

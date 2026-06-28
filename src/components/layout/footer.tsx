@@ -24,10 +24,11 @@ export function Footer() {
           {/* brand */}
           <div>
             <div className="mb-4 flex items-center gap-2.5">
-              <span className="inline-flex size-8 items-center justify-center bg-white/10 font-mono text-xs font-bold text-white">
-                SI
-              </span>
-              <span className="font-display text-base font-semibold text-white">Sinergia Industrias</span>
+              <img
+                src="/sinergia-logo.png"
+                alt="Sinergia Industrias"
+                className="h-7 w-auto brightness-0 invert"
+              />
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-steel-400">
               Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
