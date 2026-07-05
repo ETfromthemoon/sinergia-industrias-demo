@@ -5,14 +5,12 @@ import { SectionLabel } from "@/components/ui/section-label";
 import { OdooLogo } from "@/components/ui/odoo-logo";
 
 function ServiceCard({
-  index,
   icon: Icon,
   title,
   body,
   className,
   delay,
 }: {
-  index: string;
   icon: React.ElementType;
   title: string;
   body: string;
@@ -29,11 +27,10 @@ function ServiceCard({
     >
       {/* top cyan rule on hover */}
       <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-      <div className="mb-6 flex items-start justify-between">
+      <div className="mb-6">
         <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
           <Icon className="size-5 text-navy" />
         </div>
-        <span className="mono-label text-steel-400">MÓD.{index}</span>
       </div>
       <h3 className="font-display mb-3 text-xl font-semibold text-foreground">{title}</h3>
       <p className="text-sm leading-relaxed text-muted-foreground">{body}</p>
@@ -93,8 +90,7 @@ export function ServicesSection() {
                   OFICIAL
                 </span>
               </div>
-              <span className="mono-label text-white/40">MÓD.03</span>
-              <h3 className="font-display mt-2 text-3xl font-bold text-white">
+              <h3 className="font-display mt-6 text-3xl font-bold text-white">
                 Implementación ERP Odoo
               </h3>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-steel-300">
@@ -116,7 +112,6 @@ export function ServicesSection() {
 
           {/* REP */}
           <ServiceCard
-            index="01"
             icon={ShieldCheck}
             title="Cumplimiento Ley REP"
             body="Calculamos, documentamos y reportamos tus obligaciones bajo la ley 20.920. Sin multas, sin sorpresas."
@@ -124,7 +119,6 @@ export function ServicesSection() {
           />
           {/* PROC */}
           <ServiceCard
-            index="02"
             icon={GitBranch}
             title="Levantamiento de procesos"
             body="Mapeamos tu operación, identificamos los cuellos de botella reales y entregamos un plan técnico ejecutable."
@@ -132,7 +126,6 @@ export function ServicesSection() {
           />
           {/* DATA — wide strip */}
           <ServiceCard
-            index="04"
             icon={BarChart3}
             title="Levantamiento de datos"
             body="Ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que realmente pasa y las decisiones se tomen con información real."

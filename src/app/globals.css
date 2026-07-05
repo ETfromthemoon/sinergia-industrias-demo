@@ -180,65 +180,12 @@
   opacity: 0.10;
 }
 
-/* Aurora — soft navy→cyan→signal glow for the dark hero */
+/* Aurora — soft navy→cyan→signal glow for the dark hero (static, no infinite drift) */
 .aurora-dark {
   background:
     radial-gradient(55% 45% at 78% 10%, oklch(0.68 0.14 205 / 0.16), transparent 70%),
     radial-gradient(52% 56% at 10% 92%, oklch(0.32 0.13 256 / 0.30), transparent 72%),
     radial-gradient(40% 40% at 96% 88%, oklch(0.78 0.16 67 / 0.09), transparent 70%);
-  animation: aurora-drift 22s ease-in-out infinite;
-  will-change: transform;
-}
-@keyframes aurora-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1.02); }
-  50%      { transform: translate3d(0, -1.6%, 0) scale(1.07); }
-}
-
-/* Slow horizontal scan line — tenue */
-@keyframes scan-y {
-  0%   { transform: translateY(0); opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { transform: translateY(100%); opacity: 0; }
-}
-.animate-scan {
-  animation: scan-y 7s linear infinite;
-  will-change: transform, opacity;
-}
-
-/* Flowing dashes along circuit connectors */
-@keyframes dash-flow {
-  to { stroke-dashoffset: -16; }
-}
-.animate-dash-flow {
-  animation: dash-flow 0.9s linear infinite;
-}
-
-/* Subtle pulse for status dots */
-@keyframes status-pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 oklch(0.68 0.14 205 / 0.5); }
-  50%      { opacity: 0.6; box-shadow: 0 0 0 4px oklch(0.68 0.14 205 / 0); }
-}
-.animate-status {
-  animation: status-pulse 2.4s ease-in-out infinite;
-}
-
-/* Reveal fade for HeroBackdrop */
-@keyframes backdrop-reveal {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-scan,
-  .animate-dash-flow,
-  .animate-status,
-  .aurora-dark {
-    animation: none;
-  }
-  [style*="backdrop-reveal"] {
-    animation: none !important;
-  }
 }
 
 /* ── Base ───────────────────────────────────────────── */

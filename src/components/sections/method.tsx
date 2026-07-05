@@ -55,22 +55,6 @@ export function MethodSection() {
   return (
     <MotionConfig reducedMotion="user">
       <section id="metodo" className="relative overflow-hidden border-y border-steel-200 bg-steel-50 py-24 px-4">
-
-        {/* Large editorial number — system break: pure type, no frame */}
-        <div
-          aria-hidden
-          className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 leading-none opacity-[0.035]"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: "clamp(10rem, 22vw, 18rem)",
-            color: "var(--navy)",
-            letterSpacing: "-0.05em",
-          }}
-        >
-          03
-        </div>
-
         <div className="relative mx-auto max-w-6xl">
           {/* Header — editorial, intentionally asymmetric, breaks the panel convention */}
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">

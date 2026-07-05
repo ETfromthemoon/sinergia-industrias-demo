@@ -59,51 +59,6 @@ export function VideoHero({
         <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark z-[2] opacity-30" />
         <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[3]" />
 
-        {/* Data-stream lines */}
-        <svg
-          aria-hidden
-          className="pointer-events-none absolute inset-0 w-full h-full z-[2]"
-          preserveAspectRatio="none"
-        >
-          <line x1="0" y1="32%" x2="100%" y2="32%" stroke="oklch(1 0 0 / 0.04)" strokeWidth="0.8" strokeDasharray="7 22" />
-          <line x1="0" y1="68%" x2="100%" y2="68%" stroke="oklch(0.68 0.14 205 / 0.08)" strokeWidth="0.8" strokeDasharray="5 30" />
-          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="oklch(1 0 0 / 0.03)" strokeWidth="0.75" strokeDasharray="4 28" />
-        </svg>
-
-        {/* Scan line */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent animate-scan" />
-        </div>
-
-        {/* Corner crosshairs */}
-        <svg aria-hidden className="pointer-events-none absolute top-5 left-5 z-[4]" width="18" height="18">
-          <path d="M9 0 L9 7 M0 9 L7 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-        </svg>
-        <svg aria-hidden className="pointer-events-none absolute top-5 right-5 z-[4]" width="18" height="18">
-          <path d="M9 0 L9 7 M11 9 L18 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-        </svg>
-        <svg aria-hidden className="pointer-events-none absolute bottom-5 left-5 z-[4]" width="18" height="18">
-          <path d="M9 11 L9 18 M0 9 L7 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-        </svg>
-        <svg aria-hidden className="pointer-events-none absolute bottom-5 right-5 z-[4]" width="18" height="18">
-          <path d="M9 11 L9 18 M11 9 L18 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-        </svg>
-
-        {/* Bottom measurement annotation */}
-        <motion.div
-          aria-hidden
-          className="pointer-events-none select-none absolute bottom-6 inset-x-12 z-[4] hidden lg:flex items-center gap-3"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.9 }}
-        >
-          <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, oklch(1 0 0 / 0.16))" }} />
-          <span className="mono-label text-white/35" style={{ fontSize: "0.5rem", letterSpacing: "0.22em" }}>
-            REGION DE VALPARAISO · CHILE · REF.SIS.02
-          </span>
-          <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, oklch(1 0 0 / 0.16))" }} />
-        </motion.div>
-
         {/* Top rule */}
         <div
           aria-hidden
@@ -132,7 +87,7 @@ export function VideoHero({
             transition={{ delay: 0.05, duration: 0.5 }}
           >
             <span className="mono-label text-white/70">
-              <span className="inline-block size-1.5 rounded-full mr-2 bg-cyan animate-status" />
+              <span className="inline-block size-1.5 rounded-full mr-2 bg-cyan" />
               {eyebrow}
             </span>
             {badge && (

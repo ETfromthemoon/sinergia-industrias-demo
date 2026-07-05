@@ -74,7 +74,6 @@ export function ContactSection() {
                   const Icon = row.icon;
                   const content = (
                     <>
-                      <span className="mono-label w-10 shrink-0 text-steel-400">{row.code}</span>
                       <Icon className="size-4 shrink-0 text-navy" />
                       <span className="text-sm text-foreground">{row.label}</span>
                     </>
