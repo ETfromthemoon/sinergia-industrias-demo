@@ -5,12 +5,29 @@ import remarkGfm from "remark-gfm";
 import { getPost, getAllPosts } from "@/lib/posts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { Calendar, Clock, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { CornerTicks } from "@/components/ui/blueprint-frame";
+import ArticleSidebar from "./article-sidebar";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+function extractHeadings(markdown: string): { id: string; text: string; level: number }[] {
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  const headings: { id: string; text: string; level: number }[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = headingRegex.exec(markdown)) !== null) {
+    const level = match[1].length;
+    const text = match[2].replace(/[`*_~\[\]()]/g, "").trim();
+    const id = text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+    headings.push({ id, text, level });
+  }
+  return headings;
 }
 
 export async function generateStaticParams() {
@@ -41,107 +58,188 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   if (!post) notFound();
 
+  const headings = post.content ? extractHeadings(post.content) : [];
+  const hasContent = !!post.content;
+
   return (
     <>
       <Navbar />
       <main>
-        {/* Header */}
-        <section className="bg-navy-dark py-24 px-4">
-          <div className="mx-auto max-w-3xl">
+        {/* ── HERO FULL-BLEED ─────────────────────── */}
+        <section className="relative overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0 h-[70vh] min-h-[500px]">
+            <img
+              src={post.image}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/60 via-navy-dark/70 to-navy-dark/95" />
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-4xl px-4 pt-32 pb-20 sm:pt-40 sm:pb-28 h-[70vh] min-h-[500px] flex flex-col justify-end">
+            {/* Back link */}
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-steel-300 hover:text-white transition-colors mb-8"
+              className="inline-block text-steel-300 hover:text-white text-sm tracking-wide transition-colors mb-8"
             >
-              <ArrowLeft className="size-3.5" />
-              Volver al blog
+              ← Volver al blog
             </Link>
 
-            <span className="inline-block border border-cyan/40 bg-cyan/10 px-3 py-1 mono-label text-cyan text-xs mb-4">
-              {post.tag}
-            </span>
-
-            <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-              {post.title}
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-5 mt-6">
-              <span className="flex items-center gap-1.5 mono-label text-steel-400 text-sm">
-                <Calendar className="size-3.5" />
+            {/* Tag + meta */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5">
+              <span className="text-cyan text-xs tracking-[0.15em] uppercase font-semibold">
+                {post.tag}
+              </span>
+              <span className="text-steel-300 text-sm">
                 {post.date}
               </span>
-              <span className="flex items-center gap-1.5 mono-label text-steel-400 text-sm">
-                <Clock className="size-3.5" />
-                {post.readTime}
+              <span className="text-steel-300 text-sm">
+                {post.readTime} de lectura
               </span>
             </div>
+
+            {/* Title */}
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-3xl">
+              {post.title}
+            </h1>
           </div>
         </section>
 
-        {/* Content */}
-        <section className="bg-background py-16 px-4">
-          <article className="mx-auto max-w-3xl">
-            {post.content ? (
-              <div className="prose prose-lg prose-slate max-w-none
-                prose-headings:font-display prose-headings:font-bold prose-headings:text-foreground
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                prose-p:text-muted-foreground prose-p:leading-relaxed
-                prose-strong:text-foreground prose-strong:font-semibold
-                prose-a:text-navy prose-a:no-underline hover:prose-a:text-cyan-deep
-                prose-li:text-muted-foreground
-                prose-table:border prose-table:border-steel-200
-                prose-th:bg-steel-50 prose-th:px-4 prose-th:py-2 prose-th:text-sm prose-th:font-semibold
-                prose-td:px-4 prose-td:py-2 prose-td:text-sm
-                prose-code:text-cyan-deep prose-code:bg-steel-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                prose-blockquote:border-l-cyan prose-blockquote:bg-steel-50 prose-blockquote:py-2 prose-blockquote:px-4
-              ">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {post.content}
-                </ReactMarkdown>
-              </div>
-            ) : (
-              <div className="relative border border-steel-200 bg-steel-50 p-12 text-center">
-                <CornerTicks className="text-steel-400" size={8} />
-                <p className="text-muted-foreground text-lg">
-                  Este artículo está en preparación. Pronto publicaremos el contenido completo.
-                </p>
-                <Link
-                  href="/contacto"
-                  className="inline-block mt-6 bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-cyan-deep transition-colors"
-                >
-                  Mientras tanto, conversemos tu proyecto →
-                </Link>
-              </div>
-            )}
+        {/* ── CONTENT + SIDEBAR ───────────────────── */}
+        <section className="bg-white pb-24 px-4">
+          <div className="mx-auto max-w-6xl flex gap-12">
+            {/* Article body */}
+            <article className="flex-1 min-w-0 max-w-3xl pt-12">
+              {hasContent ? (
+                <div className="prose-content">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h2: ({ children, ...props }) => {
+                        const text = String(children);
+                        const id = text
+                          .toLowerCase()
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036f]/g, "")
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/(^-|-$)/g, "");
+                        return (
+                          <h2 id={id} {...props}>
+                            {children}
+                          </h2>
+                        );
+                      },
+                      h3: ({ children, ...props }) => {
+                        const text = String(children);
+                        const id = text
+                          .toLowerCase()
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036f]/g, "")
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/(^-|-$)/g, "");
+                        return (
+                          <h3 id={id} {...props}>
+                            {children}
+                          </h3>
+                        );
+                      },
+                      // Drop cap on first paragraph
+                      p: ({ children, ...props }) => {
+                        // Check if this is the first text paragraph
+                        const text = typeof children === "string" ? children : "";
+                        return <p {...props}>{children}</p>;
+                      },
+                      table: ({ children }) => (
+                        <div className="overflow-x-auto my-8">
+                          <table className="w-full border-collapse text-sm">
+                            {children}
+                          </table>
+                        </div>
+                      ),
+                      th: ({ children }) => (
+                        <th className="border-b-2 border-steel-200 bg-steel-50 px-5 py-3 text-left text-xs font-semibold text-foreground uppercase tracking-wider first:pl-0">
+                          {children}
+                        </th>
+                      ),
+                      td: ({ children }) => (
+                        <td className="border-b border-steel-100 px-5 py-3 text-muted-foreground first:pl-0">
+                          {children}
+                        </td>
+                      ),
+                      a: ({ href, children }) => (
+                        <a
+                          href={href}
+                          className="text-navy font-medium hover:text-cyan-deep transition-colors"
+                          style={{
+                            textDecoration: "underline",
+                            textDecorationColor: "oklch(0.68 0.14 205 / 0.3)",
+                            textUnderlineOffset: "3px",
+                            textDecorationThickness: "1px",
+                          }}
+                        >
+                          {children}
+                        </a>
+                      ),
+                      blockquote: ({ children }) => (
+                        <blockquote className="border-l-2 border-cyan my-8 pl-6 py-1 bg-steel-50/50 italic text-muted-foreground">
+                          {children}
+                        </blockquote>
+                      ),
+                      strong: ({ children }) => (
+                        <strong className="font-semibold text-foreground">
+                          {children}
+                        </strong>
+                      ),
+                      code: ({ children }) => (
+                        <code className="text-cyan-deep bg-steel-50 px-1.5 py-0.5 rounded text-sm font-normal">
+                          {children}
+                        </code>
+                      ),
+                    }}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </div>
+              ) : (
+                <div className="text-center py-20">
+                  <p className="text-steel-400 text-lg leading-relaxed">
+                    Este artículo está en preparación. Pronto publicaremos el contenido completo.
+                  </p>
+                </div>
+              )}
 
-            {/* CTA Footer */}
-            <div className="relative mt-16 overflow-hidden border border-steel-200 bg-navy-dark p-8 sm:p-10">
-              <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-60" />
-              <CornerTicks className="text-cyan/50 z-10" size={10} />
-              <div className="relative z-10 text-center">
-                <h3 className="font-display text-2xl font-bold text-white">
+              {/* Divider */}
+              <hr className="my-16 border-steel-150" />
+
+              {/* CTA Footer — minimal */}
+              <div className="bg-navy-dark px-10 py-12 text-center">
+                <p className="font-display text-2xl font-bold text-white mb-3">
                   ¿Necesitas ayuda con este tema?
-                </h3>
-                <p className="mt-3 text-steel-300 text-sm max-w-md mx-auto">
-                  En Sinergia Industrias resolvemos estos desafíos todos los días. Conversemos 30 minutos sin costo.
                 </p>
-                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <p className="text-steel-300 text-sm max-w-md mx-auto leading-relaxed mb-8">
+                  En Sinergia Industrias resolvemos estos desafíos todos los días. Conversemos 30 minutos sin costo ni compromiso.
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
                   <Link
                     href="/contacto"
-                    className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon hover:bg-white transition-all"
+                    className="bg-cyan px-8 py-3.5 text-sm font-semibold text-carbon hover:bg-white transition-all duration-200"
                   >
                     Conversemos tu proyecto
                   </Link>
                   <a
                     href="mailto:info@sinergiaindustrias.cl"
-                    className="border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-white/50 transition-colors"
+                    className="px-8 py-3.5 text-sm font-medium text-steel-300 hover:text-white transition-colors duration-200"
                   >
                     info@sinergiaindustrias.cl
                   </a>
                 </div>
               </div>
-            </div>
-          </article>
+            </article>
+
+            {/* Sidebar */}
+            <ArticleSidebar headings={headings} />
+          </div>
         </section>
       </main>
       <Footer />
