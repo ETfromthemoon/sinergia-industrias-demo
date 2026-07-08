@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import ReactDOM from "react-dom";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+
+// Preconnect to YouTube origins used by embedded video players,
+// so the connection is warm before any video component mounts.
+const YOUTUBE_ORIGINS = [
+  "https://www.youtube.com",
+  "https://www.youtube-nocookie.com",
+  "https://i.ytimg.com",
+];
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +64,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  YOUTUBE_ORIGINS.forEach((origin) => ReactDOM.preconnect(origin));
+
   return (
     <html
       lang="es"

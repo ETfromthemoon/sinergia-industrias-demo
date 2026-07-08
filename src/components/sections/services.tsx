@@ -124,14 +124,30 @@ export function ServicesSection() {
             body="Mapeamos tu operación, identificamos los cuellos de botella reales y entregamos un plan técnico ejecutable."
             delay={0.18}
           />
-          {/* DATA — wide strip */}
-          <ServiceCard
-            icon={BarChart3}
-            title="Levantamiento de datos"
-            body="Ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que realmente pasa y las decisiones se tomen con información real."
-            className="lg:col-span-3"
-            delay={0.24}
-          />
+          {/* DATA — wide strip, horizontal layout to break the vertical-card template */}
+          <motion.div
+            className="group relative flex flex-col gap-6 bg-white p-8 transition-colors duration-300 hover:bg-steel-50 sm:flex-row sm:items-center lg:col-span-3"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.24, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+            <div className="flex shrink-0 items-center gap-4 sm:w-64">
+              <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
+                <BarChart3 className="size-5 text-navy" />
+              </div>
+              <h3 className="font-display text-xl font-semibold text-foreground">
+                Levantamiento de datos
+              </h3>
+            </div>
+            <div className="hidden h-12 w-px shrink-0 bg-steel-200 sm:block" aria-hidden />
+            <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+              Ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que
+              realmente pasa y las decisiones se tomen con información real.
+            </p>
+            <ArrowUpRight className="size-5 shrink-0 text-steel-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
+          </motion.div>
         </div>
       </div>
     </section>

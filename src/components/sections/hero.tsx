@@ -76,10 +76,7 @@ export function HeroSection() {
               <span className="block">
                 <SplitText text={LINE_1} delay={0.08} stagger={0.04} startIndex={0} />
               </span>
-              <span
-                className="block text-cyan"
-                style={{ textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" }}
-              >
+              <span className="block">
                 <SplitText text={LINE_2} delay={0.08} stagger={0.04} startIndex={2} />
               </span>
               <span className="block mt-1">
@@ -164,7 +161,7 @@ export function HeroSection() {
                   >
                     {val}
                   </span>
-                  <span className="mono-label text-white/55">{label}</span>
+                  <span className="mono-label text-white/70">{label}</span>
                 </div>
               ))}
             </motion.div>

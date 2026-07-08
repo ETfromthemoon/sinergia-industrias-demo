@@ -2,18 +2,16 @@
 import { motion } from "motion/react";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { Building2, Wrench, TrendingUp } from "lucide-react";
+import { truncateAtWord } from "@/lib/case-study";
+import type { CaseStudy } from "@/lib/case-study";
 
-export type CaseStudy = {
-  client: string;
-  code: string;
-  industry: string;
-  context: string;
-  service: string;
-  result: string;
-  image: string;
+type CaseSlideProps = {
+  study: CaseStudy;
+  current: number;
+  total: number;
 };
 
-export function CaseSlide({ study }: { study: CaseStudy }) {
+export function CaseSlide({ study, current, total }: CaseSlideProps) {
   return (
     <motion.div
       className="relative w-full min-h-[520px] sm:min-h-[560px] overflow-hidden border border-steel-200 bg-carbon"
@@ -21,11 +19,14 @@ export function CaseSlide({ study }: { study: CaseStudy }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      role="group"
+      aria-roledescription="diapositiva"
+      aria-label={`Caso ${current + 1} de ${total}: ${study.client}`}
     >
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${study.image})` }}
+        style={{ backgroundImage: study.image ? `url(${study.image})` : undefined }}
       />
 
       {/* Dark overlay gradient — left-to-right + bottom */}
@@ -66,7 +67,7 @@ export function CaseSlide({ study }: { study: CaseStudy }) {
               CONTEXTO
             </span>
             <p className="text-sm leading-relaxed text-steel-400">
-              {study.context.slice(0, 120)}...
+              {truncateAtWord(study.context, 120)}
             </p>
           </div>
           <div className="border-l-2 border-navy/60 pl-4">
@@ -92,7 +93,7 @@ export function CaseSlide({ study }: { study: CaseStudy }) {
 
       {/* Slide counter (top-right) */}
       <div className="absolute top-6 right-8 z-10 mono-label text-white/40 text-xs">
-        {study.code.replace("C", "")} / 12
+        {current + 1} / {total}
       </div>
     </motion.div>
   );

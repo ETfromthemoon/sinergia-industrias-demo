@@ -40,7 +40,7 @@ export function Footer() {
           </div>
 
           {/* nav */}
-          <div>
+          <nav aria-label="Enlaces del sitio">
             <p className="mono-label mb-5 text-white/30">Navegación</p>
             <ul className="space-y-3">
               {NAV_LINKS.map((l) => (
@@ -51,7 +51,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* contact */}
           <div>

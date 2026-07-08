@@ -23,7 +23,6 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
-        index="03"
         eyebrow="Ready Partner Oficial Odoo"
         headline="Unifica, optimiza,"
         headlineAccent="triunfa"
@@ -33,7 +32,7 @@ export default function Content() {
 
       {/* ¿Qué es Odoo? */}
       <MotionConfig reducedMotion="user">
-        <section className="bg-background py-24 px-4">
+        <section className="bg-steel-50 border-y border-steel-200 py-24 px-4">
           <div className="mx-auto max-w-6xl">
             <SectionLabel index="01" className="mb-6">
               ERP

@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   description:
     "Levantamiento, cálculo de metas y reporte completo bajo la Ley 20.920. Cumplimiento REP sin multas ni sorpresas.",
   alternates: { canonical: "/ley-rep" },
+  openGraph: {
+    title: "Ley REP 20.920 — Cumplimiento normativo · Sinergia Industrias",
+    description:
+      "Levantamiento, cálculo de metas y reporte completo bajo la Ley 20.920. Cumplimiento REP sin multas ni sorpresas.",
+    type: "website",
+    url: "/ley-rep",
+  },
 };
 
 export default function Page() {

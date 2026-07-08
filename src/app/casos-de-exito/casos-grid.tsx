@@ -1,6 +1,6 @@
 "use client";
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useCallback, type KeyboardEvent } from "react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { CaseSlide } from "./case-slide";
 import { SectionLabel } from "@/components/ui/section-label";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -30,81 +30,110 @@ export function CasosGrid() {
     [total],
   );
 
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        next();
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        prev();
+      }
+    },
+    [next, prev],
+  );
+
   return (
-    <section className="bg-background py-24 px-4">
-      <div className="mx-auto max-w-6xl">
-        <SectionLabel index="01" className="mb-6">
-          Evidencia
-        </SectionLabel>
+    <MotionConfig reducedMotion="user">
+      <section className="bg-background py-24 px-4">
+        <div className="mx-auto max-w-6xl">
+          <SectionLabel index="01" className="mb-6">
+            Evidencia
+          </SectionLabel>
 
-        <motion.h2
-          className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Casos de éxito
-        </motion.h2>
-
-        <motion.p
-          className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground"
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-        >
-          Cada proyecto es una historia de transformación. Desde el diagnóstico
-          hasta los resultados, aquí están los hechos.
-        </motion.p>
-
-        {/* Slider container — full width */}
-        <div className="mt-14 relative">
-          <AnimatePresence mode="wait">
-            <CaseSlide key={CASES[current].code} study={CASES[current]} />
-          </AnimatePresence>
-
-          {/* Navigation arrows */}
-          <button
-            onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
-            aria-label="Caso anterior"
+          <motion.h2
+            className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
-            aria-label="Caso siguiente"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
+            Casos de éxito
+          </motion.h2>
 
-        {/* Dots navigation */}
-        <div className="mt-8 flex justify-center gap-2">
-          {CASES.map((c, i) => (
+          <motion.p
+            className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+          >
+            Cada proyecto es una historia de transformación. Desde el diagnóstico
+            hasta los resultados, aquí están los hechos.
+          </motion.p>
+
+          {/* Slider container — full width */}
+          <div
+            className="mt-14 relative outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+            role="region"
+            aria-roledescription="carrusel"
+            aria-label="Casos de éxito"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+          >
+            <AnimatePresence mode="wait">
+              <CaseSlide
+                key={CASES[current].code}
+                study={CASES[current]}
+                current={current}
+                total={total}
+              />
+            </AnimatePresence>
+
+            {/* Navigation arrows */}
             <button
-              key={c.code}
-              onClick={() => setCurrent(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current
-                  ? "w-8 bg-cyan"
-                  : "w-2 bg-steel-300 hover:bg-steel-400"
-              }`}
-              aria-label={`Ver caso ${c.client}`}
-            />
-          ))}
-        </div>
+              onClick={prev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
+              aria-label="Caso anterior"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
+              aria-label="Caso siguiente"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
 
-        {/* Active case info below dots */}
-        <div className="mt-4 text-center">
-          <span className="mono-label text-steel-400">
-            {CASES[current].code} — {CASES[current].client} ·{" "}
-            {CASES[current].industry}
-          </span>
+          {/* Dots navigation */}
+          <div className="mt-8 flex justify-center gap-2" role="tablist" aria-label="Seleccionar caso">
+            {CASES.map((c, i) => (
+              <button
+                key={c.code}
+                onClick={() => setCurrent(i)}
+                role="tab"
+                aria-selected={i === current}
+                aria-label={`Caso ${i + 1}: ${c.client}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "w-8 bg-cyan"
+                    : "w-2 bg-steel-300 hover:bg-steel-400"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Active case info below dots */}
+          <div className="mt-4 text-center">
+            <span className="mono-label text-steel-400">
+              {CASES[current].code} — {CASES[current].client} ·{" "}
+              {CASES[current].industry}
+            </span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </MotionConfig>
   );
 }

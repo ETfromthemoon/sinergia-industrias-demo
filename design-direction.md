@@ -15,7 +15,7 @@ El azul navy profundo es el color del tablero de control, de las normas ISO, de 
 - **Texto:** Casi negro con tinte azul (`oklch(0.14 0.010 250)`)
 
 ### Tipografía
-- **Titulares:** Inter Tight 700 — condensado, fuerte, de ingeniería
+- **Titulares:** Space Grotesk 700 — condensado, fuerte, de ingeniería (fuente realmente cargada vía next/font como `--font-display`)
 - **Cuerpo:** Inter 400/500 — legible y neutro
 - **Datos/badges:** JetBrains Mono — refuerza el registro técnico en métricas
 
@@ -24,6 +24,7 @@ El azul navy profundo es el color del tablero de control, de las normas ISO, de 
 - Líneas finas de 1px en separadores y tarjetas (no sombras pesadas)
 - Secciones alternadas blanco/acero para definir bloques sin ruido visual
 - Una sección oscura (navy dark) para el CTA final — contraste y cierre
+- `CornerTicks` (crosshairs de esquina) es parte vigente del lenguaje visual Swiss/técnico del sitio — no es chrome sobrante, refuerza el registro de plano de ingeniería y debe conservarse en futuras iteraciones
 
 ### Motion
 - Muy sutil. Blur-to-focus en titulares (< 0.7s por elemento)

@@ -91,7 +91,7 @@ export function LeyRepSection() {
           >
             <CornerTicks className="text-cyan" size={12} />
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-              <span className="mono-label text-white/50">PROC.REP / LEY 20.920</span>
+              <span className="mono-label text-white/70">PROC.REP / LEY 20.920</span>
               <span className="mono-label text-cyan">4 ETAPAS</span>
             </div>
             <ul className="divide-y divide-white/10">

@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
 type MagneticProps = {
   children: React.ReactNode;
@@ -9,6 +9,7 @@ type MagneticProps = {
 
 export function Magnetic({ children, strength = 0.22 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const xSpring = useSpring(x, { stiffness: 200, damping: 18, mass: 0.4 });
@@ -19,6 +20,7 @@ export function Magnetic({ children, strength = 0.22 }: MagneticProps) {
       ref={ref}
       style={{ x: xSpring, y: ySpring }}
       onMouseMove={(e) => {
+        if (prefersReducedMotion) return;
         const el = ref.current;
         if (!el) return;
         const rect = el.getBoundingClientRect();

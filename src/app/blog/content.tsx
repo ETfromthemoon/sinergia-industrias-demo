@@ -46,6 +46,10 @@ export default function BlogContent({ posts }: BlogContentProps) {
             src={featured.image}
             alt=""
             className="w-full h-full object-cover opacity-30"
+            width={800}
+            height={533}
+            fetchPriority="high"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/80 to-navy-dark/40" />
           <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-40" />
@@ -155,6 +159,8 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       src={post.image}
                       alt={post.title}
                       className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                      width={800}
+                      height={533}
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3">

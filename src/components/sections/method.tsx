@@ -80,10 +80,10 @@ export function MethodSection() {
           {/* Stepper */}
           <div className="relative">
 
-            {/* Connecting beam — base track */}
+            {/* Connecting beam — base track (visible from sm: 2-col up) */}
             <motion.span
               aria-hidden
-              className="absolute left-0 top-[1.375rem] hidden h-px w-full origin-left bg-steel-200 lg:block"
+              className="absolute left-0 top-[1.375rem] hidden h-px w-full origin-left bg-steel-200 sm:block"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -92,7 +92,7 @@ export function MethodSection() {
             {/* Beam — first 75% fills with cyan (diagn+plan+exec) */}
             <motion.span
               aria-hidden
-              className="absolute left-0 top-[1.375rem] hidden h-px w-3/4 origin-left bg-cyan lg:block"
+              className="absolute left-0 top-[1.375rem] hidden h-px w-3/4 origin-left bg-cyan sm:block"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -116,9 +116,9 @@ export function MethodSection() {
                     <span className="mono-label tabular text-steel-400">{step.duration}</span>
                   </div>
 
-                  {/* Node marker on the beam */}
+                  {/* Node marker on the beam — relative z-10 keeps it opaque above the connector line at sm:/lg: */}
                   <div
-                    className="mb-5 flex items-center justify-center size-11 border bg-white shadow-sm transition-shadow duration-300"
+                    className="relative z-10 mb-5 flex items-center justify-center size-11 border bg-white shadow-sm transition-shadow duration-300"
                     style={{
                       borderColor: step.accent
                         ? "oklch(0.78 0.16 67 / 0.55)"
