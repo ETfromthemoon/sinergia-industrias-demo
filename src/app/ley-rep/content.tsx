@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { FeatureSection } from "@/components/sections/feature-section";
 import { ProcessSteps } from "@/components/sections/process-steps";
+import { RelatedServices } from "@/components/sections/related-services";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { motion, MotionConfig } from "motion/react";
@@ -224,6 +225,8 @@ export default function LeyRepContent() {
         jointVentureLabel="Asalvo"
         jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley"]}
       />
+
+      <RelatedServices current="ley-rep" />
 
       <CtaBand />
     </main>

@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { FeatureSection } from "@/components/sections/feature-section";
+import { RelatedServices } from "@/components/sections/related-services";
 import { TrendingUp, Clock, DollarSign, Award } from "lucide-react";
 
 const benefits = [
@@ -80,6 +81,8 @@ export default function Content() {
           "Arriendo Legal",
         ]}
       />
+
+      <RelatedServices current="levantamiento-de-procesos" />
 
       <CtaBand />
     </main>

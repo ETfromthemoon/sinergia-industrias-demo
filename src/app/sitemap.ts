@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts, postDateToISO } from "@/lib/posts";
 
 const BASE_URL = "https://www.sinergiaindustrias.cl";
 
@@ -12,12 +13,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/casos-de-exito", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/nosotros", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/contacto", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
   ];
 
-  return pages.map((page) => ({
+  const pageEntries: MetadataRoute.Sitemap = pages.map((page) => ({
     url: `${BASE_URL}${page.path}`,
     lastModified: new Date(),
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
+
+  const postEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(postDateToISO(post.date)),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...pageEntries, ...postEntries];
 }

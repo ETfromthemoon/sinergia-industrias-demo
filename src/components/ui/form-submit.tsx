@@ -3,6 +3,7 @@
 import { useState, useRef, type FormEvent, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { trackLeadConversion } from "@/lib/analytics";
 
 const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/info@sinergiaindustrias.cl";
 
@@ -37,6 +38,10 @@ export function useFormSubmit() {
       if (json.success === "true" || json.success === true) {
         setStatus("success");
         setMessage("Mensaje enviado. Te responderemos en menos de 24h hábiles.");
+        // Evento de conversión para Google Ads / GA4 (no-op si no hay tag instalado).
+        trackLeadConversion(
+          typeof data.servicio === "string" ? { servicio: data.servicio } : undefined
+        );
         e.currentTarget.reset();
       } else {
         setStatus("error");

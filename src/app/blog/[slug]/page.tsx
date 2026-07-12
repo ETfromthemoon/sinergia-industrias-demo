@@ -6,6 +6,7 @@ import { getPost, getAllPosts, postDateToISO } from "@/lib/posts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -51,6 +52,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const hasContent = !!post.content;
+  const SITE_URL = "https://www.sinergiaindustrias.cl";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -67,14 +69,24 @@ export default async function BlogPostPage({ params }: PageProps) {
       name: "Sinergia Industrias",
       logo: {
         "@type": "ImageObject",
-        url: "https://sinergiaindustrias.cl/logo.png",
+        url: `${SITE_URL}/sinergia-logo.png`,
       },
     },
     description: post.excerpt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://sinergiaindustrias.cl/blog/${slug}`,
+      "@id": `${SITE_URL}/blog/${slug}`,
     },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${slug}` },
+    ],
   };
 
   return (
@@ -84,14 +96,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* ── HERO — corporate, imagen con overlay ligero ── */}
         <section className="relative bg-navy-dark overflow-hidden">
           <div className="absolute inset-0">
-            <img
+            <Image
               src={post.image}
               alt=""
-              className="w-full h-full object-cover opacity-25"
-              width={800}
-              height={533}
-              fetchPriority="high"
-              loading="eager"
+              fill
+              className="object-cover opacity-25"
+              priority
+              sizes="100vw"
             />
           </div>
           <div className="relative z-10 mx-auto max-w-3xl px-6 py-28 sm:py-36">
@@ -124,6 +135,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
             {hasContent ? (
               <div className="prose-corporate">

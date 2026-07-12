@@ -2,6 +2,7 @@
 
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -42,14 +43,13 @@ export default function BlogContent({ posts }: BlogContentProps) {
       <section className="relative overflow-hidden bg-navy-dark">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img
+          <Image
             src={featured.image}
             alt=""
-            className="w-full h-full object-cover opacity-30"
-            width={800}
-            height={533}
-            fetchPriority="high"
-            loading="eager"
+            fill
+            className="object-cover opacity-30"
+            priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/80 to-navy-dark/40" />
           <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-40" />
@@ -154,13 +154,13 @@ export default function BlogContent({ posts }: BlogContentProps) {
                   <CornerTicks className="text-steel-400" size={8} />
 
                   {/* Image */}
-                  <div className="relative overflow-hidden">
-                    <img
+                  <div className="relative overflow-hidden h-48">
+                    <Image
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                      width={800}
-                      height={533}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3">

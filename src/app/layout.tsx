@@ -35,12 +35,41 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = "https://www.sinergiaindustrias.cl";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Sinergia Industrias",
+  url: SITE_URL,
+  logo: `${SITE_URL}/sinergia-logo.png`,
+  image: `${SITE_URL}/sinergia-logo.png`,
+  email: "info@sinergiaindustrias.cl",
+  telephone: "+56994584617",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Calle Limache 3421, of. 724",
+    addressLocality: "Viña del Mar",
+    addressCountry: "CL",
+  },
+  sameAs: ["https://www.linkedin.com/company/sinergia-industrias"],
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
   description:
     "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos. Ready Partner Oficial Odoo.",
-  keywords:
-    "Ley REP, Odoo Chile, levantamiento de procesos, consultoría industrial, ERP Chile, gestión residuos",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
+    description:
+      "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos.",
+    url: "/",
+    siteName: "Sinergia Industrias",
+    locale: "es_CL",
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -72,6 +101,10 @@ export default function RootLayout({
       className={cn("h-full antialiased", inter.variable, spaceGrotesk.variable, jetbrainsMono.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {children}
       </body>
     </html>

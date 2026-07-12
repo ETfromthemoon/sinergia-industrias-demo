@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { buildServiceJsonLd } from "@/lib/service-jsonld";
 import Content from "./content";
 
 const title = "Levantamiento de procesos — Diagnóstico operacional · Sinergia Industrias";
@@ -19,9 +20,19 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = buildServiceJsonLd({
+  name: "Levantamiento de procesos",
+  description,
+  path: "/levantamiento-de-procesos",
+});
+
 export default function Page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       <Content />
       <Footer />

@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { FeatureSection } from "@/components/sections/feature-section";
+import { RelatedServices } from "@/components/sections/related-services";
 import { SectionLabel } from "@/components/ui/section-label";
 import { motion, MotionConfig } from "motion/react";
 import { BarChart3, FileText, TrendingUp } from "lucide-react";
@@ -139,6 +140,8 @@ export default function Content() {
         jointVentureLabel="Asalvo"
         jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley"]}
       />
+
+      <RelatedServices current="levantamiento-de-datos" />
 
       <CtaBand />
     </main>

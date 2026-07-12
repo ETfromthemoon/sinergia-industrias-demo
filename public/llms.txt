@@ -1,0 +1,22 @@
+# Sinergia Industrias
+
+> Consultora B2B chilena de ingeniería de procesos y tecnología industrial. Ready Partner Oficial Odoo en Chile.
+
+Sinergia Industrias ayuda a empresas industriales chilenas (manufactura, retail, minería) en cuatro áreas: cumplimiento de la Ley REP 20.920, levantamiento y optimización de procesos operacionales, levantamiento y sistematización de datos, e implementación del ERP Odoo. Sede en Viña del Mar, Chile. Contacto: info@sinergiaindustrias.cl.
+
+## Servicios
+
+- [Cumplimiento Ley REP 20.920](https://www.sinergiaindustrias.cl/ley-rep): levantamiento, cálculo de metas y reporte de obligaciones de Responsabilidad Extendida del Productor ante el Ministerio del Medio Ambiente de Chile.
+- [Implementación ERP Odoo](https://www.sinergiaindustrias.cl/implementacion-odoo): implementación como Ready Partner Oficial Odoo (finanzas, inventario, RRHH, ventas, manufactura).
+- [Levantamiento de procesos](https://www.sinergiaindustrias.cl/levantamiento-de-procesos): diagnóstico y optimización de procesos operacionales industriales.
+- [Levantamiento de datos](https://www.sinergiaindustrias.cl/levantamiento-de-datos): sistematización de datos dispersos en reportes y tableros confiables.
+
+## Empresa
+
+- [Nosotros](https://www.sinergiaindustrias.cl/nosotros)
+- [Casos de éxito](https://www.sinergiaindustrias.cl/casos-de-exito)
+- [Contacto](https://www.sinergiaindustrias.cl/contacto)
+
+## Blog
+
+Artículos sobre Ley REP, ERP Odoo, procesos industriales, datos y sostenibilidad: [https://www.sinergiaindustrias.cl/blog](https://www.sinergiaindustrias.cl/blog) (ver `sitemap.xml` para el listado completo y actualizado de artículos).
