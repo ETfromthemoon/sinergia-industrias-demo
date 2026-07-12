@@ -1,5 +1,6 @@
 "use client";
-import { motion, MotionConfig } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, MotionConfig, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -30,39 +31,71 @@ export function VideoHero({
   badge,
   videoId,
 }: VideoHeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const [shouldMountIframe, setShouldMountIframe] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const mountIframe = () => setShouldMountIframe(true);
+
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(mountIframe, { timeout: 2000 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(mountIframe, 500);
+    return () => window.clearTimeout(timeoutId);
+  }, [prefersReducedMotion]);
+
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative overflow-hidden px-4 pb-20 pt-32 lg:pb-28 lg:pt-40 bg-carbon">
-        {/* ── YouTube video background ─────────────── */}
+        {/* ── Poster fallback (always rendered) ────── */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <iframe
-            src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=${videoId}&fs=0&modestbranding=1&playsinline=1`}
-            allow="autoplay; encrypted-media"
-            title="Video de fondo"
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2"
-            style={{ 
-              width: "177.78vh", 
-              minWidth: "100%", 
-              minHeight: "100%",
-              pointerEvents: "none",
-              border: "none",
-            }}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
 
+        {/* ── YouTube video background (lazy-mounted) ── */}
+        {shouldMountIframe && (
+          <div className="absolute inset-0 z-[1] overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=${videoId}&fs=0&modestbranding=1&playsinline=1`}
+              allow="autoplay; encrypted-media"
+              title="Video de fondo"
+              aria-hidden="true"
+              tabIndex={-1}
+              className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2"
+              style={{
+                width: "177.78vh",
+                minWidth: "100%",
+                minHeight: "100%",
+                pointerEvents: "none",
+                border: "none",
+              }}
+            />
+          </div>
+        )}
+
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 z-[1] bg-carbon/75" />
+        <div className="absolute inset-0 z-[2] bg-carbon/85" />
         {/* Extra gradient at bottom */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-carbon via-carbon/50 to-transparent" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-carbon via-carbon/50 to-transparent" />
 
         {/* ── Atmosphere overlays ──────────────────── */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark z-[2] opacity-30" />
-        <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[3]" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark z-[3] opacity-30" />
+        <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[4]" />
 
         {/* Top rule */}
         <div
           aria-hidden
-          className="absolute top-0 inset-x-0 h-px z-[4]"
+          className="absolute top-0 inset-x-0 h-px z-[5]"
           style={{
             background: "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.30) 35%, oklch(0.68 0.14 205 / 0.30) 65%, transparent 100%)",
           }}
@@ -71,7 +104,7 @@ export function VideoHero({
         {/* Bottom hairline */}
         <div
           aria-hidden
-          className="absolute bottom-0 inset-x-0 h-px z-[4]"
+          className="absolute bottom-0 inset-x-0 h-px z-[5]"
           style={{
             background: "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)",
           }}

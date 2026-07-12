@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "Casos de éxito — Resultados comprobables · Sinergia Industrias",
   description: "Proyectos de ingeniería de procesos, implementación Odoo y cumplimiento Ley REP para industrias en Chile.",
   alternates: { canonical: "/casos-de-exito" },
+  openGraph: {
+    title: "Casos de éxito — Resultados comprobables · Sinergia Industrias",
+    description: "Proyectos de ingeniería de procesos, implementación Odoo y cumplimiento Ley REP para industrias en Chile.",
+    type: "website",
+    url: "/casos-de-exito",
+  },
 };
 
 export default function CasosDeExitoPage() {
@@ -17,7 +23,6 @@ export default function CasosDeExitoPage() {
       <main>
         <PageHero
           variant="dark"
-          index="03"
           eyebrow="Resultados comprobables"
           headline="Creamos proyectos"
           headlineAccent="que nos enorgullecen"

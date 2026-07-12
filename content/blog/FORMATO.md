@@ -179,12 +179,17 @@ En Sinergia hacemos el levantamiento completo. Escríbenos a
 
 ---
 
-## Validación automática (cron job)
+## Publicación y automatización
 
-El cron job `sinergia-content-research` genera posts nuevos cada domingo. Sigue
-este mismo formato. Ver `.hermes/cron-jobs.md` para referencia.
+Hoy la publicación es **manual** (git-as-CMS): crear el `.mdx` en esta carpeta,
+commit y push a `main` → Vercel despliega y genera la ruta `/blog/<slug>`.
 
-Antes de mergear cualquier PR del cron, verificar:
+> NOTA: El cron `sinergia-content-research` mencionado en versiones anteriores de
+> este documento **no está implementado** (el archivo `.hermes/cron-jobs.md` no
+> existe). La especificación para automatizarlo con una tarea programada de
+> Claude Cowork está en [`docs/AUTOMATIZACION-BLOG.md`](../../docs/AUTOMATIZACION-BLOG.md).
+
+Checklist antes de publicar (o de mergear un borrador generado por el cron):
 - [ ] Sin emojis
 - [ ] Sin HTML
 - [ ] Imagen Unsplash responde 200

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getPost, getAllPosts } from "@/lib/posts";
+import { getPost, getAllPosts, postDateToISO } from "@/lib/posts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,11 +22,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPost(slug);
   if (!post) return { title: "Artículo no encontrado" };
 
+  const publishedTime = postDateToISO(post.date);
+
   return {
     title: `${post.title} · Sinergia Industrias`,
     description: post.excerpt,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+      type: "article",
+      publishedTime,
+      authors: ["Sinergia Industrias"],
+    },
+    twitter: {
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
       images: [post.image],
@@ -40,6 +52,42 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const hasContent = !!post.content;
+  const SITE_URL = "https://www.sinergiaindustrias.cl";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    image: [post.image],
+    datePublished: postDateToISO(post.date),
+    author: {
+      "@type": "Organization",
+      name: "Sinergia Industrias",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Sinergia Industrias",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/sinergia-logo.png`,
+      },
+    },
+    description: post.excerpt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${slug}` },
+    ],
+  };
 
   return (
     <>
@@ -48,10 +96,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* ── HERO — corporate, imagen con overlay ligero ── */}
         <section className="relative bg-navy-dark overflow-hidden">
           <div className="absolute inset-0">
-            <img
+            <Image
               src={post.image}
               alt=""
-              className="w-full h-full object-cover opacity-25"
+              fill
+              className="object-cover opacity-25"
+              priority
+              sizes="100vw"
             />
           </div>
           <div className="relative z-10 mx-auto max-w-3xl px-6 py-28 sm:py-36">
@@ -81,39 +132,34 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* ── BODY — columna única, corporate editorial ── */}
         <section className="px-6 py-16 sm:py-24">
           <article className="mx-auto max-w-[680px]">
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
             {hasContent ? (
               <div className="prose-corporate">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    h2: ({ children }) => (
-                      <h2>{children}</h2>
-                    ),
-                    h3: ({ children }) => (
-                      <h3>{children}</h3>
-                    ),
                     table: ({ children }) => (
                       <div className="table-wrapper">
                         <table>{children}</table>
                       </div>
                     ),
-                    th: ({ children }) => <th>{children}</th>,
-                    td: ({ children }) => <td>{children}</td>,
-                    a: ({ href, children }) => (
-                      <a href={href}>{children}</a>
-                    ),
-                    blockquote: ({ children }) => (
-                      <blockquote>{children}</blockquote>
-                    ),
-                    strong: ({ children }) => <strong>{children}</strong>,
-                    code: ({ children }) => <code>{children}</code>,
-                    hr: () => <hr />,
-                    ul: ({ children }) => <ul>{children}</ul>,
-                    ol: ({ children }) => <ol>{children}</ol>,
-                    li: ({ children }) => <li>{children}</li>,
-                    p: ({ children }) => <p>{children}</p>,
+                    pre: ({ children }) => <pre>{children}</pre>,
                     img: ({ src, alt }) => (
-                      <img src={src} alt={alt || ""} className="content-image" />
+                      <img
+                        src={src}
+                        alt={alt || ""}
+                        className="content-image"
+                        width={800}
+                        height={533}
+                        loading="lazy"
+                      />
                     ),
                   }}
                 >

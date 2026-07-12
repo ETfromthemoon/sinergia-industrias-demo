@@ -27,7 +27,7 @@
     "text_muted": "steel_400"
   },
   "typography": {
-    "font_display": "Inter Tight",
+    "font_display": "Space Grotesk",
     "font_display_weights": [600, 700],
     "font_body": "Inter",
     "font_body_weights": [400, 500],
@@ -73,9 +73,6 @@
     "duration_slow": "500ms",
     "ease_out": "cubic-bezier(0.22, 1, 0.36, 1)",
     "ease_in_out": "cubic-bezier(0.45, 0, 0.55, 1)",
-    "stagger_word": "0.04s",
-    "aurora_1": "22s",
-    "aurora_2": "28s",
-    "aurora_3": "34s"
+    "stagger_word": "0.04s"
   }
 }

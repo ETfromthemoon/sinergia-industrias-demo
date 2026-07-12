@@ -3,6 +3,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { OdooModulesGrid } from "@/components/sections/odoo-modules-grid";
+import { RelatedServices } from "@/components/sections/related-services";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { motion, MotionConfig } from "motion/react";
@@ -23,7 +24,6 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
-        index="03"
         eyebrow="Ready Partner Oficial Odoo"
         headline="Unifica, optimiza,"
         headlineAccent="triunfa"
@@ -33,7 +33,7 @@ export default function Content() {
 
       {/* ¿Qué es Odoo? */}
       <MotionConfig reducedMotion="user">
-        <section className="bg-background py-24 px-4">
+        <section className="bg-steel-50 border-y border-steel-200 py-24 px-4">
           <div className="mx-auto max-w-6xl">
             <SectionLabel index="01" className="mb-6">
               ERP
@@ -129,6 +129,8 @@ export default function Content() {
         jointVentureLabel="Asalvo"
         jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley", "Inacap"]}
       />
+
+      <RelatedServices current="implementacion-odoo" />
 
       <CtaBand />
     </main>

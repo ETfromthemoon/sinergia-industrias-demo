@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +24,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const solutionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -36,6 +37,28 @@ export function Navbar() {
     setMobileOpen(false);
     setSolutionsOpen(false);
   };
+
+  // Close the "Soluciones" dropdown on outside click or Escape,
+  // so keyboard and mouse users both get predictable dismiss behavior.
+  useEffect(() => {
+    if (!solutionsOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSolutionsOpen(false);
+    };
+    const onClickOutside = (e: MouseEvent) => {
+      if (solutionsRef.current && !solutionsRef.current.contains(e.target as Node)) {
+        setSolutionsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onClickOutside);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onClickOutside);
+    };
+  }, [solutionsOpen]);
 
   const linkCls = (active?: boolean) =>
     cn(
@@ -81,19 +104,22 @@ export function Navbar() {
         </Link>
 
         {/* desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
           {/* Solutions dropdown — first, numbering 01-04 */}
           <div
             className="relative"
+            ref={solutionsRef}
             onMouseEnter={() => setSolutionsOpen(true)}
-            onMouseLeave={() => setSolutionsOpen(false)}
           >
             <button
+              type="button"
               className={cn(
                 linkCls(),
-                "cursor-pointer"
+                "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
               )}
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              aria-haspopup="menu"
+              aria-expanded={solutionsOpen}
+              onClick={() => setSolutionsOpen((open) => !open)}
             >
               <span className={cn("mono-label transition-colors", scrolled || !isHome ? "text-steel-400" : "text-white/40")}>SOL</span>
               Soluciones
@@ -101,6 +127,7 @@ export function Navbar() {
             </button>
             {solutionsOpen && (
               <motion.div
+                role="menu"
                 className="absolute top-full left-0 w-64 border border-steel-200 bg-white shadow-elevated"
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -114,9 +141,10 @@ export function Navbar() {
                     <Link
                       key={l.label}
                       href={l.href}
+                      role="menuitem"
                       onClick={closeMenus}
                       className={cn(
-                        "flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-steel-50",
+                        "flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-steel-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
                         active ? "text-navy font-semibold" : "text-muted-foreground"
                       )}
                     >
@@ -130,7 +158,7 @@ export function Navbar() {
           </div>
 
           {MAIN_LINKS.map((l) => {
-            const active = pathname === l.href || (l.href === "/" && pathname === "/");
+            const active = pathname === l.href;
             return (
               <Link key={l.label} href={l.href} className={linkCls(active)}>
                 <span className={indexCls(active)}>{l.index}</span>
@@ -143,9 +171,11 @@ export function Navbar() {
         {/* mobile burger + CTA */}
         <div className="flex items-center gap-3">
           <button
-            className="md:hidden flex flex-col gap-1.5 p-1"
+            type="button"
+            className="md:hidden flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menú"
+            aria-expanded={mobileOpen}
           >
             <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "rotate-45 translate-y-[5px]")} />
             <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "opacity-0")} />

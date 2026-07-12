@@ -3,19 +3,21 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
+import { FeatureSection } from "@/components/sections/feature-section";
+import { ProcessSteps } from "@/components/sections/process-steps";
+import { RelatedServices } from "@/components/sections/related-services";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { motion, MotionConfig } from "motion/react";
-import { CheckCircle2, ArrowRight, Box, Droplets, Battery, Disc, CircleDot, Monitor } from "lucide-react";
-import Link from "next/link";
+import { Box, Droplets, Battery, Disc, CircleDot, Monitor } from "lucide-react";
 
 const productos = [
-  { icon: Box, label: "Envases y Embalajes" },
-  { icon: Droplets, label: "Aceites Lubricantes" },
-  { icon: Battery, label: "Baterías" },
-  { icon: Disc, label: "Pilas" },
-  { icon: CircleDot, label: "Neumáticos" },
-  { icon: Monitor, label: "Aparatos Eléctricos y Electrónicos" },
+  { icon: Box, label: "Envases y Embalajes", slug: "envases-y-embalajes" },
+  { icon: Droplets, label: "Aceites Lubricantes", slug: "aceites-lubricantes" },
+  { icon: Battery, label: "Baterías", slug: "baterias" },
+  { icon: Disc, label: "Pilas", slug: "pilas" },
+  { icon: CircleDot, label: "Neumáticos", slug: "neumaticos" },
+  { icon: Monitor, label: "Aparatos Eléctricos y Electrónicos", slug: "aparatos-electricos-y-electronicos" },
 ] as const;
 
 const baseLink =
@@ -48,7 +50,6 @@ export default function LeyRepContent() {
     <main>
       <PageHero
         variant="dark"
-        index="02"
         eyebrow="Cumplimiento normativo · Ley 20.920"
         headline="Levantamiento y sistematización REP"
         headlineAccent=""
@@ -97,71 +98,36 @@ export default function LeyRepContent() {
         </div>
       </section>
 
-      {/* Productos prioritarios */}
-      <section className="bg-steel-50 border-y border-steel-200 py-24 px-4">
-        <div className="mx-auto max-w-6xl">
-          <MotionConfig transition={{ duration: 0.6, ease: "easeOut" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <SectionLabel index="02">Alcance</SectionLabel>
-            </motion.div>
+      <FeatureSection
+        id="productos-prioritarios"
+        index="02"
+        eyebrow="Alcance"
+        title="¿Qué productos prioritarios regula la Ley REP?"
+        columns={3}
+        className="bg-steel-50 border-y border-steel-200"
+        items={productos.map((p) => ({
+          icon: p.icon,
+          title: p.label,
+          body: "economiacircular.mma.gob.cl",
+        }))}
+      />
 
-            <motion.h2
-              className="mt-4 font-display text-3xl sm:text-4xl tracking-tight text-navy"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              ¿Qué productos prioritarios regula la Ley REP?
-            </motion.h2>
-
-            <motion.div
-              className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              {productos.map((p, i) => {
-                const Icon = p.icon;
-                const slug = p.label
-                  .toLowerCase()
-                  .normalize("NFD")
-                  .replace(/[\u0300-\u036f]/g, "")
-                  .replace(/ /g, "-")
-                  .replace(/y/g, "e");
-                return (
-                  <Link
-                    key={i}
-                    href={`${baseLink}${slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative bg-white border border-steel-200 p-6 hover:bg-steel-50 transition-colors"
-                  >
-                    <span className="absolute inset-x-0 top-0 h-0.5 bg-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
-                    <span className="inline-flex items-center justify-center w-11 h-11 border border-steel-200 mb-4 text-navy">
-                      <Icon className="w-5 h-5" />
-                    </span>
-
-                    <h3 className="font-display font-semibold text-navy group-hover:text-cyan transition-colors">
-                      {p.label}
-                    </h3>
-
-                    <span className="inline-flex items-center gap-1 mt-3 text-xs font-mono text-steel-400 group-hover:text-cyan transition-colors">
-                      <ArrowRight className="w-3 h-3" />
-                      economiacircular.mma.gob.cl
-                    </span>
-                  </Link>
-                );
-              })}
-            </motion.div>
-          </MotionConfig>
-        </div>
+      {/* Enlaces a la fuente oficial por producto prioritario */}
+      <section className="sr-only">
+        <ul>
+          {productos.map((p) => (
+            <li key={p.slug}>
+              <a
+                href={`${baseLink}${p.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {p.label}
+                <span className="sr-only"> (se abre en pestaña nueva)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ¿Quiénes son los productores? */}
@@ -226,65 +192,18 @@ export default function LeyRepContent() {
         </div>
       </section>
 
-      {/* Proceso REP */}
-      <section className="relative bg-navy-dark py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid-dark pointer-events-none" />
-        <div className="absolute inset-0 grain pointer-events-none" />
-
-        <div className="relative mx-auto max-w-6xl">
-          <MotionConfig transition={{ duration: 0.6, ease: "easeOut" }}>
-            <motion.div
-              className="grid lg:grid-cols-2 gap-16 items-start"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              {/* Left */}
-              <div>
-                <SectionLabel index="04" tone="accent">
-                  Nuestro proceso
-                </SectionLabel>
-
-                <h2 className="mt-4 font-display text-3xl sm:text-4xl tracking-tight text-white">
-                  Así funciona nuestro servicio REP
-                </h2>
-              </div>
-
-              {/* Right — checklist panel */}
-              <div className="relative border border-white/15 bg-white/[0.03] p-8">
-                <CornerTicks />
-
-                <div className="flex items-center gap-3 mb-8">
-                  <span className="mono-label text-cyan">PROC.REP</span>
-                  <span className="text-steel-400 text-sm">/</span>
-                  <span className="mono-label text-steel-400">
-                    LEY 20.920
-                  </span>
-                  <span className="ml-auto mono-label text-steel-400">
-                    4 ETAPAS
-                  </span>
-                </div>
-
-                <ul className="space-y-5">
-                  {etapas.map((e) => (
-                    <li key={e.code} className="flex gap-4 items-start">
-                      <CheckCircle2 className="w-5 h-5 text-cyan shrink-0 mt-0.5" />
-                      <div className="flex gap-3">
-                        <span className="mono-label text-white/70">
-                          {e.code}
-                        </span>
-                        <span className="text-white/85 leading-relaxed">
-                          {e.label}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          </MotionConfig>
-        </div>
-      </section>
+      <ProcessSteps
+        variant="dark"
+        index="04"
+        eyebrow="Nuestro proceso"
+        title="Así funciona nuestro servicio REP"
+        steps={etapas.map((e) => ({
+          number: e.code,
+          code: e.code,
+          title: `Etapa ${e.code}`,
+          body: e.label,
+        }))}
+      />
 
       <ClientsStrip
         title="Clientes que están cumpliendo con la REP"
@@ -306,6 +225,8 @@ export default function LeyRepContent() {
         jointVentureLabel="Asalvo"
         jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley"]}
       />
+
+      <RelatedServices current="ley-rep" />
 
       <CtaBand />
     </main>

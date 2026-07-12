@@ -3,6 +3,7 @@
 import { useState, useRef, type FormEvent, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { trackLeadConversion } from "@/lib/analytics";
 
 const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/info@sinergiaindustrias.cl";
 
@@ -37,6 +38,10 @@ export function useFormSubmit() {
       if (json.success === "true" || json.success === true) {
         setStatus("success");
         setMessage("Mensaje enviado. Te responderemos en menos de 24h hábiles.");
+        // Evento de conversión para Google Ads / GA4 (no-op si no hay tag instalado).
+        trackLeadConversion(
+          typeof data.servicio === "string" ? { servicio: data.servicio } : undefined
+        );
         e.currentTarget.reset();
       } else {
         setStatus("error");
@@ -59,43 +64,45 @@ export function FormSubmitFeedback({
   message: string;
 }) {
   return (
-    <AnimatePresence mode="wait">
-      {status === "loading" && (
-        <motion.div
-          key="loading"
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          className="flex items-center justify-center gap-2 py-4 text-sm text-steel-400"
-        >
-          <Loader2 className="size-4 animate-spin" />
-          Enviando...
-        </motion.div>
-      )}
-      {status === "success" && (
-        <motion.div
-          key="success"
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          className="flex items-start gap-2.5 border border-cyan/30 bg-cyan/5 px-4 py-3 text-sm text-cyan-deep"
-        >
-          <CheckCircle2 className="size-4 shrink-0 mt-0.5" />
-          {message}
-        </motion.div>
-      )}
-      {status === "error" && (
-        <motion.div
-          key="error"
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          className="flex items-start gap-2.5 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-        >
-          <AlertCircle className="size-4 shrink-0 mt-0.5" />
-          {message}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div role="status" aria-live="polite">
+      <AnimatePresence mode="wait">
+        {status === "loading" && (
+          <motion.div
+            key="loading"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="flex items-center justify-center gap-2 py-4 text-sm text-steel-400"
+          >
+            <Loader2 className="size-4 animate-spin" />
+            Enviando...
+          </motion.div>
+        )}
+        {status === "success" && (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="flex items-start gap-2.5 border border-cyan/30 bg-cyan/5 px-4 py-3 text-sm text-cyan-deep"
+          >
+            <CheckCircle2 className="size-4 shrink-0 mt-0.5" />
+            {message}
+          </motion.div>
+        )}
+        {status === "error" && (
+          <motion.div
+            key="error"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="flex items-start gap-2.5 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          >
+            <AlertCircle className="size-4 shrink-0 mt-0.5" />
+            {message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

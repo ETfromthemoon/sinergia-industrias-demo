@@ -1,4 +1,5 @@
 "use client";
+import { useState, type FormEvent } from "react";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
@@ -23,9 +24,60 @@ const CONTACT_ROWS = [
 
 const inputCls =
   "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
+const inputErrorCls =
+  "border-red-400 focus:border-red-500 focus:ring-red-500";
+
+type FieldErrors = {
+  nombre?: string;
+  empresa?: string;
+  email?: string;
+  servicio?: string;
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ContactSection() {
   const { status, message, handleSubmit } = useFormSubmit();
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function validate(formData: FormData): FieldErrors {
+    const nextErrors: FieldErrors = {};
+
+    const honey = String(formData.get("_honey") ?? "");
+    if (honey.trim() !== "") {
+      // Honeypot filled by a bot — treat the whole submission as invalid.
+      nextErrors.nombre = "Envío inválido.";
+      return nextErrors;
+    }
+
+    const nombre = String(formData.get("nombre") ?? "").trim();
+    if (!nombre) nextErrors.nombre = "Ingresa tu nombre.";
+
+    const empresa = String(formData.get("empresa") ?? "").trim();
+    if (!empresa) nextErrors.empresa = "Ingresa tu empresa.";
+
+    const email = String(formData.get("email") ?? "").trim();
+    if (!email) nextErrors.email = "Ingresa tu correo.";
+    else if (!EMAIL_PATTERN.test(email)) nextErrors.email = "Ingresa un correo válido.";
+
+    const servicio = String(formData.get("servicio") ?? "").trim();
+    if (!servicio) nextErrors.servicio = "Selecciona un área de interés.";
+
+    return nextErrors;
+  }
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    const formData = new FormData(e.currentTarget);
+    const nextErrors = validate(formData);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      e.preventDefault();
+      return;
+    }
+
+    handleSubmit(e);
+  }
 
   return (
     <MotionConfig reducedMotion="user">
@@ -109,40 +161,107 @@ export function ContactSection() {
                 <span className="mono-label text-navy">FORM.CONTACTO</span>
                 <span className="mono-label text-cyan-deep">* REQUERIDO</span>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5 p-6 sm:p-8">
+              <form onSubmit={onSubmit} noValidate className="space-y-5 p-6 sm:p-8">
                 <input type="hidden" name="_subject" value="Nuevo contacto web — Sinergia Industrias" />
-                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_captcha" value="true" />
+                {/* Honeypot — hidden from real users, catches basic bots */}
+                <input
+                  type="text"
+                  name="_honey"
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="nombre" className="mono-label mb-2 block text-muted-foreground">
                       Nombre *
                     </label>
-                    <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" className={inputCls} />
+                    <input
+                      id="nombre"
+                      name="nombre"
+                      type="text"
+                      required
+                      placeholder="Tu nombre"
+                      className={`${inputCls} ${errors.nombre ? inputErrorCls : ""}`}
+                      aria-invalid={errors.nombre ? "true" : "false"}
+                      aria-describedby={errors.nombre ? "nombre-error" : undefined}
+                    />
+                    {errors.nombre && (
+                      <p id="nombre-error" role="alert" className="mt-1.5 text-xs text-red-600">
+                        {errors.nombre}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="empresa" className="mono-label mb-2 block text-muted-foreground">
                       Empresa *
                     </label>
-                    <input id="empresa" name="empresa" type="text" required placeholder="Tu empresa" className={inputCls} />
+                    <input
+                      id="empresa"
+                      name="empresa"
+                      type="text"
+                      required
+                      placeholder="Tu empresa"
+                      className={`${inputCls} ${errors.empresa ? inputErrorCls : ""}`}
+                      aria-invalid={errors.empresa ? "true" : "false"}
+                      aria-describedby={errors.empresa ? "empresa-error" : undefined}
+                    />
+                    {errors.empresa && (
+                      <p id="empresa-error" role="alert" className="mt-1.5 text-xs text-red-600">
+                        {errors.empresa}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="mono-label mb-2 block text-muted-foreground">
                     Email *
                   </label>
-                  <input id="email" name="email" type="email" required placeholder="correo@empresa.cl" className={inputCls} />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="correo@empresa.cl"
+                    className={`${inputCls} ${errors.email ? inputErrorCls : ""}`}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                  />
+                  {errors.email && (
+                    <p id="email-error" role="alert" className="mt-1.5 text-xs text-red-600">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="servicio" className="mono-label mb-2 block text-muted-foreground">
-                    Área de interés
+                    Área de interés *
                   </label>
-                  <select id="servicio" name="servicio" className={`${inputCls} appearance-none`}>
+                  <select
+                    id="servicio"
+                    name="servicio"
+                    required
+                    defaultValue=""
+                    className={`${inputCls} appearance-none ${errors.servicio ? inputErrorCls : ""}`}
+                    aria-invalid={errors.servicio ? "true" : "false"}
+                    aria-describedby={errors.servicio ? "servicio-error" : undefined}
+                  >
+                    <option value="" disabled>
+                      Selecciona un área
+                    </option>
                     {SERVICES_OPTIONS.map((s) => (
                       <option key={s} value={s}>
                         {s}
                       </option>
                     ))}
                   </select>
+                  {errors.servicio && (
+                    <p id="servicio-error" role="alert" className="mt-1.5 text-xs text-red-600">
+                      {errors.servicio}
+                    </p>
+                  )}
                 </div>
                 {status !== "success" && (
                   <button

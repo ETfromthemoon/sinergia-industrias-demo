@@ -2,15 +2,8 @@
 import { motion } from "motion/react";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { Building2, Wrench, TrendingUp } from "lucide-react";
-
-type CaseStudy = {
-  client: string;
-  code: string;
-  industry: string;
-  context: string;
-  service: string;
-  result: string;
-};
+import { truncateAtWord } from "@/lib/case-study";
+import type { CaseStudy } from "@/lib/case-study";
 
 export function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
@@ -43,7 +36,7 @@ export function CaseStudyCard({ study, index }: { study: CaseStudy; index: numbe
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="border-l border-cyan/30 pl-3">
             <span className="mono-label mb-1 block text-cyan">CONTEXTO</span>
-            <p className="text-xs leading-relaxed text-steel-600">{study.context.slice(0, 100)}...</p>
+            <p className="text-xs leading-relaxed text-steel-600">{truncateAtWord(study.context, 100)}</p>
           </div>
           <div className="border-l border-navy/30 pl-3">
             <span className="mono-label mb-1 block text-navy">

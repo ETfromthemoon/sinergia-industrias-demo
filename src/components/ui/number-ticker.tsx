@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "motion/react";
+import { useInView, useReducedMotion } from "motion/react";
 
 type NumberTickerProps = {
   value: number;
@@ -19,10 +19,17 @@ export function NumberTicker({
 }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
+  const prefersReducedMotion = useReducedMotion();
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
+
+    if (prefersReducedMotion) {
+      setDisplay(value);
+      return;
+    }
+
     let raf = 0;
     let start: number | null = null;
     const tick = (t: number) => {
@@ -35,7 +42,7 @@ export function NumberTicker({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, value, duration]);
+  }, [inView, value, duration, prefersReducedMotion]);
 
   return (
     <span ref={ref} className={`tabular ${className ?? ""}`}>

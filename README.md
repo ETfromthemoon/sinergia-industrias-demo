@@ -7,7 +7,7 @@ Rediseño demo de la home de [Sinergia Industrias](https://www.sinergiaindustria
 - **Framework:** Next.js 16 (App Router, SSG)
 - **UI:** shadcn/ui + Tailwind v4
 - **Motion:** motion/react (Framer Motion v12)
-- **Tipografía:** Inter + Inter Tight (next/font)
+- **Tipografía:** Inter (body) + Space Grotesk (display) + JetBrains Mono (mono), vía next/font
 - **Deploy:** Vercel
 
 ## Correr localmente

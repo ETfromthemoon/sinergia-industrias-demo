@@ -16,6 +16,10 @@
   --steel-300:      oklch(0.82 0.010 240);
   --steel-400:      oklch(0.70 0.010 240);
   --steel-600:      oklch(0.50 0.012 240);
+  /* Rule: use --accent in components for the single technical accent.
+     --cyan / --cyan-deep are the raw values behind --accent — reach for them
+     directly only when a component genuinely needs two related cyan tones
+     (e.g. a base color plus a deeper hover/emphasis variant). */
   --cyan:           oklch(0.68 0.14 205);
   --cyan-deep:      oklch(0.58 0.13 215);
 
@@ -54,20 +58,7 @@
   --destructive:           oklch(0.577 0.245 27.325);
   --input:                 oklch(0.88 0.010 240);
   --ring:                  oklch(0.28 0.12 255);
-  --chart-1:           oklch(0.87 0 0);
-  --chart-2:           oklch(0.556 0 0);
-  --chart-3:           oklch(0.439 0 0);
-  --chart-4:           oklch(0.371 0 0);
-  --chart-5:           oklch(0.269 0 0);
   --radius:           0.625rem;
-  --sidebar:           oklch(0.985 0 0);
-  --sidebar-foreground:           oklch(0.145 0 0);
-  --sidebar-primary:           oklch(0.205 0 0);
-  --sidebar-primary-foreground:           oklch(0.985 0 0);
-  --sidebar-accent:           oklch(0.97 0 0);
-  --sidebar-accent-foreground:           oklch(0.205 0 0);
-  --sidebar-border:           oklch(0.922 0 0);
-  --sidebar-ring:           oklch(0.708 0 0);
 }
 
 /* ── Tailwind theme ─────────────────────────────────── */
@@ -112,6 +103,7 @@
   --radius-lg:  0.75rem;
   --radius-xl:  1rem;
   --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
 
   /* Shadows */
   --shadow-card:    0 1px 3px 0 oklch(0% 0 0 / 0.08), 0 4px 16px -4px oklch(0% 0 0 / 0.10);
@@ -121,19 +113,6 @@
   --shadow-panel-dark: 0 24px 60px -20px oklch(0 0 0 / 0.65), 0 0 0 1px oklch(1 0 0 / 0.04);
 
   --font-heading:           var(--font-sans);
-  --color-sidebar-ring:           var(--sidebar-ring);
-  --color-sidebar-border:           var(--sidebar-border);
-  --color-sidebar-accent-foreground:           var(--sidebar-accent-foreground);
-  --color-sidebar-accent:           var(--sidebar-accent);
-  --color-sidebar-primary-foreground:           var(--sidebar-primary-foreground);
-  --color-sidebar-primary:           var(--sidebar-primary);
-  --color-sidebar-foreground:           var(--sidebar-foreground);
-  --color-sidebar:           var(--sidebar);
-  --color-chart-5:           var(--chart-5);
-  --color-chart-4:           var(--chart-4);
-  --color-chart-3:           var(--chart-3);
-  --color-chart-2:           var(--chart-2);
-  --color-chart-1:           var(--chart-1);
   --color-ring:           var(--ring);
   --color-input:           var(--input);
   --color-destructive:           var(--destructive);
@@ -188,6 +167,20 @@
     radial-gradient(40% 40% at 96% 88%, oklch(0.78 0.16 67 / 0.09), transparent 70%);
 }
 
+/* Flowing dash animation for schematic connectors (process-schematic.tsx).
+   Only active when the user has no motion-reduction preference. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes dash-flow {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+
+  .animate-dash-flow {
+    animation: dash-flow 0.9s linear infinite;
+  }
+}
+
 /* ── Base ───────────────────────────────────────────── */
 body {
   font-family: var(--font-sans);
@@ -232,19 +225,6 @@ h1, h2, h3, h4 {
   --border:           oklch(1 0 0 / 10%);
   --input:           oklch(1 0 0 / 15%);
   --ring:           oklch(0.556 0 0);
-  --chart-1:           oklch(0.87 0 0);
-  --chart-2:           oklch(0.556 0 0);
-  --chart-3:           oklch(0.439 0 0);
-  --chart-4:           oklch(0.371 0 0);
-  --chart-5:           oklch(0.269 0 0);
-  --sidebar:           oklch(0.205 0 0);
-  --sidebar-foreground:           oklch(0.985 0 0);
-  --sidebar-primary:           oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground:           oklch(0.985 0 0);
-  --sidebar-accent:           oklch(0.269 0 0);
-  --sidebar-accent-foreground:           oklch(0.985 0 0);
-  --sidebar-border:           oklch(1 0 0 / 10%);
-  --sidebar-ring:           oklch(0.556 0 0);
 }
 
 @layer base {
@@ -261,13 +241,13 @@ h1, h2, h3, h4 {
 
 /* ── Corporate Editorial — article body ───────────── */
 .prose-corporate {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   color: #1a1a2e;
   line-height: 1.75;
 }
 
 .prose-corporate h2 {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--navy);
@@ -278,7 +258,7 @@ h1, h2, h3, h4 {
 }
 
 .prose-corporate h3 {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
   color: #1a1a2e;
@@ -289,7 +269,7 @@ h1, h2, h3, h4 {
 
 .prose-corporate p {
   margin: 0 0 1.6rem;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: #2d2d3a;
 }
@@ -386,12 +366,32 @@ h1, h2, h3, h4 {
 
 /* Code */
 .prose-corporate code {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.85rem;
   color: var(--cyan-deep);
   background: #f5f6f8;
   padding: 0.15em 0.4em;
   border-radius: 3px;
+}
+
+/* Multiline code blocks */
+.prose-corporate pre {
+  overflow-x: auto;
+  background: oklch(0.20 0.02 256);
+  color: oklch(0.94 0.008 240);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+}
+
+.prose-corporate pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
 }
 
 /* Images */
