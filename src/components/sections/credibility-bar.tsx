@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { NumberTicker } from "@/components/ui/number-ticker";
+import { fadeUp } from "@/lib/motion";
 
 type Metric = {
   value: number;
@@ -25,12 +26,11 @@ export function CredibilityBar() {
           <motion.div
             key={m.code}
             className="group relative flex flex-col border-steel-200 px-6 py-8 transition-colors hover:bg-white sm:[&:nth-child(n+4)]:border-t lg:[&:nth-child(n+4)]:border-t-0"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp(i * 0.07)}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="mono-label mb-3 text-steel-400">[{m.code}]</span>
             <span className="font-display text-4xl font-bold tracking-tight text-navy lg:text-5xl">
               <NumberTicker value={m.value} suffix={m.suffix} />
             </span>
