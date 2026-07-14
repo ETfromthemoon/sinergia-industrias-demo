@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { OdooLogo } from "@/components/ui/odoo-logo";
 
 const NAV_LINKS = [
@@ -17,7 +17,11 @@ const NAV_LINKS = [
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-dark px-4 pt-16 pb-10">
-      <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-60" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.68 0.14 205 / 0.06), transparent 70%)" }}
+      />
       <div aria-hidden className="grain pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
@@ -33,9 +37,10 @@ export function Footer() {
             <p className="max-w-xs text-sm leading-relaxed text-steel-400">
               Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
             </p>
-            <p className="mt-4 inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
+            <p className="mt-4 inline-flex items-center gap-2 mono-label text-steel-400">
               <OdooLogo size={14} />
               Ready Partner Oficial Odoo
+              <CheckCircle2 className="size-3.5 text-white/60" />
             </p>
           </div>
 
@@ -86,7 +91,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-2 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="mono-label text-white/30">© {new Date().getFullYear()} SINERGIA INDUSTRIAS SPA</p>
-          <p className="mono-label tabular text-white/20">VIÑA DEL MAR · -33.02 / -71.55</p>
+          <p className="mono-label text-white/20">Viña del Mar, Chile</p>
         </div>
       </div>
     </footer>

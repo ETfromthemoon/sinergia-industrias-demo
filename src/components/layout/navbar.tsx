@@ -6,16 +6,16 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const MAIN_LINKS = [
-  { label: "Casos de éxito", href: "/casos-de-exito", index: "05" },
-  { label: "Nosotros", href: "/nosotros", index: "06" },
-  { label: "Blog", href: "/blog", index: "07" },
+  { label: "Casos de éxito", href: "/casos-de-exito" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const SOLUTIONS_LINKS = [
-  { label: "Ley REP", href: "/ley-rep", index: "01" },
-  { label: "Implementación Odoo", href: "/implementacion-odoo", index: "02" },
-  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos", index: "03" },
-  { label: "Levantamiento de datos", href: "/levantamiento-de-datos", index: "04" },
+  { label: "Ley REP", href: "/ley-rep" },
+  { label: "Implementación Odoo", href: "/implementacion-odoo" },
+  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos" },
+  { label: "Levantamiento de datos", href: "/levantamiento-de-datos" },
 ];
 
 export function Navbar() {
@@ -62,18 +62,16 @@ export function Navbar() {
 
   const linkCls = (active?: boolean) =>
     cn(
-      "group flex items-center gap-1.5 text-sm transition-colors",
+      "group relative flex items-center gap-1.5 text-sm transition-colors",
       scrolled || !isHome
         ? active ? "text-navy font-semibold" : "text-muted-foreground hover:text-foreground"
         : "text-white/70 hover:text-white"
     );
 
-  const indexCls = (active?: boolean) =>
+  const underlineCls = (active?: boolean) =>
     cn(
-      "mono-label transition-colors",
-      scrolled || !isHome
-        ? active ? "text-cyan-deep" : "text-steel-400 group-hover:text-cyan-deep"
-        : active ? "text-cyan" : "text-white/40 group-hover:text-cyan"
+      "pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100",
+      active && "scale-x-100"
     );
 
   return (
@@ -81,7 +79,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 z-50 w-full border-b transition-colors duration-300",
         scrolled || !isHome
-          ? "border-steel-200 bg-white/90 backdrop-blur-md"
+          ? "glass-light"
           : "border-white/10 bg-transparent"
       )}
       initial={{ y: -16, opacity: 0 }}
@@ -105,7 +103,7 @@ export function Navbar() {
 
         {/* desktop nav */}
         <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
-          {/* Solutions dropdown — first, numbering 01-04 */}
+          {/* Solutions dropdown */}
           <div
             className="relative"
             ref={solutionsRef}
@@ -121,14 +119,14 @@ export function Navbar() {
               aria-expanded={solutionsOpen}
               onClick={() => setSolutionsOpen((open) => !open)}
             >
-              <span className={cn("mono-label transition-colors", scrolled || !isHome ? "text-steel-400" : "text-white/40")}>SOL</span>
               Soluciones
               <svg className={cn("ml-1 size-3 transition-transform", solutionsOpen && "rotate-180")} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <span className={underlineCls()} />
             </button>
             {solutionsOpen && (
               <motion.div
                 role="menu"
-                className="absolute top-full left-0 w-64 border border-steel-200 bg-white shadow-elevated"
+                className="glass-light absolute top-full left-0 w-64"
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
@@ -148,7 +146,6 @@ export function Navbar() {
                         active ? "text-navy font-semibold" : "text-muted-foreground"
                       )}
                     >
-                      <span className={cn("mono-label", active ? "text-cyan-deep" : "text-steel-400")}>{l.index}</span>
                       {l.label}
                     </Link>
                   );
@@ -161,8 +158,8 @@ export function Navbar() {
             const active = pathname === l.href;
             return (
               <Link key={l.label} href={l.href} className={linkCls(active)}>
-                <span className={indexCls(active)}>{l.index}</span>
                 {l.label}
+                <span className={underlineCls(active)} />
               </Link>
             );
           })}
@@ -216,7 +213,6 @@ export function Navbar() {
                     active ? "text-navy font-semibold" : "text-muted-foreground"
                   )}
                 >
-                  <span className={cn("mono-label", active ? "text-cyan-deep" : "text-steel-400")}>{l.index}</span>
                   {l.label}
                 </Link>
               );
