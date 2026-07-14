@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, MotionConfig, useScroll, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { OdooLogo } from "@/components/ui/odoo-logo";
 import { heroTitle } from "@/lib/motion";
+import { useMediaQuery, useSaveData } from "@/lib/use-media-query";
 
 const LINE_1 = "Procesos que";
 const LINE_2 = "funcionan.";
@@ -22,31 +23,14 @@ const MINI_STATS = [
   { val: "20+", label: "Odoo impl.", accent: false },
 ] as const;
 
-type NetworkInformationLike = { saveData?: boolean };
-
 /** Gates the background video to hydrated clients that don't prefer
  * reduced motion and aren't on a constrained data connection. Until this
  * resolves (or when it resolves false), the poster image is shown — it is
  * always present in the initial HTML so it can serve as the LCP element. */
 function useHeroVideoEnabled(): boolean {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const connection = (navigator as Navigator & { connection?: NetworkInformationLike })
-      .connection;
-    const saveData = connection?.saveData ?? false;
-
-    setEnabled(!media.matches && !saveData);
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      setEnabled(!event.matches && !saveData);
-    };
-    media.addEventListener("change", handleChange);
-    return () => media.removeEventListener("change", handleChange);
-  }, []);
-
-  return enabled;
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const saveData = useSaveData();
+  return !prefersReducedMotion && !saveData;
 }
 
 export function HeroSection() {

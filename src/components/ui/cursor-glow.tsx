@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 const GLOW_SIZE = 600;
 const GLOW_OFFSET = GLOW_SIZE / 2; // 300 — centers the glow on the cursor
@@ -8,22 +9,10 @@ const LERP_FACTOR = 0.12;
 const OFFSCREEN_START = -GLOW_SIZE;
 
 export function CursorGlow() {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const hasFinePointer = useMediaQuery("(pointer: fine)");
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const isEnabled = hasFinePointer && !prefersReducedMotion;
   const glowRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!hasFinePointer || prefersReducedMotion) {
-      setIsEnabled(false);
-      return;
-    }
-
-    setIsEnabled(true);
-  }, []);
 
   useEffect(() => {
     if (!isEnabled) return;

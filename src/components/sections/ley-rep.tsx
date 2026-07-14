@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, MotionConfig, useScroll, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/ui/magnetic";
 import { SectionLabel } from "@/components/ui/section-label";
 import { clipReveal } from "@/lib/motion";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 const ITEMS = [
   { code: "01", text: "Levantamiento de residuos por categoría de producto" },
@@ -20,24 +21,9 @@ const ITEMS = [
  * resolves false), the section renders as a normal stacked layout — no
  * sticky pin, no scroll-linked transforms, no duplicated copy in the DOM. */
 function useCinematicSetPiece(): boolean {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const isDesktop = window.matchMedia("(min-width: 1024px)");
-
-    const update = () => setEnabled(!reduceMotion.matches && isDesktop.matches);
-    update();
-
-    reduceMotion.addEventListener("change", update);
-    isDesktop.addEventListener("change", update);
-    return () => {
-      reduceMotion.removeEventListener("change", update);
-      isDesktop.removeEventListener("change", update);
-    };
-  }, []);
-
-  return enabled;
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  return !prefersReducedMotion && isDesktop;
 }
 
 function PanelContent() {
