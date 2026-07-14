@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import ReactDOM from "react-dom";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { CursorGlow } from "@/components/ui/cursor-glow";
 
 // Preconnect to YouTube origins used by embedded video players,
 // so the connection is warm before any video component mounts.
@@ -105,6 +106,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <CursorGlow />
         {children}
       </body>
     </html>

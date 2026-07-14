@@ -159,12 +159,92 @@
   opacity: 0.10;
 }
 
-/* Aurora — soft navy→cyan→signal glow for the dark hero (static, no infinite drift) */
+/* Aurora — soft navy→cyan→signal glow for the dark hero.
+   Base is the static composition below (also the reduced-motion fallback).
+   With no motion-reduction preference, two pseudo-elements take over the
+   gradients and drift them slowly (26s/34s) — see the media query below. */
 .aurora-dark {
+  position: relative;
   background:
     radial-gradient(55% 45% at 78% 10%, oklch(0.68 0.14 205 / 0.16), transparent 70%),
     radial-gradient(52% 56% at 10% 92%, oklch(0.32 0.13 256 / 0.30), transparent 72%),
     radial-gradient(40% 40% at 96% 88%, oklch(0.78 0.16 67 / 0.09), transparent 70%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes aurora-drift-a {
+    from {
+      transform: translate(0%, 0%) scale(1);
+    }
+    to {
+      transform: translate(-2%, 3%) scale(1.06);
+    }
+  }
+
+  @keyframes aurora-drift-b {
+    from {
+      transform: translate(0%, 0%) scale(1);
+    }
+    to {
+      transform: translate(3%, -2%) scale(1.05);
+    }
+  }
+
+  .aurora-dark {
+    /* Gradients move onto the pseudo-elements below — drop them from the
+       base layer so they don't double up with the animated copies. */
+    background: none;
+  }
+
+  .aurora-dark::before,
+  .aurora-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .aurora-dark::before {
+    background:
+      radial-gradient(55% 45% at 78% 10%, oklch(0.68 0.14 205 / 0.16), transparent 70%),
+      radial-gradient(52% 56% at 10% 92%, oklch(0.32 0.13 256 / 0.30), transparent 72%);
+    animation: aurora-drift-a 26s ease-in-out infinite alternate;
+  }
+
+  .aurora-dark::after {
+    background: radial-gradient(40% 40% at 96% 88%, oklch(0.78 0.16 67 / 0.09), transparent 70%);
+    animation: aurora-drift-b 34s ease-in-out infinite alternate;
+  }
+}
+
+/* ── Glass system ───────────────────────────────────── */
+.glass-dark {
+  background: oklch(1 0 0 / 0.045);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid oklch(1 0 0 / 0.10);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.10), 0 24px 60px -20px oklch(0 0 0 / 0.55);
+}
+
+.glass-light {
+  background: oklch(1 0 0 / 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid oklch(1 0 0 / 0.55);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.75), 0 12px 40px -12px oklch(0.28 0.12 255 / 0.14);
+}
+
+.glass-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, oklch(1 0 0 / 0.06) 45%, transparent 60%);
 }
 
 /* Flowing dash animation for schematic connectors (process-schematic.tsx).
