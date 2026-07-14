@@ -1,5 +1,7 @@
 "use client";
-import { motion, MotionConfig } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, MotionConfig, useScroll, useSpring, useTransform } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { SplitText } from "@/components/ui/split-text";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -7,13 +9,12 @@ import { ProcessSchematic } from "@/components/ui/process-schematic";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { OdooLogo } from "@/components/ui/odoo-logo";
+import { heroTitle } from "@/lib/motion";
 
 const LINE_1 = "Procesos que";
 const LINE_2 = "funcionan.";
 const LINE_3 = "Cumplimiento";
 const LINE_4 = "que no falla.";
-
-const MODULES = ["REP", "PROC", "ODOO", "DATA"] as const;
 
 const MINI_STATS = [
   { val: "40+", label: "Empresas", accent: true },
@@ -21,23 +22,93 @@ const MINI_STATS = [
   { val: "20+", label: "Odoo impl.", accent: false },
 ] as const;
 
+type NetworkInformationLike = { saveData?: boolean };
+
+/** Gates the background video to hydrated clients that don't prefer
+ * reduced motion and aren't on a constrained data connection. Until this
+ * resolves (or when it resolves false), the poster image is shown — it is
+ * always present in the initial HTML so it can serve as the LCP element. */
+function useHeroVideoEnabled(): boolean {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const connection = (navigator as Navigator & { connection?: NetworkInformationLike })
+      .connection;
+    const saveData = connection?.saveData ?? false;
+
+    setEnabled(!media.matches && !saveData);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setEnabled(!event.matches && !saveData);
+    };
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
+  return enabled;
+}
+
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVideoEnabled = useHeroVideoEnabled();
+
+  // Exit parallax — the whole hero drifts and dims as the next section rises.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  const copyY = useTransform(smoothProgress, [0, 1], [0, -40]);
+  const panelY = useTransform(smoothProgress, [0, 1], [0, -70]);
+  const exitOpacity = useTransform(smoothProgress, [0, 1], [1, 0.4]);
+
   return (
     <MotionConfig reducedMotion="user">
-      <section
-        className="relative overflow-hidden bg-carbon"
-        style={{
-          background:
-            "linear-gradient(157deg, var(--carbon) 0%, var(--carbon-2) 72%, var(--carbon) 100%)",
-        }}
-      >
-        {/* ── Background atmosphere — three quiet layers ──── */}
+      <section ref={sectionRef} className="relative overflow-hidden bg-carbon">
 
-        {/* Aurora glow — navy → cyan → signal (static) */}
-        <div aria-hidden className="aurora-dark pointer-events-none absolute inset-0 -z-10" />
+        {/* ── Background — cinematic loop, poster is the LCP ─────── */}
+        <div aria-hidden className="absolute inset-0 -z-20">
+          {isVideoEnabled ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/media/hero-poster.jpg"
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/media/hero-loop.mp4" type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src="/media/hero-poster.jpg"
+              alt=""
+              fill
+              sizes="100vw"
+              preload
+              className="object-cover"
+            />
+          )}
+        </div>
 
-        {/* Dark blueprint grid */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark -z-10" />
+        {/* Legibility overlay — text must always read over video/poster */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(157deg, oklch(0.16 0.04 256 / 0.88), oklch(0.115 0.03 258 / 0.72))",
+          }}
+        />
+
+        {/* Aurora glow — navy → cyan → signal, dimmed over the video */}
+        <div
+          aria-hidden
+          className="aurora-dark pointer-events-none absolute inset-0 -z-10 opacity-60"
+        />
 
         {/* Film grain — premium texture */}
         <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[1]" />
@@ -55,8 +126,11 @@ export function HeroSection() {
         {/* ── Main grid ─────────────────────────────────── */}
         <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 pb-24 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-40 lg:pb-32">
 
-          {/* LEFT — copy */}
-          <div className="flex flex-col justify-center">
+          {/* LEFT — copy (parallax wrapper; entrance animation lives on children) */}
+          <motion.div
+            className="flex flex-col justify-center"
+            style={{ y: copyY, opacity: exitOpacity }}
+          >
 
             {/* Status row */}
             <motion.div
@@ -66,29 +140,31 @@ export function HeroSection() {
               transition={{ delay: 0.05, duration: 0.5 }}
             >
               <span className="flex items-center gap-2 mono-label text-white/70">
-                <span className="inline-block size-1.5 rounded-full bg-cyan" />
-                SINERGIA · ING. INDUSTRIAL
+                <span className="motion-safe:animate-pulse inline-block size-1.5 rounded-full bg-cyan" />
+                Ingeniería industrial · Chile
               </span>
             </motion.div>
 
-            {/* Headline */}
-            <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight text-white">
-              <span className="block">
-                <SplitText text={LINE_1} delay={0.08} stagger={0.04} startIndex={0} />
-              </span>
-              <span className="block">
-                <SplitText text={LINE_2} delay={0.08} stagger={0.04} startIndex={2} />
-              </span>
-              <span className="block mt-1">
-                <SplitText text={LINE_3} delay={0.08} stagger={0.04} startIndex={3} />
-              </span>
-              <span
-                className="block text-cyan"
-                style={{ textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" }}
-              >
-                <SplitText text={LINE_4} delay={0.08} stagger={0.04} startIndex={4} />
-              </span>
-            </h1>
+            {/* Headline — single blur-in block; SplitText keeps its own word stagger */}
+            <motion.div variants={heroTitle} initial="hidden" animate="visible">
+              <h1 className="font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight text-white">
+                <span className="block">
+                  <SplitText text={LINE_1} delay={0.08} stagger={0.04} startIndex={0} />
+                </span>
+                <span className="block">
+                  <SplitText text={LINE_2} delay={0.08} stagger={0.04} startIndex={2} />
+                </span>
+                <span className="block mt-1">
+                  <SplitText text={LINE_3} delay={0.08} stagger={0.04} startIndex={3} />
+                </span>
+                <span
+                  className="block text-cyan"
+                  style={{ textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" }}
+                >
+                  <SplitText text={LINE_4} delay={0.08} stagger={0.04} startIndex={4} />
+                </span>
+              </h1>
+            </motion.div>
 
             {/* Subhead */}
             <motion.p
@@ -165,55 +241,38 @@ export function HeroSection() {
                 </div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT — schematic + chrome */}
+          {/* RIGHT — schematic panel (parallax wrapper; entrance animation on inner child) */}
           <motion.div
-            className="relative flex flex-col justify-center gap-3"
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+            style={{ y: panelY, opacity: exitOpacity }}
           >
-            {/* Panel glow */}
-            <div
-              className="absolute inset-0 -m-8 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 50% 45%, oklch(0.68 0.14 205 / 0.14) 0%, transparent 66%)",
-              }}
-            />
-
-            {/* Schematic panel — dark glass */}
-            <div
-              className="relative w-full border border-white/12 bg-white/[0.04] backdrop-blur-md"
-              style={{ boxShadow: "var(--shadow-panel-dark), var(--shadow-glow-cyan)" }}
+            <motion.div
+              className="relative flex flex-col justify-center gap-3"
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <CornerTicks className="text-cyan" size={12} />
+              {/* Panel glow */}
+              <div
+                className="absolute inset-0 -m-8 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 45%, oklch(0.68 0.14 205 / 0.14) 0%, transparent 66%)",
+                }}
+              />
 
-              {/* Panel header */}
-              <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
-                <span className="mono-label text-cyan">SYS.SINERGIA</span>
-                <span className="mono-label text-cyan">OPERATIVO</span>
-              </div>
+              {/* Schematic panel — real glass */}
+              <div className="glass-dark glass-sheen relative w-full">
+                <CornerTicks className="text-cyan" size={12} />
 
-              {/* Schematic */}
-              <div className="px-5 py-6">
-                <ProcessSchematic />
-              </div>
-            </div>
-
-            {/* Module status bar */}
-            <div className="grid grid-cols-4 gap-px border border-white/10 bg-white/10">
-              {MODULES.map((mod) => (
-                <div
-                  key={mod}
-                  className="flex items-center justify-center px-2.5 py-2.5"
-                  style={{ background: "var(--carbon)" }}
-                >
-                  <span className="mono-label text-white/60">{mod}</span>
+                {/* Schematic */}
+                <div className="px-5 py-6">
+                  <ProcessSchematic />
                 </div>
-              ))}
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
