@@ -1,13 +1,12 @@
 "use client";
 import { motion, MotionConfig } from "motion/react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { hairline, EASE_OUT } from "@/lib/motion";
 
 type Step = {
   number: string;
-  code: string;
   title: string;
   body: string;
-  output: string;
   duration: string;
   accent: boolean;
 };
@@ -15,37 +14,29 @@ type Step = {
 const STEPS: readonly Step[] = [
   {
     number: "01",
-    code: "DIAG",
     title: "Diagnóstico",
     body: "Revisamos tu operación actual, tus sistemas y tus obligaciones legales. Nada de propuestas genéricas antes de entender qué tiene tu empresa.",
-    output: "INFORME.DIAGNÓSTICO",
     duration: "1–2 SEM",
     accent: false,
   },
   {
     number: "02",
-    code: "PLAN",
     title: "Plan técnico",
     body: "Diseñamos un plan específico: qué hacer, en qué orden y con qué recursos. Lo que va a costar y lo que vas a ganar.",
-    output: "DOC.TÉCNICO + CRONOGRAMA",
     duration: "1 SEM",
     accent: false,
   },
   {
     number: "03",
-    code: "EXEC",
     title: "Implementación",
     body: "Ejecutamos con nuestro equipo. Configuramos Odoo, hacemos el levantamiento REP o entregamos el plan de mejora de procesos.",
-    output: "SISTEMA OPERATIVO",
     duration: "4–12 SEM",
     accent: true,
   },
   {
     number: "04",
-    code: "SUPP",
     title: "Seguimiento",
     body: "No desaparecemos al cerrar el proyecto. Quedamos disponibles para ajustes, dudas y la siguiente etapa.",
-    output: "SOPORTE CONTINUO",
     duration: "ONGOING",
     accent: false,
   },
@@ -84,10 +75,10 @@ export function MethodSection() {
             <motion.span
               aria-hidden
               className="absolute left-0 top-[1.375rem] hidden h-px w-full origin-left bg-steel-200 sm:block"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
+              variants={hairline}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             />
             {/* Beam — first 75% fills with cyan (diagn+plan+exec) */}
             <motion.span
@@ -96,7 +87,7 @@ export function MethodSection() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.3, duration: 1.1, ease: EASE_OUT }}
               style={{ opacity: 0.45 }}
             />
 
@@ -110,9 +101,8 @@ export function MethodSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.15 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {/* Step header: code + duration */}
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="mono-label text-steel-400">{step.code}</span>
+                  {/* Step header: duration */}
+                  <div className="mb-3 flex items-center justify-end">
                     <span className="mono-label tabular text-steel-400">{step.duration}</span>
                   </div>
 
@@ -140,28 +130,6 @@ export function MethodSection() {
                   <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>
-
-                  {/* Output artifact — bottom technical footer */}
-                  <div
-                    className="mt-5 flex items-center gap-2 border-t pt-3"
-                    style={{ borderColor: "oklch(0.88 0.010 240)" }}
-                  >
-                    <span
-                      className="size-1 shrink-0 rounded-full"
-                      style={{ background: step.accent ? "var(--signal)" : "var(--cyan)" }}
-                    />
-                    <span
-                      className="mono-label"
-                      style={{
-                        color: step.accent
-                          ? "var(--signal-deep)"
-                          : "oklch(0.50 0.012 240)",
-                        fontSize: "0.58rem",
-                      }}
-                    >
-                      {step.output}
-                    </span>
-                  </div>
                 </motion.div>
               ))}
             </div>

@@ -1,9 +1,12 @@
 "use client";
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { ShieldCheck, GitBranch, BarChart3, ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
 import { OdooLogo } from "@/components/ui/odoo-logo";
+import { fadeUp } from "@/lib/motion";
 
 function ServiceCard({
   icon: Icon,
@@ -23,17 +26,15 @@ function ServiceCard({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={fadeUp(delay)}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <Link
         href={href}
-        className="group relative flex h-full flex-col bg-white p-8 transition-colors duration-300 hover:bg-steel-50"
+        className="group relative flex h-full flex-col bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated"
       >
-        {/* top cyan rule on hover */}
-        <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
         <div className="mb-6">
           <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
             <Icon className="size-5 text-navy" />
@@ -50,12 +51,27 @@ function ServiceCard({
 const ODOO_MODULES = ["Finanzas", "Inventario", "RRHH", "Ventas", "Operaciones", "Reportería"];
 
 export function ServicesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const numeralY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <section id="servicios" className="bg-background py-24 px-4">
+    <section ref={sectionRef} id="servicios" className="bg-background py-24 px-4">
       <div className="mx-auto max-w-6xl">
         {/* header */}
-        <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
+        <div className="relative mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          {/* Giant background numeral — subtle depth cue, parallax on scroll */}
+          <motion.span
+            aria-hidden
+            className="pointer-events-none absolute -left-2 -top-14 select-none font-display font-bold text-steel-100 lg:-top-20"
+            style={{ fontSize: "clamp(120px, 14vw, 180px)", y: numeralY }}
+          >
+            01
+          </motion.span>
+          <div className="relative">
             <SectionLabel index="01" className="mb-5">
               Áreas de servicio
             </SectionLabel>
@@ -65,7 +81,7 @@ export function ServicesSection() {
               Un solo equipo.
             </h2>
           </div>
-          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+          <p className="relative max-w-xs text-sm leading-relaxed text-muted-foreground">
             Cada módulo opera por separado o integrado. Conectamos cumplimiento, procesos y
             tecnología en un mismo sistema.
           </p>
@@ -73,24 +89,29 @@ export function ServicesSection() {
 
         {/* bento — hairline grid, lifted off the page for depth */}
         <div className="grid grid-cols-1 gap-px border border-steel-200 bg-steel-200 shadow-elevated lg:grid-cols-3 lg:grid-rows-2">
-          {/* ODOO — dominant */}
+          {/* ODOO — dominant, real photography behind the pitch */}
           <motion.div
             className="lg:col-span-2 lg:row-span-2"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp(0)}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link
               href="/implementacion-odoo"
-              className="group relative flex h-full flex-col justify-between bg-navy p-8"
+              className="group relative flex h-full flex-col justify-between overflow-hidden p-8"
             >
-              {/* dark blueprint texture + cyan glow (echoes the hero panel) */}
-              <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-70" />
+              <Image
+                src="/media/plant-floor.jpg"
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="object-cover"
+              />
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.68 0.14 205 / 0.13), transparent 70%)" }}
+                style={{ background: "oklch(0.28 0.12 255 / 0.82)" }}
               />
               <div aria-hidden className="grain pointer-events-none absolute inset-0" />
               <div className="relative">
@@ -142,16 +163,15 @@ export function ServicesSection() {
           {/* DATA — wide strip, horizontal layout to break the vertical-card template */}
           <motion.div
             className="lg:col-span-3"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp(0.24)}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ delay: 0.24, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link
               href="/levantamiento-de-datos"
-              className="group relative flex flex-col gap-6 bg-white p-8 transition-colors duration-300 hover:bg-steel-50 sm:flex-row sm:items-center"
+              className="group relative flex flex-col gap-6 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated sm:flex-row sm:items-center"
             >
-              <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
               <div className="flex shrink-0 items-center gap-4 sm:w-64">
                 <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
                   <BarChart3 className="size-5 text-navy" />

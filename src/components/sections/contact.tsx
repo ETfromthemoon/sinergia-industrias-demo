@@ -150,17 +150,13 @@ export function ContactSection() {
 
             {/* RIGHT — framed form */}
             <motion.div
-              className="relative border border-steel-200 bg-white shadow-elevated"
+              className="glass-light relative"
               initial={{ opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <CornerTicks className="text-navy" size={12} />
-              <div className="flex items-center justify-between border-b border-steel-200 px-6 py-3">
-                <span className="mono-label text-navy">FORM.CONTACTO</span>
-                <span className="mono-label text-cyan-deep">* REQUERIDO</span>
-              </div>
               <form onSubmit={onSubmit} noValidate className="space-y-5 p-6 sm:p-8">
                 <input type="hidden" name="_subject" value="Nuevo contacto web — Sinergia Industrias" />
                 <input type="hidden" name="_captcha" value="true" />
