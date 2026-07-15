@@ -78,8 +78,8 @@ function PanelContent() {
 function RepImage() {
   return (
     <Image
-      src="/media/rep-containers.jpg"
-      alt="Fardos de residuos reciclables apilados en una planta de gestión industrial"
+      src="/media/rep-circular.jpg"
+      alt="Vista aérea de materiales reciclables organizados en pilas en una planta de gestión de residuos"
       fill
       sizes="(min-width: 1024px) 66vw, 100vw"
       className="object-cover"
@@ -97,10 +97,10 @@ export function LeyRepSection() {
   });
   const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 30, restDelta: 0.0005 });
 
-  const imageY = useTransform(progress, [0, 1], ["-5%", "5%"]);
-  const imageScale = useTransform(progress, [0, 0.5], [1.12, 1]);
-  const panelY = useTransform(progress, [0, 1], ["8%", "-8%"]);
-  const numeralY = useTransform(progress, [0, 1], ["32%", "-32%"]);
+  const imageY = useTransform(progress, [0, 1], ["-3%", "3%"]);
+  const imageScale = useTransform(progress, [0, 0.5], [1.06, 1]);
+  const panelY = useTransform(progress, [0, 1], ["-4%", "-12%"]);
+  const numeralY = useTransform(progress, [0, 1], ["12%", "-12%"]);
 
   return (
     <MotionConfig reducedMotion="user">
