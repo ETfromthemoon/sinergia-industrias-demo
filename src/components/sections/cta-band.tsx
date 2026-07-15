@@ -2,7 +2,6 @@
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
 import { SectionLabel } from "@/components/ui/section-label";
 
 type CtaBandProps = {
@@ -71,15 +70,13 @@ export function CtaBand({
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Magnetic>
-              <Link
-                href={ctaHref}
-                className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
-              >
-                {ctaLabel}
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </Magnetic>
+            <Link
+              href={ctaHref}
+              className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
+            >
+              {ctaLabel}
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
           </motion.div>
         </div>
 

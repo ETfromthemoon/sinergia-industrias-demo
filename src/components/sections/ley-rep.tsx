@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
 import { SectionLabel } from "@/components/ui/section-label";
 import { clipReveal, fadeUp } from "@/lib/motion";
 
@@ -104,15 +103,13 @@ export function LeyRepSection() {
                 </ul>
 
                 <div className="mt-8">
-                  <Magnetic>
-                    <Link
-                      href="#contacto"
-                      className="group inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-7 py-3.5 text-sm font-semibold text-cyan transition-colors duration-200 hover:bg-cyan/20"
-                    >
-                      Conversemos tu proyecto
-                      <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </Link>
-                  </Magnetic>
+                  <Link
+                    href="#contacto"
+                    className="group inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-7 py-3.5 text-sm font-semibold text-cyan transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan/20"
+                  >
+                    Conversemos tu proyecto
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
                 </div>
               </div>
             </div>

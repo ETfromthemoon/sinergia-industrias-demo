@@ -4,7 +4,6 @@ import { motion, MotionConfig, useScroll, useSpring, useTransform } from "motion
 import Image from "next/image";
 import Link from "next/link";
 import { SplitText } from "@/components/ui/split-text";
-import { Magnetic } from "@/components/ui/magnetic";
 import { ProcessSchematic } from "@/components/ui/process-schematic";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ShieldCheck, ArrowRight } from "lucide-react";
@@ -168,15 +167,13 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85, duration: 0.55 }}
             >
-              <Magnetic>
-                <Link
-                  href="#contacto"
-                  className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
-                >
-                  Conversemos tu proyecto
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
+              <Link
+                href="#contacto"
+                className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
+              >
+                Conversemos tu proyecto
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
               <Link
                 href="#servicios"
                 className="mono-label text-white/65 underline-offset-4 transition-colors hover:text-cyan hover:underline"

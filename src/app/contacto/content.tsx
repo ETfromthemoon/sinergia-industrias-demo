@@ -2,7 +2,6 @@
 import { useState, type FormEvent } from "react";
 import { PageHero } from "@/components/layout/page-hero";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
-import { Magnetic } from "@/components/ui/magnetic";
 import { SectionLabel } from "@/components/ui/section-label";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
@@ -138,17 +137,15 @@ export default function Content() {
                 </p>
 
                 <div className="mt-10">
-                  <Magnetic>
-                    <Link
-                      href="https://wa.me/56994584617?text=Hola,%20quiero%20conversar%20sobre%20un%20proyecto"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
-                    >
-                      Escríbenos por WhatsApp
-                      <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </Link>
-                  </Magnetic>
+                  <Link
+                    href="https://wa.me/56994584617?text=Hola,%20quiero%20conversar%20sobre%20un%20proyecto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-navy-dark"
+                  >
+                    Escríbenos por WhatsApp
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
                 </div>
 
                 <ul className="mt-12 divide-y divide-steel-200 border-y border-steel-200">

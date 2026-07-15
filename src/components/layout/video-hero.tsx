@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { motion, MotionConfig, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
 import { cn } from "@/lib/utils";
 
 type VideoHeroProps = {
@@ -162,15 +161,13 @@ export function VideoHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5 }}
           >
-            <Magnetic>
-              <Link
-                href={ctaHref}
-                className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
-              >
-                {ctaLabel}
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </Magnetic>
+            <Link
+              href={ctaHref}
+              className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
+            >
+              {ctaLabel}
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
             {secondaryCtaLabel && secondaryCtaHref && (
               <Link
                 href={secondaryCtaHref}
