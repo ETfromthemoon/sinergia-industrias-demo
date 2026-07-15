@@ -59,7 +59,7 @@ export function CursorGlow() {
         height: GLOW_SIZE,
         transform: `translate3d(${OFFSCREEN_START}px, ${OFFSCREEN_START}px, 0)`,
         background:
-          "radial-gradient(circle, oklch(0.68 0.14 205 / 0.06), transparent 70%)",
+          "radial-gradient(circle, oklch(0.60 0.105 208 / 0.06), transparent 70%)",
       }}
     />
   );

@@ -20,7 +20,7 @@ export function Footer() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.68 0.14 205 / 0.06), transparent 70%)" }}
+        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.60 0.105 208 / 0.06), transparent 70%)" }}
       />
       <div aria-hidden className="grain pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-6xl">

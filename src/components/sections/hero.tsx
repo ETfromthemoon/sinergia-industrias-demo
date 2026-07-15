@@ -103,7 +103,7 @@ export function HeroSection() {
           className="absolute top-0 inset-x-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.30) 35%, oklch(0.68 0.14 205 / 0.30) 65%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.30) 35%, oklch(0.60 0.105 208 / 0.30) 65%, transparent 100%)",
           }}
         />
 
@@ -143,7 +143,7 @@ export function HeroSection() {
                 </span>
                 <span
                   className="block text-cyan"
-                  style={{ textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" }}
+                  style={{ textShadow: "0 0 32px oklch(0.60 0.105 208 / 0.35)" }}
                 >
                   <SplitText text={LINE_4} delay={0.08} stagger={0.04} startIndex={4} />
                 </span>
@@ -171,7 +171,7 @@ export function HeroSection() {
               <Magnetic>
                 <Link
                   href="#contacto"
-                  className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.68_0.14_205_/_0.5)]"
+                  className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
                 >
                   Conversemos tu proyecto
                   <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -243,7 +243,7 @@ export function HeroSection() {
                 className="absolute inset-0 -m-8 pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 50% 45%, oklch(0.68 0.14 205 / 0.14) 0%, transparent 66%)",
+                    "radial-gradient(ellipse at 50% 45%, oklch(0.60 0.105 208 / 0.14) 0%, transparent 66%)",
                 }}
               />
 
@@ -266,7 +266,7 @@ export function HeroSection() {
           className="absolute bottom-0 inset-x-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)",
           }}
         />
       </section>

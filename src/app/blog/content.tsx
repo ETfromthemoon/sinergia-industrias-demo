@@ -109,7 +109,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
             >
               <Link
                 href={`/blog/${featured.slug}`}
-                className="inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.68_0.14_205_/_0.5)]"
+                className="inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
               >
                 Leer artículo completo
                 <ArrowRight className="size-4" />
@@ -251,7 +251,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         <button
                           type="submit"
                           disabled={status === "loading"}
-                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.68_0.14_205_/_0.5)] disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
+                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
                         >
                           {status === "loading" ? "..." : "Suscribirme"}
                         </button>

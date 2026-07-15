@@ -214,7 +214,7 @@ export default function NosotrosContent() {
           <div
             aria-hidden
             className="absolute bottom-0 inset-x-0 h-px"
-            style={{ background: "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)" }}
+            style={{ background: "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)" }}
           />
         </section>
       </MotionConfig>

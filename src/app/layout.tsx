@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import ReactDOM from "react-dom";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -19,10 +19,11 @@ const inter = Inter({
   display: "swap",
 });
 
-// Space Grotesk: geometric grotesque with technical character.
-// Differentiates from Inter's neutrality — the right call for the
-// Swiss / Blueprint industrial direction (Neue Haas spirit, Google-hosted).
-const spaceGrotesk = Space_Grotesk({
+// Fraunces: editorial serif with real weight contrast. Replaces Space
+// Grotesk to give headings gravity and depth instead of the flat, uniform
+// look of a geometric grotesque — while Inter (body) keeps the technical
+// neutrality for running text.
+const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -99,7 +100,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("h-full antialiased", inter.variable, spaceGrotesk.variable, jetbrainsMono.variable)}
+      className={cn("h-full antialiased", inter.variable, fraunces.variable, jetbrainsMono.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <script

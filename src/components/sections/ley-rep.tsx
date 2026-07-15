@@ -107,14 +107,14 @@ export function LeyRepSection() {
       <section
         ref={sectionRef}
         className="relative overflow-hidden bg-navy-dark"
-        style={isCinematic ? { height: "280vh" } : undefined}
+        style={isCinematic ? { height: "170vh" } : undefined}
       >
         <div aria-hidden className="grain pointer-events-none absolute inset-0" />
 
         <div
           className={
             isCinematic
-              ? "sticky top-0 flex min-h-[100dvh] items-center overflow-hidden px-4 py-24"
+              ? "sticky top-0 flex min-h-[100dvh] items-center overflow-hidden px-4 py-16"
               : "px-4 py-24"
           }
         >
@@ -136,7 +136,7 @@ export function LeyRepSection() {
             )}
 
             {/* Imagen */}
-            <div className="relative aspect-[4/3] lg:col-span-8 lg:aspect-auto lg:h-[62vh]">
+            <div className="relative aspect-[4/3] lg:col-span-8 lg:aspect-auto lg:h-[76vh]">
               {isCinematic ? (
                 <motion.div className="relative h-full w-full" style={{ y: imageY }}>
                   <motion.div className="relative h-full w-full overflow-hidden" style={{ scale: imageScale }}>

@@ -67,7 +67,7 @@ export function PageHero({
           className="absolute top-0 inset-x-0 h-px"
           style={{
             background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.30) 35%, oklch(0.68 0.14 205 / 0.30) 65%, transparent 100%)"
+              ? "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.30) 35%, oklch(0.60 0.105 208 / 0.30) 65%, transparent 100%)"
               : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.12) 35%, oklch(0.28 0.12 255 / 0.12) 65%, transparent 100%)",
           }}
         />
@@ -108,7 +108,7 @@ export function PageHero({
             {headlineAccent && (
               <span
                 className={cn("block", isDark ? "text-cyan" : "text-navy")}
-                style={isDark ? { textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" } : undefined}
+                style={isDark ? { textShadow: "0 0 32px oklch(0.60 0.105 208 / 0.35)" } : undefined}
               >
                 {headlineAccent}
               </span>
@@ -141,7 +141,7 @@ export function PageHero({
                 className={cn(
                   "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200",
                   isDark
-                    ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.68_0.14_205_/_0.5)]"
+                    ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
                     : "bg-navy text-white hover:bg-navy-dark"
                 )}
               >
@@ -169,7 +169,7 @@ export function PageHero({
           className="absolute bottom-0 inset-x-0 h-px"
           style={{
             background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)"
+              ? "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)"
               : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.10) 50%, transparent 100%)",
           }}
         />
