@@ -33,16 +33,16 @@ function ServiceCard({
     >
       <Link
         href={href}
-        className="group relative flex h-full flex-col bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated"
+        className="group relative flex h-full flex-col bg-white p-8 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
       >
         <div className="mb-6">
-          <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
+          <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-200 group-hover:border-navy/30">
             <Icon className="size-5 text-navy" />
           </div>
         </div>
         <h3 className="font-display mb-3 text-xl font-semibold text-foreground">{title}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">{body}</p>
-        <ArrowUpRight className="mt-6 size-5 text-steel-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
+        <ArrowUpRight className="mt-6 size-5 text-steel-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
       </Link>
     </motion.div>
   );
@@ -170,10 +170,10 @@ export function ServicesSection() {
           >
             <Link
               href="/levantamiento-de-datos"
-              className="group relative flex flex-col gap-6 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated sm:flex-row sm:items-center"
+              className="group relative flex flex-col gap-6 bg-white p-8 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated sm:flex-row sm:items-center"
             >
               <div className="flex shrink-0 items-center gap-4 sm:w-64">
-                <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-300 group-hover:border-navy/30">
+                <div className="inline-flex border border-steel-200 bg-white p-3 transition-colors duration-200 group-hover:border-navy/30">
                   <BarChart3 className="size-5 text-navy" />
                 </div>
                 <h3 className="font-display text-xl font-semibold text-foreground">
@@ -185,7 +185,7 @@ export function ServicesSection() {
                 Ordenamos los datos dispersos de tu operación para que los reportes reflejen lo que
                 realmente pasa y las decisiones se tomen con información real.
               </p>
-              <ArrowUpRight className="size-5 shrink-0 text-steel-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
+              <ArrowUpRight className="size-5 shrink-0 text-steel-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
             </Link>
           </motion.div>
         </div>

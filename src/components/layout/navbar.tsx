@@ -70,7 +70,7 @@ export function Navbar() {
 
   const underlineCls = (active?: boolean) =>
     cn(
-      "pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100",
+      "pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-200 group-hover:scale-x-100",
       active && "scale-x-100"
     );
 
@@ -181,7 +181,7 @@ export function Navbar() {
           <Link
             href="/contacto"
             className={cn(
-              "px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
+              "px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
               scrolled || !isHome
                 ? "bg-navy text-white hover:bg-navy-dark"
                 : "bg-white text-carbon hover:bg-cyan"

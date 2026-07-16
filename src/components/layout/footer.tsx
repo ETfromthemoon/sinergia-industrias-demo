@@ -50,7 +50,10 @@ export function Footer() {
             <ul className="space-y-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-steel-400 transition-colors hover:text-white">
+                  <Link
+                    href={l.href}
+                    className="text-sm text-steel-400 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -63,12 +66,18 @@ export function Footer() {
             <p className="mono-label mb-5 text-white/30">Contacto</p>
             <ul className="space-y-3 text-sm text-steel-400">
               <li>
-                <a href="mailto:info@sinergiaindustrias.cl" className="transition-colors hover:text-white">
+                <a
+                  href="mailto:info@sinergiaindustrias.cl"
+                  className="transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                >
                   info@sinergiaindustrias.cl
                 </a>
               </li>
               <li>
-                <a href="tel:+56994584617" className="tabular transition-colors hover:text-white">
+                <a
+                  href="tel:+56994584617"
+                  className="tabular transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                >
                   +56 9 9458 4617
                 </a>
               </li>
@@ -79,7 +88,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/sinergia-industrias"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
                 >
                   LinkedIn
                   <ExternalLink className="size-3" />

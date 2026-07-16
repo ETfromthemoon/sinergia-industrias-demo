@@ -137,7 +137,7 @@ export function PageHero({
             <Link
               href={ctaHref}
               className={cn(
-                "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5",
+                "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
                 isDark
                   ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
                   : "bg-navy text-white hover:bg-navy-dark"

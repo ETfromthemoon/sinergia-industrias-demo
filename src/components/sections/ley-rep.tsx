@@ -105,7 +105,7 @@ export function LeyRepSection() {
                 <div className="mt-8">
                   <Link
                     href="#contacto"
-                    className="group inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-7 py-3.5 text-sm font-semibold text-cyan transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan/20"
+                    className="group inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-7 py-3.5 text-sm font-semibold text-cyan transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
                   >
                     Conversemos tu proyecto
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />

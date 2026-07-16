@@ -72,7 +72,7 @@ export function CtaBand({
           >
             <Link
               href={ctaHref}
-              className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
+              className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
             >
               {ctaLabel}
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />

@@ -130,19 +130,19 @@ export default function NosotrosContent() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <div className="rounded-sm border border-steel-200 bg-white p-4">
+                <div className="border border-steel-200 bg-white p-4">
                   <span className="mono-label text-steel-400">Enfoque</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Socio confiable en tu operación diaria.
                   </p>
                 </div>
-                <div className="rounded-sm border border-steel-200 bg-white p-4">
+                <div className="border border-steel-200 bg-white p-4">
                   <span className="mono-label text-steel-400">Visión</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Un futuro más sostenible y responsable.
                   </p>
                 </div>
-                <div className="rounded-sm border border-steel-200 bg-white p-4">
+                <div className="border border-steel-200 bg-white p-4">
                   <span className="mono-label text-steel-400">Tecnología</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Conocimiento y experiencia compartidos.

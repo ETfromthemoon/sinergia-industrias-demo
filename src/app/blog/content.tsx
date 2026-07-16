@@ -109,10 +109,10 @@ export default function BlogContent({ posts }: BlogContentProps) {
             >
               <Link
                 href={`/blog/${featured.slug}`}
-                className="inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
+                className="group inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
               >
                 Leer artículo completo
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </div>
@@ -159,7 +159,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       loading="lazy"
                     />
@@ -251,7 +251,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         <button
                           type="submit"
                           disabled={status === "loading"}
-                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
+                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shrink-0"
                         >
                           {status === "loading" ? "..." : "Suscribirme"}
                         </button>
@@ -279,13 +279,13 @@ export default function BlogContent({ posts }: BlogContentProps) {
                     <div className="mt-6 flex flex-wrap gap-3">
                       <Link
                         href="/contacto"
-                        className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon hover:bg-white transition-all"
+                        className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
                       >
                         Conversemos tu proyecto
                       </Link>
                       <a
                         href="mailto:info@sinergiaindustrias.cl"
-                        className="border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-white/50 transition-colors inline-flex items-center gap-1.5"
+                        className="border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep inline-flex items-center gap-1.5"
                       >
                         info@sinergiaindustrias.cl
                       </a>
