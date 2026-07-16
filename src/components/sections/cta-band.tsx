@@ -1,6 +1,7 @@
 "use client";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
 
@@ -22,12 +23,20 @@ export function CtaBand({
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative overflow-hidden bg-navy-dark px-4 py-24">
+        <Image
+          src="/media/office-team.jpg"
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.14]"
+        />
         <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark" />
         <div aria-hidden className="grain pointer-events-none absolute inset-0" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.60 0.105 208 / 0.13), transparent 70%)" }}
+          style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.60 0.105 208 / 0.13), transparent 70%), linear-gradient(157deg, oklch(0.16 0.04 256 / 0.92), oklch(0.115 0.03 258 / 0.85))" }}
         />
 
         <div className="relative mx-auto max-w-4xl text-center">
