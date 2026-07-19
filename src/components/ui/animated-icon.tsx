@@ -76,7 +76,7 @@ function IconWrapper({
   );
 }
 
-export function AnimatedIcon({ name, size = 32, className, tone = "navy" }: AnimatedIconProps) {
+export function AnimatedIcon({ name, size = 44, className, tone = "navy" }: AnimatedIconProps) {
   const color = TONE_COLORS[tone] || TONE_COLORS.navy;
 
   switch (name) {

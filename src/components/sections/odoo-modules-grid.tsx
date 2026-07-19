@@ -130,7 +130,6 @@ export function OdooModulesGrid() {
 
         <ModuleSlider
           items={MODULE_CATEGORIES}
-          itemsPerView={{ sm: 1, md: 2, lg: 3 }}
           className="pb-4"
           renderItem={(cat) => (
             <div className="group relative border border-steel-200 bg-white p-6 transition-colors hover:bg-steel-50 h-full">
@@ -138,8 +137,8 @@ export function OdooModulesGrid() {
               <CornerTicks className="text-steel-400" size={8} />
 
               <div className="mb-4 flex items-center gap-3">
-                <div className="inline-flex items-center justify-center size-12 border border-steel-200 bg-white">
-                  <AnimatedIcon name={cat.icon} size={28} tone="navy" />
+                <div className="inline-flex items-center justify-center size-14 border border-steel-200 bg-white">
+                  <AnimatedIcon name={cat.icon} size={36} tone="navy" />
                 </div>
                 <div>
                   <span className="mono-label text-steel-400">{cat.code}</span>

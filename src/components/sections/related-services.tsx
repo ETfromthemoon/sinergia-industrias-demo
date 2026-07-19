@@ -32,7 +32,6 @@ export function RelatedServices({ current, index = "06" }: RelatedServicesProps)
         <div className="mt-10">
           <ModuleSlider
             items={related}
-            itemsPerView={{ sm: 1, md: 2, lg: 3 }}
             autoplayInterval={0}
             renderItem={(service) => (
               <Link

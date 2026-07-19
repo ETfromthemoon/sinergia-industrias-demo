@@ -28,12 +28,6 @@ export type FeatureSectionProps = {
   className?: string;
 };
 
-const COLUMNS_MAP: Record<number, { sm: number; md: number; lg: number }> = {
-  2: { sm: 1, md: 2, lg: 2 },
-  3: { sm: 1, md: 2, lg: 3 },
-  4: { sm: 1, md: 2, lg: 3 },
-};
-
 export function FeatureSection({
   id,
   index = "02",
@@ -104,7 +98,6 @@ export function FeatureSection({
           <div className="mt-12">
             <ModuleSlider
               items={items}
-              itemsPerView={COLUMNS_MAP[columns] ?? { sm: 1, md: 2, lg: 3 }}
               renderItem={(item, i) => (
                   <div
                     className={cn(
@@ -121,20 +114,20 @@ export function FeatureSection({
                     {item.iconName ? (
                       <span
                         className={cn(
-                          "inline-flex items-center justify-center size-12 border mb-4",
+                          "inline-flex items-center justify-center size-14 border mb-4",
                           isDark ? "border-white/20" : "border-steel-200",
                         )}
                       >
                         <AnimatedIcon
                           name={item.iconName}
-                          size={28}
+                          size={36}
                           tone={isDark ? "cyan" : "navy"}
                         />
                       </span>
                     ) : item.icon ? (
                       <span
                         className={cn(
-                          "inline-flex items-center justify-center size-12 border mb-4",
+                          "inline-flex items-center justify-center size-14 border mb-4",
                           isDark ? "border-white/20 text-cyan" : "border-steel-200 text-navy",
                         )}
                       >

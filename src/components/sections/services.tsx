@@ -135,11 +135,11 @@ export function ServicesSection() {
               {/* Content */}
               <div className="flex flex-1 flex-col p-6">
                 {/* Big animated icon */}
-                <div className="mb-4 inline-flex items-center justify-center size-12 border border-steel-200 bg-steel-50">
+                <div className="mb-4 inline-flex items-center justify-center size-14 border border-steel-200 bg-steel-50">
                   {service.isOdoo ? (
-                    <OdooLogo size={28} />
+                    <OdooLogo size={36} />
                   ) : (
-                    <AnimatedIcon name={service.iconName} size={28} tone="navy" />
+                    <AnimatedIcon name={service.iconName} size={36} tone="navy" />
                   )}
                 </div>
                 <h3 className="font-display mb-3 text-xl font-semibold text-foreground">

@@ -38,13 +38,13 @@ const slideVariants = {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.55, ease: EASE_OUT },
+    transition: { duration: 0.85, ease: EASE_OUT },
   },
   exit: (dir: number) => ({
     x: dir > 0 ? "-8%" : "8%",
     opacity: 0,
     scale: 0.98,
-    transition: { duration: 0.35, ease: EASE_OUT },
+    transition: { duration: 0.55, ease: EASE_OUT },
   }),
 };
 
@@ -63,7 +63,7 @@ function getItemsPerView(
 export function ModuleSlider<T>({
   items,
   renderItem,
-  itemsPerView: itemsPerViewConfig = { sm: 1, md: 2, lg: 3 },
+  itemsPerView: itemsPerViewConfig = { sm: 1, md: 1, lg: 1 },
   gap = 24,
   showArrows = true,
   showDots = true,
@@ -161,11 +161,11 @@ export function ModuleSlider<T>({
                 return (
                   <motion.div
                     key={globalIndex}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      delay: 0.06 * i,
-                      duration: 0.4,
+                      delay: 0.08 * i,
+                      duration: 0.65,
                       ease: EASE_OUT,
                     }}
                   >
