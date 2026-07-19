@@ -12,16 +12,19 @@ import { BarChart3, FileText, TrendingUp } from "lucide-react";
 const reportCards = [
   {
     icon: FileText,
+    iconName: "file-text" as const,
     title: "Reportes en tiempo real",
     body: "Mantente al día con reportes que se actualizan automáticamente con la información más reciente de tu operación.",
   },
   {
     icon: BarChart3,
+    iconName: "bar-chart" as const,
     title: "Tableros personalizados",
     body: "Visualiza tus KPIs críticos en tableros diseñados a la medida de tu negocio y tus objetivos estratégicos.",
   },
   {
     icon: TrendingUp,
+    iconName: "trending-up" as const,
     title: "Comparte con tu equipo",
     body: "Distribuye reportes y dashboards con quien necesites. Toda la información clave al alcance de tu equipo.",
   },

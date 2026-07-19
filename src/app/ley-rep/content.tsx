@@ -12,12 +12,12 @@ import { motion, MotionConfig } from "motion/react";
 import { Box, Droplets, Battery, Disc, CircleDot, Monitor } from "lucide-react";
 
 const productos = [
-  { icon: Box, label: "Envases y Embalajes", slug: "envases-y-embalajes" },
-  { icon: Droplets, label: "Aceites Lubricantes", slug: "aceites-lubricantes" },
-  { icon: Battery, label: "Baterías", slug: "baterias" },
-  { icon: Disc, label: "Pilas", slug: "pilas" },
-  { icon: CircleDot, label: "Neumáticos", slug: "neumaticos" },
-  { icon: Monitor, label: "Aparatos Eléctricos y Electrónicos", slug: "aparatos-electricos-y-electronicos" },
+  { icon: Box, iconName: "box" as const, label: "Envases y Embalajes", slug: "envases-y-embalajes" },
+  { icon: Droplets, iconName: "droplets" as const, label: "Aceites Lubricantes", slug: "aceites-lubricantes" },
+  { icon: Battery, iconName: "battery" as const, label: "Baterías", slug: "baterias" },
+  { icon: Disc, iconName: "disc" as const, label: "Pilas", slug: "pilas" },
+  { icon: CircleDot, iconName: "circle-dot" as const, label: "Neumáticos", slug: "neumaticos" },
+  { icon: Monitor, iconName: "monitor" as const, label: "Aparatos Eléctricos y Electrónicos", slug: "aparatos-electricos-y-electronicos" },
 ] as const;
 
 const baseLink =
@@ -107,6 +107,7 @@ export default function LeyRepContent() {
         className="bg-steel-50 border-y border-steel-200"
         items={productos.map((p) => ({
           icon: p.icon,
+          iconName: p.iconName,
           title: p.label,
           body: "economiacircular.mma.gob.cl",
         }))}

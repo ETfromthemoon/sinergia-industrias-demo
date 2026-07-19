@@ -8,10 +8,10 @@ import { RelatedServices } from "@/components/sections/related-services";
 import { TrendingUp, Clock, DollarSign, Award } from "lucide-react";
 
 const benefits = [
-  { icon: TrendingUp, title: "Reducción de costos operativos", body: "" },
-  { icon: Clock, title: "Optimización de tiempos de producción", body: "" },
-  { icon: DollarSign, title: "Nuevas metodologías de producción", body: "" },
-  { icon: Award, title: "Ventaja competitiva sostenible", body: "" },
+  { icon: TrendingUp, iconName: "trending-up" as const, title: "Reducción de costos operativos", body: "" },
+  { icon: Clock, iconName: "clock" as const, title: "Optimización de tiempos de producción", body: "" },
+  { icon: DollarSign, iconName: "dollar" as const, title: "Nuevas metodologías de producción", body: "" },
+  { icon: Award, iconName: "award" as const, title: "Ventaja competitiva sostenible", body: "" },
 ];
 
 export default function Content() {

@@ -1,12 +1,13 @@
 "use client";
-import { motion } from "motion/react";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { SectionLabel } from "@/components/ui/section-label";
-import { Box, Calculator, ShoppingCart, Globe, Users, Megaphone, Settings, Zap } from "lucide-react";
+import { ModuleSlider } from "@/components/ui/module-slider";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
+import type { IconName } from "@/components/ui/animated-icon";
 
 type ModuleCategory = {
   title: string;
-  icon: React.ElementType;
+  icon: IconName;
   code: string;
   modules: { name: string; description: string }[];
 };
@@ -14,7 +15,7 @@ type ModuleCategory = {
 const MODULE_CATEGORIES: ModuleCategory[] = [
   {
     title: "Inventario y fabricación",
-    icon: Box,
+    icon: "box",
     code: "INV",
     modules: [
       { name: "Inventario", description: "Gestión de almacenes en línea" },
@@ -27,7 +28,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Finanzas",
-    icon: Calculator,
+    icon: "calculator",
     code: "FIN",
     modules: [
       { name: "Contabilidad", description: "Accesible siempre y en cualquier lugar" },
@@ -39,7 +40,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Ventas",
-    icon: ShoppingCart,
+    icon: "cart",
     code: "CRM",
     modules: [
       { name: "CRM", description: "Seguimiento y cierre de oportunidades" },
@@ -51,7 +52,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Sitio web",
-    icon: Globe,
+    icon: "globe",
     code: "WEB",
     modules: [
       { name: "Sitios web", description: "Fácil. Para celulares. Código abierto" },
@@ -63,7 +64,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "RRHH",
-    icon: Users,
+    icon: "users",
     code: "HR",
     modules: [
       { name: "Empleados", description: "Reclutamiento, valoraciones, permisos" },
@@ -75,7 +76,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Marketing",
-    icon: Megaphone,
+    icon: "megaphone",
     code: "MKT",
     modules: [
       { name: "Automatización", description: "Pon tu empresa en piloto automático" },
@@ -87,7 +88,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Servicios",
-    icon: Settings,
+    icon: "settings",
     code: "SRV",
     modules: [
       { name: "Proyectos", description: "Increíble, sencillo, código abierto" },
@@ -100,7 +101,7 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
   },
   {
     title: "Productividad",
-    icon: Zap,
+    icon: "zap",
     code: "PRD",
     modules: [
       { name: "Conversaciones", description: "Chats privados y grupales integrados" },
@@ -127,55 +128,42 @@ export function OdooModulesGrid() {
           <span className="mono-label text-steel-400">{MODULE_CATEGORIES.length} CATEGORÍAS · 40+ APLICACIONES</span>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {MODULE_CATEGORIES.map((cat, i) => {
-            const Icon = cat.icon;
-            return (
-              <motion.div
-                key={cat.code}
-                className="group relative border border-steel-200 bg-white p-6 transition-colors hover:bg-steel-50"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06, duration: 0.5 }}
-              >
-                <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-                <CornerTicks className="text-steel-400" size={8} />
+        <ModuleSlider
+          items={MODULE_CATEGORIES}
+          itemsPerView={{ sm: 1, md: 2, lg: 3 }}
+          className="pb-4"
+          renderItem={(cat) => (
+            <div className="group relative border border-steel-200 bg-white p-6 transition-colors hover:bg-steel-50 h-full">
+              <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+              <CornerTicks className="text-steel-400" size={8} />
 
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="inline-flex items-center justify-center size-10 border border-steel-200 bg-white">
-                    <Icon className="size-5 text-navy" />
-                  </div>
-                  <div>
-                    <span className="mono-label text-steel-400">{cat.code}</span>
-                    <h3 className="font-display text-base font-semibold text-foreground">{cat.title}</h3>
-                  </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="inline-flex items-center justify-center size-10 border border-steel-200 bg-white">
+                  <AnimatedIcon name={cat.icon} size={20} tone="navy" />
                 </div>
+                <div>
+                  <span className="mono-label text-steel-400">{cat.code}</span>
+                  <h3 className="font-display text-base font-semibold text-foreground">{cat.title}</h3>
+                </div>
+              </div>
 
-                <ul className="space-y-2">
-                  {cat.modules.map((mod) => (
-                    <li key={mod.name} className="flex items-start gap-2 text-sm">
-                      <span className="mt-1.5 size-1 shrink-0 rounded-full bg-cyan/60" />
-                      <span>
-                        <strong className="text-foreground">{mod.name}</strong>
-                        <span className="text-muted-foreground"> — {mod.description}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
-          })}
-        </div>
+              <ul className="space-y-2">
+                {cat.modules.map((mod) => (
+                  <li key={mod.name} className="flex items-start gap-2 text-sm">
+                    <span className="mt-1.5 size-1 shrink-0 rounded-full bg-cyan/60" />
+                    <span>
+                      <strong className="text-foreground">{mod.name}</strong>
+                      <span className="text-muted-foreground"> — {mod.description}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        />
 
         {/* Value proposition */}
-        <motion.div
-          className="mt-16 grid gap-10 border-t border-steel-200 pt-16 lg:grid-cols-2"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="mt-16 grid gap-10 border-t border-steel-200 pt-16 lg:grid-cols-2">
           <div>
             <h3 className="font-display mb-4 text-2xl font-bold text-foreground">
               El fin de las integraciones problemáticas
@@ -198,7 +186,7 @@ export function OdooModulesGrid() {
               mundo de aplicaciones empresariales totalmente integradas.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

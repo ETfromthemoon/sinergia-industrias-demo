@@ -1,11 +1,15 @@
 "use client";
-import { motion, MotionConfig } from "motion/react";
+import { MotionConfig } from "motion/react";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
+import { ModuleSlider } from "@/components/ui/module-slider";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
+import type { IconName } from "@/components/ui/animated-icon";
 import { cn } from "@/lib/utils";
 
 export type FeatureItem = {
   icon?: React.ElementType;
+  iconName?: IconName;
   title: string;
   body: string;
 };
@@ -24,17 +28,12 @@ export type FeatureSectionProps = {
   className?: string;
 };
 
-const COLUMNS_CLASS: Record<2 | 3 | 4, string> = {
-  2: "lg:grid-cols-2",
-  3: "lg:grid-cols-3",
-  4: "lg:grid-cols-4",
+const COLUMNS_MAP: Record<number, { sm: number; md: number; lg: number }> = {
+  2: { sm: 1, md: 2, lg: 2 },
+  3: { sm: 1, md: 2, lg: 3 },
+  4: { sm: 1, md: 2, lg: 3 },
 };
 
-/**
- * Reusable "eyebrow + H2 + intro + card grid" pattern shared across interior pages.
- * Replicates the exact markup/styling used inline in ley-rep and
- * levantamiento-de-procesos content pages.
- */
 export function FeatureSection({
   id,
   index = "02",
@@ -64,97 +63,84 @@ export function FeatureSection({
       >
         {isDark && (
           <>
-            <div className="absolute inset-0 blueprint-grid-dark pointer-events-none" />
-            <div className="absolute inset-0 grain pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 blueprint-grid-dark" />
+            <div className="pointer-events-none absolute inset-0 grain" />
           </>
         )}
 
         <div className={cn("relative mx-auto max-w-6xl", isDark && "z-10")}>
-          <MotionConfig transition={{ duration: 0.6, ease: "easeOut" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <SectionLabel index={index} tone={isDark ? "dark" : "light"}>
-                {eyebrow}
-              </SectionLabel>
-            </motion.div>
+          <div>
+            <SectionLabel index={index} tone={isDark ? "dark" : "light"}>
+              {eyebrow}
+            </SectionLabel>
+          </div>
 
-            <motion.h2
-              className={cn(
-                "mt-4 font-display text-3xl sm:text-4xl tracking-tight",
-                isDark ? "text-white" : "text-navy",
-              )}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              {title}
-              {titleAccent && (
-                <>
-                  <br />
-                  <span className="text-navy">{titleAccent}</span>
-                </>
-              )}
-            </motion.h2>
-
-            {intro && (
-              <motion.p
-                className={cn(
-                  "mt-6 max-w-3xl text-lg leading-relaxed",
-                  isDark ? "text-steel-300" : "text-muted-foreground",
-                )}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                {intro}
-              </motion.p>
+          <h2
+            className={cn(
+              "mt-4 font-display text-3xl sm:text-4xl tracking-tight",
+              isDark ? "text-white" : "text-navy",
             )}
+          >
+            {title}
+            {titleAccent && (
+              <>
+                <br />
+                <span className="text-navy">{titleAccent}</span>
+              </>
+            )}
+          </h2>
 
-            <motion.div
+          {intro && (
+            <p
               className={cn(
-                "mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6",
-                COLUMNS_CLASS[columns],
+                "mt-6 max-w-3xl text-lg leading-relaxed",
+                isDark ? "text-steel-300" : "text-muted-foreground",
               )}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: intro ? 0.3 : 0.2 }}
             >
-              {items.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={i}
+              {intro}
+            </p>
+          )}
+
+          <div className="mt-12">
+            <ModuleSlider
+              items={items}
+              itemsPerView={COLUMNS_MAP[columns] ?? { sm: 1, md: 2, lg: 3 }}
+              renderItem={(item, i) => (
+                  <div
                     className={cn(
-                      "relative p-6 border",
+                      "relative p-6 border h-full",
                       isDark
                         ? "border-white/15 bg-white/[0.03]"
                         : "bg-white border-steel-200",
                     )}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 + i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   >
                     {cornerTicks && (
                       <CornerTicks className={isDark ? "text-white/40" : "text-steel-400"} />
                     )}
 
-                    {Icon && (
+                    {item.iconName ? (
+                      <span
+                        className={cn(
+                          "inline-flex items-center justify-center w-11 h-11 border mb-4",
+                          isDark ? "border-white/20" : "border-steel-200",
+                        )}
+                      >
+                        <AnimatedIcon
+                          name={item.iconName}
+                          size={20}
+                          tone={isDark ? "cyan" : "navy"}
+                        />
+                      </span>
+                    ) : item.icon ? (
                       <span
                         className={cn(
                           "inline-flex items-center justify-center w-11 h-11 border mb-4",
                           isDark ? "border-white/20 text-cyan" : "border-steel-200 text-navy",
                         )}
                       >
-                        <Icon className="w-5 h-5" />
+                        <item.icon className="w-5 h-5" />
                       </span>
-                    )}
+                    ) : null}
 
                     <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
                       {String(index)}.{String(i + 1).padStart(2, "0")}
@@ -177,11 +163,10 @@ export function FeatureSection({
                     >
                       {item.body}
                     </p>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </MotionConfig>
+                  </div>
+                )}
+            />
+          </div>
         </div>
       </section>
     </MotionConfig>

@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { ModuleSlider } from "@/components/ui/module-slider";
 
 const ALL_SERVICES = [
   { slug: "ley-rep", title: "Cumplimiento Ley REP", body: "Levantamiento y sistematización de tus obligaciones bajo la Ley 20.920." },
@@ -12,7 +12,6 @@ const ALL_SERVICES = [
 ] as const;
 
 type RelatedServicesProps = {
-  /** Slug del servicio actual, para excluirlo de la lista. */
   current: (typeof ALL_SERVICES)[number]["slug"];
   index?: string;
 };
@@ -30,15 +29,12 @@ export function RelatedServices({ current, index = "06" }: RelatedServicesProps)
           También puede interesarte
         </h2>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {related.map((service, i) => (
-            <motion.div
-              key={service.slug}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
+        <div className="mt-10">
+          <ModuleSlider
+            items={related}
+            itemsPerView={{ sm: 1, md: 2, lg: 3 }}
+            autoplayInterval={0}
+            renderItem={(service) => (
               <Link
                 href={`/${service.slug}`}
                 className="group flex h-full flex-col border border-steel-200 bg-white p-6 transition-colors hover:bg-white hover:border-navy/30"
@@ -50,8 +46,8 @@ export function RelatedServices({ current, index = "06" }: RelatedServicesProps)
                   <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
-            </motion.div>
-          ))}
+            )}
+          />
         </div>
       </div>
     </section>
