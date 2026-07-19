@@ -3,8 +3,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { clipReveal, fadeUp } from "@/lib/motion";
 
 const ITEMS = [
@@ -96,7 +97,7 @@ export function LeyRepSection() {
                   {ITEMS.map((item) => (
                     <li key={item.code} className="flex items-center gap-4 py-4">
                       <span className="mono-label tabular text-cyan/70">{item.code}</span>
-                      <CheckCircle2 className="size-4 shrink-0 text-cyan" />
+                      <AnimatedIcon name="shield" size={16} tone="cyan" className="shrink-0" />
                       <span className="text-sm text-white/85">{item.text}</span>
                     </li>
                   ))}

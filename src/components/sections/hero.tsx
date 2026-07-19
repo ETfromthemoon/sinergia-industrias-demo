@@ -8,6 +8,8 @@ import { ProcessSchematic } from "@/components/ui/process-schematic";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { OdooLogo } from "@/components/ui/odoo-logo";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { heroTitle } from "@/lib/motion";
 import { useMediaQuery, useSaveData } from "@/lib/use-media-query";
 
@@ -17,9 +19,9 @@ const LINE_3 = "Cumplimiento";
 const LINE_4 = "que no falla.";
 
 const MINI_STATS = [
-  { val: "40+", label: "Empresas", accent: true },
-  { val: "8+",  label: "Años exp.", accent: false },
-  { val: "20+", label: "Odoo impl.", accent: false },
+  { val: 40, suffix: "+", label: "Empresas", accent: true },
+  { val: 8,  suffix: "+", label: "Años exp.", accent: false },
+  { val: 20, suffix: "+", label: "Odoo impl.", accent: false },
 ] as const;
 
 /** Gates the background video to hydrated clients that don't prefer
@@ -206,7 +208,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
-              {MINI_STATS.map(({ val, label, accent }) => (
+              {MINI_STATS.map(({ val, suffix, label, accent }) => (
                 <div
                   key={label}
                   className="relative flex flex-col gap-0.5 bg-carbon px-3 py-3"
@@ -216,7 +218,8 @@ export function HeroSection() {
                   <span
                     className={`font-display font-bold tabular text-xl leading-none ${accent ? "text-signal" : "text-white"}`}
                   >
-                    {val}
+                    <NumberTicker value={val} duration={1800} />
+                    {suffix}
                   </span>
                   <span className="mono-label text-white/70">{label}</span>
                 </div>

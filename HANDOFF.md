@@ -4,81 +4,87 @@ Copia esto en una nueva conversación o compártelo con otro agente/desarrollado
 
 ---
 
-Eres Hermes Agent trabajando en el proyecto Sinergia Industrias.
+Eres un agente trabajando en el proyecto Sinergia Industrias.
 
 ## 🎯 Contexto
 
-Estás construyendo el demo web para **Sinergia Consultores SpA**, una consultora B2B chilena especializada en cumplimiento Ley REP 20.920, implementación ERP Odoo, levantamiento de procesos industriales y análisis de datos. El proyecto ya está avanzado (10 páginas) y desplegado en Vercel.
+Estás construyendo el sitio web para **Sinergia Consultores SpA**, una consultora B2B chilena especializada en cumplimiento Ley REP 20.920, implementación ERP Odoo, levantamiento de procesos industriales y análisis de datos. El proyecto está avanzado (9 páginas + blog de 11 artículos) y desplegado en Vercel, con dominio propio operativo.
 
 **Demo:** https://sinergia-industrias-demo.vercel.app
+**Dominio productivo:** sinergiaindustrias.cl
 **Repo:** https://github.com/ETfromthemoon/sinergia-industrias-demo
 **Ruta local:** `C:\Users\sergio\SERGIOIA\WEB\CLIENTES\Sinergiaconsultores\sinergia-industrias-demo\`
 **Stack:** Next.js 16, Tailwind v4, motion/react, shadcn/ui, TypeScript
-**Deploy:** Vercel (auto-deploy on push to master)
+**Deploy:** Vercel (auto-deploy on push a `master`)
 **GitHub:** ETfromthemoon (gh CLI autenticado)
 **Presupuesto:** STR-2025-001 · $300.000 CLP (pagado)
 **Cliente:** info@sinergiaindustrias.cl · +56 9 9458 4617 · Calle Limache 3421, of. 724, Viña del Mar
 
-## 📊 Estado actual (28 Junio 2026)
+## 📊 Estado actual (19 Julio 2026)
 
-### Páginas construidas (10)
+### Ramas
+El repo tiene **una sola rama principal: `master`**. Todo el trabajo histórico (rediseño Swiss/blueprint original + rediseño premium + refinamientos) fue consolidado ahí el 19-jul-2026.
+
+El pipeline de blog automatizado (ver abajo) crea ramas temporales `draft/post-*` con artículos nuevos pendientes de revisión — es normal verlas aparecer; no se mergean automáticamente a master, requieren aprobación.
+
+### Páginas construidas (9 + blog)
 | Ruta | Descripción |
 |---|---|
-| `/` | Home — hero oscuro + video, servicios bento, credibilidad, método, contacto |
-| `/ley-rep` | Ley REP 20.920 — productos, obligados, servicio |
+| `/` | Home — hero cinematográfico con video loop, servicios bento, credibilidad, método, contacto |
+| `/ley-rep` | Ley REP 20.920 — set-piece con dolly-zoom, productos, obligados, servicio |
 | `/implementacion-odoo` | ERP Odoo — módulos, proceso, beneficios |
 | `/levantamiento-de-procesos` | Levantamiento de procesos |
 | `/levantamiento-de-datos` | Levantamiento de datos |
-| `/casos-de-exito` | 12 casos reales — slider full-width con imágenes Unsplash |
-| `/nosotros` | Video hero YouTube (Tody2AVL6ys) + historia + Odoo Partner |
-| `/contacto` | Formulario + WhatsApp + Google Maps |
-| `/blog` | 6 artículos con diseño Swiss/blueprint + newsletter CTA |
+| `/casos-de-exito` | 12 casos reales — slider full-width con imágenes |
+| `/nosotros` | Video hero YouTube + historia + Odoo Partner |
+| `/contacto` | Formulario (FormSubmit.co) + WhatsApp + Google Maps |
+| `/blog` | 11 artículos reales, diseño editorial corporativo |
 
-### Diseño
-- Estilo **Swiss / Blueprint técnico** — CornerTicks, blueprint-grid, grain, scan lines, crosshairs
-- Paleta: carbon, navy, cyan, signal, steel
-- Tipografía: Space Grotesk (display), Inter (body), JetBrains Mono (code)
-- Componentes UI clave: `blueprint-frame`, `section-label`, `magnetic`, `split-text`, `number-ticker`, `hero-backdrop`, `process-schematic`
+### Diseño — Premium cinematográfico (evolución del Swiss/blueprint)
+El sitio pasó por un rediseño completo en 7 fases que evolucionó el estilo Swiss/blueprint técnico original hacia un lenguaje más premium, sin perder el registro de ingeniería:
+
+- Sistema **glass** con aurora navy animada (drift lento 22/28/34s)
+- **Cursor glow** interactivo, hero con video loop + blur-in + parallax
+- Set-piece Ley REP con efecto **dolly-zoom**
+- Navbar glass, footer depurado, micro-lift corporativo en botones (no magnético)
+- `CornerTicks` / `blueprint-frame` se conservan — siguen vigentes en el lenguaje visual
+- Paleta: navy profundo + acero + cyan técnico
+- Tipografía: Space Grotesk + Archivo (display) / Inter (body) / JetBrains Mono (datos)
+
+Detalle completo en `design-direction.md`.
 
 ### Assets de marca
 | Archivo | Uso |
 |---|---|
 | `public/sinergia-logo.png` | Logo Sinergia (navbar + footer) |
-| `public/odoo-logo.png` | Logo oficial Odoo (7 ubicaciones vía componente `OdooLogo`) |
+| `public/odoo-logo.png` | Logo oficial Odoo (componente `OdooLogo`) |
 | `public/favicon.ico` | Favicon |
 | `public/apple-touch-icon.png` | iOS/Android |
-
-### Navbar
-- "SOL Soluciones" es el dropdown (01 Ley REP, 02 Odoo, 03 Procesos, 04 Datos)
-- Links directos: 05 Casos de éxito, 06 Nosotros, 07 Blog
-- CTA "Conversemos" → /contacto
+| `public/media/*.jpg`, `hero-loop.mp4` | Media industrial curada (hero, servicios, CTA, set-pieces) |
 
 ### Componentes clave
-- `src/components/layout/video-hero.tsx` — hero con YouTube embed de fondo
-- `src/components/layout/page-hero.tsx` — hero estándar dark/light
-- `src/components/ui/odoo-logo.tsx` — componente logo oficial Odoo
-- `src/app/casos-de-exito/case-slide.tsx` — slide full-width para slider
-- `src/app/blog/content.tsx` — blog con 6 artículos placeholder
+- `src/lib/motion.ts` — librería de motion compartida (nueva, del rediseño)
+- `src/lib/use-media-query.ts` — hook compartido
+- `src/lib/analytics.ts` — evento `generate_lead` (dataLayer/gtag, no-op sin GTM instalado)
+- `src/components/ui/cursor-glow.tsx` — reemplaza el antiguo `magnetic.tsx`
+- `src/components/ui/form-submit.tsx` — envío de formularios vía FormSubmit.co
+- `src/components/layout/video-hero.tsx` — hero con video de fondo
+- `src/app/blog/` — 11 artículos MDX en `content/blog/`, guía de formato en `content/blog/FORMATO.md`
 
-### Últimos cambios aplicados
-- Logo oficial Sinergia reemplaza "SI" texto en navbar y footer
-- Logo oficial Odoo reemplaza SVG personalizado
-- Favicon generado desde logo Sinergia
-- Coordenadas GPS eliminadas del hero (footer las conserva)
-- Navbar reordenada (Soluciones primero)
-- "00 Inicio" eliminado del navbar
-- CtaBand eliminado de /casos-de-exito
-- 12 imágenes Unsplash verificadas y corregidas (4 URLs rotas)
-- Teléfonos corregidos (estaban con asteriscos)
-- 52 botones mapeados en `.hermes/button-map-28jun-2026.md`
+### Blog
+- 11 artículos reales publicados (Ley REP, Odoo, procesos, sostenibilidad) — ya no hay placeholders
+- Diseño editorial corporativo puro (sin íconos, sin drop cap, sin sidebar)
+- Pipeline de automatización documentado en `docs/AUTOMATIZACION-BLOG.md` — artículos nuevos llegan como ramas `draft/post-*`, requieren revisión y merge manual
 
 ## ⚠️ Pendientes
-- Dominio `sinergiaindustrias.cl` (actualmente en Odoo 15)
-- 10 artículos SEO (presupuesto adicional)
-- Google Ads campaign
-- Conexión backend Odoo (sitio actualmente estático)
-- Fotos reales de proyectos (reemplazar Unsplash en casos de éxito)
-- Contenido real de artículos del blog
+
+- **Bloqueante para Google Ads:** confirmar activación de FormSubmit.co (revisar correo de confirmación en `info@sinergiaindustrias.cl`) — sin esto los formularios "envían" pero no llega nada
+- Instalar GTM/GA4 y vincular la conversión `generate_lead` en Google Ads
+- Fotos reales de proyectos (reemplazar algunas imágenes Unsplash en casos de éxito)
+- SEO técnico avanzado: JSON-LD `Organization`, `LocalBusiness`, `Service`, `BreadcrumbList`
+- GEO/AEO: contenido pregunta-respuesta, `llms.txt` opcional
+- Autoridad local: Google Business Profile, backlinks
+- Revisar ramas `draft/post-*` pendientes del pipeline de blog
 
 ## 🔧 Comandos útiles
 ```bash
@@ -90,8 +96,11 @@ git push origin master  # Vercel auto-deploya
 
 ## 📄 Documentos del proyecto
 - `PROYECTO-AVANCE.md` — resumen completo del estado
-- `.hermes/plans/2026-06-28_casos-exito-slider-fullwidth.md` — plan del slider
-- `.hermes/button-map-28jun-2026.md` — mapa de 52 botones
+- `design-direction.md` — dirección visual y principios de diseño
+- `docs/ENTREGA-PRODUCCION.md` — checklist de puesta en producción (formularios, analytics, Google Ads)
+- `docs/AUTOMATIZACION-BLOG.md` — pipeline de generación automática de artículos
+- `docs/SEO-GEO.md` — roadmap de SEO y GEO/AEO
+- `content/blog/FORMATO.md` — guía de formato vinculante para artículos del blog
 
 ---
 

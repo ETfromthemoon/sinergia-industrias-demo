@@ -5,7 +5,8 @@ import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { SectionLabel } from "@/components/ui/section-label";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { useFormSubmit, FormSubmitFeedback } from "@/components/ui/form-submit";
 
 const SERVICES_OPTIONS = [
@@ -18,19 +19,19 @@ const SERVICES_OPTIONS = [
 
 const CONTACT_ROWS = [
   {
-    icon: Mail,
+    iconName: "phone" as const,
     code: "EML",
     label: "info@sinergiaindustrias.cl",
     href: "mailto:info@sinergiaindustrias.cl",
   },
   {
-    icon: Phone,
+    iconName: "phone" as const,
     code: "TEL",
     label: "+56 9 9458 4617",
     href: "tel:+56994584617",
   },
   {
-    icon: MapPin,
+    iconName: "map-pin" as const,
     code: "LOC",
     label: "Calle Limache 3421, of. 724 · Viña del Mar",
     href: null,
@@ -150,11 +151,10 @@ export default function Content() {
 
                 <ul className="mt-12 divide-y divide-steel-200 border-y border-steel-200">
                   {CONTACT_ROWS.map((row) => {
-                    const Icon = row.icon;
                     const content = (
                       <>
                         <span className="mono-label w-10 shrink-0 text-steel-400">{row.code}</span>
-                        <Icon className="size-4 shrink-0 text-navy" />
+                        <AnimatedIcon name={row.iconName} size={16} tone="navy" className="shrink-0" />
                         <span className="text-sm text-foreground">{row.label}</span>
                       </>
                     );

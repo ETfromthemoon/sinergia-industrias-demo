@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
-import { Building2, Wrench, TrendingUp } from "lucide-react";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { truncateAtWord } from "@/lib/case-study";
 import type { CaseStudy } from "@/lib/case-study";
 
@@ -45,7 +45,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
         <div className="flex items-center gap-4 mb-4">
           <span className="mono-label text-cyan">{study.code}</span>
           <span className="inline-flex items-center gap-1.5 border border-cyan/30 bg-cyan/10 px-3 py-1 mono-label text-cyan text-xs">
-            <Building2 className="size-3" />
+            <AnimatedIcon name="building" size={12} />
             {study.industry}
           </span>
         </div>
@@ -72,7 +72,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
           </div>
           <div className="border-l-2 border-navy/60 pl-4">
             <span className="mono-label mb-2 block text-white/70 text-xs">
-              <Wrench className="inline size-3 mr-1" />
+              <AnimatedIcon name="wrench" size={12} className="inline mr-1" />
               SERVICIO
             </span>
             <p className="text-sm leading-relaxed text-steel-400">
@@ -81,7 +81,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
           </div>
           <div className="border-l-2 border-signal/60 pl-4">
             <span className="mono-label mb-2 block text-signal text-xs">
-              <TrendingUp className="inline size-3 mr-1" />
+              <AnimatedIcon name="trending-up" size={12} className="inline mr-1" />
               RESULTADOS
             </span>
             <p className="text-sm leading-relaxed text-steel-400">

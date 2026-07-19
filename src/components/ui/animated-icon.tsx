@@ -23,7 +23,12 @@ export type IconName =
   | "battery"
   | "disc"
   | "circle-dot"
-  | "monitor";
+  | "monitor"
+  | "phone"
+  | "map-pin"
+  | "cpu"
+  | "building"
+  | "wrench";
 
 type AnimatedIconProps = {
   name: IconName;
@@ -370,6 +375,61 @@ export function AnimatedIcon({ name, size = 44, className, tone = "navy" }: Anim
         </IconWrapper>
       );
 
+    case "phone":
+      return (
+        <IconWrapper size={size} className={className} tone={tone}>
+          <motion.path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+            variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: drawTransition } }}
+          />
+        </IconWrapper>
+      );
+
+    case "map-pin":
+      return (
+        <IconWrapper size={size} className={className} tone={tone}>
+          <motion.path
+            d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+            variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: drawTransition } }}
+          />
+          <motion.circle cx="12" cy="10" r="3" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.35 } } }} />
+        </IconWrapper>
+      );
+
+    case "cpu":
+      return (
+        <IconWrapper size={size} className={className} tone={tone}>
+          <motion.rect x="4" y="4" width="16" height="16" rx="2" variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: drawTransition } }} />
+          <motion.rect x="9" y="9" width="6" height="6" variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { ...drawTransition, delay: 0.3 } } }} />
+          <motion.line x1="9" y1="1" x2="9" y2="4" variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { ...drawTransition, delay: 0.4 } } }} />
+          <motion.line x1="15" y1="1" x2="15" y2="4" variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { ...drawTransition, delay: 0.45 } } }} />
+          <motion.line x1="9" y1="20" x2="9" y2="23" variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { ...drawTransition, delay: 0.5 } } }} />
+          <motion.line x1="15" y1="20" x2="15" y2="23" variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { ...drawTransition, delay: 0.55 } } }} />
+        </IconWrapper>
+      );
+
+    case "building":
+      return (
+        <IconWrapper size={size} className={className} tone={tone}>
+          <motion.rect x="4" y="2" width="16" height="20" rx="2" variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: drawTransition } }} />
+          <motion.line x1="9" y1="6" x2="9" y2="6.01" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.3 } } }} />
+          <motion.line x1="15" y1="6" x2="15" y2="6.01" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.35 } } }} />
+          <motion.line x1="9" y1="10" x2="9" y2="10.01" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.4 } } }} />
+          <motion.line x1="15" y1="10" x2="15" y2="10.01" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.45 } } }} />
+          <motion.line x1="12" y1="14" x2="12" y2="14.01" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { ...drawTransition, delay: 0.5 } } }} />
+        </IconWrapper>
+      );
+
+    case "wrench":
+      return (
+        <IconWrapper size={size} className={className} tone={tone}>
+          <motion.path
+            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+            variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: drawTransition } }}
+          />
+        </IconWrapper>
+      );
+
     default:
       return (
         <IconWrapper size={size} className={className} tone={tone}>
@@ -408,6 +468,12 @@ export function lucideToAnimatedIcon(iconName: string): IconName {
     Disc: "disc",
     CircleDot: "circle-dot",
     Monitor: "monitor",
+    Phone: "phone",
+    MapPin: "map-pin",
+    Cpu: "cpu",
+    Building2: "building",
+    Building: "building",
+    Wrench: "wrench",
   };
   return map[iconName] || "box";
 }

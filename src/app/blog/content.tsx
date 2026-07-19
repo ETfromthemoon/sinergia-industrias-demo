@@ -3,7 +3,8 @@
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
@@ -70,7 +71,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                 {featured.date}
               </span>
               <span className="flex items-center gap-1.5 text-steel-300 text-sm">
-                <Clock className="size-3.5" />
+                <AnimatedIcon name="clock" size={14} />
                 {featured.readTime}
               </span>
             </div>
@@ -178,7 +179,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         {post.date}
                       </span>
                       <span className="flex items-center gap-1 mono-label text-steel-400 text-xs">
-                        <Clock className="size-3" />
+                        <AnimatedIcon name="clock" size={12} />
                         {post.readTime}
                       </span>
                     </div>

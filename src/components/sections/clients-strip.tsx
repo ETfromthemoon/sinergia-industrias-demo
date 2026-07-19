@@ -10,6 +10,26 @@ type ClientsStripProps = {
   jointVentureClients?: string[];
 };
 
+function MarqueeRow({ clients }: { clients: string[] }) {
+  const doubled = [...clients, ...clients];
+  return (
+    <div className="relative overflow-hidden">
+      <div className="animate-marquee flex w-max gap-px">
+        {doubled.map((client, i) => (
+          <div
+            key={`${client}-${i}`}
+            className="flex shrink-0 items-center justify-center border border-steel-200 bg-white px-8 py-8 transition-colors hover:bg-steel-50"
+          >
+            <span className="font-display text-lg font-semibold tracking-tight text-steel-600 transition-colors hover:text-navy whitespace-nowrap">
+              {client}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ClientsStrip({
   title,
   index = "06",
@@ -38,32 +58,15 @@ export function ClientsStrip({
           <span className="mono-label text-steel-400">{clients.length} CLIENTES</span>
         </motion.div>
 
-        {/* Client logos grid — text-based badges in technical frames */}
         <motion.div
-          className="grid grid-cols-2 gap-px border border-steel-200 bg-steel-200 sm:grid-cols-3 lg:grid-cols-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {clients.map((client, i) => (
-            <motion.div
-              key={client}
-              className="group relative flex items-center justify-center bg-white px-6 py-10 transition-colors hover:bg-steel-50"
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.04, duration: 0.4 }}
-            >
-              <span className="font-display text-lg font-semibold tracking-tight text-steel-600 transition-colors group-hover:text-navy">
-                {client}
-              </span>
-              <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-            </motion.div>
-          ))}
+          <MarqueeRow clients={clients} />
         </motion.div>
 
-        {/* Joint venture section */}
         {jointVentureLabel && jointVentureClients && jointVentureClients.length > 0 && (
           <motion.div
             className="mt-12"
@@ -77,22 +80,7 @@ export function ClientsStrip({
               <span className="h-px flex-1 bg-steel-200" />
               <span className="mono-label text-steel-400">{jointVentureLabel}</span>
             </div>
-            <div className="grid grid-cols-2 gap-px border border-steel-200 bg-steel-200 sm:grid-cols-3 lg:grid-cols-5">
-              {jointVentureClients.map((client, i) => (
-                <motion.div
-                  key={client}
-                  className="flex items-center justify-center bg-white px-4 py-8 transition-colors hover:bg-steel-50"
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.04, duration: 0.4 }}
-                >
-                  <span className="font-display text-sm font-semibold tracking-tight text-steel-600">
-                    {client}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+            <MarqueeRow clients={jointVentureClients} />
           </motion.div>
         )}
       </div>
