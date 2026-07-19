@@ -63,9 +63,9 @@ export function Navbar() {
   const linkCls = (active?: boolean) =>
     cn(
       "group relative flex items-center gap-1.5 text-sm transition-colors",
-      scrolled || !isHome
+      scrolled
         ? active ? "text-navy font-semibold" : "text-muted-foreground hover:text-foreground"
-        : "text-white/70 hover:text-white"
+        : "text-white/80 hover:text-white"
     );
 
   const underlineCls = (active?: boolean) =>
@@ -78,9 +78,9 @@ export function Navbar() {
     <motion.header
       className={cn(
         "fixed top-0 z-50 w-full border-b transition-colors duration-300",
-        scrolled || !isHome
+        scrolled
           ? "glass-light"
-          : "border-white/10 bg-transparent"
+          : "border-white/10 bg-navy/60 backdrop-blur-xl"
       )}
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -94,7 +94,7 @@ export function Navbar() {
             alt="Sinergia Industrias"
             className={cn(
               "h-8 w-auto transition-all duration-300",
-              scrolled || !isHome
+              scrolled
                 ? "brightness-0"
                 : "brightness-0 invert"
             )}
@@ -174,15 +174,15 @@ export function Navbar() {
             aria-label="Menú"
             aria-expanded={mobileOpen}
           >
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "rotate-45 translate-y-[5px]")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "opacity-0")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "-rotate-45 -translate-y-[5px]")} />
+            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "rotate-45 translate-y-[5px]")} />
+            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "opacity-0")} />
+            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "-rotate-45 -translate-y-[5px]")} />
           </button>
           <Link
             href="/contacto"
             className={cn(
               "px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
-              scrolled || !isHome
+              scrolled
                 ? "bg-navy text-white hover:bg-navy-dark"
                 : "bg-white text-carbon hover:bg-cyan"
             )}

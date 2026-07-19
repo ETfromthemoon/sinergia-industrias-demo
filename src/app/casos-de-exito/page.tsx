@@ -23,6 +23,7 @@ export default function CasosDeExitoPage() {
       <main>
         <PageHero
           variant="dark"
+          artifact="cases"
           eyebrow="Resultados comprobables"
           headline="Creamos proyectos"
           headlineAccent="que nos enorgullecen"

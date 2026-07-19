@@ -62,6 +62,7 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
+        artifact="data"
         eyebrow="Business Intelligence"
         headline="Datos que hablan,"
         headlineAccent="decisiones que impactan"

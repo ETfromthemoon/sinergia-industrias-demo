@@ -25,6 +25,7 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
+        artifact="odoo"
         eyebrow="Ready Partner Oficial Odoo"
         headline="Unifica, optimiza,"
         headlineAccent="triunfa"

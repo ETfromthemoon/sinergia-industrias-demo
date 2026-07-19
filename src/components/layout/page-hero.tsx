@@ -3,6 +3,7 @@ import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PageHeroArtifact, type ArtifactVariant } from "@/components/ui/page-hero-artifact";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -15,6 +16,7 @@ type PageHeroProps = {
   secondaryCtaHref?: string;
   badge?: string;
   variant?: "dark" | "light";
+  artifact?: ArtifactVariant;
   index?: string;
   refCode?: string;
 };
@@ -29,6 +31,7 @@ export function PageHero({
   secondaryCtaLabel,
   secondaryCtaHref,
   badge,
+  artifact,
   variant = "dark",
 }: PageHeroProps) {
   const isDark = variant === "dark";
@@ -71,7 +74,8 @@ export function PageHero({
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-5xl">
+        <div className={cn("relative z-10 mx-auto max-w-6xl", artifact && "grid gap-8 lg:grid-cols-[1fr_auto] lg:gap-12 items-center")}>
+          <div>
           {/* Eyebrow */}
           <motion.div
             className="mb-8 flex items-center gap-3"
@@ -158,6 +162,14 @@ export function PageHero({
               </Link>
             )}
           </motion.div>
+          </div>
+
+          {/* Animated artifact */}
+          {artifact && (
+            <div className="hidden lg:flex items-center justify-center w-[320px] h-[280px] shrink-0">
+              <PageHeroArtifact variant={artifact} className="w-full h-full" />
+            </div>
+          )}
         </div>
 
         {/* Bottom hairline */}

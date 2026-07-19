@@ -50,6 +50,7 @@ export default function LeyRepContent() {
     <main>
       <PageHero
         variant="dark"
+        artifact="rep"
         eyebrow="Cumplimiento normativo · Ley 20.920"
         headline="Levantamiento y sistematización REP"
         headlineAccent=""

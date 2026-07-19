@@ -19,6 +19,7 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
+        artifact="processes"
         eyebrow="Diagnóstico operacional"
         headline="Optimiza, innova,"
         headlineAccent="triunfa"

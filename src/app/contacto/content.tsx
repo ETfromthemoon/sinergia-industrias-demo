@@ -99,6 +99,7 @@ export default function Content() {
     <main>
       <PageHero
         variant="light"
+        artifact="contact"
         eyebrow="Contacto"
         headline="¿Por dónde empezamos?"
         headlineAccent=""
