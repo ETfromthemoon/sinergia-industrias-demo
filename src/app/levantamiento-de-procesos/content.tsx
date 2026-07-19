@@ -64,6 +64,7 @@ export default function Content() {
         intro="El levantamiento de procesos consiste en realizar una investigación exhaustiva, análisis detallado y definición precisa de cada elemento que conforma los procesos de tu empresa. Esto implica identificar todas las actividades y tareas necesarias para lograr un resultado, servicio o producto final."
         items={benefits}
         columns={4}
+        itemsPerView={{ sm: 1, md: 2, lg: 3 }}
         variant="light"
       />
 

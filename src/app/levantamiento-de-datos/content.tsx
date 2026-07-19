@@ -115,6 +115,7 @@ export default function Content() {
         intro="Mantente al día con reportes en tiempo real. Toma mejores decisiones con la ayuda de reportes dinámicos que puedes guardar y compartir con quien sea. Mantén la información clave al alcance de tu mano con los tableros personalizados."
         items={reportCards}
         columns={3}
+        itemsPerView={{ sm: 1, md: 2, lg: 3 }}
         variant="light"
       />
 
