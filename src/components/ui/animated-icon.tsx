@@ -40,7 +40,7 @@ const TONE_COLORS: Record<string, string> = {
 };
 
 const drawTransition = {
-  duration: 0.7,
+  duration: 0.8,
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
@@ -66,7 +66,7 @@ function IconWrapper({
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 drop-shadow-sm", className)}
       whileInView="visible"
       initial="hidden"
       viewport={{ once: true, margin: "-40px" }}
@@ -76,7 +76,7 @@ function IconWrapper({
   );
 }
 
-export function AnimatedIcon({ name, size = 24, className, tone = "navy" }: AnimatedIconProps) {
+export function AnimatedIcon({ name, size = 32, className, tone = "navy" }: AnimatedIconProps) {
   const color = TONE_COLORS[tone] || TONE_COLORS.navy;
 
   switch (name) {

@@ -121,20 +121,20 @@ export function FeatureSection({
                     {item.iconName ? (
                       <span
                         className={cn(
-                          "inline-flex items-center justify-center w-11 h-11 border mb-4",
+                          "inline-flex items-center justify-center size-12 border mb-4",
                           isDark ? "border-white/20" : "border-steel-200",
                         )}
                       >
                         <AnimatedIcon
                           name={item.iconName}
-                          size={20}
+                          size={28}
                           tone={isDark ? "cyan" : "navy"}
                         />
                       </span>
                     ) : item.icon ? (
                       <span
                         className={cn(
-                          "inline-flex items-center justify-center w-11 h-11 border mb-4",
+                          "inline-flex items-center justify-center size-12 border mb-4",
                           isDark ? "border-white/20 text-cyan" : "border-steel-200 text-navy",
                         )}
                       >

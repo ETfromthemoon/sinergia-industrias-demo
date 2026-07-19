@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { SectionLabel } from "@/components/ui/section-label";
 import { cn } from "@/lib/utils";
@@ -29,8 +29,27 @@ export function ProgressiveSteps({
   variant = "light",
 }: ProgressiveStepsProps) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isDark = variant === "dark";
   const activeStep = steps[activeIdx];
+
+  const goTo = useCallback(
+    (i: number) => {
+      setActiveIdx(i);
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (isPaused || steps.length <= 1) return;
+    timerRef.current = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % steps.length);
+    }, 4000);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isPaused, steps.length]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -70,7 +89,7 @@ export function ProgressiveSteps({
               </h2>
             </div>
             <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
-              {steps.length} PASOS · CLIC PARA EXPLORAR
+              {steps.length} PASOS · AUTO-AVANCE
             </span>
           </div>
 
@@ -93,7 +112,11 @@ export function ProgressiveSteps({
             </div>
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[280px_1fr] lg:gap-16">
+          <div
+            className="grid gap-0 lg:grid-cols-[280px_1fr] lg:gap-16"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             {/* Thumbnails column — collapsed steps */}
             <div className="flex flex-col gap-0">
               {steps.map((step, i) => {
@@ -101,7 +124,7 @@ export function ProgressiveSteps({
                 return (
                   <motion.button
                     key={step.number}
-                    onClick={() => setActiveIdx(i)}
+                    onClick={() => goTo(i)}
                     className={cn(
                       "group relative flex items-center gap-4 border-l-2 px-5 py-4 text-left transition-colors",
                       isActive

@@ -67,7 +67,7 @@ export function ModuleSlider<T>({
   gap = 24,
   showArrows = true,
   showDots = true,
-  autoplayInterval = 5000,
+  autoplayInterval = 3000,
   className,
 }: ModuleSliderProps<T>) {
   const containerRef = useRef<HTMLDivElement>(null);

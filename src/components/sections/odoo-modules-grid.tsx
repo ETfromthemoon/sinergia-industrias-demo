@@ -138,8 +138,8 @@ export function OdooModulesGrid() {
               <CornerTicks className="text-steel-400" size={8} />
 
               <div className="mb-4 flex items-center gap-3">
-                <div className="inline-flex items-center justify-center size-10 border border-steel-200 bg-white">
-                  <AnimatedIcon name={cat.icon} size={20} tone="navy" />
+                <div className="inline-flex items-center justify-center size-12 border border-steel-200 bg-white">
+                  <AnimatedIcon name={cat.icon} size={28} tone="navy" />
                 </div>
                 <div>
                   <span className="mono-label text-steel-400">{cat.code}</span>
