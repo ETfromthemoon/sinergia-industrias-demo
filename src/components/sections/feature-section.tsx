@@ -23,6 +23,7 @@ export type FeatureSectionProps = {
   intro?: string;
   items: FeatureItem[];
   columns?: 2 | 3 | 4;
+  itemsPerView?: { sm?: number; md?: number; lg?: number; xl?: number };
   variant?: "light" | "dark";
   cornerTicks?: boolean;
   className?: string;
@@ -37,6 +38,7 @@ export function FeatureSection({
   intro,
   items,
   columns = 3,
+  itemsPerView,
   variant = "light",
   cornerTicks = true,
   className,
@@ -98,6 +100,7 @@ export function FeatureSection({
           <div className="mt-12">
             <ModuleSlider
               items={items}
+              itemsPerView={itemsPerView}
               renderItem={(item, i) => (
                   <div
                     className={cn(

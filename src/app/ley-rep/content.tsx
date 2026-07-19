@@ -104,6 +104,7 @@ export default function LeyRepContent() {
         eyebrow="Alcance"
         title="¿Qué productos prioritarios regula la Ley REP?"
         columns={3}
+        itemsPerView={{ sm: 1, md: 2, lg: 3 }}
         className="bg-steel-50 border-y border-steel-200"
         items={productos.map((p) => ({
           icon: p.icon,
