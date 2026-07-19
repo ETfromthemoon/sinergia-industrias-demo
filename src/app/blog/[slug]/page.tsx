@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { getPost, getAllPosts, postDateToISO } from "@/lib/posts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { BlogCta } from "@/components/sections/blog-cta";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -174,31 +175,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             )}
 
-            {/* ── CTA — minimal, sin caja de color ── */}
-            <hr className="mt-20 mb-12 border-steel-100" />
-            <div className="text-center">
-              <p className="font-display text-xl font-bold text-navy mb-2">
-                ¿Conversemos?
-              </p>
-              <p className="text-steel-500 text-sm leading-relaxed max-w-sm mx-auto mb-6">
-                En Sinergia Industrias ayudamos a empresas chilenas con cumplimiento REP, ERP Odoo y procesos industriales.
-              </p>
-              <div className="flex items-center justify-center gap-6 text-sm">
-                <Link
-                  href="/contacto"
-                  className="font-semibold text-navy hover:text-cyan-deep transition-colors"
-                >
-                  Contacto
-                </Link>
-                <span className="text-steel-300">·</span>
-                <a
-                  href="mailto:info@sinergiaindustrias.cl"
-                  className="text-steel-500 hover:text-navy transition-colors"
-                >
-                  info@sinergiaindustrias.cl
-                </a>
-              </div>
-            </div>
+            <BlogCta />
           </article>
         </section>
       </main>
