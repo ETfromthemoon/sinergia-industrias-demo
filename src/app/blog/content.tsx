@@ -27,6 +27,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
           eyebrow="Blog"
           headline="Ideas, metodología"
           headlineAccent="y casos reales"
+          artifact="knowledge"
           subhead="Pronto publicaremos artículos sobre procesos industriales, cumplimiento normativo, tecnología ERP y datos que generan valor."
           ctaLabel="Conversemos tu proyecto"
           ctaHref="/contacto"

@@ -238,10 +238,13 @@ export function HeroSchematic() {
             />
 
             {/* Module circle */}
-            <motion.circle cx={mod.x} cy={mod.y} r={26} fill="oklch(0.16 0.12 257 / 0.5)" stroke={CYAN} strokeOpacity={0.4} strokeWidth={1}
+            <motion.circle cx={mod.x} cy={mod.y} r={32} fill="oklch(0.16 0.12 257 / 0.5)" stroke={CYAN} strokeOpacity={0.4} strokeWidth={1}
               initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 + i * 0.12, ease: "backOut" }} />
+              animate={{ scale: [1, 1.03, 1], opacity: 1 }}
+              transition={{ 
+                scale: { duration: 3 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: 1 + i * 0.3 },
+                opacity: { duration: 0.5, delay: 0.6 + i * 0.12, ease: "backOut" }
+              }} />
 
             {/* Module icon - simplified SVG */}
             {mod.icon === "shield" && (
@@ -295,12 +298,12 @@ export function HeroSchematic() {
             )}
 
             {/* Module label */}
-            <motion.text x={mod.x} y={mod.y + 18} textAnchor="middle" fill="white" fontSize="5.5" fontFamily="var(--font-display)" fontWeight="bold" stroke="none"
+            <motion.text x={mod.x} y={mod.y + 19} textAnchor="middle" fill="white" fontSize="7.5" fontFamily="var(--font-display)" fontWeight="bold" stroke="none"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ delay: 0.75 + i * 0.12, duration: 0.4 }}>
               {mod.label}
             </motion.text>
-            <motion.text x={mod.x} y={mod.y + 8} textAnchor="middle" fill={SIGNAL} fontSize="4.5" fontFamily="var(--font-mono)" stroke="none"
+            <motion.text x={mod.x} y={mod.y + 6} textAnchor="middle" fill={SIGNAL} fontSize="6" fontFamily="var(--font-mono)" fontWeight="bold" stroke="none"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ delay: 0.85 + i * 0.12, duration: 0.4 }}>
               {mod.code}
@@ -308,27 +311,10 @@ export function HeroSchematic() {
           </motion.g>
         ))}
 
-        {/* Waveform monitor */}
-        <Waveform />
-
-        {/* Bottom KPI bars */}
-        {[0.35, 0.7, 0.55].map((h, i) => (
-          <motion.g key={`kpi-${i}`}>
-            <motion.rect
-              x={40 + i * 75} y={322} width={20} height={0}
-              fill={i === 1 ? CYAN : "none"} fillOpacity={i === 1 ? 0.25 : 0}
-              stroke={i === 1 ? CYAN : WHITE_20} strokeWidth={1} rx={1}
-              initial={{ height: 0, y: 345 }}
-              animate={{ height: h * 30, y: 345 - h * 30 }}
-              transition={{ duration: 1, delay: 1.5 + i * 0.2, ease: "backOut" }}
-            />
-            <motion.text x={50 + i * 75} y={352} textAnchor="middle" fill={WHITE_20} fontSize="4" fontFamily="var(--font-mono)" stroke="none"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              transition={{ delay: 1.8 + i * 0.2, duration: 0.4 }}>
-              {["REP", "ERP", "DATA"][i]}
-            </motion.text>
-          </motion.g>
-        ))}
+        {/* Hub center micro-pulse */}
+        <motion.circle cx={cx} cy={cy} r={24} fill="none" stroke={CYAN} strokeWidth={0.6}
+          animate={{ r: [24, 28, 24], opacity: [0.3, 0.1, 0.3] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
       </motion.svg>
     </div>
   );

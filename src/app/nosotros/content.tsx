@@ -1,6 +1,6 @@
 "use client";
 
-import { VideoHero } from "@/components/layout/video-hero";
+import { PageHero } from "@/components/layout/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -39,17 +39,17 @@ export default function NosotrosContent() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────── */}
-      <VideoHero
+      <PageHero
         eyebrow="Ingeniería de procesos"
         headline="Transformamos empresas,"
         headlineAccent="creando sinergia"
-        subhead="Somos apasionados por la tecnología y la transformación organizacional. Llevamos a nuestros clientes hacia nuevos horizontes que no imaginaban antes. Trabajamos basándonos en medidas tangibles y demostrables, para sentar bases de innovación constante."
+        subhead="Somos apasionados por la tecnología y la transformación organizacional. Llevamos a nuestros clientes hacia nuevos horizontes que no imaginaban antes."
         badge="Ready Partner Odoo"
+        artifact="team"
         ctaLabel="Conversemos tu proyecto"
         ctaHref="/contacto"
         secondaryCtaLabel="Casos de éxito"
         secondaryCtaHref="/casos-de-exito"
-        videoId="Tody2AVL6ys"
       />
 
       {/* ── Historia y visión ────────────────────── */}
