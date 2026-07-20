@@ -42,13 +42,69 @@ const MODULES: ModuleNode[] = [
   { x: 60,  y: 105, angle: -135, icon: "git-branch", label: "Procesos", code: "PROC" },
 ];
 
+/* ── Live waveform path ── generates a jagged line that animates */
+const WAVEFORM_POINTS = Array.from({ length: 18 }, (_, i) => ({
+  x: 15 + i * 15,
+  baseY: 298,
+  amp: 6 + (i % 3) * 5,
+}));
+
+function Waveform() {
+  return (
+    <g>
+      {/* Grid baseline */}
+      <motion.line x1={15} y1={298} x2={270} y2={298} stroke={WHITE_10} strokeWidth={0.5}
+        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+        transition={{ duration: 0.6, delay: 1.5 }} />
+
+      {/* Animated waveform polyline */}
+      {WAVEFORM_POINTS.map((p, i) => (
+        <motion.line
+          key={`wv-${i}`}
+          x1={p.x} y1={298}
+          x2={p.x + 15} y2={298}
+          stroke={CYAN} strokeWidth={1.2} strokeOpacity={0.6}
+          animate={{
+            y1: [298, 298 - p.amp, 298 + p.amp * 0.6, 298 - p.amp * 0.3, 298],
+            y2: [298, 298 + p.amp * 0.4, 298 - p.amp * 0.7, 298 + p.amp * 0.5, 298],
+          }}
+          transition={{
+            duration: 2.5 + i * 0.08,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.04,
+          }}
+        />
+      ))}
+
+      {/* Glowing dots at waveform peaks */}
+      {[3, 8, 14].map((i, j) => (
+        <motion.circle
+          key={`wvd-${j}`}
+          cx={WAVEFORM_POINTS[i].x + 7} cy={298} r={2.5}
+          fill={j === 1 ? CYAN : SIGNAL} stroke="none"
+          animate={{ cy: [298, 285, 305, 292, 298], opacity: [0.8, 1, 0.5, 1, 0.8] }}
+          transition={{ duration: 2 + j * 0.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.4 }}
+        />
+      ))}
+
+      {/* Waveform label */}
+      <motion.text x={142} y={312} textAnchor="middle" fill={WHITE_10} fontSize="3.5" fontFamily="var(--font-mono)" stroke="none"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.4 }}>
+        MONITOR · LIVE SIGNAL
+      </motion.text>
+    </g>
+  );
+}
+
 export function HeroSchematic() {
-  const cx = 140, cy = 180;
+  const cx = 140, cy = 170;
 
   return (
-    <div className="relative w-full aspect-square max-w-[420px] mx-auto">
+    <div className="relative w-full aspect-square max-w-[500px] mx-auto">
       <motion.svg
-        viewBox="0 0 280 360"
+        viewBox="0 0 280 350"
         fill="none"
         className="w-full h-full"
         initial="hidden"
@@ -59,7 +115,7 @@ export function HeroSchematic() {
           Array.from({ length: 5 }).map((_, col) => (
             <motion.circle
               key={`${row}-${col}`}
-              cx={30 + col * 55} cy={40 + row * 60}
+              cx={30 + col * 55} cy={32 + row * 54}
               r={1} fill={WHITE_20} stroke="none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -167,6 +223,20 @@ export function HeroSchematic() {
         {/* Module nodes */}
         {MODULES.map((mod, i) => (
           <motion.g key={`mod-${mod.code}`}>
+            {/* Phantom echo — larger translucent circle pulsing behind */}
+            <motion.circle
+              cx={mod.x} cy={mod.y} r={34}
+              fill="none" stroke={CYAN} strokeWidth={0.6}
+              animate={{ r: [34, 40, 34], opacity: [0.2, 0.08, 0.2] }}
+              transition={{ duration: 2.8 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+            />
+            <motion.circle
+              cx={mod.x} cy={mod.y} r={42}
+              fill="none" stroke={CYAN} strokeWidth={0.4}
+              animate={{ r: [42, 50, 42], opacity: [0.1, 0.03, 0.1] }}
+              transition={{ duration: 3.2 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+            />
+
             {/* Module circle */}
             <motion.circle cx={mod.x} cy={mod.y} r={26} fill="oklch(0.16 0.12 257 / 0.5)" stroke={CYAN} strokeOpacity={0.4} strokeWidth={1}
               initial={{ scale: 0, opacity: 0 }}
@@ -238,18 +308,21 @@ export function HeroSchematic() {
           </motion.g>
         ))}
 
+        {/* Waveform monitor */}
+        <Waveform />
+
         {/* Bottom KPI bars */}
         {[0.35, 0.7, 0.55].map((h, i) => (
           <motion.g key={`kpi-${i}`}>
             <motion.rect
-              x={40 + i * 75} y={310} width={20} height={0}
+              x={40 + i * 75} y={322} width={20} height={0}
               fill={i === 1 ? CYAN : "none"} fillOpacity={i === 1 ? 0.25 : 0}
               stroke={i === 1 ? CYAN : WHITE_20} strokeWidth={1} rx={1}
-              initial={{ height: 0, y: 335 }}
-              animate={{ height: h * 40, y: 335 - h * 40 }}
+              initial={{ height: 0, y: 345 }}
+              animate={{ height: h * 30, y: 345 - h * 30 }}
               transition={{ duration: 1, delay: 1.5 + i * 0.2, ease: "backOut" }}
             />
-            <motion.text x={50 + i * 75} y={350} textAnchor="middle" fill={WHITE_20} fontSize="4" fontFamily="var(--font-mono)" stroke="none"
+            <motion.text x={50 + i * 75} y={352} textAnchor="middle" fill={WHITE_20} fontSize="4" fontFamily="var(--font-mono)" stroke="none"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ delay: 1.8 + i * 0.2, duration: 0.4 }}>
               {["REP", "ERP", "DATA"][i]}
