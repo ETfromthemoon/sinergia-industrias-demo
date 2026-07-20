@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect, useCallback, type ReactNode } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { EASE_OUT } from "@/lib/motion";
+import { EASE_OUT, EASE_CINEMATIC } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type BreakpointItems = {
@@ -30,21 +30,21 @@ type ModuleSliderProps<T> = {
 
 const slideVariants = {
   enter: (dir: number) => ({
-    x: dir > 0 ? "8%" : "-8%",
+    x: dir > 0 ? "5%" : "-5%",
     opacity: 0,
-    scale: 0.98,
+    scale: 0.99,
   }),
   center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.85, ease: EASE_OUT },
+    transition: { duration: 1.2, ease: EASE_CINEMATIC },
   },
   exit: (dir: number) => ({
-    x: dir > 0 ? "-8%" : "8%",
+    x: dir > 0 ? "-5%" : "5%",
     opacity: 0,
-    scale: 0.98,
-    transition: { duration: 0.55, ease: EASE_OUT },
+    scale: 0.99,
+    transition: { duration: 0.8, ease: EASE_CINEMATIC },
   }),
 };
 
@@ -161,12 +161,13 @@ export function ModuleSlider<T>({
                 return (
                   <motion.div
                     key={globalIndex}
-                    initial={{ opacity: 0, y: 20 }}
+                    className="h-full"
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      delay: 0.08 * i,
-                      duration: 0.65,
-                      ease: EASE_OUT,
+                      delay: 0.1 * i,
+                      duration: 0.75,
+                      ease: EASE_CINEMATIC,
                     }}
                   >
                     {renderItem(item, globalIndex, true)}
