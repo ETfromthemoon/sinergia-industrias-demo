@@ -127,7 +127,7 @@ export function ModuleSlider<T>({
     <MotionConfig reducedMotion="user">
       <div
         ref={containerRef}
-        className={cn("relative", shouldShowArrows && itemsPerView > 1 && "px-8", className)}
+        className={cn("relative", shouldShowArrows && "px-8", className)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
