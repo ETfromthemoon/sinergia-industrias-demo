@@ -4,7 +4,7 @@ import { motion, MotionConfig, useScroll, useSpring, useTransform } from "motion
 import Image from "next/image";
 import Link from "next/link";
 import { SplitText } from "@/components/ui/split-text";
-import { ProcessSchematic } from "@/components/ui/process-schematic";
+import { HeroSchematic } from "@/components/ui/hero-schematic";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { OdooLogo } from "@/components/ui/odoo-logo";
@@ -109,7 +109,7 @@ export function HeroSection() {
         />
 
         {/* ── Main grid ─────────────────────────────────── */}
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 pb-24 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-40 lg:pb-32">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 pb-24 pt-32 lg:grid-cols-2 lg:gap-12 lg:pt-40 lg:pb-32 items-center">
 
           {/* LEFT — copy (parallax wrapper; entrance animation lives on children) */}
           <motion.div
@@ -228,36 +228,16 @@ export function HeroSection() {
           </motion.div>
 
           {/* RIGHT — schematic panel (parallax wrapper; entrance animation on inner child) */}
-          <motion.div
-            className="relative"
-            style={{ y: panelY, opacity: exitOpacity }}
-          >
+          <div className="relative flex items-center justify-center">
             <motion.div
-              className="relative flex flex-col justify-center gap-3"
+              className="w-full max-w-[420px]"
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Panel glow */}
-              <div
-                className="absolute inset-0 -m-8 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 50% 45%, oklch(0.60 0.105 208 / 0.14) 0%, transparent 66%)",
-                }}
-              />
-
-              {/* Schematic panel — real glass */}
-              <div className="glass-dark glass-sheen relative w-full">
-                <CornerTicks className="text-cyan" size={12} />
-
-                {/* Schematic */}
-                <div className="px-5 py-6">
-                  <ProcessSchematic />
-                </div>
-              </div>
+              <HeroSchematic />
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom hairline — crisp dark→light seam into the next section */}
