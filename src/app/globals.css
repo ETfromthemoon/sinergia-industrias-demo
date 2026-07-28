@@ -35,29 +35,34 @@
   --grid-line:      oklch(0.92 0.008 240);
   --grid-line-bold: oklch(0.86 0.010 240);
 
-  /* Semantic */
-  --surface:        oklch(0.97 0.005 240);
-  --surface-alt:    oklch(0.94 0.008 240);
-  --border:                oklch(0.88 0.010 240);
-  --muted:                 oklch(0.97 0.005 240);
-  --primary:               oklch(0.24 0.12 256);
-  --primary-fg:            oklch(1.00 0 0);
-  --accent:                oklch(0.60 0.105 208);
-  --card:                  oklch(1 0 0);
-  --card-border:           oklch(0.88 0.010 240);
-  --background:            oklch(1 0 0);
-  --foreground:            oklch(0.14 0.010 250);
-  --card-foreground:       oklch(0.14 0.010 250);
-  --popover:               oklch(1 0 0);
-  --popover-foreground:    oklch(0.14 0.010 250);
+  /* Semantic — aliases onto the raw palette above. Keep it that way: a
+     duplicated literal here silently detaches from any future palette
+     change. --near-black / --white are named so semantics never inline
+     a bare oklch() next to real palette tokens. */
+  --near-black:            oklch(0.14 0.010 250);
+  --white:                 oklch(1 0 0);
+  --surface:               var(--steel-50);
+  --surface-alt:           var(--steel-100);
+  --border:                var(--steel-200);
+  --muted:                 var(--steel-50);
+  --primary:               var(--navy);
+  --primary-fg:            var(--white);
+  --accent:                var(--cyan);
+  --card:                  var(--white);
+  --card-border:           var(--steel-200);
+  --background:            var(--white);
+  --foreground:            var(--near-black);
+  --card-foreground:       var(--near-black);
+  --popover:               var(--white);
+  --popover-foreground:    var(--near-black);
   --primary-foreground:    oklch(0.985 0 0);
-  --secondary:             oklch(0.94 0.008 240);
-  --secondary-foreground:  oklch(0.24 0.12 256);
-  --muted-foreground:      oklch(0.50 0.012 240);
-  --accent-foreground:     oklch(0.14 0.010 250);
+  --secondary:             var(--steel-100);
+  --secondary-foreground:  var(--navy);
+  --muted-foreground:      var(--steel-600);
+  --accent-foreground:     var(--near-black);
   --destructive:           oklch(0.577 0.245 27.325);
-  --input:                 oklch(0.88 0.010 240);
-  --ring:                  oklch(0.24 0.12 256);
+  --input:                 var(--steel-200);
+  --ring:                  var(--navy);
   --radius:           0.625rem;
 }
 
