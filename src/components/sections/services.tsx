@@ -155,7 +155,7 @@ export function ServicesSection() {
                     {service.odooModules.map((mod) => (
                       <span
                         key={mod}
-                        className="border border-steel-200 px-2 py-0.5 text-[0.65rem] text-steel-500 transition-colors group-hover:border-cyan/30 group-hover:text-cyan"
+                        className="border border-steel-200 px-2 py-0.5 text-[0.65rem] text-steel-500 transition-colors group-hover:border-cyan-deep/30 group-hover:text-cyan-deep"
                       >
                         {mod}
                       </span>
@@ -163,7 +163,7 @@ export function ServicesSection() {
                   </div>
                 )}
 
-                <ArrowUpRight className="mt-4 size-5 self-end text-steel-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
+                <ArrowUpRight className="mt-4 size-5 self-end text-steel-500 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy" />
               </div>
             </Link>
           )}

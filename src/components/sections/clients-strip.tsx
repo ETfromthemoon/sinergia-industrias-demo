@@ -48,11 +48,11 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
         className="hidden sm:flex shrink-0 w-[140px] lg:w-[180px] flex-col items-center gap-2 opacity-30 hover:opacity-50 transition-opacity cursor-pointer"
       >
         <div className="flex size-12 lg:size-14 items-center justify-center border border-steel-200 bg-white">
-          <span className="font-display text-base lg:text-lg font-bold text-steel-400">
+          <span className="font-display text-base lg:text-lg font-bold text-steel-500">
             {monogram(clients[prevIdx])}
           </span>
         </div>
-        <span className="text-xs text-steel-400 text-center leading-tight line-clamp-2">
+        <span className="text-xs text-steel-500 text-center leading-tight line-clamp-2">
           {clients[prevIdx]}
         </span>
       </button>
@@ -90,7 +90,7 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
             <p className="font-display text-base sm:text-lg lg:text-xl font-semibold text-navy leading-tight">
               {clients[active]}
             </p>
-            <p className="mt-1 mono-label text-steel-400">
+            <p className="mt-1 mono-label text-steel-500">
               {active + 1} / {len}
             </p>
           </div>
@@ -103,11 +103,11 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
         className="hidden sm:flex shrink-0 w-[140px] lg:w-[180px] flex-col items-center gap-2 opacity-30 hover:opacity-50 transition-opacity cursor-pointer"
       >
         <div className="flex size-12 lg:size-14 items-center justify-center border border-steel-200 bg-white">
-          <span className="font-display text-base lg:text-lg font-bold text-steel-400">
+          <span className="font-display text-base lg:text-lg font-bold text-steel-500">
             {monogram(clients[nextIdx])}
           </span>
         </div>
-        <span className="text-xs text-steel-400 text-center leading-tight line-clamp-2">
+        <span className="text-xs text-steel-500 text-center leading-tight line-clamp-2">
           {clients[nextIdx]}
         </span>
       </button>
@@ -151,7 +151,7 @@ export function ClientsStrip({
             </h2>
           </div>
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 mono-label text-steel-400">
+            <span className="inline-flex items-center gap-2 mono-label text-steel-500">
               <span className="size-1.5 rounded-full bg-cyan animate-pulse" />
               {clients.length} CLIENTES
             </span>
@@ -178,7 +178,7 @@ export function ClientsStrip({
             <div className="mb-8 flex items-center gap-3">
               <span className="mono-label text-cyan-deep">JOINT VENTURE</span>
               <span className="h-px flex-1 bg-steel-200" />
-              <span className="mono-label text-steel-400">{jointVentureLabel}</span>
+              <span className="mono-label text-steel-500">{jointVentureLabel}</span>
             </div>
             <ClientSpotlight clients={jointVentureClients} />
           </motion.div>

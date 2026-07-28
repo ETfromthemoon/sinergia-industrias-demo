@@ -169,7 +169,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             ) : (
               <div className="text-center py-20">
-                <p className="text-steel-400 text-lg">
+                <p className="text-steel-600 text-lg">
                   Este artículo está en preparación.
                 </p>
               </div>

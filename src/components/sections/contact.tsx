@@ -23,7 +23,7 @@ const CONTACT_ROWS = [
 ];
 
 const inputCls =
-  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
+  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-500 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
 const inputErrorCls =
   "border-red-400 focus:border-red-500 focus:ring-red-500";
 

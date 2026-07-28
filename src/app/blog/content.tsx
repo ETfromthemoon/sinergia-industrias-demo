@@ -175,11 +175,11 @@ export default function BlogContent({ posts }: BlogContentProps) {
                   {/* Content */}
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-4 mb-3">
-                      <span className="flex items-center gap-1 mono-label text-steel-400 text-xs">
+                      <span className="flex items-center gap-1 mono-label text-steel-500 text-xs">
                         <Calendar className="size-3" />
                         {post.date}
                       </span>
-                      <span className="flex items-center gap-1 mono-label text-steel-400 text-xs">
+                      <span className="flex items-center gap-1 mono-label text-steel-500 text-xs">
                         <AnimatedIcon name="clock" size={12} />
                         {post.readTime}
                       </span>

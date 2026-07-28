@@ -35,7 +35,7 @@ export function BlogCta() {
           <path d="M0 11v1h12v-1" />
         </svg>
 
-        <span className="mono-label text-steel-400 mb-3 block">CONTACTO</span>
+        <span className="mono-label text-steel-500 mb-3 block">CONTACTO</span>
 
         <p className="font-display text-2xl font-bold text-navy mb-3">
           ¿Conversemos?

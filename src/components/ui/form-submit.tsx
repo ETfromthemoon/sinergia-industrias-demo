@@ -72,7 +72,7 @@ export function FormSubmitFeedback({
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="flex items-center justify-center gap-2 py-4 text-sm text-steel-400"
+            className="flex items-center justify-center gap-2 py-4 text-sm text-steel-500"
           >
             <Loader2 className="size-4 animate-spin" />
             Enviando...

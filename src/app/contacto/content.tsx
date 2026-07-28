@@ -39,7 +39,7 @@ const CONTACT_ROWS = [
 ];
 
 const inputCls =
-  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
+  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-500 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
 const inputErrorCls =
   "border-red-400 focus:border-red-500 focus:ring-red-500";
 
@@ -154,7 +154,7 @@ export default function Content() {
                   {CONTACT_ROWS.map((row) => {
                     const content = (
                       <>
-                        <span className="mono-label w-10 shrink-0 text-steel-400">{row.code}</span>
+                        <span className="mono-label w-10 shrink-0 text-steel-500">{row.code}</span>
                         <AnimatedIcon name={row.iconName} size={16} tone="navy" className="shrink-0" />
                         <span className="text-sm text-foreground">{row.label}</span>
                       </>
@@ -361,7 +361,7 @@ export default function Content() {
             >
               <CornerTicks className="text-navy" size={12} />
               <div className="p-6 sm:p-8">
-                <span className="mono-label text-steel-400">UBICACIÓN</span>
+                <span className="mono-label text-steel-500">UBICACIÓN</span>
                 <p className="mt-3 text-base leading-relaxed text-foreground">
                   Calle Limache 3421, Reitz II oficina 724, Viña del Mar, Chile
                 </p>

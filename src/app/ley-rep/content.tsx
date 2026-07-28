@@ -180,7 +180,7 @@ export default function LeyRepContent() {
                 <ul className="space-y-6">
                   {subjectItems.map((item) => (
                     <li key={item.n} className="flex gap-5">
-                      <span className="mono-label text-steel-400 translate-y-0.5 shrink-0">
+                      <span className="mono-label text-steel-500 translate-y-0.5 shrink-0">
                         {item.n}
                       </span>
                       <span className="text-foreground leading-relaxed">

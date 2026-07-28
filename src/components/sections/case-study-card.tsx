@@ -21,10 +21,10 @@ export function CaseStudyCard({ study, index }: { study: CaseStudy; index: numbe
         {/* Header */}
         <div className="mb-5 flex items-start justify-between">
           <div>
-            <span className="mono-label mb-1 block text-steel-400">{study.code}</span>
+            <span className="mono-label mb-1 block text-steel-500">{study.code}</span>
             <h3 className="font-display text-xl font-bold text-foreground">{study.client}</h3>
           </div>
-          <span className="inline-flex items-center gap-1.5 border border-steel-200 bg-white px-2.5 py-1 mono-label text-steel-400">
+          <span className="inline-flex items-center gap-1.5 border border-steel-200 bg-white px-2.5 py-1 mono-label text-steel-500">
             <Building2 className="size-3" />
             {study.industry}
           </span>
@@ -35,7 +35,7 @@ export function CaseStudyCard({ study, index }: { study: CaseStudy; index: numbe
         {/* Tabs: Contexto / Servicio / Resultados */}
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="border-l border-cyan/30 pl-3">
-            <span className="mono-label mb-1 block text-cyan">CONTEXTO</span>
+            <span className="mono-label mb-1 block text-cyan-deep">CONTEXTO</span>
             <p className="text-xs leading-relaxed text-steel-600">{truncateAtWord(study.context, 100)}</p>
           </div>
           <div className="border-l border-navy/30 pl-3">

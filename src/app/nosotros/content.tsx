@@ -131,19 +131,19 @@ export default function NosotrosContent() {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <div className="border border-steel-200 bg-white p-4">
-                  <span className="mono-label text-steel-400">Enfoque</span>
+                  <span className="mono-label text-steel-500">Enfoque</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Socio confiable en tu operación diaria.
                   </p>
                 </div>
                 <div className="border border-steel-200 bg-white p-4">
-                  <span className="mono-label text-steel-400">Visión</span>
+                  <span className="mono-label text-steel-500">Visión</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Un futuro más sostenible y responsable.
                   </p>
                 </div>
                 <div className="border border-steel-200 bg-white p-4">
-                  <span className="mono-label text-steel-400">Tecnología</span>
+                  <span className="mono-label text-steel-500">Tecnología</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                     Conocimiento y experiencia compartidos.
                   </p>
@@ -167,7 +167,7 @@ export default function NosotrosContent() {
                 </div>
 
                 <div>
-                  <span className="mono-label text-steel-400">READY PARTNER OFICIAL</span>
+                  <span className="mono-label text-steel-500">READY PARTNER OFICIAL</span>
                   <h3 className="font-display mt-2 text-2xl font-bold text-foreground">
                     Odoo
                   </h3>
