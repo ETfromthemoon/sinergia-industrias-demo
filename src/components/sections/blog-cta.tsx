@@ -28,10 +28,10 @@ export function BlogCta() {
         transition={{ duration: 0.6, ease: EASE_OUT }}
       >
         {/* Corner ticks */}
-        <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-3 -translate-x-px -translate-y-px" viewBox="0 0 12 12" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1.5">
+        <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-3 -translate-x-px -translate-y-px" viewBox="0 0 12 12" fill="none" stroke="var(--steel-300)" strokeWidth="1.5">
           <path d="M12 1V0H0v1" />
         </svg>
-        <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-3 translate-x-px translate-y-px" viewBox="0 0 12 12" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1.5">
+        <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-3 translate-x-px translate-y-px" viewBox="0 0 12 12" fill="none" stroke="var(--steel-300)" strokeWidth="1.5">
           <path d="M0 11v1h12v-1" />
         </svg>
 

@@ -213,7 +213,7 @@ export function ProgressiveSteps({
                     className="pointer-events-none absolute left-0 top-0 size-3 -translate-x-px -translate-y-px"
                     viewBox="0 0 12 12"
                     fill="none"
-                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "oklch(0.75 0.010 240)"}
+                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "var(--steel-300)"}
                     strokeWidth="1.5"
                   >
                     <path d="M12 1V0H0v1" />
@@ -224,7 +224,7 @@ export function ProgressiveSteps({
                     className="pointer-events-none absolute bottom-0 right-0 size-3 translate-x-px translate-y-px"
                     viewBox="0 0 12 12"
                     fill="none"
-                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "oklch(0.75 0.010 240)"}
+                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "var(--steel-300)"}
                     strokeWidth="1.5"
                   >
                     <path d="M0 11v1h12v-1" />

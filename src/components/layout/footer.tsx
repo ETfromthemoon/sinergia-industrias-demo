@@ -26,14 +26,14 @@ export function Footer() {
         aria-hidden
         className="absolute top-0 inset-x-0 h-px"
         style={{
-          background: "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.35) 20%, oklch(0.60 0.105 208 / 0.35) 80%, transparent 100%)",
+          background: "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.35) 20%, oklch(0.746 0.1235 224 / 0.35) 80%, transparent 100%)",
         }}
       />
 
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.60 0.105 208 / 0.08), transparent 70%)" }}
+        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.746 0.1235 224 / 0.08), transparent 70%)" }}
       />
       <div aria-hidden className="grain pointer-events-none absolute inset-0" />
 

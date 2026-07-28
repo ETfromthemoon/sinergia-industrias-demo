@@ -85,7 +85,7 @@ export function HeroSection() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "linear-gradient(157deg, oklch(0.16 0.04 256 / 0.88), oklch(0.115 0.03 258 / 0.72))",
+              "linear-gradient(157deg, oklch(0.175 0.028 276 / 0.88), oklch(0.125 0.020 276 / 0.72))",
           }}
         />
 
@@ -104,7 +104,7 @@ export function HeroSection() {
           className="absolute top-0 inset-x-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.30) 35%, oklch(0.60 0.105 208 / 0.30) 65%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.30) 35%, oklch(0.746 0.1235 224 / 0.30) 65%, transparent 100%)",
           }}
         />
 
@@ -144,7 +144,7 @@ export function HeroSection() {
                 </span>
                 <span
                   className="block text-cyan"
-                  style={{ textShadow: "0 0 32px oklch(0.60 0.105 208 / 0.35)" }}
+                  style={{ textShadow: "0 0 32px oklch(0.746 0.1235 224 / 0.35)" }}
                 >
                   <SplitText text={LINE_4} delay={0.08} stagger={0.04} startIndex={4} />
                 </span>
@@ -171,7 +171,7 @@ export function HeroSection() {
             >
               <Link
                 href="#contacto"
-                className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.746_0.1235_224_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
               >
                 Conversemos tu proyecto
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -245,7 +245,7 @@ export function HeroSection() {
           className="absolute bottom-0 inset-x-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.25) 50%, transparent 100%)",
           }}
         />
       </section>

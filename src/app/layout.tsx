@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
   other: {
     "application-name": "Sinergia Industrias",
-    "msapplication-TileColor": "#0A1628",
+    "msapplication-TileColor": "#0d0f1d",
     "msapplication-TileImage": "/android-chrome-192x192.png",
   },
 };

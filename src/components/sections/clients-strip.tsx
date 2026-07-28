@@ -70,12 +70,12 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
           {/* Monogram box */}
           <motion.div
             className="relative flex size-24 sm:size-28 lg:size-32 items-center justify-center border-2 border-navy bg-white shadow-lg"
-            animate={{ boxShadow: ["0 4px 24px -4px oklch(0.24 0.12 256 / 0.08)", "0 8px 32px -4px oklch(0.24 0.12 256 / 0.15)", "0 4px 24px -4px oklch(0.24 0.12 256 / 0.08)"] }}
+            animate={{ boxShadow: ["0 4px 24px -4px oklch(0.332 0.055 276 / 0.08)", "0 8px 32px -4px oklch(0.332 0.055 276 / 0.15)", "0 4px 24px -4px oklch(0.332 0.055 276 / 0.08)"] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           >
             {/* Corner ticks */}
-            <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-2 -translate-x-px -translate-y-px" viewBox="0 0 8 8" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1"><path d="M8 1V0H0v1" /></svg>
-            <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-2 translate-x-px translate-y-px" viewBox="0 0 8 8" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1"><path d="M0 7v1h8V7" /></svg>
+            <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-2 -translate-x-px -translate-y-px" viewBox="0 0 8 8" fill="none" stroke="var(--steel-300)" strokeWidth="1"><path d="M8 1V0H0v1" /></svg>
+            <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-2 translate-x-px translate-y-px" viewBox="0 0 8 8" fill="none" stroke="var(--steel-300)" strokeWidth="1"><path d="M0 7v1h8V7" /></svg>
 
             {/* Decorative line before monogram */}
             <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 h-1 w-10 bg-cyan" />
