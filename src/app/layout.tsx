@@ -55,6 +55,10 @@ const organizationJsonLd = {
     addressCountry: "CL",
   },
   sameAs: ["https://www.linkedin.com/company/sinergia-industrias"],
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Grupo Sinergia",
+  },
 };
 
 export const metadata: Metadata = {

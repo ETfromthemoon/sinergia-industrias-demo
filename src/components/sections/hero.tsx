@@ -128,6 +128,10 @@ export function HeroSection() {
                 <span className="motion-safe:animate-pulse inline-block size-1.5 rounded-full bg-cyan" />
                 Ingeniería industrial · Chile
               </span>
+              <span className="hidden sm:inline text-white/30">·</span>
+              <span className="hidden sm:inline mono-label text-white/50">
+                Procesos inteligentes. Impacto real.
+              </span>
             </motion.div>
 
             {/* Headline — single blur-in block; SplitText keeps its own word stagger */}

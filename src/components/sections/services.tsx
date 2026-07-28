@@ -168,6 +168,21 @@ export function ServicesSection() {
             </Link>
           )}
         />
+
+        {/* Beneficios clave */}
+        <div className="mt-16 grid grid-cols-1 gap-6 border-t border-steel-200 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            "Optimización del uso del tiempo",
+            "Democratización del acceso a tecnología",
+            "Soluciones adaptadas a cada cliente",
+            "Impacto real y medible en la operación",
+          ].map((benefit) => (
+            <div key={benefit} className="flex items-start gap-2.5">
+              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-cyan-deep" />
+              <p className="text-sm leading-snug text-muted-foreground">{benefit}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

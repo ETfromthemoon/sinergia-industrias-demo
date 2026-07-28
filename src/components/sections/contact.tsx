@@ -103,7 +103,8 @@ export function ContactSection() {
               </h2>
               <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
                 Cuéntanos qué necesita tu empresa. Una conversación de 30 minutos basta para saber
-                si podemos ayudarte y cómo.
+                si podemos ayudarte y cómo. Trabajamos como partner estratégico, no como
+                proveedor puntual.
               </p>
 
               <div className="mt-10">

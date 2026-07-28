@@ -89,6 +89,36 @@ export default function NosotrosContent() {
             >
               Vamos e iremos siempre por la innovación, el conocimiento y el autoaprendizaje en todo ámbito. Creamos y crearemos Sinergia en conjunto.
             </motion.p>
+
+            <motion.div
+              className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.24, duration: 0.5 }}
+            >
+              <div className="border border-steel-200 bg-steel-50 p-4">
+                <span className="mono-label text-cyan-deep">Sinergia Consultores</span>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  Estrategia, procesos y transformación digital.
+                </p>
+              </div>
+              <div className="border-2 border-navy bg-white p-4">
+                <span className="mono-label text-navy">Sinergia Industrias</span>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  Soluciones tecnológicas aplicadas y desarrollo industrial.
+                </p>
+              </div>
+              <div className="border border-steel-200 bg-steel-50 p-4">
+                <span className="mono-label text-cyan-deep">Sinergia Electrónica</span>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  Venta de productos tecnológicos.
+                </p>
+              </div>
+            </motion.div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Las tres unidades forman Grupo Sinergia. Esta página pertenece a Sinergia Industrias.
+            </p>
           </div>
         </section>
       </MotionConfig>
@@ -120,32 +150,26 @@ export default function NosotrosContent() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.12, duration: 0.5 }}
               >
-                Nuestro propósito es ser tu socio confiable en este viaje hacia la sostenibilidad. Trabajaremos estrechamente contigo, compartiendo nuestro conocimiento y experiencia, para que juntos podamos construir un futuro más sostenible y responsable.
+                Resolver problemáticas empresariales y sociales mediante tecnología, procesos y conocimiento — esa es la razón de ser de Sinergia. Trabajamos estrechamente con cada cliente, compartiendo experiencia real, para construir soluciones que funcionan en el mundo real.
               </motion.p>
 
               <motion.div
-                className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3"
+                className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2"
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <div className="border border-steel-200 bg-white p-4">
-                  <span className="mono-label text-steel-500">Enfoque</span>
+                  <span className="mono-label text-steel-500">Misión</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                    Socio confiable en tu operación diaria.
+                    Atender de forma eficiente y eficaz a organizaciones que demandan soluciones innovadoras, utilizando tecnología y metodologías de procesos ligadas a la Cuarta Revolución Industrial.
                   </p>
                 </div>
                 <div className="border border-steel-200 bg-white p-4">
                   <span className="mono-label text-steel-500">Visión</span>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                    Un futuro más sostenible y responsable.
-                  </p>
-                </div>
-                <div className="border border-steel-200 bg-white p-4">
-                  <span className="mono-label text-steel-500">Tecnología</span>
-                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                    Conocimiento y experiencia compartidos.
+                    Ser líderes en transformación digital y desarrollo sustentable en Chile y el mundo, posicionándonos como referentes de la Industria 4.0.
                   </p>
                 </div>
               </motion.div>
@@ -187,11 +211,55 @@ export default function NosotrosContent() {
         </section>
       </MotionConfig>
 
+      {/* ── Valores ──────────────────────────────── */}
+      <MotionConfig reducedMotion="user">
+        <section className="bg-background py-24 px-4">
+          <div className="mx-auto max-w-6xl">
+            <SectionLabel index="03" className="mb-6">
+              Nuestros valores
+            </SectionLabel>
+
+            <motion.h2
+              className="font-display max-w-lg text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Lo que no negociamos
+            </motion.h2>
+
+            <motion.div
+              className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              {[
+                { code: "01", label: "Innovación aplicada" },
+                { code: "02", label: "Eficiencia" },
+                { code: "03", label: "Conocimiento compartido" },
+                { code: "04", label: "Sustentabilidad" },
+                { code: "05", label: "Compromiso con el impacto" },
+              ].map((v) => (
+                <div key={v.code} className="border border-steel-200 bg-white p-5">
+                  <span className="mono-label text-cyan-deep">{v.code}</span>
+                  <p className="mt-2 font-display text-sm font-semibold text-foreground">
+                    {v.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </MotionConfig>
+
       {/* ── Metodología ───────────────────────────── */}
       <ProcessSteps
         variant="dark"
         eyebrow="Cómo trabajamos"
-        index="02"
+        index="04"
         title="Sin promesas vagas. Con un proceso claro."
         steps={STEPS}
       />
@@ -224,7 +292,7 @@ export default function NosotrosContent() {
         <section className="bg-background py-24 px-4">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
-              <SectionLabel index="03" className="mb-6">
+              <SectionLabel index="05" className="mb-6">
                 Tecnología
               </SectionLabel>
             </div>
@@ -282,11 +350,11 @@ export default function NosotrosContent() {
 
       {/* ── CTA ───────────────────────────────────── */}
       <CtaBand
-        title="¿Trabajamos juntos?"
+        title="Construimos modelos para el mundo real."
         subhead="Una conversación de 30 minutos es suficiente para saber si podemos ayudarte y cómo."
         ctaLabel="Conversemos tu proyecto"
         ctaHref="/contacto"
-        index="04"
+        index="06"
       />
     </main>
   );

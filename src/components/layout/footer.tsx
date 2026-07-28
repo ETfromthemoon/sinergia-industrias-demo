@@ -54,12 +54,15 @@ export function Footer() {
               />
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-steel-400">
-              Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
+              Procesos inteligentes. Impacto real.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 mono-label text-steel-400">
               <OdooLogo size={14} />
               Ready Partner Oficial Odoo
               <AnimatedIcon name="shield" size={14} tone="white" className="opacity-60" />
+            </p>
+            <p className="mt-6 mono-label text-white/30">
+              Parte de Grupo Sinergia — Consultores · Industrias · Electrónica
             </p>
           </motion.div>
 
