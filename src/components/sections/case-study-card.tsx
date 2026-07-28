@@ -45,8 +45,8 @@ export function CaseStudyCard({ study, index }: { study: CaseStudy; index: numbe
             </span>
             <p className="text-xs leading-relaxed text-steel-600">{study.service}</p>
           </div>
-          <div className="border-l border-signal/40 pl-3">
-            <span className="mono-label mb-1 block text-signal-deep">
+          <div className="border-l border-cyan-deep/40 pl-3">
+            <span className="mono-label mb-1 block text-cyan-deep">
               <TrendingUp className="inline size-3 mr-1" />
               RESULTADOS
             </span>

@@ -176,7 +176,7 @@ export function ClientsStrip({
             transition={{ duration: 0.5 }}
           >
             <div className="mb-8 flex items-center gap-3">
-              <span className="mono-label text-signal-deep">JOINT VENTURE</span>
+              <span className="mono-label text-cyan-deep">JOINT VENTURE</span>
               <span className="h-px flex-1 bg-steel-200" />
               <span className="mono-label text-steel-400">{jointVentureLabel}</span>
             </div>

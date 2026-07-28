@@ -177,7 +177,7 @@ export default function NosotrosContent() {
                   Somos partner certificado de Odoo en Chile. Esto nos permite implementar el ERP con acceso directo al ecosistema oficial.
                 </p>
 
-                <span className="inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
+                <span className="inline-flex items-center gap-2 border border-cyan-deep/40 bg-cyan-deep/10 px-3 py-1.5 mono-label text-cyan-deep">
                   <OdooLogo size={14} />
                   Ready Partner Oficial Odoo
                 </span>
@@ -270,7 +270,7 @@ export default function NosotrosContent() {
                   Odoo
                 </span>
 
-                <span className="inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
+                <span className="inline-flex items-center gap-2 border border-cyan-deep/40 bg-cyan-deep/10 px-3 py-1.5 mono-label text-cyan-deep">
                   <OdooLogo size={14} />
                   Ready Partner Oficial Odoo
                 </span>

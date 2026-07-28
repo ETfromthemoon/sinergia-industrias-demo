@@ -90,7 +90,7 @@ export function PageHero({
             {badge && (
               <span className={cn(
                 "border px-2.5 py-1 mono-label",
-                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-signal/40 bg-signal/10 text-signal-deep"
+                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-cyan-deep/40 bg-cyan-deep/10 text-cyan-deep"
               )}>
                 {badge}
               </span>

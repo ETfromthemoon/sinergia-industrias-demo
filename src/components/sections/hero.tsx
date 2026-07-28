@@ -89,7 +89,7 @@ export function HeroSection() {
           }}
         />
 
-        {/* Aurora glow — navy → cyan → signal, dimmed over the video */}
+        {/* Aurora glow — navy → cyan, dimmed over the video */}
         <div
           aria-hidden
           className="aurora-dark pointer-events-none absolute inset-0 -z-10 opacity-60"
@@ -214,9 +214,8 @@ export function HeroSection() {
                   className="relative flex flex-col gap-0.5 bg-carbon px-3 py-3"
                   style={{ background: "var(--carbon)" }}
                 >
-                  {accent && <span className="absolute inset-x-0 top-0 h-0.5 bg-signal" />}
                   <span
-                    className={`font-display font-bold tabular text-xl leading-none ${accent ? "text-signal" : "text-white"}`}
+                    className={`font-display font-bold tabular leading-none text-white ${accent ? "text-2xl" : "text-xl"}`}
                   >
                     <NumberTicker value={val} duration={1800} />
                     {suffix}
