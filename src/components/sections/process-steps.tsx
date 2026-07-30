@@ -14,6 +14,7 @@ type ProcessStepsProps = {
   eyebrow: string;
   index?: string;
   steps: Step[];
+  variant?: "light" | "dark";
 };
 
 export function ProcessSteps({ title, eyebrow, steps }: ProcessStepsProps) {

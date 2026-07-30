@@ -13,8 +13,8 @@ import { motion } from "motion/react";
  */
 
 const C = {
-  cyan: "rgb(86, 190, 220)",
-  cyanDim: "rgba(86, 190, 220, 0.85)",
+  cyan: "rgb(0, 145, 161)",
+  cyanDim: "rgba(0, 145, 161, 0.85)",
   core: "rgb(44, 64, 132)",
   line: "rgba(255, 255, 255, 0.16)",
   chip: "rgba(255, 255, 255, 0.05)",

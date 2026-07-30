@@ -116,6 +116,16 @@ export function Navbar() {
               )}
             </AnimatePresence>
           </div>
+
+          {MAIN_LINKS.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link key={l.label} href={l.href} className={linkCls(active)}>
+                {l.label}
+                <span className={underlineCls(active)} />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">

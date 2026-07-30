@@ -5,6 +5,48 @@ import { ContactSection } from "@/components/sections/contact";
 import { SITE } from "@/content/site";
 
 export default function Content() {
+  const { status, message, handleSubmit } = useFormSubmit();
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function validate(formData: FormData): FieldErrors {
+    const nextErrors: FieldErrors = {};
+
+    const honey = String(formData.get("_honey") ?? "");
+    if (honey.trim() !== "") {
+      // Honeypot filled by a bot — treat the whole submission as invalid.
+      nextErrors.nombre = "Envío inválido.";
+      return nextErrors;
+    }
+
+    const nombre = String(formData.get("nombre") ?? "").trim();
+    if (!nombre) nextErrors.nombre = "Ingresa tu nombre.";
+
+    const empresa = String(formData.get("empresa") ?? "").trim();
+    if (!empresa) nextErrors.empresa = "Ingresa tu empresa.";
+
+    const email = String(formData.get("email") ?? "").trim();
+    if (!email) nextErrors.email = "Ingresa tu correo.";
+    else if (!EMAIL_PATTERN.test(email)) nextErrors.email = "Ingresa un correo válido.";
+
+    const servicio = String(formData.get("servicio") ?? "").trim();
+    if (!servicio) nextErrors.servicio = "Selecciona un área de interés.";
+
+    return nextErrors;
+  }
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    const formData = new FormData(e.currentTarget);
+    const nextErrors = validate(formData);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      e.preventDefault();
+      return;
+    }
+
+    handleSubmit(e);
+  }
+
   return (
     <main>
       <PageHero

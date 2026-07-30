@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
 import { cn } from "@/lib/utils";
+import { PageHeroArtifact, type ArtifactVariant } from "@/components/ui/page-hero-artifact";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -16,6 +17,7 @@ type PageHeroProps = {
   secondaryCtaHref?: string;
   badge?: string;
   variant?: "dark" | "light";
+  artifact?: ArtifactVariant;
   index?: string;
   refCode?: string;
 };
@@ -30,6 +32,7 @@ export function PageHero({
   secondaryCtaLabel,
   secondaryCtaHref,
   badge,
+  artifact,
   variant = "dark",
   index = "00",
 }: PageHeroProps) {

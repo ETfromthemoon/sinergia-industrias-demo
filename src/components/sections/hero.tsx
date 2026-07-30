@@ -5,7 +5,31 @@ import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
 import { SERVICES, SITE } from "@/content/site";
 
+/** Gates the background video to hydrated clients that don't prefer
+ * reduced motion and aren't on a constrained data connection. Until this
+ * resolves (or when it resolves false), the poster image is shown — it is
+ * always present in the initial HTML so it can serve as the LCP element. */
+function useHeroVideoEnabled(): boolean {
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const saveData = useSaveData();
+  return !prefersReducedMotion && !saveData;
+}
+
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVideoEnabled = useHeroVideoEnabled();
+
+  // Exit parallax — the whole hero drifts and dims as the next section rises.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  const copyY = useTransform(smoothProgress, [0, 1], [0, -40]);
+  const panelY = useTransform(smoothProgress, [0, 1], [0, -70]);
+  const exitOpacity = useTransform(smoothProgress, [0, 1], [1, 0.4]);
+
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative min-h-[46rem] overflow-hidden bg-carbon text-white sm:min-h-[50rem]">

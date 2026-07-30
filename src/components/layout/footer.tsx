@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { NAV_LINKS, SERVICES, SITE } from "@/content/site";
@@ -39,7 +41,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.nav>
 
           <div>
             <p className="mono-label mb-5 text-white/35">Soluciones</p>
@@ -52,7 +54,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
         <div className="grid gap-8 py-10 text-sm text-white/55 sm:grid-cols-2 lg:grid-cols-4">

@@ -3,11 +3,13 @@ import { PageHero } from "@/components/layout/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { OdooModulesGrid } from "@/components/sections/odoo-modules-grid";
+import { RelatedServices } from "@/components/sections/related-services";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
-import { ArrowRight, Cpu, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 
 const beneficios = [
   "Gestión integrada de todas las áreas de tu empresa",
@@ -23,7 +25,7 @@ export default function Content() {
     <main>
       <PageHero
         variant="dark"
-        index="03"
+        artifact="odoo"
         eyebrow="Ready Partner Oficial Odoo"
         headline="Un sistema que sigue"
         headlineAccent="la lógica de tu empresa"
@@ -33,7 +35,7 @@ export default function Content() {
 
       {/* ¿Qué es Odoo? */}
       <MotionConfig reducedMotion="user">
-        <section className="bg-background py-24 px-4">
+        <section className="bg-steel-50 border-y border-steel-200 py-24 px-4">
           <div className="mx-auto max-w-6xl">
             <SectionLabel index="01" className="mb-6">
               ERP
@@ -84,7 +86,7 @@ export default function Content() {
 
                 <div className="mb-6 flex items-center gap-3">
                   <div className="inline-flex items-center justify-center size-10 border border-steel-200 bg-white">
-                    <Cpu className="size-5 text-navy" />
+                    <AnimatedIcon name="cpu" size={20} tone="navy" />
                   </div>
                   <span className="mono-label text-steel-400">BENEFICIOS CLAVE</span>
                 </div>
@@ -92,7 +94,7 @@ export default function Content() {
                 <ul className="space-y-4">
                   {beneficios.map((b) => (
                     <li key={b} className="flex gap-4 items-start">
-                      <CheckCircle2 className="w-5 h-5 text-cyan shrink-0 mt-0.5" />
+                      <AnimatedIcon name="shield" size={20} tone="cyan" className="shrink-0 mt-0.5" />
                       <span className="text-sm leading-relaxed text-muted-foreground">
                         {b}
                       </span>
@@ -129,6 +131,8 @@ export default function Content() {
         jointVentureLabel="Asalvo"
         jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley", "Inacap"]}
       />
+
+      <RelatedServices current="implementacion-odoo" />
 
       <CtaBand />
     </main>

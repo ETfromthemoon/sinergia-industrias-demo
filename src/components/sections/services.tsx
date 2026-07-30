@@ -6,6 +6,13 @@ import { motion, MotionConfig } from "motion/react";
 import { SERVICES } from "@/content/site";
 
 export function ServicesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const numeralY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
     <MotionConfig reducedMotion="user">
       <section id="servicios" className="bg-background py-20 sm:py-28">
