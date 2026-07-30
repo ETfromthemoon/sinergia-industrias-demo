@@ -20,7 +20,7 @@ type ProcessStepsProps = {
 export function ProcessSteps({ title, eyebrow, steps }: ProcessStepsProps) {
   return (
     <MotionConfig reducedMotion="user">
-      <section className="bg-steel-50 py-20 sm:py-28">
+      <section className="section-motion-surface bg-steel-50 py-20 sm:py-28">
         <div className="editorial-shell">
           <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
             <div>

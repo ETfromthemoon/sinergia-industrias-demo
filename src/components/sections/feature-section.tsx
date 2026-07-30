@@ -37,7 +37,6 @@ export function FeatureSection({
   titleAccent,
   intro,
   items,
-  columns = 3,
   itemsPerView,
   variant = "light",
   cornerTicks = true,

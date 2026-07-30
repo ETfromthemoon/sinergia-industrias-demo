@@ -11,7 +11,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const CYAN = "oklch(0.60 0.105 208)";
 const NAVY = "oklch(0.24 0.12 256)";
 const SIGNAL = "oklch(0.78 0.16 67)";
-const WHITE_10 = "oklch(1 0 0 / 0.10)";
 const WHITE_20 = "oklch(1 0 0 / 0.20)";
 
 function ArtifactSvg({ children, stroke, className }: { children: React.ReactNode; stroke?: string; className?: string }) {

@@ -20,7 +20,7 @@ export function RelatedServices({ current, index = "06" }: RelatedServicesProps)
   const related = ALL_SERVICES.filter((s) => s.slug !== current);
 
   return (
-    <section className="border-t border-steel-200 bg-steel-50 py-24 px-4">
+    <section className="section-motion-surface border-t border-steel-200 bg-steel-50 py-24 px-4">
       <div className="mx-auto max-w-6xl">
         <SectionLabel index={index} className="mb-6">
           Servicios relacionados

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { buildServiceJsonLd } from "@/lib/service-jsonld";
 import Content from "./content";
 import { ServiceJsonLd } from "@/components/seo/service-json-ld";
 
@@ -21,12 +20,6 @@ export const metadata: Metadata = {
     url: "/levantamiento-de-datos",
   },
 };
-
-const jsonLd = buildServiceJsonLd({
-  name: "Levantamiento de datos",
-  description,
-  path: "/levantamiento-de-datos",
-});
 
 export default function Page() {
   return (

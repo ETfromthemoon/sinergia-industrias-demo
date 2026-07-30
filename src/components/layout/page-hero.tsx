@@ -48,15 +48,21 @@ export function PageHero({
           <>
             <div aria-hidden className="aurora-dark absolute inset-0" />
             <div aria-hidden className="surface-noise absolute inset-0" />
+            <div aria-hidden className="page-orbits">
+              <span className="page-orbit" />
+              <span className="page-orbit" />
+              <span className="page-orbit" />
+            </div>
+            <div aria-hidden className="ambient-scan" />
           </>
         ) : null}
-        <div
-          aria-hidden
-          className={cn(
-            "absolute -right-24 top-16 size-[30rem] rounded-full border sm:size-[42rem]",
-            dark ? "border-white/7" : "border-navy/7",
-          )}
-        />
+        {!dark ? (
+          <div aria-hidden className="page-orbits opacity-40">
+            <span className="page-orbit" />
+            <span className="page-orbit" />
+            <span className="page-orbit" />
+          </div>
+        ) : null}
 
         <div className="editorial-shell relative">
           <div className="grid gap-10 lg:grid-cols-[1.25fr_0.55fr] lg:items-end">

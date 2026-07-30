@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { motion, MotionConfig, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 type VideoHeroProps = {
   eyebrow: string;

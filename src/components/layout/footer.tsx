@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { NAV_LINKS, SERVICES, SITE } from "@/content/site";
+import { BrandLogo } from "@/components/ui/brand-logo";
 
 export function Footer() {
   return (
@@ -9,16 +10,14 @@ export function Footer() {
       <div className="editorial-shell relative py-16 sm:py-20">
         <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.25fr_0.75fr_0.75fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-full border border-white/20 font-mono text-xs">
-                SI
-              </span>
-              <span className="font-sans text-base font-semibold">{SITE.name}</span>
+            <div className="inline-flex bg-white px-4 py-3">
+              <BrandLogo className="w-[11.5rem]" />
             </div>
             <h2 className="mt-8 max-w-xl text-4xl leading-[1.02] text-white sm:text-5xl">
-              Ingeniería para empresas que necesitan{" "}
-              <em className="font-normal text-cyan">volver a ver con claridad.</em>
+              Construimos modelos para{" "}
+              <em className="font-normal text-cyan">el mundo real.</em>
             </h2>
+            <p className="mono-label mt-5 text-white/45">Procesos inteligentes. Impacto real.</p>
             <Link
               href="/contacto"
               className="mt-8 inline-flex items-center gap-2 border-b border-cyan pb-1 text-sm font-semibold text-white"

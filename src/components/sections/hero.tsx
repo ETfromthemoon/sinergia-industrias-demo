@@ -1,20 +1,70 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
-import { motion, MotionConfig } from "motion/react";
+import { motion, MotionConfig, useReducedMotion } from "motion/react";
 import { SERVICES, SITE } from "@/content/site";
+import { OdooPartnerBadge } from "@/components/ui/odoo-partner-badge";
+import { useMediaQuery, useSaveData } from "@/lib/use-media-query";
+
+const VIDEO_ID = "Tody2AVL6ys";
 
 export function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const saveData = useSaveData();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const canPlayVideo = !prefersReducedMotion && !saveData && isDesktop;
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    if (!canPlayVideo) return;
+
+    const mountVideo = () => setVideoReady(true);
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(mountVideo, { timeout: 1800 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(mountVideo, 650);
+    return () => window.clearTimeout(timeoutId);
+  }, [canPlayVideo]);
+
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative min-h-[46rem] overflow-hidden bg-carbon text-white sm:min-h-[50rem]">
-        <div aria-hidden className="aurora-dark absolute inset-0" />
-        <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
-        <div aria-hidden className="absolute -right-28 top-16 size-[34rem] rounded-full border border-white/7 sm:-right-10 sm:size-[46rem]" />
-        <div aria-hidden className="absolute right-12 top-40 size-[22rem] rounded-full border border-cyan/10 sm:right-24 sm:size-[32rem]" />
+        <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
+          {/* The poster remains the mobile and reduced-motion fallback. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+            alt=""
+            className="size-full object-cover"
+          />
+        </div>
+        {videoReady ? (
+          <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&fs=0&modestbranding=1&playsinline=1`}
+              allow="autoplay; encrypted-media"
+              title="Video corporativo de fondo"
+              tabIndex={-1}
+              className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+              style={{ width: "177.78vh", pointerEvents: "none" }}
+            />
+          </div>
+        ) : null}
+        <div aria-hidden className="absolute inset-0 z-[1] bg-carbon/84" />
+        <div aria-hidden className="absolute inset-0 z-[1] bg-gradient-to-r from-carbon via-carbon/74 to-carbon/58" />
+        <div aria-hidden className="aurora-dark absolute inset-0 z-[2]" />
+        <div aria-hidden className="surface-noise pointer-events-none absolute inset-0 z-[3]" />
+        <div aria-hidden className="page-orbits z-[3]">
+          <span className="page-orbit" />
+          <span className="page-orbit" />
+          <span className="page-orbit" />
+        </div>
 
-        <div className="editorial-shell relative grid min-h-[46rem] items-end gap-12 pb-12 pt-32 sm:min-h-[50rem] sm:pb-16 lg:grid-cols-[1.15fr_0.65fr] lg:items-center lg:gap-20 lg:pb-0 lg:pt-24">
+        <div className="editorial-shell relative z-10 grid min-h-[46rem] items-end gap-12 pb-12 pt-32 sm:min-h-[50rem] sm:pb-16 lg:grid-cols-[1.15fr_0.65fr] lg:items-center lg:gap-20 lg:pb-0 lg:pt-24">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -72,10 +122,7 @@ export function HeroSection() {
             transition={{ delay: 0.22, duration: 0.7 }}
             className="border-t border-white/16 pt-6 lg:border-l lg:border-t-0 lg:pl-9 lg:pt-0"
           >
-            <div className="flex items-center gap-2 text-xs text-white/50">
-              <span className="size-1.5 rounded-full bg-cyan" />
-              Ready Partner Oficial Odoo
-            </div>
+            <OdooPartnerBadge className="bg-white shadow-lg shadow-black/10" />
             <p className="mt-6 font-display text-2xl leading-snug text-white/90 sm:text-3xl">
               “La mejor solución no es la más compleja. Es la que el equipo puede
               sostener todos los días.”
