@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 type BrandLogoProps = {
   className?: string;
   priority?: boolean;
+  inverse?: boolean;
 };
 
-export function BrandLogo({ className, priority = false }: BrandLogoProps) {
+export function BrandLogo({ className, priority = false, inverse = false }: BrandLogoProps) {
   return (
     <Image
       src="/sinergia-logo.png"
@@ -14,7 +15,7 @@ export function BrandLogo({ className, priority = false }: BrandLogoProps) {
       width={307}
       height={65}
       priority={priority}
-      className={cn("h-auto w-[10.75rem]", className)}
+      className={cn("h-auto w-[10.75rem]", inverse && "brightness-0 invert", className)}
     />
   );
 }

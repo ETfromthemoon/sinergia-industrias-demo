@@ -53,13 +53,14 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeMenus}
-          className={cn(
-            "relative z-10 flex items-center rounded-sm transition-all",
-            transparent ? "bg-white px-3 py-2 shadow-lg shadow-black/10" : "py-2",
-          )}
+          className="relative z-10 flex items-center py-2 transition-all"
           aria-label="Sinergia Consultores, inicio"
         >
-          <BrandLogo priority className="w-[9.6rem] xl:w-[10.75rem]" />
+          <BrandLogo
+            priority
+            inverse={transparent}
+            className="w-[9.6rem] transition-[filter] duration-300 xl:w-[10.75rem]"
+          />
         </Link>
 
         <nav

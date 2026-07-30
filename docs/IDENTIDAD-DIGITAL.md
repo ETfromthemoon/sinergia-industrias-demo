@@ -33,8 +33,10 @@ interfaces, contenido y nuevas páginas.
 - El movimiento representa conexión entre estrategia, procesos y tecnología.
 - Las órbitas y nodos usan tiempos largos y desplazamientos sutiles.
 - Las secciones aparecen mediante opacidad y traslación breve, sin rebotes.
-- El video corporativo se monta de forma diferida y solo cuando el dispositivo,
-  las preferencias de movimiento y el ahorro de datos lo permiten.
+- El hero principal usa el claim `Construimos modelos para el mundo real.` y
+  permanece gráfico para proteger legibilidad, identidad y rendimiento.
+- El video corporativo vive en una sección editorial independiente, conserva
+  su relación 16:9 y nunca se utiliza como fondo recortado.
 - Toda animación debe tener una alternativa estática bajo
   `prefers-reduced-motion`.
 
