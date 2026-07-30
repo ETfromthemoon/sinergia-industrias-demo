@@ -1,13 +1,14 @@
-# Sinergia Industrias — Landing Page Demo
+# Sinergia Industrias — Sitio corporativo
 
-Rediseño demo de la home de [Sinergia Industrias](https://www.sinergiaindustrias.cl). Construido con Next.js 16 + Tailwind v4 + shadcn/ui + motion/react.
+Sitio corporativo de [Sinergia Industrias](https://www.sinergiaindustrias.cl).
+Presenta servicios de Ley REP, procesos, implementación Odoo y datos.
 
 ## Stack
 
 - **Framework:** Next.js 16 (App Router, SSG)
 - **UI:** shadcn/ui + Tailwind v4
 - **Motion:** motion/react (Framer Motion v12)
-- **Tipografía:** Inter + Inter Tight (next/font)
+- **Tipografía:** Newsreader + Manrope + IBM Plex Mono (next/font)
 - **Deploy:** Vercel
 
 ## Correr localmente
@@ -28,22 +29,33 @@ npm start
 
 ## Re-publicar en Vercel
 
-Cualquier push a `main` despliega automáticamente. O manualmente:
+Cualquier push a `master` despliega automáticamente. O manualmente:
 
 ```bash
 vercel --prod
 ```
 
-## Secciones incluidas
+## Variables del formulario
 
-1. **Navbar** — logo + links + CTA sticky
-2. **Hero** — headline, subhead, badges, CTAs, trust signals, aurora
-3. **Credibilidad** — 5 métricas en barra gris acero
-4. **Servicios** — Bento 2×2 (Ley REP, Procesos, Odoo, Datos)
-5. **Ley REP** — sección de autoridad fondo navy dark con checklist
-6. **Método** — 4 pasos numerados
-7. **Contacto** — formulario + datos reales + WhatsApp
-8. **Footer** — navy dark con links y contacto
+Copia `.env.example` y configura las variables en Vercel:
+
+```env
+RESEND_API_KEY=re_xxxxxxxxx
+CONTACT_FROM_EMAIL=Sitio Sinergia <contacto@sinergiaindustrias.cl>
+```
+
+`CONTACT_FROM_EMAIL` debe usar un dominio validado en Resend. Sin estas
+variables, el formulario informa que el envío no está disponible y mantiene
+visibles WhatsApp, teléfono y email como canales alternativos.
+
+## Capacidades incluidas
+
+1. Navegación responsive y acceso directo a las cuatro soluciones.
+2. Métricas centralizadas y renderizadas desde servidor.
+3. Ocho rutas corporativas más política de privacidad.
+4. Formulario con validación, estados accesibles y endpoint de servidor.
+5. Metadata, Open Graph, JSON-LD, sitemap, robots y manifest.
+6. Diseño mobile-first con soporte para reducción de movimiento.
 
 ## Contacto real del cliente
 

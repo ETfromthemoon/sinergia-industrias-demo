@@ -6,6 +6,7 @@ import { ServicesSection } from "@/components/sections/services";
 import { LeyRepSection } from "@/components/sections/ley-rep";
 import { MethodSection } from "@/components/sections/method";
 import { ContactSection } from "@/components/sections/contact";
+import { FeaturedCaseSection } from "@/components/sections/featured-case";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <CredibilityBar />
         <ServicesSection />
         <LeyRepSection />
+        <FeaturedCaseSection />
         <MethodSection />
         <ContactSection />
       </main>

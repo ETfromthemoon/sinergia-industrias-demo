@@ -1,157 +1,64 @@
-"use client";
-import { motion, MotionConfig } from "motion/react";
-import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
-import { SectionLabel } from "@/components/ui/section-label";
-import { CornerTicks } from "@/components/ui/blueprint-frame";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ContactForm } from "@/components/forms/contact-form";
+import { SITE } from "@/content/site";
 
-const SERVICES_OPTIONS = [
-  "Ley REP",
-  "Levantamiento de procesos",
-  "Implementación ERP Odoo",
-  "Levantamiento de datos",
-  "Otro",
-];
-
-const CONTACT_ROWS = [
-  { icon: Mail, code: "EML", label: "info@sinergiaindustrias.cl", href: "mailto:info@sinergiaindustrias.cl" },
-  { icon: Phone, code: "TEL", label: "+56 9 9458 4617", href: "tel:+56994584617" },
-  { icon: MapPin, code: "LOC", label: "Calle Limache 3421, of. 724 · Viña del Mar", href: null },
-];
-
-const inputCls =
-  "w-full border border-steel-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors";
+const CHANNELS = [
+  { icon: Mail, label: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: Phone, label: SITE.phoneDisplay, href: SITE.phoneHref },
+  { icon: MessageCircle, label: "WhatsApp directo", href: SITE.whatsapp },
+] as const;
 
 export function ContactSection() {
   return (
-    <MotionConfig reducedMotion="user">
-      <section id="contacto" className="relative overflow-hidden border-t border-steel-200 bg-background py-24 px-4">
-        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid -z-10 opacity-60" />
+    <section id="contacto" className="bg-background py-20 sm:py-28">
+      <div className="editorial-shell">
+        <div className="grid gap-14 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <p className="eyebrow">Primera conversación</p>
+            <h2 className="mt-7 text-5xl leading-[0.98] sm:text-6xl">
+              Empecemos por
+              <br />
+              <em className="font-normal text-navy">entender el problema.</em>
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              No necesitas llegar con una solución definida. Cuéntanos qué está frenando
+              a tu equipo y te ayudaremos a ordenar el punto de partida.
+            </p>
 
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            {/* LEFT — header + contact data */}
-            <motion.div
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <SectionLabel index="04" className="mb-6">
-                Contacto
-              </SectionLabel>
-              <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl">
-                ¿Por dónde
-                <br />
-                empezamos?
-              </h2>
-              <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
-                Cuéntanos qué necesita tu empresa. Una conversación de 30 minutos basta para saber
-                si podemos ayudarte y cómo.
-              </p>
-
-              <div className="mt-10">
-                <Magnetic>
-                  <Link
-                    href="https://wa.me/56994584617?text=Hola,%20quiero%20conversar%20sobre%20un%20proyecto"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
-                  >
-                    Escríbenos por WhatsApp
-                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </Magnetic>
-              </div>
-
-              {/* contact rows — technical readout */}
-              <ul className="mt-12 divide-y divide-steel-200 border-y border-steel-200">
-                {CONTACT_ROWS.map((row) => {
-                  const Icon = row.icon;
-                  const content = (
-                    <>
-                      <span className="mono-label w-10 shrink-0 text-steel-400">{row.code}</span>
-                      <Icon className="size-4 shrink-0 text-navy" />
-                      <span className="text-sm text-foreground">{row.label}</span>
-                    </>
-                  );
-                  return (
-                    <li key={row.code}>
-                      {row.href ? (
-                        <a
-                          href={row.href}
-                          className="flex items-center gap-4 py-4 transition-colors hover:text-navy"
-                        >
-                          {content}
-                        </a>
-                      ) : (
-                        <div className="flex items-center gap-4 py-4">{content}</div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-
-            {/* RIGHT — framed form */}
-            <motion.div
-              className="relative border border-steel-200 bg-white shadow-elevated"
-              initial={{ opacity: 0, x: 16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <CornerTicks className="text-navy" size={12} />
-              <div className="flex items-center justify-between border-b border-steel-200 px-6 py-3">
-                <span className="mono-label text-navy">FORM.CONTACTO</span>
-                <span className="mono-label text-cyan-deep">* REQUERIDO</span>
-              </div>
-              <form action="mailto:info@sinergiaindustrias.cl" method="GET" className="space-y-5 p-6 sm:p-8">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="nombre" className="mono-label mb-2 block text-muted-foreground">
-                      Nombre *
-                    </label>
-                    <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" className={inputCls} />
-                  </div>
-                  <div>
-                    <label htmlFor="empresa" className="mono-label mb-2 block text-muted-foreground">
-                      Empresa *
-                    </label>
-                    <input id="empresa" name="empresa" type="text" required placeholder="Tu empresa" className={inputCls} />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="email" className="mono-label mb-2 block text-muted-foreground">
-                    Email *
-                  </label>
-                  <input id="email" name="email" type="email" required placeholder="correo@empresa.cl" className={inputCls} />
-                </div>
-                <div>
-                  <label htmlFor="servicio" className="mono-label mb-2 block text-muted-foreground">
-                    Área de interés
-                  </label>
-                  <select id="servicio" name="servicio" className={`${inputCls} appearance-none`}>
-                    {SERVICES_OPTIONS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  type="submit"
-                  className="group flex w-full items-center justify-center gap-2 bg-navy py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark"
+            <div className="mt-10 space-y-3">
+              {CHANNELS.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-3 text-sm text-foreground transition-colors hover:text-navy"
                 >
-                  Enviar mensaje
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
-              </form>
-            </motion.div>
+                  <Icon className="size-4 text-cyan-deep" />
+                  {label}
+                </a>
+              ))}
+              <p className="flex items-start gap-3 pt-1 text-sm text-muted-foreground">
+                <MapPin className="mt-0.5 size-4 shrink-0 text-cyan-deep" />
+                {SITE.address}, {SITE.locality}
+              </p>
+            </div>
+          </div>
+
+          <div className="border border-steel-200 bg-white p-6 shadow-card sm:p-9 lg:p-11">
+            <div className="mb-9 flex items-end justify-between border-b border-steel-200 pb-5">
+              <div>
+                <p className="mono-label text-cyan-deep">Solicitud de contacto</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Cinco campos, sin rodeos.
+                </p>
+              </div>
+              <span className="hidden font-display text-3xl text-steel-300 sm:block">01</span>
+            </div>
+            <ContactForm />
           </div>
         </div>
-      </section>
-    </MotionConfig>
+      </div>
+    </section>
   );
 }

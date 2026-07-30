@@ -1,115 +1,66 @@
 "use client";
-import { motion, MotionConfig } from "motion/react";
-import Link from "next/link";
-import { CheckCircle2, ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
-import { SectionLabel } from "@/components/ui/section-label";
-import { CornerTicks } from "@/components/ui/blueprint-frame";
 
-const ITEMS = [
-  { code: "01", text: "Levantamiento de residuos por categoría de producto" },
-  { code: "02", text: "Cálculo de metas anuales exigidas por ley" },
-  { code: "03", text: "Gestión de la plataforma REP del Ministerio" },
-  { code: "04", text: "Reporte final auditado y presentado" },
-];
+import Link from "next/link";
+import { ArrowRight, FileCheck2, Scale, Search, Send } from "lucide-react";
+import { motion, MotionConfig } from "motion/react";
+
+const DELIVERABLES = [
+  { icon: Search, label: "Levantamiento y clasificación" },
+  { icon: Scale, label: "Cálculo de obligaciones" },
+  { icon: FileCheck2, label: "Respaldo documental" },
+  { icon: Send, label: "Reporte y acompañamiento" },
+] as const;
 
 export function LeyRepSection() {
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative overflow-hidden bg-navy-dark py-24 px-4">
-        <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark" />
-        <div aria-hidden className="grain pointer-events-none absolute inset-0" />
-
-        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20 lg:items-center">
-          {/* LEFT — copy */}
+      <section className="relative overflow-hidden bg-navy-dark py-20 text-white sm:py-28">
+        <div aria-hidden className="surface-noise absolute inset-0" />
+        <div className="editorial-shell relative grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <SectionLabel index="02" tone="accent" className="mb-6">
-              Cumplimiento normativo
-            </SectionLabel>
-
-            <motion.h2
-              className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            <p className="eyebrow text-cyan before:bg-cyan">Cumplimiento Ley REP</p>
+            <h2 className="mt-7 max-w-3xl text-5xl leading-[0.96] text-white sm:text-6xl">
+              Cumplir no debería depender de{" "}
+              <em className="font-normal text-cyan">interpretaciones.</em>
+            </h2>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/64">
+              Convertimos la Ley 20.920 en un proceso trazable: qué declarar, cómo
+              respaldarlo y qué necesita hacer tu equipo en cada etapa.
+            </p>
+            <Link
+              href="/ley-rep"
+              className="group mt-9 inline-flex items-center gap-2 border-b border-cyan pb-1 text-sm font-semibold"
             >
-              La Ley REP no es opcional.
-              <br />
-              <span className="text-steel-400">Tampoco lo es hacerla bien.</span>
-            </motion.h2>
-
-            <motion.p
-              className="mt-6 max-w-lg text-base leading-relaxed text-steel-300"
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.12, duration: 0.5 }}
-            >
-              La ley 20.920 obliga a gestionar residuos de envases y aparatos eléctricos, con
-              plazos y reportes ante el Ministerio del Medio Ambiente. Una declaración tardía o
-              incorrecta tiene consecuencias reales.
-            </motion.p>
-
-            <motion.p
-              className="mt-4 max-w-lg text-base leading-relaxed text-white/85"
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.18, duration: 0.5 }}
-            >
-              Hacemos el levantamiento, el cálculo de metas y el reporte completo. Tu empresa
-              cumple sin desviar a tu equipo a descifrar la normativa.
-            </motion.p>
-
-            <motion.div
-              className="mt-10"
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.24, duration: 0.5 }}
-            >
-              <Magnetic>
-                <Link
-                  href="#contacto"
-                  className="group inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-7 py-3.5 text-sm font-semibold text-cyan transition-colors duration-200 hover:bg-cyan/20"
-                >
-                  Conversemos tu proyecto
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
-            </motion.div>
+              Revisar el servicio
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
 
-          {/* RIGHT — process checklist panel */}
           <motion.div
-            className="relative border border-white/15 bg-white/[0.03] backdrop-blur-sm"
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65 }}
+            className="border border-white/12 bg-white/[0.035] p-6 sm:p-8"
           >
-            <CornerTicks className="text-cyan" size={12} />
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-              <span className="mono-label text-white/50">PROC.REP / LEY 20.920</span>
-              <span className="mono-label text-cyan">4 ETAPAS</span>
+            <div className="flex items-center justify-between border-b border-white/12 pb-5">
+              <p className="text-sm font-semibold">Una ruta completa</p>
+              <span className="mono-label text-white/35">Ley 20.920</span>
             </div>
-            <ul className="divide-y divide-white/10">
-              {ITEMS.map((item, i) => (
-                <motion.li
-                  key={item.code}
-                  className="group flex items-center gap-4 px-5 py-5 transition-colors hover:bg-white/[0.04]"
-                  initial={{ opacity: 0, x: -8 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.45 }}
+            <div className="mt-2">
+              {DELIVERABLES.map(({ icon: Icon, label }, index) => (
+                <div
+                  key={label}
+                  className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 border-b border-white/10 py-5 last:border-0"
                 >
-                  <span className="mono-label tabular text-cyan/70">{item.code}</span>
-                  <CheckCircle2 className="size-4 shrink-0 text-cyan" />
-                  <span className="text-sm text-white/85">{item.text}</span>
-                </motion.li>
+                  <Icon className="size-4 text-cyan" />
+                  <span className="text-sm text-white/75">{label}</span>
+                  <span className="font-mono text-[0.65rem] text-white/30">
+                    0{index + 1}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
         </div>
       </section>

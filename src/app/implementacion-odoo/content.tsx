@@ -25,9 +25,9 @@ export default function Content() {
         variant="dark"
         index="03"
         eyebrow="Ready Partner Oficial Odoo"
-        headline="Unifica, optimiza,"
-        headlineAccent="triunfa"
-        subhead="Potencia la gestión de tu empresa con Odoo. Nuestro servicio de implementación de ERP te brinda la solución integral que necesitas. Con Odoo, podrás utilizar un sistema de aplicaciones integradas para gestionar y optimizar tus actividades financieras, suministros, operaciones y más."
+        headline="Un sistema que sigue"
+        headlineAccent="la lógica de tu empresa"
+        subhead="Implementamos Odoo desde tus procesos reales para conectar finanzas, inventario, ventas y operación sin agregar complejidad innecesaria."
         badge="OFICIAL"
       />
 

@@ -49,10 +49,10 @@ export default function LeyRepContent() {
       <PageHero
         variant="dark"
         index="02"
-        eyebrow="Cumplimiento normativo · Ley 20.920"
-        headline="Levantamiento y sistematización REP"
-        headlineAccent=""
-        subhead="Cumple con la Ley REP de manera eficiente. Nuestro servicio de levantamiento y sistematización te brinda la solución perfecta. Diseñamos un software intuitivo que consolida todos los productos prioritarios, facilitando el control y entregando resultados de forma rápida y sencilla."
+        eyebrow="Cumplimiento · Ley 20.920"
+        headline="Cumplimiento REP"
+        headlineAccent="sin zonas grises"
+        subhead="Ordenamos la información, calculamos tus obligaciones y construimos el respaldo que tu empresa necesita para declarar con trazabilidad."
         badge="Ley 20.920"
       />
 

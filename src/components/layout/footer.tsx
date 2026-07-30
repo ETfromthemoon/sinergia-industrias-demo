@@ -1,89 +1,93 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-
-const NAV_LINKS = [
-  { label: "Inicio", href: "/" },
-  { label: "Ley REP", href: "/ley-rep" },
-  { label: "Implementación Odoo", href: "/implementacion-odoo" },
-  { label: "Levantamiento de Procesos", href: "/levantamiento-de-procesos" },
-  { label: "Levantamiento de Datos", href: "/levantamiento-de-datos" },
-  { label: "Casos de Éxito", href: "/casos-de-exito" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/contacto" },
-];
+import { ArrowUpRight } from "lucide-react";
+import { NAV_LINKS, SERVICES, SITE } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy-dark px-4 pt-16 pb-10">
-      <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-60" />
-      <div aria-hidden className="grain pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-6xl">
-        <div className="mb-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
-          {/* brand */}
+    <footer className="relative overflow-hidden bg-carbon-2 text-white">
+      <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
+      <div className="editorial-shell relative py-16 sm:py-20">
+        <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.25fr_0.75fr_0.75fr]">
           <div>
-            <div className="mb-4 flex items-center gap-2.5">
-              <span className="inline-flex size-8 items-center justify-center bg-white/10 font-mono text-xs font-bold text-white">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 place-items-center rounded-full border border-white/20 font-mono text-xs">
                 SI
               </span>
-              <span className="font-display text-base font-semibold text-white">Sinergia Industrias</span>
+              <span className="font-sans text-base font-semibold">{SITE.name}</span>
             </div>
-            <p className="max-w-xs text-sm leading-relaxed text-steel-400">
-              Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 border border-signal/40 bg-signal/10 px-3 py-1.5 mono-label text-signal">
-              <span className="inline-block size-1.5 rounded-full bg-signal" />
-              Ready Partner Oficial Odoo
-            </p>
+            <h2 className="mt-8 max-w-xl text-4xl leading-[1.02] text-white sm:text-5xl">
+              Ingeniería para empresas que necesitan{" "}
+              <em className="font-normal text-cyan">volver a ver con claridad.</em>
+            </h2>
+            <Link
+              href="/contacto"
+              className="mt-8 inline-flex items-center gap-2 border-b border-cyan pb-1 text-sm font-semibold text-white"
+            >
+              Iniciar una conversación
+              <ArrowUpRight className="size-4" />
+            </Link>
           </div>
 
-          {/* nav */}
           <div>
-            <p className="mono-label mb-5 text-white/30">Navegación</p>
+            <p className="mono-label mb-5 text-white/35">Explorar</p>
             <ul className="space-y-3">
-              {NAV_LINKS.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-steel-400 transition-colors hover:text-white">
-                    {l.label}
+              {[...NAV_LINKS, { label: "Contacto", href: "/contacto" }].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/60 transition-colors hover:text-white">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* contact */}
           <div>
-            <p className="mono-label mb-5 text-white/30">Contacto</p>
-            <ul className="space-y-3 text-sm text-steel-400">
-              <li>
-                <a href="mailto:info@sinergiaindustrias.cl" className="transition-colors hover:text-white">
-                  info@sinergiaindustrias.cl
-                </a>
-              </li>
-              <li>
-                <a href="tel:+56994584617" className="tabular transition-colors hover:text-white">
-                  +56 9 9458 4617
-                </a>
-              </li>
-              <li>Calle Limache 3421, of. 724</li>
-              <li>Viña del Mar, Chile</li>
-              <li className="pt-1">
-                <a
-                  href="https://www.linkedin.com/company/sinergia-industrias"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
-                >
-                  LinkedIn
-                  <ExternalLink className="size-3" />
-                </a>
-              </li>
+            <p className="mono-label mb-5 text-white/35">Soluciones</p>
+            <ul className="space-y-3">
+              {SERVICES.map((service) => (
+                <li key={service.href}>
+                  <Link href={service.href} className="text-sm text-white/60 transition-colors hover:text-white">
+                    {service.shortTitle}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="mono-label text-white/30">© {new Date().getFullYear()} SINERGIA INDUSTRIAS SPA</p>
-          <p className="mono-label tabular text-white/20">VIÑA DEL MAR · -33.02 / -71.55</p>
+        <div className="grid gap-8 py-10 text-sm text-white/55 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="mono-label mb-2 text-white/30">Email</p>
+            <a href={`mailto:${SITE.email}`} className="hover:text-white">
+              {SITE.email}
+            </a>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Teléfono</p>
+            <a href={SITE.phoneHref} className="hover:text-white">
+              {SITE.phoneDisplay}
+            </a>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Oficina</p>
+            <p>{SITE.address}</p>
+            <p>{SITE.locality}, {SITE.country}</p>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Red</p>
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-white">
+              LinkedIn
+              <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-white/30 sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} {SITE.legalName}</p>
+          <div className="flex gap-4">
+            <Link href="/privacidad" className="hover:text-white">Privacidad</Link>
+            <p>Viña del Mar · Proyectos en Chile</p>
+          </div>
         </div>
       </div>
     </footer>

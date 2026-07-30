@@ -1,9 +1,8 @@
 "use client";
-import { motion, MotionConfig } from "motion/react";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/ui/magnetic";
-import { HeroBackdrop } from "@/components/ui/hero-backdrop";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { motion, MotionConfig } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
@@ -26,221 +25,122 @@ export function PageHero({
   headline,
   headlineAccent,
   subhead,
-  ctaLabel = "Conversemos tu proyecto",
+  ctaLabel = "Evaluar mi proyecto",
   ctaHref = "/contacto",
   secondaryCtaLabel,
   secondaryCtaHref,
   badge,
   variant = "dark",
   index = "00",
-  refCode = "SIS.02",
 }: PageHeroProps) {
-  const isDark = variant === "dark";
+  const dark = variant === "dark";
 
   return (
     <MotionConfig reducedMotion="user">
       <section
         className={cn(
-          "relative overflow-hidden px-4 pb-20 pt-32 lg:pb-28 lg:pt-40",
-          isDark ? "bg-carbon" : "bg-steel-50"
+          "relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40",
+          dark ? "bg-carbon text-white" : "bg-steel-50 text-foreground",
         )}
-        style={
-          isDark
-            ? {
-                background:
-                  "linear-gradient(157deg, var(--carbon) 0%, var(--carbon-2) 72%, var(--carbon) 100%)",
-              }
-            : undefined
-        }
       >
-        {/* ── Atmosphere (dark only) ─────────────────── */}
-        {isDark && (
+        {dark ? (
           <>
-            <div aria-hidden className="aurora-dark pointer-events-none absolute inset-0 -z-10" />
-            <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark -z-10" />
-            <HeroBackdrop />
-            <div aria-hidden className="grain pointer-events-none absolute inset-0 z-[1]" />
+            <div aria-hidden className="aurora-dark absolute inset-0" />
+            <div aria-hidden className="surface-noise absolute inset-0" />
+          </>
+        ) : null}
+        <div
+          aria-hidden
+          className={cn(
+            "absolute -right-24 top-16 size-[30rem] rounded-full border sm:size-[42rem]",
+            dark ? "border-white/7" : "border-navy/7",
+          )}
+        />
 
-            {/* Data-stream lines */}
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute inset-0 w-full h-full -z-10"
-              preserveAspectRatio="none"
-            >
-              <line x1="0" y1="32%" x2="100%" y2="32%" stroke="oklch(1 0 0 / 0.06)" strokeWidth="0.8" strokeDasharray="7 22" />
-              <line x1="0" y1="68%" x2="100%" y2="68%" stroke="oklch(0.68 0.14 205 / 0.10)" strokeWidth="0.8" strokeDasharray="5 30" />
-              <line x1="50%" y1="0" x2="50%" y2="100%" stroke="oklch(1 0 0 / 0.04)" strokeWidth="0.75" strokeDasharray="4 28" />
-            </svg>
+        <div className="editorial-shell relative">
+          <div className="grid gap-10 lg:grid-cols-[1.25fr_0.55fr] lg:items-end">
+            <div>
+              <div className="flex items-center gap-4">
+                <p className={cn("eyebrow", dark && "text-cyan before:bg-cyan")}>{eyebrow}</p>
+                {badge ? (
+                  <span
+                    className={cn(
+                      "rounded-full border px-3 py-1 font-mono text-[0.6rem] uppercase tracking-wider",
+                      dark ? "border-white/15 text-white/55" : "border-steel-200 text-muted-foreground",
+                    )}
+                  >
+                    {badge}
+                  </span>
+                ) : null}
+              </div>
 
-            {/* Scan line */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent animate-scan" />
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-7 max-w-5xl text-[clamp(3.4rem,8vw,6.8rem)] leading-[0.9]"
+              >
+                {headline}{" "}
+                {headlineAccent ? (
+                  <>
+                    <br />
+                    <em className={cn("font-normal", dark ? "text-cyan" : "text-navy")}>
+                      {headlineAccent}
+                    </em>
+                  </>
+                ) : null}
+              </motion.h1>
             </div>
 
-            {/* All 4 corner crosshairs */}
-            <svg aria-hidden className="pointer-events-none absolute top-5 left-5 z-[2]" width="18" height="18">
-              <path d="M9 0 L9 7 M0 9 L7 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-            </svg>
-            <svg aria-hidden className="pointer-events-none absolute top-5 right-5 z-[2]" width="18" height="18">
-              <path d="M9 0 L9 7 M11 9 L18 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-            </svg>
-            <svg aria-hidden className="pointer-events-none absolute bottom-5 left-5 z-[2]" width="18" height="18">
-              <path d="M9 11 L9 18 M0 9 L7 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-            </svg>
-            <svg aria-hidden className="pointer-events-none absolute bottom-5 right-5 z-[2]" width="18" height="18">
-              <path d="M9 11 L9 18 M11 9 L18 9" stroke="oklch(0.68 0.14 205 / 0.45)" strokeWidth="0.8" fill="none" />
-            </svg>
-
-            {/* Bottom measurement annotation */}
             <motion.div
-              aria-hidden
-              className="pointer-events-none select-none absolute bottom-6 inset-x-12 z-[2] hidden lg:flex items-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.9 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.16, duration: 0.6 }}
+              className={cn(
+                "border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0",
+                dark ? "border-white/15" : "border-steel-200",
+              )}
             >
-              <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, oklch(1 0 0 / 0.16))" }} />
-              <span className="mono-label text-white/35" style={{ fontSize: "0.5rem", letterSpacing: "0.22em" }}>
-                REGION DE VALPARAISO · CHILE · REF.{refCode}
-              </span>
-              <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, oklch(1 0 0 / 0.16))" }} />
+              <p className={cn("text-sm leading-relaxed", dark ? "text-white/65" : "text-muted-foreground")}>
+                {subhead}
+              </p>
+              <div className="mt-7 flex flex-wrap gap-4">
+                <Link
+                  href={ctaHref}
+                  className={cn(
+                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold",
+                    dark ? "bg-cyan text-carbon hover:bg-white" : "bg-navy text-white hover:bg-navy-dark",
+                  )}
+                >
+                  {ctaLabel}
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                {secondaryCtaLabel && secondaryCtaHref ? (
+                  <Link
+                    href={secondaryCtaHref}
+                    className={cn(
+                      "inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold",
+                      dark ? "border-white/30" : "border-navy/30",
+                    )}
+                  >
+                    {secondaryCtaLabel}
+                    <ArrowDownRight className="size-3.5" />
+                  </Link>
+                ) : null}
+              </div>
             </motion.div>
-          </>
-        )}
+          </div>
 
-        {/* Atmosphere (light) */}
-        {!isDark && (
-          <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid -z-10 opacity-50" />
-        )}
-
-        {/* Large faded index */}
-        <div
-          aria-hidden
-          className="pointer-events-none select-none absolute left-0 top-1/2 -translate-y-[52%] -z-10 leading-none"
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontWeight: 700,
-            fontSize: "clamp(8rem, 18vw, 14rem)",
-            color: isDark ? "oklch(1 0 0 / 0.035)" : "oklch(0.28 0.12 255 / 0.04)",
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-          }}
-        >
-          {index}
-        </div>
-
-        {/* Top rule */}
-        <div
-          aria-hidden
-          className="absolute top-0 inset-x-0 h-px"
-          style={{
-            background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.30) 35%, oklch(0.68 0.14 205 / 0.30) 65%, transparent 100%)"
-              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.12) 35%, oklch(0.28 0.12 255 / 0.12) 65%, transparent 100%)",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto max-w-5xl">
-          {/* Eyebrow */}
-          <motion.div
-            className="mb-8 flex items-center gap-3"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.5 }}
-          >
-            <span className={cn("mono-label", isDark ? "text-white/70" : "text-navy")}>
-              <span className={cn("inline-block size-1.5 rounded-full mr-2", isDark ? "bg-cyan animate-status" : "bg-cyan")} />
-              {eyebrow}
-            </span>
-            {badge && (
-              <span className={cn(
-                "border px-2.5 py-1 mono-label",
-                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-signal/40 bg-signal/10 text-signal-deep"
-              )}>
-                {badge}
-              </span>
-            )}
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
+          <div
             className={cn(
-              "font-display font-bold leading-[0.98] tracking-tight text-[clamp(2.5rem,6vw,4.5rem)]",
-              isDark ? "text-white" : "text-foreground"
+              "mt-14 flex items-center justify-between border-t pt-5",
+              dark ? "border-white/10 text-white/28" : "border-steel-200 text-steel-400",
             )}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            {headline}
-            {headlineAccent && (
-              <span
-                className={cn("block", isDark ? "text-cyan" : "text-navy")}
-                style={isDark ? { textShadow: "0 0 32px oklch(0.68 0.14 205 / 0.35)" } : undefined}
-              >
-                {headlineAccent}
-              </span>
-            )}
-          </motion.h1>
-
-          {/* Subhead */}
-          <motion.p
-            className={cn(
-              "mt-7 max-w-xl text-base leading-relaxed lg:text-lg",
-              isDark ? "text-steel-300" : "text-muted-foreground"
-            )}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.55 }}
-          >
-            {subhead}
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            className="mt-9 flex flex-wrap items-center gap-4"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.5 }}
-          >
-            <Magnetic>
-              <Link
-                href={ctaHref}
-                className={cn(
-                  "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200",
-                  isDark
-                    ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.68_0.14_205_/_0.5)]"
-                    : "bg-navy text-white hover:bg-navy-dark"
-                )}
-              >
-                {ctaLabel}
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </Magnetic>
-            {secondaryCtaLabel && secondaryCtaHref && (
-              <Link
-                href={secondaryCtaHref}
-                className={cn(
-                  "mono-label underline-offset-4 transition-colors hover:underline",
-                  isDark ? "text-white/65 hover:text-cyan" : "text-muted-foreground hover:text-navy"
-                )}
-              >
-                {secondaryCtaLabel} →
-              </Link>
-            )}
-          </motion.div>
+            <span className="mono-label">Sinergia Industrias</span>
+            <span className="font-display text-3xl">{index}</span>
+          </div>
         </div>
-
-        {/* Bottom hairline */}
-        <div
-          aria-hidden
-          className="absolute bottom-0 inset-x-0 h-px"
-          style={{
-            background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.68 0.14 205 / 0.25) 50%, transparent 100%)"
-              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.10) 50%, transparent 100%)",
-          }}
-        />
       </section>
     </MotionConfig>
   );

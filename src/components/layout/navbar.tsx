@@ -1,207 +1,185 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { NAV_LINKS, SERVICES } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-const MAIN_LINKS = [
-  { label: "Inicio", href: "/", index: "00" },
-  { label: "Casos de éxito", href: "/casos-de-exito", index: "05" },
-  { label: "Nosotros", href: "/nosotros", index: "06" },
-];
-
-const SOLUTIONS_LINKS = [
-  { label: "Ley REP", href: "/ley-rep", index: "01" },
-  { label: "Implementación Odoo", href: "/implementacion-odoo", index: "02" },
-  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos", index: "03" },
-  { label: "Levantamiento de datos", href: "/levantamiento-de-datos", index: "04" },
-];
-
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const transparent = pathname === "/" && !scrolled && !mobileOpen;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMenus = () => {
-    setMobileOpen(false);
-    setSolutionsOpen(false);
-  };
-
-  const linkCls = (active?: boolean) =>
-    cn(
-      "group flex items-center gap-1.5 text-sm transition-colors",
-      scrolled || !isHome
-        ? active ? "text-navy font-semibold" : "text-muted-foreground hover:text-foreground"
-        : "text-white/70 hover:text-white"
-    );
-
-  const indexCls = (active?: boolean) =>
-    cn(
-      "mono-label transition-colors",
-      scrolled || !isHome
-        ? active ? "text-cyan-deep" : "text-steel-400 group-hover:text-cyan-deep"
-        : active ? "text-cyan" : "text-white/40 group-hover:text-cyan"
-    );
-
   return (
-    <motion.header
+    <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b transition-colors duration-300",
-        scrolled || !isHome
-          ? "border-steel-200 bg-white/90 backdrop-blur-md"
-          : "border-white/10 bg-transparent"
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        transparent
+          ? "border-white/10 bg-transparent text-white"
+          : "border-steel-200/80 bg-[color:color-mix(in_oklab,var(--paper)_92%,transparent)] text-foreground shadow-[0_14px_40px_-34px_oklch(0.15_0.03_230/0.45)] backdrop-blur-xl",
       )}
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        {/* logo */}
-        <Link href="/" className="group flex items-center gap-2.5">
+      <div className="editorial-shell flex h-[4.5rem] items-center justify-between">
+        <Link href="/" className="group flex items-center gap-3" aria-label="Sinergia Industrias, inicio">
           <span
             className={cn(
-              "inline-flex size-8 items-center justify-center font-mono text-xs font-bold transition-colors",
-              scrolled || !isHome
-                ? "bg-navy text-white group-hover:bg-navy-dark"
-                : "bg-white/10 text-white ring-1 ring-inset ring-white/25 group-hover:bg-white/20"
+              "grid size-9 place-items-center rounded-full border font-mono text-[0.65rem] font-semibold transition-colors",
+              transparent
+                ? "border-white/30 bg-white/5 text-white"
+                : "border-navy/20 bg-navy text-white",
             )}
           >
             SI
           </span>
-          <span
-            className={cn(
-              "font-display text-base font-semibold tracking-tight transition-colors",
-              scrolled || !isHome ? "text-foreground" : "text-white"
-            )}
-          >
+          <span className="font-sans text-sm font-semibold tracking-[-0.02em] sm:text-[0.95rem]">
             Sinergia Industrias
           </span>
         </Link>
 
-        {/* desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
-          {MAIN_LINKS.map((l) => {
-            const active = pathname === l.href || (l.href === "/" && pathname === "/");
-            return (
-              <Link key={l.label} href={l.href} className={linkCls(active)}>
-                <span className={indexCls(active)}>{l.index}</span>
-                {l.label}
-              </Link>
-            );
-          })}
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegación principal">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={cn(
+                "text-[0.82rem] font-medium transition-colors",
+                transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
+                pathname === link.href && (transparent ? "text-white" : "text-navy"),
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
 
-          {/* Solutions dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setSolutionsOpen(true)}
-            onMouseLeave={() => setSolutionsOpen(false)}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
           >
             <button
+              type="button"
               className={cn(
-                linkCls(),
-                "cursor-pointer"
+                "flex items-center gap-1.5 text-[0.82rem] font-medium transition-colors",
+                transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
               )}
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              aria-expanded={servicesOpen}
+              onClick={() => setServicesOpen((open) => !open)}
             >
-              <span className={cn("mono-label transition-colors", scrolled || !isHome ? "text-steel-400" : "text-white/40")}>SOL</span>
               Soluciones
-              <svg className={cn("ml-1 size-3 transition-transform", solutionsOpen && "rotate-180")} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <ChevronDown className={cn("size-3.5 transition-transform", servicesOpen && "rotate-180")} />
             </button>
-            {solutionsOpen && (
-              <motion.div
-                className="absolute top-full left-0 w-64 border border-steel-200 bg-white shadow-elevated"
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* invisible bridge to prevent mouseleave gap */}
-                <div className="absolute inset-x-0 bottom-full h-3 -top-3 bg-transparent" aria-hidden />
-                {SOLUTIONS_LINKS.map((l) => {
-                  const active = pathname === l.href;
-                  return (
-                    <Link
-                      key={l.label}
-                      href={l.href}
-                      onClick={closeMenus}
-                      className={cn(
-                        "flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-steel-50",
-                        active ? "text-navy font-semibold" : "text-muted-foreground"
-                      )}
-                    >
-                      <span className={cn("mono-label", active ? "text-cyan-deep" : "text-steel-400")}>{l.index}</span>
-                      {l.label}
-                    </Link>
-                  );
-                })}
-              </motion.div>
-            )}
+
+            <AnimatePresence>
+              {servicesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute right-0 top-full pt-5"
+                >
+                  <div className="w-[30rem] border border-steel-200 bg-white p-2 shadow-elevated">
+                    {SERVICES.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        onClick={() => setServicesOpen(false)}
+                        className="group grid grid-cols-[6rem_1fr_auto] items-center gap-4 border-b border-steel-100 px-4 py-4 last:border-0 hover:bg-steel-50"
+                      >
+                        <span className="mono-label text-cyan-deep">{service.eyebrow}</span>
+                        <span>
+                          <span className="block text-sm font-semibold text-foreground">
+                            {service.shortTitle}
+                          </span>
+                          <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+                            {service.outcome}
+                          </span>
+                        </span>
+                        <ArrowUpRight className="size-4 text-steel-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-navy" />
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </nav>
 
-        {/* mobile burger + CTA */}
-        <div className="flex items-center gap-3">
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-1"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menú"
-          >
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "rotate-45 translate-y-[5px]")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "opacity-0")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled || !isHome ? "bg-navy" : "bg-white", mobileOpen && "-rotate-45 -translate-y-[5px]")} />
-          </button>
+        <div className="flex items-center gap-2">
           <Link
             href="/contacto"
             className={cn(
-              "px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
-              scrolled || !isHome
-                ? "bg-navy text-white hover:bg-navy-dark"
-                : "bg-white text-carbon hover:bg-cyan"
+              "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-colors sm:inline-flex",
+              transparent
+                ? "bg-white text-foreground hover:bg-cyan"
+                : "bg-navy text-white hover:bg-navy-dark",
             )}
           >
-            Conversemos
+            Hablemos
+            <ArrowUpRight className="size-3.5" />
           </Link>
+          <button
+            type="button"
+            className={cn(
+              "grid size-10 place-items-center lg:hidden",
+              transparent ? "text-white" : "text-foreground",
+            )}
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </div>
 
-      {/* mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          className="md:hidden border-t border-steel-200 bg-white"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="divide-y divide-steel-200 px-4 py-4">
-            {[...MAIN_LINKS, ...SOLUTIONS_LINKS].map((l) => {
-              const active = pathname === l.href;
-              return (
-                <Link
-                  key={l.label}
-                  href={l.href}
-                  onClick={closeMenus}
-                  className={cn(
-                    "flex items-center gap-2 py-3 text-sm transition-colors",
-                    active ? "text-navy font-semibold" : "text-muted-foreground"
-                  )}
-                >
-                  <span className={cn("mono-label", active ? "text-cyan-deep" : "text-steel-400")}>{l.index}</span>
-                  {l.label}
-                </Link>
-              );
-            })}
-          </div>
-        </motion.div>
-      )}
-    </motion.header>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden border-t border-steel-200 bg-white text-foreground lg:hidden"
+          >
+            <nav className="editorial-shell py-5" aria-label="Navegación móvil">
+              <p className="mono-label mb-3 text-steel-400">Navegación</p>
+              {[...NAV_LINKS, ...SERVICES.map(({ shortTitle: label, href }) => ({ label, href }))].map(
+                (link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between border-b border-steel-100 py-3.5 text-sm font-medium"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="size-4 text-steel-400" />
+                  </Link>
+                ),
+              )}
+              <Link
+                href="/contacto"
+                className="mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white"
+              >
+                Hablemos de tu proyecto
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

@@ -22,14 +22,14 @@ export default function Content() {
         variant="dark"
         index="05"
         eyebrow="Diagnóstico operacional"
-        headline="Optimiza, innova,"
-        headlineAccent="triunfa"
-        subhead="Potencia tu negocio con procesos optimizados. Estudiamos minuciosamente tus operaciones para identificar áreas de mejora y eficiencia. Nuestro enfoque estratégico te brinda ventajas competitivas, permitiéndote alcanzar tus objetivos de manera más efectiva."
+        headline="Haz visible"
+        headlineAccent="cómo ocurre el trabajo"
+        subhead="Observamos la operación junto a quienes la ejecutan, identificamos fricciones y convertimos los hallazgos en un plan que tu equipo puede llevar a la práctica."
       />
 
       <ProcessSteps
-        title="Lo que necesitas, como te gusta"
-        eyebrow="Proceso"
+        title="De la observación a la mejora"
+        eyebrow="Método"
         index="01"
         steps={[
           {

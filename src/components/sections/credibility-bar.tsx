@@ -1,50 +1,27 @@
-"use client";
-import { motion } from "motion/react";
-import { NumberTicker } from "@/components/ui/number-ticker";
-
-type Metric = {
-  value: number;
-  suffix: string;
-  label: string;
-  code: string;
-};
-
-const METRICS: readonly Metric[] = [
-  { value: 40, suffix: "+", label: "empresas asesoradas", code: "EMP" },
-  { value: 8, suffix: "+", label: "años en operación", code: "YRS" },
-  { value: 20, suffix: "+", label: "implementaciones Odoo", code: "ODO" },
-  { value: 30, suffix: "+", label: "proyectos Ley REP", code: "REP" },
-  { value: 12, suffix: "", label: "industrias atendidas", code: "IND" },
-];
+import { VERIFIED_METRICS } from "@/content/site";
 
 export function CredibilityBar() {
   return (
-    <section className="border-y border-steel-200 bg-steel-50">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-steel-200 sm:grid-cols-3 lg:grid-cols-5 lg:divide-y-0">
-        {METRICS.map((m, i) => (
-          <motion.div
-            key={m.code}
-            className="group relative flex flex-col px-6 py-8 transition-colors hover:bg-white"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="mono-label mb-3 text-steel-400">[{m.code}]</span>
-            <span
-              className="font-display text-4xl font-bold tracking-tight lg:text-5xl"
-              style={{ color: m.code === "EMP" ? "var(--signal)" : "var(--navy)" }}
-            >
-              <NumberTicker value={m.value} suffix={m.suffix} />
-            </span>
-            <span className="mt-2 text-xs leading-tight text-muted-foreground">{m.label}</span>
-            {/* hover accent rule — signal for EMP, cyan for the rest */}
-            <span
-              className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
-              style={{ background: m.code === "EMP" ? "var(--signal)" : "var(--cyan)" }}
-            />
-          </motion.div>
-        ))}
+    <section aria-label="Experiencia comprobada" className="border-b border-steel-200 bg-steel-50">
+      <div className="editorial-shell grid md:grid-cols-[1.1fr_1.9fr]">
+        <div className="flex items-center border-b border-steel-200 py-7 md:border-b-0 md:border-r md:pr-8">
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Experiencia acumulada en terreno, sistemas y cumplimiento.{" "}
+            <span className="text-foreground">Cifras actualizadas a 2026.</span>
+          </p>
+        </div>
+        <div className="grid grid-cols-3 divide-x divide-steel-200">
+          {VERIFIED_METRICS.map((metric) => (
+            <div key={metric.label} className="py-7 pl-4 sm:pl-7">
+              <span className="block font-display text-3xl text-navy sm:text-4xl">
+                {metric.display}
+              </span>
+              <span className="mt-1 block text-[0.67rem] leading-tight text-muted-foreground sm:text-xs">
+                {metric.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

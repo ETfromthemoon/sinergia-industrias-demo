@@ -58,10 +58,10 @@ export default function Content() {
       <PageHero
         variant="dark"
         index="06"
-        eyebrow="Business Intelligence"
-        headline="Datos que hablan,"
-        headlineAccent="decisiones que impactan"
-        subhead="Descubre el poder de la información. Transformamos montañas de información en valiosos insights que cuentan una historia. Te brindamos el conocimiento necesario para tomar decisiones estratégicas y de impacto."
+        eyebrow="Datos · Business Intelligence"
+        headline="Información que muestra"
+        headlineAccent="lo que realmente pasa"
+        subhead="Ordenamos fuentes dispersas y diseñamos reportes que permiten comparar, detectar desvíos y tomar decisiones con una misma versión de la realidad."
       />
 
       {/* Nuestro propósito */}

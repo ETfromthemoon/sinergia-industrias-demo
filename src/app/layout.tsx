@@ -1,37 +1,60 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
+import { SITE } from "@/content/site";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-// Space Grotesk: geometric grotesque with technical character.
-// Differentiates from Inter's neutrality — the right call for the
-// Swiss / Blueprint industrial direction (Neue Haas spirit, Google-hosted).
-const spaceGrotesk = Space_Grotesk({
+const newsreader = Newsreader({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
-  description:
-    "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos. Ready Partner Oficial Odoo.",
-  keywords:
-    "Ley REP, Odoo Chile, levantamiento de procesos, consultoría industrial, ERP Chile, gestión residuos",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "Sinergia Industrias | Ingeniería que ordena y transforma",
+    template: "%s | Sinergia Industrias",
+  },
+  description: SITE.description,
+  keywords: [
+    "Ley REP Chile",
+    "implementación Odoo Chile",
+    "levantamiento de procesos",
+    "consultoría industrial",
+    "gestión de datos",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: "Sinergia Industrias | Ingeniería que ordena y transforma",
+    description: SITE.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.description,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -42,9 +65,15 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("h-full antialiased", inter.variable, spaceGrotesk.variable, jetbrainsMono.variable)}
+      className={cn(
+        "h-full antialiased",
+        manrope.variable,
+        newsreader.variable,
+        ibmPlexMono.variable,
+      )}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <OrganizationJsonLd />
         {children}
       </body>
     </html>
