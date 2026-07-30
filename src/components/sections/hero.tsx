@@ -1,5 +1,6 @@
 "use client";
 
+import type { PointerEvent } from "react";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
@@ -7,20 +8,61 @@ import { SERVICES, SITE } from "@/content/site";
 import { OdooPartnerBadge } from "@/components/ui/odoo-partner-badge";
 
 export function HeroSection() {
+  const updateLightField = (event: PointerEvent<HTMLElement>) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+
+    event.currentTarget.style.setProperty("--pointer-x", `${x * 100}%`);
+    event.currentTarget.style.setProperty("--pointer-y", `${y * 100}%`);
+    event.currentTarget.style.setProperty("--shift-x", `${(x - 0.5) * 24}px`);
+    event.currentTarget.style.setProperty("--shift-y", `${(y - 0.5) * 18}px`);
+  };
+
+  const resetLightField = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--pointer-x", "72%");
+    event.currentTarget.style.setProperty("--pointer-y", "28%");
+    event.currentTarget.style.setProperty("--shift-x", "0px");
+    event.currentTarget.style.setProperty("--shift-y", "0px");
+  };
+
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative min-h-[46rem] overflow-hidden bg-carbon text-white sm:min-h-[50rem]">
-        <div aria-hidden className="aurora-dark absolute inset-0" />
-        <div aria-hidden className="blueprint-grid-dark absolute inset-0 opacity-40" />
-        <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
-        <div aria-hidden className="page-orbits">
-          <span className="page-orbit" />
-          <span className="page-orbit" />
-          <span className="page-orbit" />
-        </div>
-        <div aria-hidden className="ambient-scan" />
+      <section
+        className="cinematic-hero relative min-h-[100svh] overflow-hidden bg-carbon text-white lg:h-[100svh] lg:min-h-[42rem]"
+        onPointerMove={updateLightField}
+        onPointerLeave={resetLightField}
+      >
+        <div aria-hidden="true" className="cinematic-field absolute inset-0" />
+        <div aria-hidden="true" className="blueprint-grid-dark absolute inset-0 opacity-35" />
 
-        <div className="editorial-shell relative z-10 grid min-h-[46rem] items-end gap-12 pb-12 pt-32 sm:min-h-[50rem] sm:pb-16 lg:grid-cols-[1.15fr_0.65fr] lg:items-center lg:gap-20 lg:pb-0 lg:pt-24">
+        <svg
+          aria-hidden="true"
+          className="cinematic-flow absolute inset-0 size-full"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="none"
+        >
+          <path d="M-80 690C180 610 270 330 520 350S820 660 1080 520s280-330 480-270" />
+          <path d="M-60 760C220 660 330 430 570 440s350 260 610 100 240-270 390-250" />
+          <path d="M120 950C180 640 420 600 610 620s310 180 520 10 200-390 430-430" />
+          <path d="M460-100C390 150 560 250 760 260s390-90 510 90 40 370 260 470" />
+          <circle cx="520" cy="350" r="4" />
+          <circle cx="1080" cy="520" r="4" />
+          <circle cx="760" cy="260" r="4" />
+          <circle cx="1130" cy="630" r="4" />
+        </svg>
+
+        <div aria-hidden="true" className="cinematic-aperture">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div aria-hidden="true" className="cinematic-beam" />
+        <div aria-hidden="true" className="surface-noise pointer-events-none absolute inset-0" />
+
+        <div className="editorial-shell relative z-10 grid min-h-[100svh] content-end gap-8 pb-8 pt-28 sm:gap-10 sm:pb-10 lg:h-full lg:min-h-0 lg:grid-cols-[1.18fr_0.62fr] lg:content-center lg:items-center lg:gap-16 lg:pb-8 lg:pt-20 xl:gap-24">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -30,37 +72,40 @@ export function HeroSection() {
             >
               Tecnología · Procesos · Conocimiento
             </motion.p>
+
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-7 max-w-5xl text-[clamp(3.4rem,8.5vw,7rem)] leading-[0.9] text-white"
+              transition={{ delay: 0.08, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[0.88] text-white sm:mt-7"
             >
-              Construimos modelos{" "}
+              Construimos modelos
               <br />
               <em className="font-normal text-cyan">para el mundo real.</em>
             </motion.h1>
+
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.18, duration: 0.6 }}
-              className="mt-8 max-w-2xl text-base leading-relaxed text-white/68 sm:text-lg"
+              transition={{ delay: 0.2, duration: 0.65 }}
+              className="mt-6 max-w-2xl text-sm leading-relaxed text-white/68 sm:mt-8 sm:text-lg"
             >
               Tecnología, procesos y conocimiento aplicados a desafíos reales de las
               organizaciones.
             </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.27, duration: 0.6 }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row"
+              transition={{ delay: 0.3, duration: 0.65 }}
+              className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row"
             >
               <Link
                 href="/contacto"
                 className="micro-sheen group inline-flex items-center justify-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon shadow-[0_0_0_rgba(0,194,255,0)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_34px_rgba(0,194,255,0.18)]"
               >
                 Evaluar mi proyecto
-                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="relative z-[2] size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/casos-de-exito"
@@ -73,20 +118,21 @@ export function HeroSection() {
           </div>
 
           <motion.aside
-            initial={{ opacity: 0, x: 18 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.22, duration: 0.7 }}
-            className="border-t border-white/16 pt-6 lg:border-l lg:border-t-0 lg:pl-9 lg:pt-0"
+            transition={{ delay: 0.24, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="cinematic-console border-t border-white/16 pt-5 lg:border-l lg:border-t-0 lg:pl-9 lg:pt-0"
           >
             <OdooPartnerBadge className="bg-white shadow-lg shadow-black/10" />
-            <p className="mt-7 font-display text-3xl leading-[1.08] text-white sm:text-4xl">
+            <p className="mt-5 font-display text-2xl leading-[1.08] text-white sm:mt-7 sm:text-4xl">
               Procesos inteligentes.
               <span className="mt-1 flex items-center gap-3 text-cyan">
                 <span className="signal-dot size-2 rounded-full bg-cyan text-cyan" />
                 Impacto real.
               </span>
             </p>
-            <div className="mt-8 space-y-3">
+
+            <div className="mt-8 hidden space-y-3 lg:block">
               {SERVICES.map((service) => (
                 <Link
                   key={service.href}
@@ -101,15 +147,26 @@ export function HeroSection() {
                 </Link>
               ))}
             </div>
+
             <a
               href={SITE.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex text-xs font-semibold text-cyan hover:text-white"
+              className="mt-7 hidden text-xs font-semibold text-cyan transition-colors hover:text-white lg:inline-flex"
             >
               Respuesta directa por WhatsApp
             </a>
           </motion.aside>
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-3 text-white/34 lg:flex"
+        >
+          <span className="cinematic-scroll-line h-10 w-px overflow-hidden bg-white/12" />
+          <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em]">
+            Explorar
+          </span>
         </div>
       </section>
     </MotionConfig>
