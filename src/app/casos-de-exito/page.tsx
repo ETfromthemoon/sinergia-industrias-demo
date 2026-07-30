@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHero } from "@/components/layout/page-hero";
+import { CtaBand } from "@/components/sections/cta-band";
 import { CasosGrid } from "./casos-grid";
 
 export const metadata: Metadata = {

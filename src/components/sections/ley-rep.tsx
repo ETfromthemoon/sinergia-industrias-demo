@@ -12,14 +12,6 @@ const DELIVERABLES = [
 ] as const;
 
 export function LeyRepSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], [-24, 24]);
-  const numeralY = useTransform(scrollYProgress, [0, 1], [20, -20]);
-
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative overflow-hidden bg-navy-dark py-20 text-white sm:py-28">
@@ -71,7 +63,7 @@ export function LeyRepSection() {
             </div>
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </MotionConfig>
   );
 }

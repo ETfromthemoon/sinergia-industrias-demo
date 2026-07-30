@@ -36,9 +36,7 @@ export function Navbar() {
           <span
             className={cn(
               "grid size-9 place-items-center rounded-full border font-mono text-[0.65rem] font-semibold transition-colors",
-              transparent
-                ? "border-white/30 bg-white/5 text-white"
-                : "border-navy/20 bg-navy text-white",
+              transparent ? "border-white/30 bg-white/5 text-white" : "border-navy/20 bg-navy text-white",
             )}
           >
             SI
@@ -81,7 +79,6 @@ export function Navbar() {
               Soluciones
               <ChevronDown className={cn("size-3.5 transition-transform", servicesOpen && "rotate-180")} />
             </button>
-
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div
@@ -101,9 +98,7 @@ export function Navbar() {
                       >
                         <span className="mono-label text-cyan-deep">{service.eyebrow}</span>
                         <span>
-                          <span className="block text-sm font-semibold text-foreground">
-                            {service.shortTitle}
-                          </span>
+                          <span className="block text-sm font-semibold text-foreground">{service.shortTitle}</span>
                           <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
                             {service.outcome}
                           </span>
@@ -116,16 +111,6 @@ export function Navbar() {
               )}
             </AnimatePresence>
           </div>
-
-          {MAIN_LINKS.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link key={l.label} href={l.href} className={linkCls(active)}>
-                {l.label}
-                <span className={underlineCls(active)} />
-              </Link>
-            );
-          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -133,9 +118,7 @@ export function Navbar() {
             href="/contacto"
             className={cn(
               "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-colors sm:inline-flex",
-              transparent
-                ? "bg-white text-foreground hover:bg-cyan"
-                : "bg-navy text-white hover:bg-navy-dark",
+              transparent ? "bg-white text-foreground hover:bg-cyan" : "bg-navy text-white hover:bg-navy-dark",
             )}
           >
             Hablemos
@@ -143,10 +126,7 @@ export function Navbar() {
           </Link>
           <button
             type="button"
-            className={cn(
-              "grid size-10 place-items-center lg:hidden",
-              transparent ? "text-white" : "text-foreground",
-            )}
+            className={cn("grid size-10 place-items-center lg:hidden", transparent ? "text-white" : "text-foreground")}
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}

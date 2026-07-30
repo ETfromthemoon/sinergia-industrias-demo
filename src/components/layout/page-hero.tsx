@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
 import { cn } from "@/lib/utils";
-import { PageHeroArtifact, type ArtifactVariant } from "@/components/ui/page-hero-artifact";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -17,9 +16,9 @@ type PageHeroProps = {
   secondaryCtaHref?: string;
   badge?: string;
   variant?: "dark" | "light";
-  artifact?: ArtifactVariant;
   index?: string;
   refCode?: string;
+  artifact?: string;
 };
 
 export function PageHero({
@@ -32,7 +31,6 @@ export function PageHero({
   secondaryCtaLabel,
   secondaryCtaHref,
   badge,
-  artifact,
   variant = "dark",
   index = "00",
 }: PageHeroProps) {
@@ -76,7 +74,6 @@ export function PageHero({
                   </span>
                 ) : null}
               </div>
-
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -94,7 +91,6 @@ export function PageHero({
                 ) : null}
               </motion.h1>
             </div>
-
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -133,7 +129,6 @@ export function PageHero({
               </div>
             </motion.div>
           </div>
-
           <div
             className={cn(
               "mt-14 flex items-center justify-between border-t pt-5",

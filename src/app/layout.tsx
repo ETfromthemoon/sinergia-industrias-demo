@@ -26,26 +26,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://www.sinergiaindustrias.cl";
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Sinergia Industrias",
-  url: SITE_URL,
-  logo: `${SITE_URL}/sinergia-logo.png`,
-  image: `${SITE_URL}/sinergia-logo.png`,
-  email: "info@sinergiaindustrias.cl",
-  telephone: "+56994584617",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Calle Limache 3421, of. 724",
-    addressLocality: "Viña del Mar",
-    addressCountry: "CL",
-  },
-  sameAs: ["https://www.linkedin.com/company/sinergia-industrias"],
-};
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
@@ -77,13 +57,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  YOUTUBE_ORIGINS.forEach((origin) => ReactDOM.preconnect(origin));
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="es"

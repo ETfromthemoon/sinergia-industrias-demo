@@ -20,7 +20,7 @@ function DataParticle({ fromX, fromY, toX, toY, delay }: { fromX: number; fromY:
         opacity: [0, 1, 1, 0],
       }}
       transition={{
-        duration: 3 + Math.random() * 2,
+        duration: 3.5 + delay * 0.25,
         delay,
         repeat: Infinity,
         ease: "easeInOut",

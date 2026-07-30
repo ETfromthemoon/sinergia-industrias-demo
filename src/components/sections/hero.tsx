@@ -5,44 +5,14 @@ import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
 import { SERVICES, SITE } from "@/content/site";
 
-/** Gates the background video to hydrated clients that don't prefer
- * reduced motion and aren't on a constrained data connection. Until this
- * resolves (or when it resolves false), the poster image is shown — it is
- * always present in the initial HTML so it can serve as the LCP element. */
-function useHeroVideoEnabled(): boolean {
-  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const saveData = useSaveData();
-  return !prefersReducedMotion && !saveData;
-}
-
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isVideoEnabled = useHeroVideoEnabled();
-
-  // Exit parallax — the whole hero drifts and dims as the next section rises.
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  const copyY = useTransform(smoothProgress, [0, 1], [0, -40]);
-  const panelY = useTransform(smoothProgress, [0, 1], [0, -70]);
-  const exitOpacity = useTransform(smoothProgress, [0, 1], [1, 0.4]);
-
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative min-h-[46rem] overflow-hidden bg-carbon text-white sm:min-h-[50rem]">
         <div aria-hidden className="aurora-dark absolute inset-0" />
         <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
-        <div
-          aria-hidden
-          className="absolute -right-28 top-16 size-[34rem] rounded-full border border-white/7 sm:-right-10 sm:size-[46rem]"
-        />
-        <div
-          aria-hidden
-          className="absolute right-12 top-40 size-[22rem] rounded-full border border-cyan/10 sm:right-24 sm:size-[32rem]"
-        />
+        <div aria-hidden className="absolute -right-28 top-16 size-[34rem] rounded-full border border-white/7 sm:-right-10 sm:size-[46rem]" />
+        <div aria-hidden className="absolute right-12 top-40 size-[22rem] rounded-full border border-cyan/10 sm:right-24 sm:size-[32rem]" />
 
         <div className="editorial-shell relative grid min-h-[46rem] items-end gap-12 pb-12 pt-32 sm:min-h-[50rem] sm:pb-16 lg:grid-cols-[1.15fr_0.65fr] lg:items-center lg:gap-20 lg:pb-0 lg:pt-24">
           <div>
@@ -54,7 +24,6 @@ export function HeroSection() {
             >
               Ingeniería aplicada · Chile
             </motion.p>
-
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,7 +34,6 @@ export function HeroSection() {
               <br />
               <em className="font-normal text-cyan">bajo control.</em>
             </motion.h1>
-
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,7 +43,6 @@ export function HeroSection() {
               Ordenamos procesos, implementamos Odoo y resolvemos el cumplimiento
               ambiental para que tu empresa pueda operar y decidir con claridad.
             </motion.p>
-
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
