@@ -88,7 +88,7 @@ export function ProgressiveSteps({
                 {title}
               </h2>
             </div>
-            <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
+            <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-500")}>
               {steps.length} PASOS · AUTO-AVANCE
             </span>
           </div>
@@ -147,7 +147,7 @@ export function ProgressiveSteps({
                             : "border-navy text-navy"
                           : isDark
                             ? "border-white/15 text-white/50"
-                            : "border-steel-200 text-steel-400"
+                            : "border-steel-200 text-steel-500"
                       )}
                       animate={
                         isActive
@@ -174,7 +174,7 @@ export function ProgressiveSteps({
                         {step.title}
                       </span>
                       {step.duration && isActive && (
-                        <span className="mono-label text-steel-400">{step.duration}</span>
+                        <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-500")}>{step.duration}</span>
                       )}
                     </div>
 
@@ -213,7 +213,7 @@ export function ProgressiveSteps({
                     className="pointer-events-none absolute left-0 top-0 size-3 -translate-x-px -translate-y-px"
                     viewBox="0 0 12 12"
                     fill="none"
-                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "oklch(0.75 0.010 240)"}
+                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "var(--steel-300)"}
                     strokeWidth="1.5"
                   >
                     <path d="M12 1V0H0v1" />
@@ -224,7 +224,7 @@ export function ProgressiveSteps({
                     className="pointer-events-none absolute bottom-0 right-0 size-3 translate-x-px translate-y-px"
                     viewBox="0 0 12 12"
                     fill="none"
-                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "oklch(0.75 0.010 240)"}
+                    stroke={isDark ? "oklch(1 0 0 / 0.2)" : "var(--steel-300)"}
                     strokeWidth="1.5"
                   >
                     <path d="M0 11v1h12v-1" />
@@ -235,7 +235,7 @@ export function ProgressiveSteps({
                     <span
                       className={cn(
                         "mono-label mb-4 inline-block",
-                        isDark ? "text-steel-400" : "text-steel-400"
+                        isDark ? "text-steel-400" : "text-steel-500"
                       )}
                     >
                       ETAPA.{activeStep.code}
@@ -282,7 +282,7 @@ export function ProgressiveSteps({
                         "mt-6 inline-flex items-center gap-2 border px-3 py-1.5 mono-label",
                         isDark
                           ? "border-white/15 text-steel-300"
-                          : "border-steel-200 text-steel-400"
+                          : "border-steel-200 text-steel-500"
                       )}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}

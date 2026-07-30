@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const URL = process.env.SHOT_URL || "http://localhost:3000";
+const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 900, height: 1400 } });
+const page = await ctx.newPage();
+await page.goto(URL + "/blog/checklist-empresa-obligada-ley-rep", { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(800);
+await page.screenshot({ path: "scripts/shots/blog-post-prose.png", fullPage: true });
+await browser.close();
+console.log("done");

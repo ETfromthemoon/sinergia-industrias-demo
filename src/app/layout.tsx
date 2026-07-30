@@ -55,16 +55,20 @@ const organizationJsonLd = {
     addressCountry: "CL",
   },
   sameAs: ["https://www.linkedin.com/company/sinergia-industrias"],
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Grupo Sinergia",
+  },
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
+  title: "Sinergia Industrias — Procesos inteligentes. Impacto real.",
   description:
     "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos. Ready Partner Oficial Odoo.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
+    title: "Sinergia Industrias — Procesos inteligentes. Impacto real.",
     description:
       "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos.",
     url: "/",
@@ -85,7 +89,7 @@ export const metadata: Metadata = {
   },
   other: {
     "application-name": "Sinergia Industrias",
-    "msapplication-TileColor": "#0A1628",
+    "msapplication-TileColor": "#0d0f1d",
     "msapplication-TileImage": "/android-chrome-192x192.png",
   },
 };

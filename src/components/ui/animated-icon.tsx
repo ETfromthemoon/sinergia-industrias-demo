@@ -34,14 +34,13 @@ type AnimatedIconProps = {
   name: IconName;
   size?: number;
   className?: string;
-  tone?: "navy" | "cyan" | "signal" | "white";
+  tone?: "navy" | "cyan" | "white";
 };
 
 const TONE_COLORS: Record<string, string> = {
   navy: "var(--navy)",
   cyan: "var(--cyan)",
-  signal: "var(--signal)",
-  white: "#ffffff",
+  white: "var(--white)",
 };
 
 const drawTransition = {

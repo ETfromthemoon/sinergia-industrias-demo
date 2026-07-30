@@ -36,7 +36,7 @@ export function CtaBand({
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.60 0.105 208 / 0.13), transparent 70%), linear-gradient(157deg, oklch(0.16 0.04 256 / 0.92), oklch(0.115 0.03 258 / 0.85))" }}
+          style={{ background: "radial-gradient(62% 60% at 82% 18%, oklch(0.746 0.1235 224 / 0.13), transparent 70%), linear-gradient(157deg, oklch(0.175 0.028 276 / 0.92), oklch(0.125 0.020 276 / 0.85))" }}
         />
 
         <div className="relative mx-auto max-w-4xl text-center">
@@ -81,7 +81,7 @@ export function CtaBand({
           >
             <Link
               href={ctaHref}
-              className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+              className="group inline-flex items-center gap-2 bg-cyan px-8 py-4 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_48px_-8px_oklch(0.746_0.1235_224_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
             >
               {ctaLabel}
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -92,7 +92,7 @@ export function CtaBand({
         <div
           aria-hidden
           className="absolute bottom-0 inset-x-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)" }}
+          style={{ background: "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.25) 50%, transparent 100%)" }}
         />
       </section>
     </MotionConfig>

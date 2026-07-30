@@ -138,7 +138,7 @@ export function FeatureSection({
                       </span>
                     ) : null}
 
-                    <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
+                    <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-500")}>
                       {String(index)}.{String(i + 1).padStart(2, "0")}
                     </span>
 

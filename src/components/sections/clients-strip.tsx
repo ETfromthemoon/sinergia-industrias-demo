@@ -48,11 +48,11 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
         className="hidden sm:flex shrink-0 w-[140px] lg:w-[180px] flex-col items-center gap-2 opacity-30 hover:opacity-50 transition-opacity cursor-pointer"
       >
         <div className="flex size-12 lg:size-14 items-center justify-center border border-steel-200 bg-white">
-          <span className="font-display text-base lg:text-lg font-bold text-steel-400">
+          <span className="font-display text-base lg:text-lg font-bold text-steel-500">
             {monogram(clients[prevIdx])}
           </span>
         </div>
-        <span className="text-xs text-steel-400 text-center leading-tight line-clamp-2">
+        <span className="text-xs text-steel-500 text-center leading-tight line-clamp-2">
           {clients[prevIdx]}
         </span>
       </button>
@@ -70,12 +70,12 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
           {/* Monogram box */}
           <motion.div
             className="relative flex size-24 sm:size-28 lg:size-32 items-center justify-center border-2 border-navy bg-white shadow-lg"
-            animate={{ boxShadow: ["0 4px 24px -4px oklch(0.24 0.12 256 / 0.08)", "0 8px 32px -4px oklch(0.24 0.12 256 / 0.15)", "0 4px 24px -4px oklch(0.24 0.12 256 / 0.08)"] }}
+            animate={{ boxShadow: ["0 4px 24px -4px oklch(0.332 0.055 276 / 0.08)", "0 8px 32px -4px oklch(0.332 0.055 276 / 0.15)", "0 4px 24px -4px oklch(0.332 0.055 276 / 0.08)"] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           >
             {/* Corner ticks */}
-            <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-2 -translate-x-px -translate-y-px" viewBox="0 0 8 8" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1"><path d="M8 1V0H0v1" /></svg>
-            <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-2 translate-x-px translate-y-px" viewBox="0 0 8 8" fill="none" stroke="oklch(0.75 0.010 240)" strokeWidth="1"><path d="M0 7v1h8V7" /></svg>
+            <svg aria-hidden className="pointer-events-none absolute left-0 top-0 size-2 -translate-x-px -translate-y-px" viewBox="0 0 8 8" fill="none" stroke="var(--steel-300)" strokeWidth="1"><path d="M8 1V0H0v1" /></svg>
+            <svg aria-hidden className="pointer-events-none absolute bottom-0 right-0 size-2 translate-x-px translate-y-px" viewBox="0 0 8 8" fill="none" stroke="var(--steel-300)" strokeWidth="1"><path d="M0 7v1h8V7" /></svg>
 
             {/* Decorative line before monogram */}
             <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 h-1 w-10 bg-cyan" />
@@ -90,7 +90,7 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
             <p className="font-display text-base sm:text-lg lg:text-xl font-semibold text-navy leading-tight">
               {clients[active]}
             </p>
-            <p className="mt-1 mono-label text-steel-400">
+            <p className="mt-1 mono-label text-steel-500">
               {active + 1} / {len}
             </p>
           </div>
@@ -103,11 +103,11 @@ function ClientSpotlight({ clients, autoplay = true }: { clients: string[]; auto
         className="hidden sm:flex shrink-0 w-[140px] lg:w-[180px] flex-col items-center gap-2 opacity-30 hover:opacity-50 transition-opacity cursor-pointer"
       >
         <div className="flex size-12 lg:size-14 items-center justify-center border border-steel-200 bg-white">
-          <span className="font-display text-base lg:text-lg font-bold text-steel-400">
+          <span className="font-display text-base lg:text-lg font-bold text-steel-500">
             {monogram(clients[nextIdx])}
           </span>
         </div>
-        <span className="text-xs text-steel-400 text-center leading-tight line-clamp-2">
+        <span className="text-xs text-steel-500 text-center leading-tight line-clamp-2">
           {clients[nextIdx]}
         </span>
       </button>
@@ -151,7 +151,7 @@ export function ClientsStrip({
             </h2>
           </div>
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 mono-label text-steel-400">
+            <span className="inline-flex items-center gap-2 mono-label text-steel-500">
               <span className="size-1.5 rounded-full bg-cyan animate-pulse" />
               {clients.length} CLIENTES
             </span>
@@ -176,9 +176,9 @@ export function ClientsStrip({
             transition={{ duration: 0.5 }}
           >
             <div className="mb-8 flex items-center gap-3">
-              <span className="mono-label text-signal-deep">JOINT VENTURE</span>
+              <span className="mono-label text-cyan-deep">JOINT VENTURE</span>
               <span className="h-px flex-1 bg-steel-200" />
-              <span className="mono-label text-steel-400">{jointVentureLabel}</span>
+              <span className="mono-label text-steel-500">{jointVentureLabel}</span>
             </div>
             <ClientSpotlight clients={jointVentureClients} />
           </motion.div>

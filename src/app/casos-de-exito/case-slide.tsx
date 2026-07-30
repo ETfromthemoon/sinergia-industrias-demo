@@ -79,8 +79,8 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
               {study.service}
             </p>
           </div>
-          <div className="border-l-2 border-signal/60 pl-4">
-            <span className="mono-label mb-2 block text-signal text-xs">
+          <div className="border-l-2 border-cyan/60 pl-4">
+            <span className="mono-label mb-2 block text-cyan text-xs">
               <AnimatedIcon name="trending-up" size={12} className="inline mr-1" />
               RESULTADOS
             </span>

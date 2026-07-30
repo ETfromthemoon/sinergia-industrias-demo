@@ -127,7 +127,7 @@ export function CasosGrid() {
 
           {/* Active case info below dots */}
           <div className="mt-4 text-center">
-            <span className="mono-label text-steel-400">
+            <span className="mono-label text-steel-500">
               {CASES[current].code} — {CASES[current].client} ·{" "}
               {CASES[current].industry}
             </span>

@@ -69,8 +69,8 @@ export function PageHero({
           className="absolute top-0 inset-x-0 h-px"
           style={{
             background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.30) 35%, oklch(0.60 0.105 208 / 0.30) 65%, transparent 100%)"
-              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.12) 35%, oklch(0.28 0.12 255 / 0.12) 65%, transparent 100%)",
+              ? "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.30) 35%, oklch(0.746 0.1235 224 / 0.30) 65%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, oklch(0.332 0.055 276 / 0.12) 35%, oklch(0.332 0.055 276 / 0.12) 65%, transparent 100%)",
           }}
         />
 
@@ -90,7 +90,7 @@ export function PageHero({
             {badge && (
               <span className={cn(
                 "border px-2.5 py-1 mono-label",
-                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-signal/40 bg-signal/10 text-signal-deep"
+                isDark ? "border-cyan/40 bg-cyan/10 text-cyan" : "border-cyan-deep/40 bg-cyan-deep/10 text-cyan-deep"
               )}>
                 {badge}
               </span>
@@ -111,7 +111,7 @@ export function PageHero({
             {headlineAccent && (
               <span
                 className={cn("block", isDark ? "text-cyan" : "text-navy")}
-                style={isDark ? { textShadow: "0 0 32px oklch(0.60 0.105 208 / 0.35)" } : undefined}
+                style={isDark ? { textShadow: "0 0 32px oklch(0.746 0.1235 224 / 0.35)" } : undefined}
               >
                 {headlineAccent}
               </span>
@@ -143,7 +143,7 @@ export function PageHero({
               className={cn(
                 "group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
                 isDark
-                  ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.60_0.105_208_/_0.5)]"
+                  ? "bg-white text-carbon hover:bg-cyan hover:shadow-[0_0_48px_-8px_oklch(0.746_0.1235_224_/_0.5)]"
                   : "bg-navy text-white hover:bg-navy-dark"
               )}
             >
@@ -178,8 +178,8 @@ export function PageHero({
           className="absolute bottom-0 inset-x-0 h-px"
           style={{
             background: isDark
-              ? "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.25) 50%, transparent 100%)"
-              : "linear-gradient(to right, transparent 0%, oklch(0.28 0.12 255 / 0.10) 50%, transparent 100%)",
+              ? "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.25) 50%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, oklch(0.332 0.055 276 / 0.10) 50%, transparent 100%)",
           }}
         />
       </section>

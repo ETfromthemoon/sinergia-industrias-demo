@@ -8,9 +8,8 @@ export type ArtifactVariant =
 type PageHeroArtifactProps = { variant: ArtifactVariant; className?: string; };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const CYAN = "oklch(0.60 0.105 208)";
-const NAVY = "oklch(0.24 0.12 256)";
-const SIGNAL = "oklch(0.78 0.16 67)";
+const CYAN = "oklch(0.746 0.1235 224)";
+const NAVY = "oklch(0.332 0.055 276)";
 const WHITE_10 = "oklch(1 0 0 / 0.10)";
 const WHITE_20 = "oklch(1 0 0 / 0.20)";
 
@@ -84,7 +83,7 @@ function ProcessesArtifact() {
       {edges.map(([a,b],i) => <FlowLine key={i} x1={ns[a].x} y1={ns[a].y} x2={ns[b].x} y2={ns[b].y} delay={0.1*i} />)}
       {ns.map((n,i) => (
         <MicroPulse key={i} delay={i*0.3}>
-          <motion.circle cx={n.x} cy={n.y} r={n===ns[2]?16:13} strokeOpacity={0.5} fill="oklch(0.24 0.12 256 / 0.08)"
+          <motion.circle cx={n.x} cy={n.y} r={n===ns[2]?16:13} strokeOpacity={0.5} fill="oklch(0.332 0.055 276 / 0.08)"
             variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { duration: 0.5, delay: 0.15 + i*0.12, ease: "backOut" } } }} />
           <motion.circle cx={n.x} cy={n.y} r={3} fill={CYAN} stroke="none"
             variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.4 + i*0.12 } } }} />
@@ -136,7 +135,7 @@ function OdooArtifact() {
         <motion.g key={i} variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1, transition: { delay: 0.2+i*0.15, duration: 0.5, ease: "backOut" } } }}>
           <FlowLine x1={160} y1={140} x2={m.x} y2={m.y} delay={0.2+i*0.15} />
           <MicroPulse delay={i*0.4}>
-            <rect x={m.x-22} y={m.y-14} width={44} height={28} rx={4} strokeOpacity={0.4} fill="oklch(0.24 0.12 256 / 0.25)" />
+            <rect x={m.x-22} y={m.y-14} width={44} height={28} rx={4} strokeOpacity={0.4} fill="oklch(0.332 0.055 276 / 0.25)" />
           </MicroPulse>
           <text x={m.x} y={m.y+4} textAnchor="middle" fill={CYAN} fontSize="9" fontFamily="monospace" fontWeight="bold" stroke="none">{labels[i]}</text>
         </motion.g>
@@ -179,7 +178,7 @@ function ContactArtifact() {
   return (
     <ArtifactSvg stroke={NAVY}>
       <motion.path d="M80 60h160a12 12 0 0112 12v80a12 12 0 01-12 12h-40l-30 24v-24H80a12 12 0 01-12-12V72a12 12 0 0112-12z"
-        strokeOpacity={0.4} fill="oklch(0.24 0.12 256 / 0.04)"
+        strokeOpacity={0.4} fill="oklch(0.332 0.055 276 / 0.04)"
         variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { duration: 0.9, ease: EASE } } }} />
       {[0,1,2].map((i) => (
         <motion.circle key={i} cx={110+i*14} cy={100} r={4} fill={NAVY} fillOpacity={0.3} stroke="none"
@@ -216,7 +215,7 @@ function TeamArtifact() {
       {/* People nodes */}
       {people.map((p, i) => (
         <MicroPulse key={i} delay={i*0.3}>
-          <motion.circle cx={p.x} cy={p.y} r={p.r} fill="oklch(0.24 0.12 256 / 0.2)" strokeOpacity={0.5}
+          <motion.circle cx={p.x} cy={p.y} r={p.r} fill="oklch(0.332 0.055 276 / 0.2)" strokeOpacity={0.5}
             variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.3+i*0.1, duration: 0.5, ease: "backOut" } } }} />
           <motion.circle cx={p.x} cy={p.y} r={3} fill={CYAN} stroke="none"
             variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.5+i*0.1 } } }} />
@@ -236,7 +235,7 @@ function KnowledgeArtifact() {
       {/* Articles stacking */}
       {[0,1,2].map((i) => (
         <motion.g key={i}>
-          <motion.rect x={70+i*10} y={50+i*8} width={160} height={90} rx={3} fill="oklch(0.24 0.12 256 / 0.15)" strokeOpacity={0.25}
+          <motion.rect x={70+i*10} y={50+i*8} width={160} height={90} rx={3} fill="oklch(0.332 0.055 276 / 0.15)" strokeOpacity={0.25}
             variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 50+i*8, opacity: 1, transition: { delay: i*0.2, duration: 0.6, ease: EASE } } }} />
           {/* Text lines */}
           {[0,1,2,3].map((l) => (
@@ -248,10 +247,10 @@ function KnowledgeArtifact() {
       {/* Flowing pen */}
       <MicroPulse>
         <motion.g>
-          <motion.rect x="260" y="190" width="6" height="30" rx="2" fill={SIGNAL} fillOpacity={0.2} stroke={SIGNAL} strokeWidth={1} strokeOpacity={0.5}
+          <motion.rect x="260" y="190" width="6" height="30" rx="2" fill={CYAN} fillOpacity={0.2} stroke={CYAN} strokeWidth={1} strokeOpacity={0.5}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.5 }} />
           <motion.polygon points="263,190 260,180 266,180"
-            fill={SIGNAL} fillOpacity={0.15} stroke={SIGNAL} strokeWidth={1}
+            fill={CYAN} fillOpacity={0.15} stroke={CYAN} strokeWidth={1}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.5 }} />
         </motion.g>
       </MicroPulse>

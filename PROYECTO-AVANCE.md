@@ -1,9 +1,18 @@
 # Sinergia Industrias — Demo Web · Estado del Proyecto
 
-> **Actualizado:** 19 Julio 2026 · **Commit:** `8523297` (master)
+> **Actualizado:** 28 Julio 2026 · **Rama:** `feat/alineacion-manual-marca`
 > **Demo:** https://sinergia-industrias-demo.vercel.app
 > **Repo:** https://github.com/ETfromthemoon/sinergia-industrias-demo
 > **Stack:** Next.js 16 · Tailwind v4 · motion/react · shadcn/ui · Vercel
+
+## 🎨 Alineación al Manual de Marca (28 jul 2026)
+
+El sitio se alineó al [Manual de Marca oficial](docs/manual-de-marca-sinergia.pdf) de Sinergia Consultores, en 2 tracks:
+
+- **Color:** paleta migrada a los 2 colores exactos del manual (celeste `#3ABDE6`, azul oscuro `#2E3352`) con escala derivada; ámbar retirado; contraste AA remediado. Detalle en `design-direction.md`.
+- **Contenido de marca:** slogan oficial, misión/visión/valores en `/nosotros`, respaldo de Grupo Sinergia, dolor/beneficios del cliente en el home. Detalle en `brand-profile.json`.
+
+Pendiente antes de mergear a `master`: revisión y aprobación del PR.
 
 ---
 

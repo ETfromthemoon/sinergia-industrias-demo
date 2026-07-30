@@ -2,8 +2,7 @@
 import { motion } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const CYAN = "oklch(0.60 0.105 208)";
-const SIGNAL = "oklch(0.78 0.16 67)";
+const CYAN = "oklch(0.746 0.1235 224)";
 const WHITE_10 = "oklch(1 0 0 / 0.10)";
 const WHITE_20 = "oklch(1 0 0 / 0.20)";
 
@@ -82,7 +81,7 @@ function Waveform() {
         <motion.circle
           key={`wvd-${j}`}
           cx={WAVEFORM_POINTS[i].x + 7} cy={298} r={2.5}
-          fill={j === 1 ? CYAN : SIGNAL} stroke="none"
+          fill={CYAN} stroke="none"
           animate={{ cy: [298, 285, 305, 292, 298], opacity: [0.8, 1, 0.5, 1, 0.8] }}
           transition={{ duration: 2 + j * 0.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.4 }}
         />
@@ -194,7 +193,7 @@ export function HeroSchematic() {
         </motion.g>
 
         {/* Hub center */}
-        <motion.circle cx={cx} cy={cy} r={22} fill="oklch(0.16 0.12 257 / 0.6)" stroke={CYAN} strokeOpacity={0.5} strokeWidth={1}
+        <motion.circle cx={cx} cy={cy} r={22} fill="oklch(0.245 0.052 276 / 0.6)" stroke={CYAN} strokeOpacity={0.5} strokeWidth={1}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3, ease: "backOut" }} />
@@ -238,7 +237,7 @@ export function HeroSchematic() {
             />
 
             {/* Module circle */}
-            <motion.circle cx={mod.x} cy={mod.y} r={32} fill="oklch(0.16 0.12 257 / 0.5)" stroke={CYAN} strokeOpacity={0.4} strokeWidth={1}
+            <motion.circle cx={mod.x} cy={mod.y} r={32} fill="oklch(0.245 0.052 276 / 0.5)" stroke={CYAN} strokeOpacity={0.4} strokeWidth={1}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: [1, 1.03, 1], opacity: 1 }}
               transition={{ 
@@ -303,7 +302,7 @@ export function HeroSchematic() {
               transition={{ delay: 0.75 + i * 0.12, duration: 0.4 }}>
               {mod.label}
             </motion.text>
-            <motion.text x={mod.x} y={mod.y + 6} textAnchor="middle" fill={SIGNAL} fontSize="6" fontFamily="var(--font-mono)" fontWeight="bold" stroke="none"
+            <motion.text x={mod.x} y={mod.y + 6} textAnchor="middle" fill={CYAN} fontSize="6" fontFamily="var(--font-mono)" fontWeight="bold" stroke="none"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ delay: 0.85 + i * 0.12, duration: 0.4 }}>
               {mod.code}

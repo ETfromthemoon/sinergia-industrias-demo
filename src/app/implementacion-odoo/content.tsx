@@ -67,7 +67,7 @@ export default function Content() {
                   href="https://www.odoo.com/es_ES"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 mono-label underline-offset-4 transition-colors text-navy hover:text-cyan"
+                  className="mt-6 inline-flex items-center gap-2 mono-label underline-offset-4 transition-colors text-navy hover:text-cyan-deep"
                 >
                   Conocer más sobre Odoo{" "}
                   <ArrowRight className="size-3.5" />
@@ -88,7 +88,7 @@ export default function Content() {
                   <div className="inline-flex items-center justify-center size-10 border border-steel-200 bg-white">
                     <AnimatedIcon name="cpu" size={20} tone="navy" />
                   </div>
-                  <span className="mono-label text-steel-400">BENEFICIOS CLAVE</span>
+                  <span className="mono-label text-steel-500">BENEFICIOS CLAVE</span>
                 </div>
 
                 <ul className="space-y-4">

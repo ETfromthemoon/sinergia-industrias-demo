@@ -111,7 +111,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
             >
               <Link
                 href={`/blog/${featured.slug}`}
-                className="group inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
+                className="group inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.746_0.1235_224_/_0.5)]"
               >
                 Leer artículo completo
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -175,11 +175,11 @@ export default function BlogContent({ posts }: BlogContentProps) {
                   {/* Content */}
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-4 mb-3">
-                      <span className="flex items-center gap-1 mono-label text-steel-400 text-xs">
+                      <span className="flex items-center gap-1 mono-label text-steel-500 text-xs">
                         <Calendar className="size-3" />
                         {post.date}
                       </span>
-                      <span className="flex items-center gap-1 mono-label text-steel-400 text-xs">
+                      <span className="flex items-center gap-1 mono-label text-steel-500 text-xs">
                         <AnimatedIcon name="clock" size={12} />
                         {post.readTime}
                       </span>
@@ -253,7 +253,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         <button
                           type="submit"
                           disabled={status === "loading"}
-                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shrink-0"
+                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.746_0.1235_224_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shrink-0"
                         >
                           {status === "loading" ? "..." : "Suscribirme"}
                         </button>

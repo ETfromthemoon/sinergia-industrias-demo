@@ -125,7 +125,7 @@ export function OdooModulesGrid() {
               Una aplicación para cada necesidad
             </h2>
           </div>
-          <span className="mono-label text-steel-400">{MODULE_CATEGORIES.length} CATEGORÍAS · 40+ APLICACIONES</span>
+          <span className="mono-label text-steel-500">{MODULE_CATEGORIES.length} CATEGORÍAS · 40+ APLICACIONES</span>
         </div>
 
         <ModuleSlider
@@ -141,7 +141,7 @@ export function OdooModulesGrid() {
                   <AnimatedIcon name={cat.icon} size={36} tone="navy" />
                 </div>
                 <div>
-                  <span className="mono-label text-steel-400">{cat.code}</span>
+                  <span className="mono-label text-steel-500">{cat.code}</span>
                   <h3 className="font-display text-base font-semibold text-foreground">{cat.title}</h3>
                 </div>
               </div>

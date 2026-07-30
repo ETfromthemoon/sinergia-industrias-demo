@@ -26,14 +26,14 @@ export function Footer() {
         aria-hidden
         className="absolute top-0 inset-x-0 h-px"
         style={{
-          background: "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.35) 20%, oklch(0.60 0.105 208 / 0.35) 80%, transparent 100%)",
+          background: "linear-gradient(to right, transparent 0%, oklch(0.746 0.1235 224 / 0.35) 20%, oklch(0.746 0.1235 224 / 0.35) 80%, transparent 100%)",
         }}
       />
 
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.60 0.105 208 / 0.08), transparent 70%)" }}
+        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.746 0.1235 224 / 0.08), transparent 70%)" }}
       />
       <div aria-hidden className="grain pointer-events-none absolute inset-0" />
 
@@ -54,12 +54,15 @@ export function Footer() {
               />
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-steel-400">
-              Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
+              Procesos inteligentes. Impacto real.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 mono-label text-steel-400">
               <OdooLogo size={14} />
               Ready Partner Oficial Odoo
               <AnimatedIcon name="shield" size={14} tone="white" className="opacity-60" />
+            </p>
+            <p className="mt-6 mono-label text-white/30">
+              Parte de Grupo Sinergia — Consultores · Industrias · Electrónica
             </p>
           </motion.div>
 
