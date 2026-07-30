@@ -31,10 +31,14 @@ export function MethodSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.08, duration: 0.55 }}
-                    className="grid gap-4 border-t border-steel-200 py-7 sm:grid-cols-[4rem_0.6fr_1fr]"
+                    className="group grid gap-4 border-t border-steel-200 py-7 transition-colors duration-300 hover:bg-white/70 sm:grid-cols-[4rem_0.6fr_1fr] sm:px-4"
                   >
-                    <span className="font-mono text-xs text-cyan-deep">{step.number}</span>
-                    <h3 className="text-3xl text-foreground">{step.title}</h3>
+                    <span className="font-mono text-xs text-cyan-deep transition-transform duration-300 group-hover:translate-x-1">
+                      {step.number}
+                    </span>
+                    <h3 className="text-3xl text-foreground transition-transform duration-300 group-hover:translate-x-1">
+                      {step.title}
+                    </h3>
                     <div>
                       <p className="text-sm leading-relaxed text-muted-foreground">
                         {step.description}

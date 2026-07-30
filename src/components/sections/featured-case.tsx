@@ -21,10 +21,14 @@ export function FeaturedCaseSection() {
             </p>
           </div>
 
-          <article className="relative overflow-hidden bg-steel-50 p-7 sm:p-10 lg:p-12">
+          <article className="group relative overflow-hidden bg-steel-50 p-7 shadow-[0_0_0_rgba(5,27,46,0)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(5,27,46,0.12)] sm:p-10 lg:p-12">
+            <span
+              aria-hidden
+              className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-cyan transition-transform duration-700 group-hover:scale-x-100"
+            />
             <div
               aria-hidden
-              className="absolute -right-24 -top-24 size-80 rounded-full border border-navy/8"
+              className="absolute -right-24 -top-24 size-80 rounded-full border border-navy/8 transition-transform duration-700 group-hover:rotate-6 group-hover:scale-105"
             />
             <div className="relative">
               <div className="flex items-center justify-between gap-4">
@@ -66,7 +70,10 @@ export function FeaturedCaseSection() {
         <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-steel-200 pt-7">
           <span className="mono-label text-steel-400">Han trabajado con Sinergia</span>
           {CLIENTS.map((client) => (
-            <span key={client} className="font-display text-lg text-steel-600">
+            <span
+              key={client}
+              className="font-display text-lg text-steel-600 transition-colors duration-300 hover:text-cyan-deep"
+            >
               {client}
             </span>
           ))}

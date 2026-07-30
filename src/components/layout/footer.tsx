@@ -10,8 +10,11 @@ export function Footer() {
       <div className="editorial-shell relative py-16 sm:py-20">
         <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.25fr_0.75fr_0.75fr]">
           <div>
-            <div className="inline-flex bg-white px-4 py-3">
-              <BrandLogo className="w-[11.5rem]" />
+            <div className="inline-flex">
+              <BrandLogo
+                inverse
+                className="w-[11.5rem] transition-opacity duration-300 hover:opacity-80"
+              />
             </div>
             <h2 className="mt-8 max-w-xl text-4xl leading-[1.02] text-white sm:text-5xl">
               Construimos modelos para{" "}

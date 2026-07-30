@@ -57,17 +57,17 @@ export function HeroSection() {
             >
               <Link
                 href="/contacto"
-                className="group inline-flex items-center justify-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon transition-colors hover:bg-white"
+                className="micro-sheen group inline-flex items-center justify-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon shadow-[0_0_0_rgba(0,194,255,0)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_34px_rgba(0,194,255,0.18)]"
               >
                 Evaluar mi proyecto
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/casos-de-exito"
-                className="inline-flex items-center justify-center gap-2 border border-white/18 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5"
+                className="group inline-flex items-center justify-center gap-2 border border-white/18 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/5"
               >
                 Ver experiencia
-                <ArrowDownRight className="size-4" />
+                <ArrowDownRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
               </Link>
             </motion.div>
           </div>
@@ -81,7 +81,10 @@ export function HeroSection() {
             <OdooPartnerBadge className="bg-white shadow-lg shadow-black/10" />
             <p className="mt-7 font-display text-3xl leading-[1.08] text-white sm:text-4xl">
               Procesos inteligentes.
-              <span className="mt-1 block text-cyan">Impacto real.</span>
+              <span className="mt-1 flex items-center gap-3 text-cyan">
+                <span className="signal-dot size-2 rounded-full bg-cyan text-cyan" />
+                Impacto real.
+              </span>
             </p>
             <div className="mt-8 space-y-3">
               {SERVICES.map((service) => (
@@ -91,10 +94,10 @@ export function HeroSection() {
                   className="group flex items-center justify-between border-b border-white/10 pb-3 text-sm text-white/56 transition-colors hover:text-white"
                 >
                   <span className="flex items-center gap-2">
-                    <Check className="size-3.5 text-cyan" />
+                    <Check className="size-3.5 text-cyan transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />
                     {service.shortTitle}
                   </span>
-                  <ArrowRight className="size-3.5 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                  <ArrowRight className="size-3.5 translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:translate-y-0 group-hover:opacity-100" />
                 </Link>
               ))}
             </div>
