@@ -282,20 +282,6 @@
   animation-direction: reverse;
 }
 
-.cinematic-flow circle {
-  fill: var(--cyan);
-  filter: drop-shadow(0 0 0.65rem rgb(58 189 230 / 0.9));
-  animation: cinematic-node 3.8s ease-in-out infinite;
-}
-
-.cinematic-flow circle:nth-of-type(2) {
-  animation-delay: -1.2s;
-}
-
-.cinematic-flow circle:nth-of-type(3) {
-  animation-delay: -2.4s;
-}
-
 .cinematic-aperture {
   position: absolute;
   z-index: 1;
@@ -307,7 +293,17 @@
   transform: translateY(-50%);
 }
 
-.cinematic-aperture span {
+.cinematic-aperture::before {
+  position: absolute;
+  inset: 18%;
+  content: "";
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(58 189 230 / 0.16), transparent 64%);
+  filter: blur(1.2rem);
+  animation: cinematic-halo 9s ease-in-out infinite;
+}
+
+.cinematic-orbit {
   position: absolute;
   inset: 0;
   margin: auto;
@@ -316,63 +312,46 @@
   border-radius: 9999px;
 }
 
-.cinematic-aperture span::before,
-.cinematic-aperture span::after {
+.cinematic-orbit-signal {
   position: absolute;
-  content: "";
+  top: -0.14rem;
+  right: 12%;
+  width: clamp(2.5rem, 5vw, 4.75rem);
+  height: 0.2rem;
   border-radius: 9999px;
-  background: var(--cyan);
-  box-shadow: 0 0 1.5rem rgb(58 189 230 / 0.72);
+  background: linear-gradient(90deg, transparent, rgb(58 189 230 / 0.32), var(--cyan), transparent);
+  box-shadow: 0 0 1rem rgb(58 189 230 / 0.55);
 }
 
-.cinematic-aperture span::before {
-  top: 19%;
-  left: 8%;
-  width: 0.34rem;
-  height: 0.34rem;
+.cinematic-orbit-signal--primary {
+  transform: rotate(18deg);
 }
 
-.cinematic-aperture span::after {
-  right: 4%;
-  bottom: 28%;
-  width: 0.22rem;
-  height: 0.22rem;
+.cinematic-orbit-signal--secondary {
+  top: auto;
+  right: auto;
+  bottom: -0.12rem;
+  left: 10%;
+  width: clamp(1.75rem, 3.5vw, 3.25rem);
+  height: 0.16rem;
+  opacity: 0.7;
+  transform: rotate(-28deg);
 }
 
-.cinematic-aperture span:nth-child(1) {
+.cinematic-orbit--outer {
   width: 100%;
   animation: orbit-spin 38s linear infinite;
 }
 
-.cinematic-aperture span:nth-child(2) {
+.cinematic-orbit--middle {
   width: 72%;
   border-color: rgb(255 255 255 / 0.08);
   animation: orbit-spin-reverse 29s linear infinite;
 }
 
-.cinematic-aperture span:nth-child(3) {
+.cinematic-orbit--inner {
   width: 43%;
   animation: orbit-spin 21s linear infinite;
-}
-
-.cinematic-beam {
-  position: absolute;
-  z-index: 2;
-  top: -40%;
-  left: -24%;
-  width: 18%;
-  height: 190%;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(58 189 230 / 0.05),
-    rgb(255 255 255 / 0.06),
-    transparent
-  );
-  filter: blur(0.25rem);
-  transform: rotate(18deg) translateX(-180%);
-  animation: cinematic-beam 12s ease-in-out infinite;
 }
 
 .cinematic-console,
@@ -460,35 +439,16 @@
   }
 }
 
-@keyframes cinematic-node {
+@keyframes cinematic-halo {
   0%,
   100% {
-    opacity: 0.34;
-    transform: scale(0.72);
+    opacity: 0.42;
+    transform: scale(0.9);
   }
 
   50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes cinematic-beam {
-  0%,
-  16% {
-    opacity: 0;
-    transform: rotate(18deg) translateX(-180%);
-  }
-
-  28%,
-  58% {
-    opacity: 1;
-  }
-
-  72%,
-  100% {
-    opacity: 0;
-    transform: rotate(18deg) translateX(780%);
+    opacity: 0.9;
+    transform: scale(1.06);
   }
 }
 
