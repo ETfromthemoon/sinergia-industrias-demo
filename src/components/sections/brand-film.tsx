@@ -14,7 +14,7 @@ const PRINCIPLES = [
 ] as const;
 
 export function BrandFilmSection() {
-  const filmRef = useRef<HTMLDivElement>(null);
+  const filmRef = useRef<HTMLElement>(null);
   const [shouldPlay, setShouldPlay] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
@@ -38,8 +38,38 @@ export function BrandFilmSection() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="section-motion-surface bg-steel-50 px-4 pb-16 pt-24 sm:pb-20 sm:pt-32">
-        <div className="mx-auto max-w-6xl">
+      <section
+        ref={filmRef}
+        className="section-motion-surface relative overflow-hidden border-b border-steel-200 bg-steel-50 px-4 py-24 sm:py-32"
+      >
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src="/media/sinergia-film-poster.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.13] saturate-50"
+          />
+
+          {shouldPlay && (
+            <div className="absolute inset-0 overflow-hidden opacity-[0.16]">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&playsinline=1&modestbranding=1&rel=0&disablekb=1`}
+                title=""
+                tabIndex={-1}
+                allow="autoplay; encrypted-media"
+                className="pointer-events-none absolute left-[105%] top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+                style={{ width: "250vw", height: "140.625vw" }}
+              />
+            </div>
+          )}
+
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(246,247,249,0.96)_0%,rgba(246,247,249,0.88)_47%,rgba(246,247,249,0.94)_100%)]" />
+          <div className="film-frame-grid absolute inset-0 opacity-[0.16]" />
+          <div className="absolute inset-y-0 right-[12%] w-px bg-cyan/15" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:gap-20">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -79,40 +109,6 @@ export function BrandFilmSection() {
           </div>
         </div>
       </section>
-
-      <div
-        ref={filmRef}
-        aria-hidden="true"
-        className="decorative-film-band relative h-[34svh] min-h-64 overflow-hidden border-y border-navy/15 bg-carbon sm:h-[40svh] sm:min-h-80"
-      >
-        <Image
-          src="/media/sinergia-film-poster.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-
-        {shouldPlay && (
-          <div className="absolute inset-0 overflow-hidden">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&playsinline=1&modestbranding=1&rel=0&disablekb=1`}
-              title=""
-              tabIndex={-1}
-              allow="autoplay; encrypted-media"
-              className="pointer-events-none absolute left-[105%] top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
-              style={{ width: "250vw", height: "140.625vw" }}
-            />
-          </div>
-        )}
-
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,12,25,0.78)_0%,rgba(5,12,25,0.37)_42%,rgba(5,12,25,0.7)_100%)]" />
-        <div className="film-frame-grid absolute inset-0 opacity-55" />
-        <div className="absolute inset-x-[8%] top-1/2 h-px bg-cyan/30" />
-        <div className="absolute inset-y-0 left-[22%] w-px bg-white/10" />
-        <div className="absolute inset-y-0 right-[17%] w-px bg-white/8" />
-        <div className="surface-noise pointer-events-none absolute inset-0 opacity-[0.065]" />
-      </div>
     </MotionConfig>
   );
 }
