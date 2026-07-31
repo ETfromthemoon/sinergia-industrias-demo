@@ -25,18 +25,17 @@ export function HeroSection() {
           <path d="M-60 760C220 660 330 430 570 440s350 260 610 100 240-270 390-250" />
           <path d="M120 950C180 640 420 600 610 620s310 180 520 10 200-390 430-430" />
           <path d="M460-100C390 150 560 250 760 260s390-90 510 90 40 370 260 470" />
-          <circle cx="520" cy="350" r="4" />
-          <circle cx="1080" cy="520" r="4" />
-          <circle cx="760" cy="260" r="4" />
-          <circle cx="1130" cy="630" r="4" />
         </svg>
 
         <div aria-hidden="true" className="cinematic-aperture">
-          <span />
-          <span />
-          <span />
+          <span className="cinematic-orbit cinematic-orbit--outer">
+            <span className="cinematic-orbit-signal cinematic-orbit-signal--primary" />
+          </span>
+          <span className="cinematic-orbit cinematic-orbit--middle">
+            <span className="cinematic-orbit-signal cinematic-orbit-signal--secondary" />
+          </span>
+          <span className="cinematic-orbit cinematic-orbit--inner" />
         </div>
-        <div aria-hidden="true" className="cinematic-beam" />
         <div aria-hidden="true" className="surface-noise pointer-events-none absolute inset-0" />
 
         <div className="editorial-shell relative z-10 grid min-h-[100svh] content-end gap-8 pb-8 pt-28 sm:gap-10 sm:pb-10 lg:h-full lg:min-h-0 lg:grid-cols-[1.18fr_0.62fr] lg:content-center lg:items-center lg:gap-16 lg:pb-8 lg:pt-20 xl:gap-24">
