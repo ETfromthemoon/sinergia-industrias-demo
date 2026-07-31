@@ -1,6 +1,5 @@
 "use client";
 
-import type { PointerEvent } from "react";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 import { motion, MotionConfig } from "motion/react";
@@ -8,32 +7,10 @@ import { SERVICES, SITE } from "@/content/site";
 import { OdooPartnerBadge } from "@/components/ui/odoo-partner-badge";
 
 export function HeroSection() {
-  const updateLightField = (event: PointerEvent<HTMLElement>) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width;
-    const y = (event.clientY - bounds.top) / bounds.height;
-
-    event.currentTarget.style.setProperty("--pointer-x", `${x * 100}%`);
-    event.currentTarget.style.setProperty("--pointer-y", `${y * 100}%`);
-    event.currentTarget.style.setProperty("--shift-x", `${(x - 0.5) * 24}px`);
-    event.currentTarget.style.setProperty("--shift-y", `${(y - 0.5) * 18}px`);
-  };
-
-  const resetLightField = (event: PointerEvent<HTMLElement>) => {
-    event.currentTarget.style.setProperty("--pointer-x", "72%");
-    event.currentTarget.style.setProperty("--pointer-y", "28%");
-    event.currentTarget.style.setProperty("--shift-x", "0px");
-    event.currentTarget.style.setProperty("--shift-y", "0px");
-  };
-
   return (
     <MotionConfig reducedMotion="user">
       <section
         className="cinematic-hero relative min-h-[100svh] overflow-hidden bg-carbon text-white lg:h-[100svh] lg:min-h-[42rem]"
-        onPointerMove={updateLightField}
-        onPointerLeave={resetLightField}
       >
         <div aria-hidden="true" className="cinematic-field absolute inset-0" />
         <div aria-hidden="true" className="blueprint-grid-dark absolute inset-0 opacity-35" />
