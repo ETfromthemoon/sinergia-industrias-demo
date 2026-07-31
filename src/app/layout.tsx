@@ -1,113 +1,79 @@
 import type { Metadata } from "next";
-import { Inter, Archivo, JetBrains_Mono } from "next/font/google";
-import ReactDOM from "react-dom";
+import { IBM_Plex_Mono, Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { CursorGlow } from "@/components/ui/cursor-glow";
+import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
+import { SITE } from "@/content/site";
 
-// Preconnect to YouTube origins used by embedded video players,
-// so the connection is warm before any video component mounts.
-const YOUTUBE_ORIGINS = [
-  "https://www.youtube.com",
-  "https://www.youtube-nocookie.com",
-  "https://i.ytimg.com",
-];
-
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-// Archivo: high-impact grotesque with strong weight contrast at the heavy
-// end. Reads corporate and confident in headings without the flatness of
-// Space Grotesk or the editorial softness of a serif — Inter (body) keeps
-// the technical neutrality for running text.
-const archivo = Archivo({
+const newsreader = Newsreader({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const SITE_URL = "https://www.sinergiaindustrias.cl";
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Sinergia Industrias",
-  url: SITE_URL,
-  logo: `${SITE_URL}/sinergia-logo.png`,
-  image: `${SITE_URL}/sinergia-logo.png`,
-  email: "info@sinergiaindustrias.cl",
-  telephone: "+56994584617",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Calle Limache 3421, of. 724",
-    addressLocality: "Viña del Mar",
-    addressCountry: "CL",
-  },
-  sameAs: ["https://www.linkedin.com/company/sinergia-industrias"],
-};
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
-  description:
-    "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos. Ready Partner Oficial Odoo.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "Sinergia Industrias | Ingeniería que ordena y transforma",
+    template: "%s | Sinergia Industrias",
+  },
+  description: SITE.description,
+  keywords: [
+    "Ley REP Chile",
+    "implementación Odoo Chile",
+    "levantamiento de procesos",
+    "consultoría industrial",
+    "gestión de datos",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Sinergia Industrias — Ingeniería de procesos. Tecnología que funciona.",
-    description:
-      "Consultora B2B chilena especializada en cumplimiento Ley REP 20.920, levantamiento de procesos industriales, implementación ERP Odoo y análisis de datos.",
-    url: "/",
-    siteName: "Sinergia Industrias",
-    locale: "es_CL",
     type: "website",
+    locale: "es_CL",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: "Sinergia Industrias | Ingeniería que ordena y transforma",
+    description: SITE.description,
   },
-  icons: {
-    icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.description,
   },
-  other: {
-    "application-name": "Sinergia Industrias",
-    "msapplication-TileColor": "#0A1628",
-    "msapplication-TileImage": "/android-chrome-192x192.png",
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  YOUTUBE_ORIGINS.forEach((origin) => ReactDOM.preconnect(origin));
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="es"
-      className={cn("h-full antialiased", inter.variable, archivo.variable, jetbrainsMono.variable)}
+      className={cn(
+        "h-full antialiased",
+        manrope.variable,
+        newsreader.variable,
+        ibmPlexMono.variable,
+      )}
     >
+      <head>
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <CursorGlow />
+        <OrganizationJsonLd />
         {children}
       </body>
     </html>

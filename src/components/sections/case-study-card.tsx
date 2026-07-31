@@ -1,59 +1,46 @@
 "use client";
+
 import { motion } from "motion/react";
-import { CornerTicks } from "@/components/ui/blueprint-frame";
-import { Building2, Wrench, TrendingUp } from "lucide-react";
-import { truncateAtWord } from "@/lib/case-study";
-import type { CaseStudy } from "@/lib/case-study";
+import { ArrowUpRight } from "lucide-react";
+
+type CaseStudy = {
+  client: string;
+  code: string;
+  industry: string;
+  context: string;
+  service: string;
+  result: string;
+};
 
 export function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
-    <motion.div
-      className="group relative border border-steel-200 bg-white transition-colors hover:bg-steel-50"
+    <motion.article
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: (index % 2) * 0.08, duration: 0.55 }}
+      className="group flex h-full flex-col border-t border-steel-200 py-8 sm:px-3"
     >
-      <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-      <CornerTicks className="text-steel-400" size={8} />
+      <div className="flex items-center justify-between gap-4">
+        <span className="mono-label text-cyan-deep">{study.industry}</span>
+        <span className="font-mono text-[0.65rem] text-steel-400">{study.code}</span>
+      </div>
+      <h3 className="mt-5 text-4xl text-foreground">{study.client}</h3>
+      <p className="mt-5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+        {study.context}
+      </p>
 
-      <div className="p-6 sm:p-8">
-        {/* Header */}
-        <div className="mb-5 flex items-start justify-between">
-          <div>
-            <span className="mono-label mb-1 block text-steel-400">{study.code}</span>
-            <h3 className="font-display text-xl font-bold text-foreground">{study.client}</h3>
-          </div>
-          <span className="inline-flex items-center gap-1.5 border border-steel-200 bg-white px-2.5 py-1 mono-label text-steel-400">
-            <Building2 className="size-3" />
-            {study.industry}
-          </span>
+      <div className="mt-8 grid gap-5 border-t border-steel-100 pt-6 sm:grid-cols-2">
+        <div>
+          <p className="mono-label text-steel-400">Intervención</p>
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{study.service}</p>
         </div>
-
-        <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{study.context}</p>
-
-        {/* Tabs: Contexto / Servicio / Resultados */}
-        <div className="grid gap-4 sm:grid-cols-3">
-          <div className="border-l border-cyan/30 pl-3">
-            <span className="mono-label mb-1 block text-cyan">CONTEXTO</span>
-            <p className="text-xs leading-relaxed text-steel-600">{truncateAtWord(study.context, 100)}</p>
-          </div>
-          <div className="border-l border-navy/30 pl-3">
-            <span className="mono-label mb-1 block text-navy">
-              <Wrench className="inline size-3 mr-1" />
-              SERVICIO
-            </span>
-            <p className="text-xs leading-relaxed text-steel-600">{study.service}</p>
-          </div>
-          <div className="border-l border-signal/40 pl-3">
-            <span className="mono-label mb-1 block text-signal-deep">
-              <TrendingUp className="inline size-3 mr-1" />
-              RESULTADOS
-            </span>
-            <p className="text-xs leading-relaxed text-steel-600">{study.result}</p>
-          </div>
+        <div>
+          <p className="mono-label text-navy">Resultado</p>
+          <p className="mt-2 text-xs leading-relaxed text-foreground">{study.result}</p>
         </div>
       </div>
-    </motion.div>
+      <ArrowUpRight className="mt-7 size-5 text-steel-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-navy" />
+    </motion.article>
   );
 }

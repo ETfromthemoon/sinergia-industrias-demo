@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect, useCallback, type ReactNode } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { EASE_OUT, EASE_CINEMATIC } from "@/lib/motion";
+import { EASE_CINEMATIC } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type BreakpointItems = {

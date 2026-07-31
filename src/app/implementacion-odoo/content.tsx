@@ -10,6 +10,7 @@ import { motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
+import { OdooPartnerBadge } from "@/components/ui/odoo-partner-badge";
 
 const beneficios = [
   "Gestión integrada de todas las áreas de tu empresa",
@@ -26,11 +27,10 @@ export default function Content() {
       <PageHero
         variant="dark"
         artifact="odoo"
-        eyebrow="Ready Partner Oficial Odoo"
-        headline="Unifica, optimiza,"
-        headlineAccent="triunfa"
-        subhead="Potencia la gestión de tu empresa con Odoo. Nuestro servicio de implementación de ERP te brinda la solución integral que necesitas. Con Odoo, podrás utilizar un sistema de aplicaciones integradas para gestionar y optimizar tus actividades financieras, suministros, operaciones y más."
-        badge="OFICIAL"
+        eyebrow="ERP · Transformación digital"
+        headline="Un sistema que sigue"
+        headlineAccent="la lógica de tu empresa"
+        subhead="Implementamos Odoo desde tus procesos reales para conectar finanzas, inventario, ventas y operación sin agregar complejidad innecesaria."
       />
 
       {/* ¿Qué es Odoo? */}
@@ -59,6 +59,7 @@ export default function Content() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
+                <OdooPartnerBadge className="mb-6" />
                 <p className="text-base leading-relaxed text-muted-foreground">
                   Odoo ERP es una poderosa herramienta utilizada mundialmente para dar una solución adaptativa a las diferentes necesidades de organizaciones de todo tipo en ámbitos diversos tales como: la gestión de sus activos, manejo de inventarios, gestión de clientes potenciales, gestión contable, entre muchas otras. A través de su implementación adaptada a cada cliente somos capaces de generar una solución robusta pero acotada a la problemática en poco tiempo gracias a la utilización de herramientas ya existentes para la solución de nuevas problemáticas.
                 </p>

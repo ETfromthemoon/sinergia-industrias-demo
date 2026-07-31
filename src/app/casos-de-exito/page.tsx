@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHero } from "@/components/layout/page-hero";
+import { CtaBand } from "@/components/sections/cta-band";
 import { CasosGrid } from "./casos-grid";
 
 export const metadata: Metadata = {
-  title: "Casos de éxito — Resultados comprobables · Sinergia Industrias",
-  description: "Proyectos de ingeniería de procesos, implementación Odoo y cumplimiento Ley REP para industrias en Chile.",
+  title: "Casos y experiencia",
+  description: "Experiencia de Sinergia Industrias en procesos, implementación Odoo y cumplimiento Ley REP para empresas en Chile.",
   alternates: { canonical: "/casos-de-exito" },
   openGraph: {
     title: "Casos de éxito — Resultados comprobables · Sinergia Industrias",
@@ -23,13 +24,17 @@ export default function CasosDeExitoPage() {
       <main>
         <PageHero
           variant="dark"
-          artifact="cases"
-          eyebrow="Resultados comprobables"
-          headline="Creamos proyectos"
-          headlineAccent="que nos enorgullecen"
-          subhead="Una mirada a los proyectos donde aplicamos ingeniería de procesos, implementación Odoo y cumplimiento Ley REP para industrias en Chile."
+          index="03"
+          eyebrow="Experiencia aplicada"
+          headline="Problemas reales."
+          headlineAccent="Trabajo que permanece."
+          subhead="Una selección de organizaciones donde hemos intervenido procesos, sistemas y cumplimiento. Los resultados cualitativos se presentan sin inventar métricas."
         />
         <CasosGrid />
+        <CtaBand
+          title="El próximo caso puede empezar con una conversación honesta."
+          subhead="Cuéntanos qué necesita cambiar en tu operación y evaluemos juntos el mejor punto de partida."
+        />
       </main>
       <Footer />
     </>

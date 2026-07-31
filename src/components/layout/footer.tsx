@@ -1,143 +1,96 @@
-"use client";
-import { motion } from "motion/react";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-import { OdooLogo } from "@/components/ui/odoo-logo";
-import { AnimatedIcon } from "@/components/ui/animated-icon";
-import { EASE_OUT } from "@/lib/motion";
-
-const NAV_LINKS = [
-  { label: "Inicio", href: "/" },
-  { label: "Ley REP", href: "/ley-rep" },
-  { label: "Implementación Odoo", href: "/implementacion-odoo" },
-  { label: "Levantamiento de Procesos", href: "/levantamiento-de-procesos" },
-  { label: "Levantamiento de Datos", href: "/levantamiento-de-datos" },
-  { label: "Casos de Éxito", href: "/casos-de-exito" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contacto", href: "/contacto" },
-];
+import { ArrowUpRight } from "lucide-react";
+import { NAV_LINKS, SERVICES, SITE } from "@/content/site";
+import { BrandLogo } from "@/components/ui/brand-logo";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy-dark px-4 pt-16 pb-10">
-      {/* Top divider — gradient wave */}
-      <div
-        aria-hidden
-        className="absolute top-0 inset-x-0 h-px"
-        style={{
-          background: "linear-gradient(to right, transparent 0%, oklch(0.60 0.105 208 / 0.35) 20%, oklch(0.60 0.105 208 / 0.35) 80%, transparent 100%)",
-        }}
-      />
-
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 50% at 88% 0%, oklch(0.60 0.105 208 / 0.08), transparent 70%)" }}
-      />
-      <div aria-hidden className="grain pointer-events-none absolute inset-0" />
-
-      <div className="relative mx-auto max-w-6xl">
-        <div className="mb-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
-          {/* brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: EASE_OUT }}
-          >
-            <div className="mb-4 flex items-center gap-2.5">
-              <img
-                src="/sinergia-logo.png"
-                alt="Sinergia Industrias"
-                className="h-7 w-auto brightness-0 invert"
+    <footer className="relative overflow-hidden bg-carbon-2 text-white">
+      <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
+      <div className="editorial-shell relative py-16 sm:py-20">
+        <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.25fr_0.75fr_0.75fr]">
+          <div>
+            <div className="inline-flex">
+              <BrandLogo
+                inverse
+                className="w-[11.5rem] transition-opacity duration-300 hover:opacity-80"
               />
             </div>
-            <p className="max-w-xs text-sm leading-relaxed text-steel-400">
-              Ingeniería de procesos. Tecnología que funciona. Cumplimiento que no falla.
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 mono-label text-steel-400">
-              <OdooLogo size={14} />
-              Ready Partner Oficial Odoo
-              <AnimatedIcon name="shield" size={14} tone="white" className="opacity-60" />
-            </p>
-          </motion.div>
+            <h2 className="mt-8 max-w-xl text-4xl leading-[1.02] text-white sm:text-5xl">
+              Construimos modelos para{" "}
+              <em className="font-normal text-cyan">el mundo real.</em>
+            </h2>
+            <p className="mono-label mt-5 text-white/45">Procesos inteligentes. Impacto real.</p>
+            <Link
+              href="/contacto"
+              className="mt-8 inline-flex items-center gap-2 border-b border-cyan pb-1 text-sm font-semibold text-white"
+            >
+              Iniciar una conversación
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
 
-          {/* nav */}
-          <motion.nav
-            aria-label="Enlaces del sitio"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.55, ease: EASE_OUT }}
-          >
-            <p className="mono-label mb-5 text-white/30">Navegación</p>
+          <div>
+            <p className="mono-label mb-5 text-white/35">Explorar</p>
             <ul className="space-y-3">
-              {NAV_LINKS.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-steel-400 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
-                  >
-                    {l.label}
+              {[...NAV_LINKS, { label: "Contacto", href: "/contacto" }].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/60 transition-colors hover:text-white">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.nav>
+          </div>
 
-          {/* contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.55, ease: EASE_OUT }}
-          >
-            <p className="mono-label mb-5 text-white/30">Contacto</p>
-            <ul className="space-y-3 text-sm text-steel-400">
-              <li>
-                <a
-                  href="mailto:info@sinergiaindustrias.cl"
-                  className="transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
-                >
-                  info@sinergiaindustrias.cl
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+56994584617"
-                  className="tabular transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
-                >
-                  +56 9 9458 4617
-                </a>
-              </li>
-              <li>Calle Limache 3421, of. 724</li>
-              <li>Viña del Mar, Chile</li>
-              <li className="pt-1">
-                <a
-                  href="https://www.linkedin.com/company/sinergia-industrias"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
-                >
-                  LinkedIn
-                  <ExternalLink className="size-3" />
-                </a>
-              </li>
+          <div>
+            <p className="mono-label mb-5 text-white/35">Soluciones</p>
+            <ul className="space-y-3">
+              {SERVICES.map((service) => (
+                <li key={service.href}>
+                  <Link href={service.href} className="text-sm text-white/60 transition-colors hover:text-white">
+                    {service.shortTitle}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          className="flex flex-col gap-2 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.35, duration: 0.5 }}
-        >
-          <p className="mono-label text-white/30">&copy; {new Date().getFullYear()} SINERGIA INDUSTRIAS SPA</p>
-          <p className="mono-label text-white/20">Viña del Mar, Chile</p>
-        </motion.div>
+        <div className="grid gap-8 py-10 text-sm text-white/55 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="mono-label mb-2 text-white/30">Email</p>
+            <a href={`mailto:${SITE.email}`} className="hover:text-white">
+              {SITE.email}
+            </a>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Teléfono</p>
+            <a href={SITE.phoneHref} className="hover:text-white">
+              {SITE.phoneDisplay}
+            </a>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Oficina</p>
+            <p>{SITE.address}</p>
+            <p>{SITE.locality}, {SITE.country}</p>
+          </div>
+          <div>
+            <p className="mono-label mb-2 text-white/30">Red</p>
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-white">
+              LinkedIn
+              <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-white/30 sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} {SITE.legalName}</p>
+          <div className="flex gap-4">
+            <Link href="/privacidad" className="hover:text-white">Privacidad</Link>
+            <p>Viña del Mar · Proyectos en Chile</p>
+          </div>
+        </div>
       </div>
     </footer>
   );

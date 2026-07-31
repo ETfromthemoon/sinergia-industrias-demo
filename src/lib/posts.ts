@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import type { ArticleHeading } from "@/components/blog/article-content";
 
 export const VALID_TAGS = [
   "Ley REP",
@@ -39,6 +40,40 @@ function validateFrontmatter(slug: string, data: Record<string, unknown>): void 
 }
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+
+function headingId(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Builds the editorial navigation directly from the Markdown hierarchy. */
+export function extractPostHeadings(content: string): ArticleHeading[] {
+  const usedIds = new Map<string, number>();
+
+  return content
+    .split("\n")
+    .map((line) => line.match(/^(##|###)\s+(.+?)\s*#*$/))
+    .filter((match): match is RegExpMatchArray => Boolean(match))
+    .map((match) => {
+      const text = match[2]
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/[*_`]/g, "")
+        .trim();
+      const baseId = headingId(text);
+      const occurrence = usedIds.get(baseId) ?? 0;
+      usedIds.set(baseId, occurrence + 1);
+
+      return {
+        id: occurrence === 0 ? baseId : `${baseId}-${occurrence + 1}`,
+        level: match[1] === "##" ? 2 : 3,
+        text,
+      };
+    });
+}
 
 /** Get all posts (MDX from content/blog/) */
 export function getAllPosts(): Post[] {

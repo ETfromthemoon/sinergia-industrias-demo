@@ -57,6 +57,11 @@ export default function BlogContent({ posts }: BlogContentProps) {
           <div aria-hidden className="pointer-events-none absolute inset-0 blueprint-grid-dark opacity-40" />
           <div aria-hidden className="grain pointer-events-none absolute inset-0" />
         </div>
+        <div aria-hidden className="page-orbits">
+          <span className="page-orbit" />
+          <span className="page-orbit" />
+          <span className="page-orbit" />
+        </div>
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-32 sm:py-40">
           <CornerTicks className="text-cyan/50 mb-8" size={14} />
@@ -126,7 +131,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
 
       {/* ── Más artículos ──────────────────────────── */}
       {rest.length > 0 && (
-        <section className="bg-background py-24 px-4">
+        <section className="section-motion-surface bg-background py-24 px-4">
           <div className="mx-auto max-w-6xl">
             <SectionLabel index="01" className="mb-6">
               Más artículos

@@ -1,225 +1,223 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { NAV_LINKS, SERVICES } from "@/content/site";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { cn } from "@/lib/utils";
 
-const MAIN_LINKS = [
-  { label: "Casos de éxito", href: "/casos-de-exito" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Blog", href: "/blog" },
-];
-
-const SOLUTIONS_LINKS = [
-  { label: "Ley REP", href: "/ley-rep" },
-  { label: "Implementación Odoo", href: "/implementacion-odoo" },
-  { label: "Levantamiento de procesos", href: "/levantamiento-de-procesos" },
-  { label: "Levantamiento de datos", href: "/levantamiento-de-datos" },
-];
-
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const solutionsRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const transparent = pathname === "/" && !scrolled && !mobileOpen;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMenus = () => {
-    setMobileOpen(false);
-    setSolutionsOpen(false);
-  };
-
-  // Close the "Soluciones" dropdown on outside click or Escape,
-  // so keyboard and mouse users both get predictable dismiss behavior.
   useEffect(() => {
-    if (!solutionsOpen) return;
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSolutionsOpen(false);
-    };
-    const onClickOutside = (e: MouseEvent) => {
-      if (solutionsRef.current && !solutionsRef.current.contains(e.target as Node)) {
-        setSolutionsOpen(false);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setServicesOpen(false);
+        setMobileOpen(false);
       }
     };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("mousedown", onClickOutside);
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("mousedown", onClickOutside);
-    };
-  }, [solutionsOpen]);
-
-  const linkCls = (active?: boolean) =>
-    cn(
-      "group relative flex items-center gap-1.5 text-sm transition-colors",
-      scrolled
-        ? active ? "text-navy font-semibold" : "text-muted-foreground hover:text-foreground"
-        : "text-white/80 hover:text-white"
-    );
-
-  const underlineCls = (active?: boolean) =>
-    cn(
-      "pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-200 group-hover:scale-x-100",
-      active && "scale-x-100"
-    );
+  const closeMenus = () => {
+    setServicesOpen(false);
+    setMobileOpen(false);
+  };
 
   return (
-    <motion.header
+    <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b transition-colors duration-300",
-        scrolled
-          ? "glass-light"
-          : "border-white/10 bg-navy/60 backdrop-blur-xl"
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        transparent
+          ? "border-white/10 bg-carbon/18 text-white backdrop-blur-[2px]"
+          : "border-steel-200/80 bg-white/94 text-foreground shadow-[0_16px_44px_-38px_rgba(46,51,82,0.65)] backdrop-blur-xl",
       )}
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      onMouseLeave={() => setServicesOpen(false)}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        {/* logo */}
-        <Link href="/" className="group flex items-center">
-          <img
-            src="/sinergia-logo.png"
-            alt="Sinergia Industrias"
-            className={cn(
-              "h-8 w-auto transition-all duration-300",
-              scrolled
-                ? "brightness-0"
-                : "brightness-0 invert"
-            )}
+      <div className="editorial-shell grid h-[4.75rem] grid-cols-[auto_1fr_auto] items-center gap-5">
+        <Link
+          href="/"
+          onClick={closeMenus}
+          className="relative z-10 flex items-center py-2 transition-all"
+          aria-label="Sinergia Consultores, inicio"
+        >
+          <BrandLogo
+            priority
+            inverse={transparent}
+            className="w-[9.6rem] transition-[filter] duration-300 xl:w-[10.75rem]"
           />
         </Link>
 
-        {/* desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
-          {/* Solutions dropdown */}
-          <div
-            className="relative"
-            ref={solutionsRef}
-            onMouseEnter={() => setSolutionsOpen(true)}
-          >
-            <button
-              type="button"
+        <nav
+          className="hidden items-center justify-self-center gap-5 xl:gap-7 lg:flex"
+          aria-label="Navegación principal"
+        >
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={closeMenus}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={cn(
-                linkCls(),
-                "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                "whitespace-nowrap text-[0.78rem] font-semibold transition-colors",
+                transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
+                pathname === link.href && (transparent ? "text-white" : "text-navy"),
               )}
-              aria-haspopup="menu"
-              aria-expanded={solutionsOpen}
-              onClick={() => setSolutionsOpen((open) => !open)}
             >
-              Soluciones
-              <svg className={cn("ml-1 size-3 transition-transform", solutionsOpen && "rotate-180")} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-              <span className={underlineCls()} />
-            </button>
-            {solutionsOpen && (
-              <motion.div
-                role="menu"
-                className="glass-light absolute top-full left-0 w-64"
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* invisible bridge to prevent mouseleave gap */}
-                <div className="absolute inset-x-0 bottom-full h-3 -top-3 bg-transparent" aria-hidden />
-                {SOLUTIONS_LINKS.map((l) => {
-                  const active = pathname === l.href;
-                  return (
-                    <Link
-                      key={l.label}
-                      href={l.href}
-                      role="menuitem"
-                      onClick={closeMenus}
-                      className={cn(
-                        "flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-steel-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
-                        active ? "text-navy font-semibold" : "text-muted-foreground"
-                      )}
-                    >
-                      {l.label}
-                    </Link>
-                  );
-                })}
-              </motion.div>
-            )}
-          </div>
+              {link.label}
+            </Link>
+          ))}
 
-          {MAIN_LINKS.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link key={l.label} href={l.href} className={linkCls(active)}>
-                {l.label}
-                <span className={underlineCls(active)} />
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* mobile burger + CTA */}
-        <div className="flex items-center gap-3">
           <button
             type="button"
-            className="md:hidden flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menú"
-            aria-expanded={mobileOpen}
+            className={cn(
+              "flex items-center gap-1.5 whitespace-nowrap text-[0.78rem] font-semibold transition-colors",
+              transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
+            )}
+            aria-expanded={servicesOpen}
+            aria-controls="solutions-megamenu"
+            onMouseEnter={() => setServicesOpen(true)}
+            onFocus={() => setServicesOpen(true)}
+            onClick={() => setServicesOpen(true)}
           >
-            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "rotate-45 translate-y-[5px]")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "opacity-0")} />
-            <span className={cn("block h-px w-5 transition-all", scrolled ? "bg-navy" : "bg-white", mobileOpen && "-rotate-45 -translate-y-[5px]")} />
+            Soluciones
+            <ChevronDown className={cn("size-3.5 transition-transform", servicesOpen && "rotate-180")} />
           </button>
+        </nav>
+
+        <div className="relative z-10 flex items-center justify-end gap-2">
           <Link
             href="/contacto"
+            onClick={closeMenus}
             className={cn(
-              "px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep",
-              scrolled
-                ? "bg-navy text-white hover:bg-navy-dark"
-                : "bg-white text-carbon hover:bg-cyan"
+              "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-all sm:inline-flex",
+              transparent
+                ? "bg-white text-navy hover:bg-cyan"
+                : "bg-navy text-white hover:-translate-y-0.5 hover:bg-navy-dark",
             )}
           >
-            Conversemos
+            Hablemos
+            <ArrowUpRight className="size-3.5" />
           </Link>
+          <button
+            type="button"
+            className={cn(
+              "grid size-11 place-items-center lg:hidden",
+              transparent ? "text-white" : "text-foreground",
+            )}
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </div>
 
-      {/* mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          className="md:hidden border-t border-steel-200 bg-white"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="divide-y divide-steel-200 px-4 py-4">
-            {[...SOLUTIONS_LINKS, ...MAIN_LINKS].map((l) => {
-              const active = pathname === l.href;
-              return (
+      <AnimatePresence>
+        {servicesOpen && (
+          <motion.div
+            id="solutions-megamenu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-x-0 top-full hidden border-y border-steel-200 bg-white text-foreground shadow-[0_32px_80px_-42px_rgba(46,51,82,0.5)] lg:block"
+          >
+            <div className="editorial-shell grid grid-cols-[0.55fr_1.45fr] gap-10 py-7">
+              <div className="border-r border-steel-200 pr-10">
+                <p className="mono-label text-cyan-deep">Capacidades conectadas</p>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  Estrategia, procesos y tecnología articulados para resolver desafíos reales.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-x-3 xl:grid-cols-4">
+                {SERVICES.map((service, index) => (
+                  <Link
+                    key={service.href}
+                    href={service.href}
+                    onClick={closeMenus}
+                    className="group relative min-w-0 border-l border-steel-200 px-5 py-2 transition-colors hover:bg-steel-50"
+                  >
+                    <span className="font-mono text-[0.62rem] text-cyan-deep">
+                      {String(index + 1).padStart(2, "0")} / {service.eyebrow}
+                    </span>
+                    <span className="mt-3 block text-sm font-bold text-navy">{service.shortTitle}</span>
+                    <span className="mt-1.5 block text-xs leading-relaxed text-muted-foreground">
+                      {service.outcome}
+                    </span>
+                    <ArrowUpRight className="mt-4 size-4 text-steel-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-deep" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="min-h-[calc(100dvh-4.75rem)] max-h-[calc(100dvh-4.75rem)] overflow-y-auto border-t border-steel-200 bg-white text-foreground lg:hidden"
+          >
+            <nav className="editorial-shell py-5" aria-label="Navegación móvil">
+              <p className="mono-label mb-2 text-steel-400">Explorar</p>
+              {NAV_LINKS.map((link) => (
                 <Link
-                  key={l.label}
-                  href={l.href}
+                  key={link.href}
+                  href={link.href}
                   onClick={closeMenus}
-                  className={cn(
-                    "flex items-center gap-2 py-3 text-sm transition-colors",
-                    active ? "text-navy font-semibold" : "text-muted-foreground"
-                  )}
+                  className="flex items-center justify-between border-b border-steel-100 py-3 text-sm font-semibold"
                 >
-                  {l.label}
+                  {link.label}
+                  <ArrowUpRight className="size-4 text-steel-400" />
                 </Link>
-              );
-            })}
-          </div>
-        </motion.div>
-      )}
-    </motion.header>
+              ))}
+              <p className="mono-label mb-2 mt-6 text-cyan-deep">Soluciones</p>
+              {SERVICES.map((service, index) => (
+                <Link
+                  key={service.href}
+                  href={service.href}
+                  onClick={closeMenus}
+                  className="grid grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-steel-100 py-3"
+                >
+                  <span className="font-mono text-[0.65rem] text-cyan-deep">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-sm font-semibold">{service.shortTitle}</span>
+                  <ArrowUpRight className="size-4 text-steel-400" />
+                </Link>
+              ))}
+              <Link
+                href="/contacto"
+                onClick={closeMenus}
+                className="mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white"
+              >
+                Hablemos de tu proyecto
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

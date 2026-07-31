@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, type FormEvent, type ReactNode } from "react";
+import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { trackLeadConversion } from "@/lib/analytics";

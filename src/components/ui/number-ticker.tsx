@@ -26,7 +26,6 @@ export function NumberTicker({
     if (!inView) return;
 
     if (prefersReducedMotion) {
-      setDisplay(value);
       return;
     }
 
@@ -44,10 +43,12 @@ export function NumberTicker({
     return () => cancelAnimationFrame(raf);
   }, [inView, value, duration, prefersReducedMotion]);
 
+  const visibleDisplay = prefersReducedMotion ? value : display;
+
   return (
     <span ref={ref} className={`tabular ${className ?? ""}`}>
       {prefix}
-      {display}
+      {visibleDisplay}
       {suffix}
     </span>
   );

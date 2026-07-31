@@ -20,7 +20,7 @@ function DataParticle({ fromX, fromY, toX, toY, delay }: { fromX: number; fromY:
         opacity: [0, 1, 1, 0],
       }}
       transition={{
-        duration: 3 + Math.random() * 2,
+        duration: 3.5 + delay * 0.25,
         delay,
         repeat: Infinity,
         ease: "easeInOut",
@@ -41,62 +41,6 @@ const MODULES: ModuleNode[] = [
   { x: 60,  y: 255, angle: 135, icon: "bar-chart", label: "Datos", code: "DATA" },
   { x: 60,  y: 105, angle: -135, icon: "git-branch", label: "Procesos", code: "PROC" },
 ];
-
-/* ── Live waveform path ── generates a jagged line that animates */
-const WAVEFORM_POINTS = Array.from({ length: 18 }, (_, i) => ({
-  x: 15 + i * 15,
-  baseY: 298,
-  amp: 6 + (i % 3) * 5,
-}));
-
-function Waveform() {
-  return (
-    <g>
-      {/* Grid baseline */}
-      <motion.line x1={15} y1={298} x2={270} y2={298} stroke={WHITE_10} strokeWidth={0.5}
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-        transition={{ duration: 0.6, delay: 1.5 }} />
-
-      {/* Animated waveform polyline */}
-      {WAVEFORM_POINTS.map((p, i) => (
-        <motion.line
-          key={`wv-${i}`}
-          x1={p.x} y1={298}
-          x2={p.x + 15} y2={298}
-          stroke={CYAN} strokeWidth={1.2} strokeOpacity={0.6}
-          animate={{
-            y1: [298, 298 - p.amp, 298 + p.amp * 0.6, 298 - p.amp * 0.3, 298],
-            y2: [298, 298 + p.amp * 0.4, 298 - p.amp * 0.7, 298 + p.amp * 0.5, 298],
-          }}
-          transition={{
-            duration: 2.5 + i * 0.08,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.04,
-          }}
-        />
-      ))}
-
-      {/* Glowing dots at waveform peaks */}
-      {[3, 8, 14].map((i, j) => (
-        <motion.circle
-          key={`wvd-${j}`}
-          cx={WAVEFORM_POINTS[i].x + 7} cy={298} r={2.5}
-          fill={j === 1 ? CYAN : SIGNAL} stroke="none"
-          animate={{ cy: [298, 285, 305, 292, 298], opacity: [0.8, 1, 0.5, 1, 0.8] }}
-          transition={{ duration: 2 + j * 0.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.4 }}
-        />
-      ))}
-
-      {/* Waveform label */}
-      <motion.text x={142} y={312} textAnchor="middle" fill={WHITE_10} fontSize="3.5" fontFamily="var(--font-mono)" stroke="none"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.4 }}>
-        MONITOR · LIVE SIGNAL
-      </motion.text>
-    </g>
-  );
-}
 
 export function HeroSchematic() {
   const cx = 140, cy = 170;

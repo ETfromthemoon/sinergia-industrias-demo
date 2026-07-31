@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { getPost, getAllPosts, postDateToISO } from "@/lib/posts";
+import { ArrowLeft, ArrowUpRight, CalendarDays, Clock3 } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { BlogCta } from "@/components/sections/blog-cta";
-import Link from "next/link";
-import Image from "next/image";
+import { ArticleContent } from "@/components/blog/article-content";
+import { ReadingProgress } from "@/components/blog/reading-progress";
+import {
+  extractPostHeadings,
+  getAllPosts,
+  getPost,
+  postDateToISO,
+} from "@/lib/posts";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -49,135 +54,219 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPost(slug);
-
   if (!post) notFound();
 
-  const hasContent = !!post.content;
-  const SITE_URL = "https://www.sinergiaindustrias.cl";
+  const content = post.content ?? "";
+  const headings = extractPostHeadings(content);
+  const sectionHeadings = headings.filter((heading) => heading.level === 2);
+  const imageSrc = post.image || "/media/analytics-dashboard.jpg";
+  const relatedPosts = getAllPosts()
+    .filter((candidate) => candidate.slug !== slug)
+    .sort((a, b) => Number(b.tag === post.tag) - Number(a.tag === post.tag))
+    .slice(0, 3);
+  const siteUrl = "https://www.sinergiaindustrias.cl";
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    image: [post.image],
+    image: [imageSrc],
     datePublished: postDateToISO(post.date),
-    author: {
-      "@type": "Organization",
-      name: "Sinergia Industrias",
-    },
+    author: { "@type": "Organization", name: "Sinergia Industrias" },
     publisher: {
       "@type": "Organization",
       name: "Sinergia Industrias",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/sinergia-logo.png`,
-      },
+      logo: { "@type": "ImageObject", url: `${siteUrl}/sinergia-logo.png` },
     },
     description: post.excerpt,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${slug}`,
-    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blog/${slug}` },
   };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Inicio", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${siteUrl}/blog/${slug}` },
     ],
   };
 
   return (
     <>
+      <ReadingProgress />
       <Navbar />
       <main className="bg-white">
-        {/* ── HERO — corporate, imagen con overlay ligero ── */}
-        <section className="relative bg-navy-dark overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src={post.image}
-              alt=""
-              fill
-              className="object-cover opacity-25"
-              priority
-              sizes="100vw"
-            />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+
+        <header className="relative overflow-hidden bg-carbon pb-16 pt-32 text-white sm:pb-24 sm:pt-40">
+          <div aria-hidden className="aurora-dark absolute inset-0" />
+          <div aria-hidden className="surface-noise absolute inset-0" />
+          <div aria-hidden className="page-orbits">
+            <span className="page-orbit" />
+            <span className="page-orbit" />
+            <span className="page-orbit" />
           </div>
-          <div className="relative z-10 mx-auto max-w-3xl px-6 py-28 sm:py-36">
-            <Link
-              href="/blog"
-              className="inline-block text-steel-400 hover:text-white text-sm tracking-wide transition-colors mb-8"
-            >
-              Blog
-            </Link>
 
-            <span className="block text-cyan text-xs tracking-[0.18em] uppercase font-semibold mb-6">
-              {post.tag}
-            </span>
-
-            <h1 className="font-display text-3xl sm:text-4xl md:text-[2.625rem] font-bold tracking-tight text-white leading-[1.15]">
-              {post.title}
-            </h1>
-
-            <div className="flex items-center gap-4 mt-8 text-steel-400 text-sm">
-              <span>{post.date}</span>
-              <span aria-hidden="true" className="text-steel-600">·</span>
-              <span>{post.readTime} de lectura</span>
+          <div className="editorial-shell relative grid gap-12 lg:grid-cols-[1.2fr_0.58fr] lg:items-end">
+            <div>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-white/52 transition-colors hover:text-cyan"
+              >
+                <ArrowLeft className="size-3.5" />
+                Volver al conocimiento
+              </Link>
+              <p className="mono-label mt-12 text-cyan">{post.tag}</p>
+              <h1 className="mt-6 max-w-5xl text-[clamp(2.7rem,6vw,5.4rem)] leading-[0.96] text-white">
+                {post.title}
+              </h1>
+              <p className="mt-7 max-w-3xl text-base leading-relaxed text-white/62 sm:text-lg">
+                {post.excerpt}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/46">
+                <span className="inline-flex items-center gap-2">
+                  <CalendarDays className="size-3.5 text-cyan" />
+                  {post.date}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Clock3 className="size-3.5 text-cyan" />
+                  {post.readTime} de lectura
+                </span>
+                <span>{sectionHeadings.length} temas principales</span>
+              </div>
             </div>
+
+            <figure className="group relative hidden aspect-[4/5] overflow-hidden border border-white/12 bg-navy lg:block">
+              <Image
+                src={imageSrc}
+                alt=""
+                fill
+                priority
+                sizes="34vw"
+                className="object-cover opacity-72 transition-transform duration-1000 group-hover:scale-[1.035]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-transparent" />
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6">
+                <span className="mono-label text-white/62">Perspectiva Sinergia</span>
+                <span className="font-display text-4xl text-cyan">
+                  {String(sectionHeadings.length).padStart(2, "0")}
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </header>
+
+        <section className="px-4 py-14 sm:py-24">
+          <div className="editorial-shell grid gap-12 lg:grid-cols-[13rem_minmax(0,46rem)] lg:items-start lg:justify-center xl:grid-cols-[13rem_minmax(0,46rem)_11rem]">
+            <aside className="article-toc hidden lg:sticky lg:top-28 lg:block">
+              <p className="mono-label text-cyan-deep">En este artículo</p>
+              <nav className="mt-5" aria-label="Índice del artículo">
+                {sectionHeadings.map((heading, index) => (
+                  <a
+                    key={heading.id}
+                    href={`#${heading.id}`}
+                    className="block border-l border-steel-200 py-2.5 pl-4 text-xs leading-relaxed text-muted-foreground transition-colors hover:border-cyan hover:text-navy"
+                  >
+                    <span className="mr-2 font-mono text-[0.58rem] text-steel-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {heading.text}
+                  </a>
+                ))}
+              </nav>
+            </aside>
+
+            <article className="min-w-0">
+              {sectionHeadings.length > 0 ? (
+                <details className="mb-12 border border-steel-200 bg-steel-50 p-5 lg:hidden">
+                  <summary className="cursor-pointer font-mono text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-navy">
+                    Ver índice temático
+                  </summary>
+                  <nav className="mt-4 grid gap-2" aria-label="Índice móvil del artículo">
+                    {sectionHeadings.map((heading, index) => (
+                      <a
+                        key={heading.id}
+                        href={`#${heading.id}`}
+                        className="text-sm text-muted-foreground"
+                      >
+                        <span className="mr-2 font-mono text-[0.6rem] text-cyan-deep">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        {heading.text}
+                      </a>
+                    ))}
+                  </nav>
+                </details>
+              ) : null}
+
+              {content ? (
+                <ArticleContent content={content} headings={headings} />
+              ) : (
+                <div className="border border-steel-200 bg-steel-50 px-6 py-16 text-center">
+                  <p className="text-muted-foreground">Este artículo está en preparación.</p>
+                </div>
+              )}
+              <BlogCta />
+            </article>
+
+            <aside className="hidden xl:sticky xl:top-28 xl:block">
+              <p className="mono-label text-steel-400">Criterio editorial</p>
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                Contenido técnico organizado para apoyar decisiones, no para llenar espacio.
+              </p>
+              <div className="mt-6 h-px w-10 bg-cyan" />
+            </aside>
           </div>
         </section>
 
-        {/* ── BODY — columna única, corporate editorial ── */}
-        <section className="px-6 py-16 sm:py-24">
-          <article className="mx-auto max-w-[680px]">
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-            />
-            {hasContent ? (
-              <div className="prose-corporate">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    table: ({ children }) => (
-                      <div className="table-wrapper">
-                        <table>{children}</table>
-                      </div>
-                    ),
-                    pre: ({ children }) => <pre>{children}</pre>,
-                    img: ({ src, alt }) => (
-                      <img
-                        src={src}
-                        alt={alt || ""}
-                        className="content-image"
-                        width={800}
-                        height={533}
-                        loading="lazy"
-                      />
-                    ),
-                  }}
+        {relatedPosts.length > 0 ? (
+          <section className="border-t border-steel-200 bg-steel-50 px-4 py-20 sm:py-24">
+            <div className="editorial-shell">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="eyebrow">Siguiente lectura</p>
+                  <h2 className="mt-5 text-4xl text-navy sm:text-5xl">Continúa explorando.</h2>
+                </div>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-navy"
                 >
-                  {post.content}
-                </ReactMarkdown>
+                  Ver todo el blog
+                  <ArrowUpRight className="size-4 text-cyan-deep" />
+                </Link>
               </div>
-            ) : (
-              <div className="text-center py-20">
-                <p className="text-steel-400 text-lg">
-                  Este artículo está en preparación.
-                </p>
+              <div className="mt-10 grid gap-px overflow-hidden border border-steel-200 bg-steel-200 md:grid-cols-3">
+                {relatedPosts.map((related, index) => (
+                  <Link
+                    key={related.slug}
+                    href={`/blog/${related.slug}`}
+                    className="group flex min-h-72 flex-col bg-white p-7 transition-colors hover:bg-navy hover:text-white"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="mono-label text-cyan-deep group-hover:text-cyan">{related.tag}</span>
+                      <span className="font-mono text-[0.62rem] text-steel-400">0{index + 1}</span>
+                    </div>
+                    <h3 className="mt-10 font-sans text-xl font-bold leading-snug tracking-tight">
+                      {related.title}
+                    </h3>
+                    <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground group-hover:text-white/58">
+                      {related.excerpt}
+                    </p>
+                    <ArrowUpRight className="mt-auto size-5 text-cyan-deep transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan" />
+                  </Link>
+                ))}
               </div>
-            )}
-
-            <BlogCta />
-          </article>
-        </section>
+            </div>
+          </section>
+        ) : null}
       </main>
       <Footer />
     </>
