@@ -1,5 +1,6 @@
 "use client";
 import { MotionConfig } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { ModuleSlider } from "@/components/ui/module-slider";
@@ -12,6 +13,8 @@ export type FeatureItem = {
   iconName?: IconName;
   title: string;
   body: string;
+  href?: string;
+  linkLabel?: string;
 };
 
 export type FeatureSectionProps = {
@@ -101,14 +104,18 @@ export function FeatureSection({
               items={items}
               itemsPerView={itemsPerView}
               renderItem={(item, i) => (
-                  <div
+                  <article
                     className={cn(
-                      "relative p-6 border h-full",
+                      "solution-card group relative flex h-full flex-col overflow-hidden border p-6",
                       isDark
-                        ? "border-white/15 bg-white/[0.03]"
-                        : "bg-white border-steel-200",
+                        ? "border-white/15 bg-white/[0.03] text-white"
+                        : "border-steel-200 bg-white",
                     )}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-cyan transition-transform duration-500 group-hover:scale-x-100 group-focus-within:scale-x-100"
+                    />
                     {cornerTicks && (
                       <CornerTicks className={isDark ? "text-white/40" : "text-steel-400"} />
                     )}
@@ -137,10 +144,6 @@ export function FeatureSection({
                       </span>
                     ) : null}
 
-                    <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
-                      {String(index)}.{String(i + 1).padStart(2, "0")}
-                    </span>
-
                     <h3
                       className={cn(
                         "mt-2 font-display font-semibold leading-snug",
@@ -158,7 +161,28 @@ export function FeatureSection({
                     >
                       {item.body}
                     </p>
-                  </div>
+
+                    <div className="mt-auto flex items-center justify-between gap-4 pt-7">
+                      <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
+                        {String(index)}.{String(i + 1).padStart(2, "0")}
+                      </span>
+
+                      {item.href && (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={cn(
+                            "group/link inline-flex items-center gap-1.5 text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+                            isDark ? "text-cyan hover:text-white" : "text-navy hover:text-cyan-deep",
+                          )}
+                        >
+                          {item.linkLabel ?? "Ver fuente"}
+                          <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                        </a>
+                      )}
+                    </div>
+                  </article>
                 )}
             />
           </div>

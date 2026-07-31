@@ -132,8 +132,8 @@ export function OdooModulesGrid() {
           items={MODULE_CATEGORIES}
           className="pb-4"
           renderItem={(cat) => (
-            <div className="group relative border border-steel-200 bg-white p-6 transition-colors hover:bg-steel-50 h-full">
-              <span className="absolute inset-x-0 top-0 h-0.5 w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+            <div className="solution-card group relative h-full overflow-hidden border border-steel-200 bg-white p-6">
+              <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-cyan transition-transform duration-500 group-hover:scale-x-100" />
               <CornerTicks className="text-steel-400" size={8} />
 
               <div className="mb-4 flex items-center gap-3">

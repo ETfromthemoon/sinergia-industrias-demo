@@ -112,11 +112,13 @@ export default function LeyRepContent() {
           iconName: p.iconName,
           title: p.label,
           body: "economiacircular.mma.gob.cl",
+          href: `${baseLink}${p.slug}`,
+          linkLabel: "Fuente oficial",
         }))}
       />
 
       {/* Enlaces a la fuente oficial por producto prioritario */}
-      <section className="sr-only">
+      <section className="hidden" aria-hidden="true">
         <ul>
           {productos.map((p) => (
             <li key={p.slug}>
@@ -174,22 +176,26 @@ export default function LeyRepContent() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <div className="relative border border-steel-200 bg-white p-8">
-                <CornerTicks />
-
-                <ul className="space-y-6">
-                  {subjectItems.map((item) => (
-                    <li key={item.n} className="flex gap-5">
-                      <span className="mono-label text-steel-400 translate-y-0.5 shrink-0">
-                        {item.n}
-                      </span>
-                      <span className="text-foreground leading-relaxed">
-                        {item.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="grid gap-4 md:grid-cols-3 md:gap-0">
+                {subjectItems.map((item, itemIndex) => (
+                  <motion.li
+                    key={item.n}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ delay: itemIndex * 0.08, duration: 0.5 }}
+                    className="solution-card group relative min-h-full border border-steel-200 bg-white p-6 md:-ml-px md:first:ml-0"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-cyan transition-transform duration-500 group-hover:scale-x-100"
+                    />
+                    <CornerTicks className="text-steel-400" size={8} />
+                    <span className="mono-label text-cyan-deep">Caso {item.n}</span>
+                    <p className="mt-6 text-sm leading-relaxed text-foreground">{item.text}</p>
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           </MotionConfig>
         </div>
