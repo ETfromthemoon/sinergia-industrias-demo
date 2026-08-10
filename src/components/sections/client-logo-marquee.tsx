@@ -1,41 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion, MotionConfig } from "motion/react";
+import { CLIENTS, ClientLogoMark, type ClientName } from "@/components/sections/client-logo-mark";
 import { cn } from "@/lib/utils";
 
-const CLIENT_DOMAINS: Record<string, string> = {
-  "Arriendo Legal": "arriendolegal.cl",
-  Aramark: "aramark.com",
-  Asalvo: "asalvo.cl",
-  CIAL: "cial.cl",
-  "CV Trading": "cvtrading.cl",
-  Corona: "corona.cl",
-  Dimerc: "dimerc.cl",
-  Easy: "easy.cl",
-  Ecostandard: "ecostandard.cl",
-  Iansa: "iansa.cl",
-  Inacap: "inacap.cl",
-  Jumbo: "jumbo.cl",
-  "MB Chemicals": "mbchemicals.cl",
-  Moriah: "moriah.cl",
-  Paris: "paris.cl",
-  "Podas Chile": "podaschile.cl",
-  "Red Circular": "redcircular.com",
-  Ripley: "ripley.cl",
-  Tottus: "tottus.cl",
-  "Tresmontes Lucchetti": "tresmonteslucchetti.cl",
-  Vinderchile: "vinderchile.cl",
-};
-
-export const ALL_CLIENTS = Object.keys(CLIENT_DOMAINS);
-
-function logoSource(client: string) {
-  const domain = CLIENT_DOMAINS[client];
-  return domain
-    ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
-    : undefined;
-}
+export const ALL_CLIENTS = CLIENTS;
 
 type ClientLogoMarqueeProps = {
   clients: readonly string[];
@@ -43,7 +12,7 @@ type ClientLogoMarqueeProps = {
 };
 
 export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps) {
-  const uniqueClients = [...new Set(clients)].filter((client) => logoSource(client));
+  const uniqueClients = [...new Set(clients)].filter((client): client is ClientName => CLIENTS.includes(client as ClientName));
   const visualClients = [...uniqueClients, ...uniqueClients];
 
   return (
@@ -70,14 +39,9 @@ export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps
               key={`${client}-${index}`}
               style={{ width: "clamp(9.1rem, 14.3vw, 13rem)", height: "7.8rem" }}
             >
-              <Image
-                src={logoSource(client)!}
-                alt=""
-                width={128}
-                height={128}
-                unoptimized
-                loading="eager"
-                className="size-16 object-contain grayscale contrast-125 transition-[filter,opacity] duration-300 hover:grayscale-0"
+              <ClientLogoMark
+                client={client}
+                className="w-[78%] max-w-44 grayscale contrast-125 transition-[filter,opacity] duration-300 hover:grayscale-0"
               />
             </div>
           ))}
