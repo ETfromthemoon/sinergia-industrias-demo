@@ -180,7 +180,7 @@ export default function NosotrosContent() {
           <div className="relative mx-auto grid max-w-6xl gap-10 border border-white/12 bg-white/[0.035] p-7 backdrop-blur-sm sm:p-10 lg:grid-cols-[0.72fr_1.28fr] lg:p-14">
             <div>
               <p className="mono-label text-cyan">Criterio de terreno</p>
-              <p className="mt-5 font-mono text-xs leading-relaxed text-white/38">
+              <p className="mt-5 font-mono text-xs leading-relaxed text-white/70">
                 OBSERVAR / ENTENDER / DISEÑAR / TRANSFERIR
               </p>
             </div>
@@ -194,7 +194,7 @@ export default function NosotrosContent() {
                 “Somos ingenieros con experiencia de campo. Diseñamos con quienes
                 sostienen la operación todos los días.”
               </blockquote>
-              <div className="mt-9 grid gap-3 text-sm text-white/58 sm:grid-cols-3">
+              <div className="mt-9 grid gap-3 text-sm text-white/75 sm:grid-cols-3">
                 {["Escucha directa", "Evidencia operacional", "Transferencia al equipo"].map(
                   (item) => (
                     <span key={item} className="flex items-center gap-2 border-t border-white/12 pt-3">

@@ -156,7 +156,7 @@ export function FeatureSection({
                     <p
                       className={cn(
                         "mt-2 text-sm leading-relaxed",
-                        isDark ? "text-steel-400" : "text-muted-foreground",
+                        isDark ? "text-steel-300" : "text-muted-foreground",
                       )}
                     >
                       {item.body}

@@ -73,7 +73,7 @@ export function PageHero({
                   <span
                     className={cn(
                       "rounded-full border px-3 py-1 font-mono text-[0.6rem] uppercase tracking-wider",
-                      dark ? "border-white/15 text-white/55" : "border-steel-200 text-muted-foreground",
+                      dark ? "border-white/20 text-white/75" : "border-steel-200 text-muted-foreground",
                     )}
                   >
                     {badge}

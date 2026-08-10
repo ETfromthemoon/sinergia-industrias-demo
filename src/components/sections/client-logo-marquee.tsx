@@ -68,7 +68,7 @@ export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps
             <div
               className="grid shrink-0 place-items-center border-r border-steel-200 opacity-70 transition-opacity duration-300 hover:opacity-100"
               key={`${client}-${index}`}
-              style={{ width: "clamp(7rem, 11vw, 10rem)", height: "6rem" }}
+              style={{ width: "clamp(9.1rem, 14.3vw, 13rem)", height: "7.8rem" }}
             >
               <Image
                 src={logoSource(client)!}
@@ -77,7 +77,7 @@ export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps
                 height={128}
                 unoptimized
                 loading="eager"
-                className="size-12 object-contain grayscale contrast-125 transition-[filter,opacity] duration-300 hover:grayscale-0"
+                className="size-16 object-contain grayscale contrast-125 transition-[filter,opacity] duration-300 hover:grayscale-0"
               />
             </div>
           ))}

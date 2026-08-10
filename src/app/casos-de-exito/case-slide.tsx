@@ -62,7 +62,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
               <AnimatedIcon name="wrench" size={12} className="inline mr-1" />
               SERVICIO
             </span>
-            <p className="text-sm leading-relaxed text-steel-400">
+            <p className="text-sm leading-relaxed text-steel-300">
               {study.service}
             </p>
           </div>
@@ -71,7 +71,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
               <AnimatedIcon name="trending-up" size={12} className="inline mr-1" />
               RESULTADOS
             </span>
-            <p className="text-sm leading-relaxed text-steel-400">
+            <p className="text-sm leading-relaxed text-steel-300">
               {study.result}
             </p>
           </div>

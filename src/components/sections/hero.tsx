@@ -113,7 +113,7 @@ export function HeroSection() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="group flex items-center justify-between border-b border-white/10 pb-3 text-sm text-white/56 transition-colors hover:text-white"
+                  className="group flex items-center justify-between border-b border-white/10 pb-3 text-sm text-white/72 transition-colors hover:text-white"
                 >
                   <span className="flex items-center gap-2">
                     <Check className="size-3.5 text-cyan transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />

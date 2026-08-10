@@ -88,7 +88,7 @@ export function ProgressiveSteps({
                 {title}
               </h2>
             </div>
-            <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
+            <span className={cn("mono-label", isDark ? "text-steel-300" : "text-steel-600")}>
               {steps.length} PASOS · AUTO-AVANCE
             </span>
           </div>
@@ -146,8 +146,8 @@ export function ProgressiveSteps({
                             ? "border-cyan text-cyan"
                             : "border-navy text-navy"
                           : isDark
-                            ? "border-white/15 text-white/50"
-                            : "border-steel-200 text-steel-400"
+                            ? "border-white/20 text-white/70"
+                            : "border-steel-200 text-steel-600"
                       )}
                       animate={
                         isActive
@@ -167,14 +167,14 @@ export function ProgressiveSteps({
                               ? "text-white"
                               : "text-navy"
                             : isDark
-                              ? "text-white/60"
+                              ? "text-white/75"
                               : "text-muted-foreground"
                         )}
                       >
                         {step.title}
                       </span>
                       {step.duration && isActive && (
-                        <span className="mono-label text-steel-400">{step.duration}</span>
+                        <span className={cn("mono-label", isDark ? "text-steel-300" : "text-steel-600")}>{step.duration}</span>
                       )}
                     </div>
 
@@ -235,7 +235,7 @@ export function ProgressiveSteps({
                     <span
                       className={cn(
                         "mono-label mb-4 inline-block",
-                        isDark ? "text-steel-400" : "text-steel-400"
+                        isDark ? "text-steel-300" : "text-steel-600"
                       )}
                     >
                       ETAPA.{activeStep.code}
@@ -282,7 +282,7 @@ export function ProgressiveSteps({
                         "mt-6 inline-flex items-center gap-2 border px-3 py-1.5 mono-label",
                         isDark
                           ? "border-white/15 text-steel-300"
-                          : "border-steel-200 text-steel-400"
+                          : "border-steel-200 text-steel-600"
                       )}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}

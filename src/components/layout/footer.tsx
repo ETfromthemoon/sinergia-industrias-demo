@@ -20,7 +20,7 @@ export function Footer() {
               Construimos modelos para{" "}
               <em className="font-normal text-cyan">el mundo real.</em>
             </h2>
-            <p className="mono-label mt-5 text-white/45">Procesos inteligentes. Impacto real.</p>
+            <p className="mono-label mt-5 text-white/70">Procesos inteligentes. Impacto real.</p>
             <Link
               href="/contacto"
               className="mt-8 inline-flex items-center gap-2 border-b border-cyan pb-1 text-sm font-semibold text-white"
@@ -31,7 +31,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mono-label mb-5 text-white/35">Explorar</p>
+            <p className="mono-label mb-5 text-white/65">Explorar</p>
             <ul className="space-y-3">
               {[...NAV_LINKS, { label: "Contacto", href: "/contacto" }].map((link) => (
                 <li key={link.href}>
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mono-label mb-5 text-white/35">Soluciones</p>
+            <p className="mono-label mb-5 text-white/65">Soluciones</p>
             <ul className="space-y-3">
               {SERVICES.map((service) => (
                 <li key={service.href}>
@@ -59,24 +59,24 @@ export function Footer() {
 
         <div className="grid gap-8 py-10 text-sm text-white/55 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="mono-label mb-2 text-white/30">Email</p>
+            <p className="mono-label mb-2 text-white/65">Email</p>
             <a href={`mailto:${SITE.email}`} className="hover:text-white">
               {SITE.email}
             </a>
           </div>
           <div>
-            <p className="mono-label mb-2 text-white/30">Teléfono</p>
+            <p className="mono-label mb-2 text-white/65">Teléfono</p>
             <a href={SITE.phoneHref} className="hover:text-white">
               {SITE.phoneDisplay}
             </a>
           </div>
           <div>
-            <p className="mono-label mb-2 text-white/30">Oficina</p>
+            <p className="mono-label mb-2 text-white/65">Oficina</p>
             <p>{SITE.address}</p>
             <p>{SITE.locality}, {SITE.country}</p>
           </div>
           <div>
-            <p className="mono-label mb-2 text-white/30">Red</p>
+            <p className="mono-label mb-2 text-white/65">Red</p>
             <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-white">
               LinkedIn
               <ArrowUpRight className="size-3.5" />
@@ -84,7 +84,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-white/30 sm:flex-row sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-7 text-xs text-white/55 sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} {SITE.legalName}</p>
           <div className="flex gap-4">
             <Link href="/privacidad" className="hover:text-white">Privacidad</Link>
