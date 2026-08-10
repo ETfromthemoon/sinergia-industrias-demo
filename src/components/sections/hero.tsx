@@ -140,9 +140,6 @@ export function HeroSection() {
           className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-3 text-white/34 lg:flex"
         >
           <span className="cinematic-scroll-line h-10 w-px overflow-hidden bg-white/12" />
-          <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em]">
-            Explorar
-          </span>
         </div>
       </section>
     </MotionConfig>

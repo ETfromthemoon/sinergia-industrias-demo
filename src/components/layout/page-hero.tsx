@@ -135,12 +135,7 @@ export function PageHero({
               </div>
             </motion.div>
           </div>
-          <div
-            className={cn(
-              "mt-14 flex items-center justify-between border-t pt-5",
-              dark ? "border-white/10 text-white/28" : "border-steel-200 text-steel-400",
-            )}
-          >
+          <div className="hidden">
             <span className="mono-label">Sinergia Industrias</span>
             <span className="font-display text-3xl">{index}</span>
           </div>
