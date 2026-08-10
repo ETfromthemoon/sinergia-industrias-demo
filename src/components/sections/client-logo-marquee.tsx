@@ -39,17 +39,24 @@ export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps
 
             return (
               <div
-                className="grid shrink-0 place-items-center border-r border-steel-200 bg-steel-50 p-4 opacity-85 transition-[background-color,opacity] duration-300 hover:opacity-100"
+                className="group grid shrink-0 place-items-center border-r border-steel-200 bg-steel-50 p-4"
                 key={`${client}-${index}`}
                 style={{ width: "clamp(9.1rem, 14.3vw, 13rem)", height: "7.8rem" }}
               >
-                <div className={cn("grid h-full w-full place-items-center rounded-sm", client === "Easy" && "bg-steel-900 p-3")}>
+                <div
+                  className={cn(
+                    "grid h-full w-full place-items-center rounded-md transition-shadow duration-500",
+                    "inverse" in logo && logo.inverse &&
+                      "bg-navy px-3 py-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] group-hover:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.16),0_12px_30px_rgba(5,27,46,0.16)]",
+                  )}
+                >
                   <Image
                     alt=""
                     aria-hidden="true"
-                    className="max-h-[4.5rem] w-auto max-w-full object-contain"
+                    className="max-h-[4.9rem] w-auto max-w-[92%] object-contain transition-[filter,transform] duration-500 ease-out group-hover:scale-[1.045] group-hover:saturate-[1.08]"
                     height={96}
                     loading="eager"
+                    sizes="(max-width: 768px) 9rem, 13rem"
                     src={logo.src}
                     width={220}
                   />
