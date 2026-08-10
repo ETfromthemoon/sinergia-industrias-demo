@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion, MotionConfig } from "motion/react";
-import { CLIENTS, ClientLogoMark, type ClientName } from "@/components/sections/client-logo-mark";
+import { ALL_CLIENTS, CLIENT_LOGOS, type ClientName } from "@/components/sections/client-logo-assets";
 import { cn } from "@/lib/utils";
 
-export const ALL_CLIENTS = CLIENTS;
+export { ALL_CLIENTS };
 
 type ClientLogoMarqueeProps = {
   clients: readonly string[];
@@ -12,7 +13,7 @@ type ClientLogoMarqueeProps = {
 };
 
 export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps) {
-  const uniqueClients = [...new Set(clients)].filter((client): client is ClientName => CLIENTS.includes(client as ClientName));
+  const uniqueClients = [...new Set(clients)].filter((client): client is ClientName => client in CLIENT_LOGOS);
   const visualClients = [...uniqueClients, ...uniqueClients];
 
   return (
@@ -33,18 +34,29 @@ export function ClientLogoMarquee({ clients, className }: ClientLogoMarqueeProps
           animate={{ x: "-50%" }}
           transition={{ duration: 72, ease: "linear", repeat: Infinity }}
         >
-          {visualClients.map((client, index) => (
-            <div
-              className="grid shrink-0 place-items-center border-r border-steel-200 opacity-70 transition-opacity duration-300 hover:opacity-100"
-              key={`${client}-${index}`}
-              style={{ width: "clamp(9.1rem, 14.3vw, 13rem)", height: "7.8rem" }}
-            >
-              <ClientLogoMark
-                client={client}
-                className="w-[78%] max-w-44 grayscale contrast-125 transition-[filter,opacity] duration-300 hover:grayscale-0"
-              />
-            </div>
-          ))}
+          {visualClients.map((client, index) => {
+            const logo = CLIENT_LOGOS[client];
+
+            return (
+              <div
+                className="grid shrink-0 place-items-center border-r border-steel-200 bg-steel-50 p-4 opacity-85 transition-[background-color,opacity] duration-300 hover:opacity-100"
+                key={`${client}-${index}`}
+                style={{ width: "clamp(9.1rem, 14.3vw, 13rem)", height: "7.8rem" }}
+              >
+                <div className={cn("grid h-full w-full place-items-center rounded-sm", client === "Easy" && "bg-steel-900 p-3")}>
+                  <Image
+                    alt=""
+                    aria-hidden="true"
+                    className="max-h-[4.5rem] w-auto max-w-full object-contain"
+                    height={96}
+                    loading="eager"
+                    src={logo.src}
+                    width={220}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </motion.div>
       </div>
     </MotionConfig>
