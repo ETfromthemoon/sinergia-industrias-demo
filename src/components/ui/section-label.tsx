@@ -13,7 +13,7 @@ type SectionLabelProps = {
 export function SectionLabel({ children, tone = "light", className }: SectionLabelProps) {
   const color =
     tone === "dark"
-      ? "text-white/60"
+      ? "text-white/75"
       : tone === "accent"
         ? "text-cyan"
         : "text-navy";
