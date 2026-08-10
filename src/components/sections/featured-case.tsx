@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CLIENTS } from "@/content/site";
+import { ALL_CLIENTS, ClientLogoMarquee } from "@/components/sections/client-logo-marquee";
 
 export function FeaturedCaseSection() {
   return (
@@ -8,8 +8,7 @@ export function FeaturedCaseSection() {
       <div className="editorial-shell">
         <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
-            <p className="eyebrow">Experiencia</p>
-            <h2 className="mt-7 text-5xl leading-[0.98] sm:text-6xl">
+            <h2 className="text-5xl leading-[0.98] sm:text-6xl">
               La evidencia está
               <br />
               <em className="font-normal text-navy">en la operación.</em>
@@ -31,11 +30,11 @@ export function FeaturedCaseSection() {
               className="absolute -right-24 -top-24 size-80 rounded-full border border-navy/8 transition-transform duration-700 group-hover:rotate-6 group-hover:scale-105"
             />
             <div className="relative">
-              <div className="flex items-center justify-between gap-4">
+              <div className="hidden">
                 <p className="mono-label text-cyan-deep">Caso destacado · Manufactura</p>
                 <p className="font-display text-3xl text-steel-300">01</p>
               </div>
-              <h3 className="mt-10 text-5xl text-foreground">Ecostandard</h3>
+              <h3 className="text-5xl text-foreground">Ecostandard</h3>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
                 Levantamos el proceso productivo e implementamos Odoo MRP y CRM para
                 conectar materias primas, inventario, pedidos y oportunidades comerciales.
@@ -67,17 +66,7 @@ export function FeaturedCaseSection() {
           </article>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-steel-200 pt-7">
-          <span className="mono-label text-steel-400">Han trabajado con Sinergia</span>
-          {CLIENTS.map((client) => (
-            <span
-              key={client}
-              className="font-display text-lg text-steel-600 transition-colors duration-300 hover:text-cyan-deep"
-            >
-              {client}
-            </span>
-          ))}
-        </div>
+        <ClientLogoMarquee className="mt-14" clients={ALL_CLIENTS} />
       </div>
     </section>
   );

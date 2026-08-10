@@ -140,10 +140,7 @@ export function OdooModulesGrid() {
                 <div className="inline-flex items-center justify-center size-14 border border-steel-200 bg-white">
                   <AnimatedIcon name={cat.icon} size={36} tone="navy" />
                 </div>
-                <div>
-                  <span className="mono-label text-steel-400">{cat.code}</span>
-                  <h3 className="font-display text-base font-semibold text-foreground">{cat.title}</h3>
-                </div>
+                <h3 className="font-display text-base font-semibold text-foreground">{cat.title}</h3>
               </div>
 
               <ul className="space-y-2">

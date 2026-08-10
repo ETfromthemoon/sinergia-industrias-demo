@@ -141,9 +141,12 @@ export default function Content() {
           "CIAL",
           "MB Chemicals",
           "Podas Chile",
+          "Jumbo",
+          "Paris",
+          "Easy",
+          "Corona",
+          "Ripley",
         ]}
-        jointVentureLabel="Asalvo"
-        jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley"]}
       />
 
       <RelatedServices current="levantamiento-de-datos" />
