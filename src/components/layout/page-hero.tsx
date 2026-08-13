@@ -113,7 +113,7 @@ export function PageHero({
                 <Link
                   href={ctaHref}
                   className={cn(
-                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold",
+                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                     dark ? "bg-cyan text-carbon hover:bg-white" : "bg-navy text-white hover:bg-navy-dark",
                   )}
                 >
@@ -124,7 +124,7 @@ export function PageHero({
                   <Link
                     href={secondaryCtaHref}
                     className={cn(
-                      "inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold",
+                      "inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                       dark ? "border-white/30" : "border-navy/30",
                     )}
                   >

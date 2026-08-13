@@ -91,8 +91,8 @@ export function BrandFilmSection() {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Sinergia integra tecnología, procesos y conocimiento para transformar
-                organizaciones de manera sostenible y eficiente.
+                Articulamos tecnología, procesos y conocimiento para ordenar la operación
+                y sostener mejoras concretas.
               </p>
               <div className="mt-7 grid gap-3">
                 {PRINCIPLES.map((principle) => (

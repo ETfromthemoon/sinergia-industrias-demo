@@ -14,19 +14,19 @@ const reportCards = [
     icon: FileText,
     iconName: "file-text" as const,
     title: "Reportes en tiempo real",
-    body: "Mantente al día con reportes que se actualizan automáticamente con la información más reciente de tu operación.",
+    body: "Consolidamos los datos disponibles para que cada reporte refleje el último corte acordado con tu equipo.",
   },
   {
     icon: BarChart3,
     iconName: "bar-chart" as const,
     title: "Tableros personalizados",
-    body: "Visualiza tus KPIs críticos en tableros diseñados a la medida de tu negocio y tus objetivos estratégicos.",
+    body: "Definimos indicadores y visualizaciones según las decisiones reales de cada área.",
   },
   {
     icon: TrendingUp,
     iconName: "trending-up" as const,
     title: "Comparte con tu equipo",
-    body: "Distribuye reportes y dashboards con quien necesites. Toda la información clave al alcance de tu equipo.",
+    body: "Dejamos reportes claros para que cada área consulte y comparta la misma información.",
   },
 ];
 
@@ -35,25 +35,25 @@ const processSteps = [
     number: "01",
     code: "DSGN",
     title: "Diseño de soluciones",
-    body: "Diseñamos soluciones y experiencias personalizadas para cada uno de nuestros clientes y su negocio, con una visión de sustentabilidad.",
+    body: "Definimos fuentes, indicadores y vistas según lo que el equipo necesita revisar en su operación.",
   },
   {
     number: "02",
     code: "CONS",
     title: "Consultoría especializada",
-    body: "Mapeo de procesos. Discovery. Identificación de oportunidades de mejora y eficiencia.",
+    body: "Mapeamos el origen, la calidad y los responsables de los datos para detectar brechas.",
   },
   {
     number: "03",
     code: "IMPL",
     title: "Desarrollo e implementación",
-    body: "Implementación de soluciones a medida que atienden las necesidades específicas de nuestros clientes.",
+    body: "Configuramos modelos, tableros y flujos de actualización integrados a la operación.",
   },
   {
     number: "04",
     code: "SUPP",
     title: "Soporte y continuidad",
-    body: "Brindamos un servicio de soporte y continuidad operativa de excelencia para asegurar resultados sostenibles.",
+    body: "Documentamos, capacitamos y ajustamos para que la información se mantenga útil.",
   },
 ];
 
@@ -100,10 +100,8 @@ export default function Content() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Los desafíos presentes en nuestro entorno nos impulsan a crear
-              iniciativas tecnológicas con una respuesta ágil y flexible, pero
-              sin sacrificar eficiencia, robustez y seguridad que nos expongan
-              a riesgos mayores.
+              Reunimos fuentes dispersas, acordamos definiciones y dejamos reportes claros
+              para que el equipo compare y actúe sobre la misma información.
             </motion.p>
           </MotionConfig>
         </div>
@@ -113,7 +111,7 @@ export default function Content() {
         index="02"
         eyebrow="Entregables"
         title="Reportes claros y completos"
-        intro="Mantente al día con reportes en tiempo real. Toma mejores decisiones con la ayuda de reportes dinámicos que puedes guardar y compartir con quien sea. Mantén la información clave al alcance de tu mano con los tableros personalizados."
+        intro="Diseñamos reportes y tableros con las métricas que cada área necesita revisar. La información queda disponible para consultar, compartir y dar seguimiento."
         items={reportCards}
         columns={3}
         itemsPerView={{ sm: 1, md: 2, lg: 3 }}

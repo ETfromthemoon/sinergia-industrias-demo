@@ -37,7 +37,7 @@ export function useFormSubmit() {
 
       if (json.success === "true" || json.success === true) {
         setStatus("success");
-        setMessage("Mensaje enviado. Te responderemos en menos de 24h hábiles.");
+        setMessage("Suscripción confirmada. Te escribiremos cuando publiquemos algo relevante.");
         // Evento de conversión para Google Ads / GA4 (no-op si no hay tag instalado).
         trackLeadConversion(
           typeof data.servicio === "string" ? { servicio: data.servicio } : undefined

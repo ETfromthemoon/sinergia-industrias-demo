@@ -242,17 +242,16 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       Escribimos sobre procesos, tecnología ERP y cumplimiento normativo. Sin spam, solo cuando hay algo que vale la pena leer.
                     </p>
 
-                    <form
-                      onSubmit={handleSubmit}
-                      className="mt-6 flex gap-2"
-                    >
+                    <form onSubmit={handleSubmit} className="mt-6 flex gap-2">
                       <input type="hidden" name="_subject" value="Suscripción Blog — Sinergia Industrias" />
                       <input
                         type="email"
                         name="email"
+                        aria-label="Correo electrónico"
                         placeholder="tu@email.com"
                         required
-                        className="flex-1 border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-cyan focus:outline-none transition-colors"
+                        autoComplete="email"
+                        className="flex-1 border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 transition-colors focus:border-cyan focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                       />
                       {status !== "success" ? (
                         <button
@@ -267,8 +266,12 @@ export default function BlogContent({ posts }: BlogContentProps) {
                           ✓ Suscrito
                         </div>
                       )}
-                      <FormSubmitFeedback status={status} message={message} />
                     </form>
+                    {status !== "idle" ? (
+                      <div className="mt-3">
+                        <FormSubmitFeedback status={status} message={message} />
+                      </div>
+                    ) : null}
                   </div>
 
                   {/* Contacto directo */}

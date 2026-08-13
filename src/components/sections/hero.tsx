@@ -78,14 +78,14 @@ export function HeroSection() {
             >
               <Link
                 href="/contacto"
-                className="micro-sheen group inline-flex items-center justify-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon shadow-[0_0_0_rgba(0,194,255,0)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_34px_rgba(0,194,255,0.18)]"
+                className="micro-sheen group inline-flex items-center justify-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon shadow-[0_0_0_rgba(0,194,255,0)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_34px_rgba(0,194,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               >
                 Evaluar mi proyecto
                 <ArrowRight className="relative z-[2] size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/casos-de-exito"
-                className="group inline-flex items-center justify-center gap-2 border border-white/18 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/5"
+                className="group inline-flex items-center justify-center gap-2 border border-white/18 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               >
                 Ver experiencia
                 <ArrowDownRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -113,7 +113,7 @@ export function HeroSection() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="group flex items-center justify-between border-b border-white/10 pb-3 text-sm text-white/72 transition-colors hover:text-white"
+                  className="group flex items-center justify-between border-b border-white/10 pb-3 text-sm text-white/72 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   <span className="flex items-center gap-2">
                     <Check className="size-3.5 text-cyan transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />
@@ -128,7 +128,7 @@ export function HeroSection() {
               href={SITE.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 hidden text-xs font-semibold text-cyan transition-colors hover:text-white lg:inline-flex"
+              className="mt-7 hidden text-xs font-semibold text-cyan transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan lg:inline-flex"
             >
               Respuesta directa por WhatsApp
             </a>
