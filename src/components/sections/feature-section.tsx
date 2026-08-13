@@ -103,7 +103,7 @@ export function FeatureSection({
             <ModuleSlider
               items={items}
               itemsPerView={itemsPerView}
-              renderItem={(item, i) => (
+              renderItem={(item) => (
                   <article
                     className={cn(
                       "solution-card group relative flex h-full flex-col overflow-hidden border p-6",
@@ -156,18 +156,14 @@ export function FeatureSection({
                     <p
                       className={cn(
                         "mt-2 text-sm leading-relaxed",
-                        isDark ? "text-steel-400" : "text-muted-foreground",
+                        isDark ? "text-steel-300" : "text-muted-foreground",
                       )}
                     >
                       {item.body}
                     </p>
 
-                    <div className="mt-auto flex items-center justify-between gap-4 pt-7">
-                      <span className={cn("mono-label", isDark ? "text-steel-400" : "text-steel-400")}>
-                        {String(index)}.{String(i + 1).padStart(2, "0")}
-                      </span>
-
-                      {item.href && (
+                    {item.href && (
+                      <div className="mt-auto flex justify-end pt-7">
                         <a
                           href={item.href}
                           target="_blank"
@@ -180,8 +176,8 @@ export function FeatureSection({
                           {item.linkLabel ?? "Ver fuente"}
                           <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                         </a>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </article>
                 )}
             />

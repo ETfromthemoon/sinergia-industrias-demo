@@ -41,7 +41,6 @@ export function ProcessSteps({ title, eyebrow, steps }: ProcessStepsProps) {
                   <h3 className="text-3xl">{step.title}</h3>
                   <div>
                     <p className="text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-                    <span className="mono-label mt-4 block text-steel-400">{step.code}</span>
                   </div>
                 </motion.article>
               ))}

@@ -46,7 +46,7 @@ export function ContactSection() {
           </div>
 
           <div className="border border-steel-200 bg-white p-6 shadow-card sm:p-9 lg:p-11">
-            <div className="mb-9 flex items-end justify-between border-b border-steel-200 pb-5">
+            <div className="hidden">
               <div>
                 <p className="mono-label text-cyan-deep">Solicitud de contacto</p>
                 <p className="mt-2 text-sm text-muted-foreground">Cinco campos, sin rodeos.</p>

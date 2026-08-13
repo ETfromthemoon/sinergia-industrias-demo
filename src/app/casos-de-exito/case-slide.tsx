@@ -1,8 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import { CornerTicks } from "@/components/ui/blueprint-frame";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
-import { truncateAtWord } from "@/lib/case-study";
 import type { CaseStudy } from "@/lib/case-study";
 
 type CaseSlideProps = {
@@ -37,13 +35,10 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
       <div aria-hidden className="grain pointer-events-none absolute inset-0" />
 
       {/* Tech crosshairs */}
-      <CornerTicks className="text-cyan/50 z-10" size={16} />
-
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-end h-full p-8 sm:p-12 lg:p-16">
         {/* Code + Industry row */}
         <div className="flex items-center gap-4 mb-4">
-          <span className="mono-label text-cyan">{study.code}</span>
           <span className="inline-flex items-center gap-1.5 border border-cyan/30 bg-cyan/10 px-3 py-1 mono-label text-cyan text-xs">
             <AnimatedIcon name="building" size={12} />
             {study.industry}
@@ -62,20 +57,12 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
 
         {/* Three-column specs */}
         <div className="grid gap-6 sm:grid-cols-3 max-w-3xl">
-          <div className="border-l-2 border-cyan/60 pl-4">
-            <span className="mono-label mb-2 block text-cyan text-xs">
-              CONTEXTO
-            </span>
-            <p className="text-sm leading-relaxed text-steel-400">
-              {truncateAtWord(study.context, 120)}
-            </p>
-          </div>
           <div className="border-l-2 border-navy/60 pl-4">
             <span className="mono-label mb-2 block text-white/70 text-xs">
               <AnimatedIcon name="wrench" size={12} className="inline mr-1" />
               SERVICIO
             </span>
-            <p className="text-sm leading-relaxed text-steel-400">
+            <p className="text-sm leading-relaxed text-steel-300">
               {study.service}
             </p>
           </div>
@@ -84,7 +71,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
               <AnimatedIcon name="trending-up" size={12} className="inline mr-1" />
               RESULTADOS
             </span>
-            <p className="text-sm leading-relaxed text-steel-400">
+            <p className="text-sm leading-relaxed text-steel-300">
               {study.result}
             </p>
           </div>
@@ -92,9 +79,6 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
       </div>
 
       {/* Slide counter (top-right) */}
-      <div className="absolute top-6 right-8 z-10 mono-label text-white/40 text-xs">
-        {current + 1} / {total}
-      </div>
     </motion.div>
   );
 }

@@ -172,7 +172,7 @@ export function ModuleSlider<T>({
           <>
             <motion.button
               onClick={prev}
-              className="absolute -left-3 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:bg-navy hover:text-white hover:border-navy"
+              className="absolute -left-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               aria-label="Anterior"
             >
@@ -180,7 +180,7 @@ export function ModuleSlider<T>({
             </motion.button>
             <motion.button
               onClick={next}
-              className="absolute -right-3 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:bg-navy hover:text-white hover:border-navy"
+              className="absolute -right-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               aria-label="Siguiente"
             >
@@ -190,16 +190,21 @@ export function ModuleSlider<T>({
         )}
 
         {shouldShowDots && (
-          <div className="mt-8 flex items-center justify-center gap-2">
+          <div className="mt-8 flex items-center justify-center" role="group" aria-label="Seleccionar página">
             {Array.from({ length: totalPages }).map((_, i) => (
               <motion.button
                 key={i}
                 onClick={() => { setDirection(i > page ? 1 : -1); setPage(i); }}
-                className={cn("size-2.5 rounded-full transition-colors", i === page ? "bg-navy" : "bg-steel-300 hover:bg-steel-400")}
+                className="group grid size-9 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                animate={i === page ? { scale: [1, 1.25, 1], transition: { duration: 0.4 } } : {}}
                 aria-label={`Ir a página ${i + 1}`}
-              />
+                aria-current={i === page ? "true" : undefined}
+              >
+                <motion.span
+                  className={cn("h-2.5 w-2.5 rounded-full transition-colors", i === page ? "bg-navy" : "bg-steel-300 group-hover:bg-steel-400")}
+                  animate={i === page ? { scale: [1, 1.25, 1], transition: { duration: 0.4 } } : {}}
+                />
+              </motion.button>
             ))}
           </div>
         )}

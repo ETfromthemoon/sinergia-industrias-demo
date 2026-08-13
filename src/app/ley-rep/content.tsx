@@ -230,9 +230,12 @@ export default function LeyRepContent() {
           "Moriah",
           "CIAL",
           "MB Chemicals",
+          "Jumbo",
+          "Paris",
+          "Easy",
+          "Corona",
+          "Ripley",
         ]}
-        jointVentureLabel="Asalvo"
-        jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley"]}
       />
 
       <RelatedServices current="ley-rep" />

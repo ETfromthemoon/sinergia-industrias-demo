@@ -68,12 +68,9 @@ export function RelatedServices({ current, index = "06" }: RelatedServicesProps)
                   aria-hidden="true"
                   className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-cyan transition-transform duration-500 group-hover:scale-x-100 group-focus-visible:scale-x-100"
                 />
-                <div className="mb-6 flex items-center justify-between gap-4">
+                <div className="mb-6">
                   <span className="grid size-12 place-items-center border border-steel-200 bg-steel-50 transition-colors duration-300 group-hover:border-cyan group-hover:bg-cyan/10">
                     <AnimatedIcon name={service.icon} size={25} tone="navy" />
-                  </span>
-                  <span className="mono-label text-steel-400 transition-colors duration-300 group-hover:text-cyan-deep">
-                    {service.code}
                   </span>
                 </div>
                 <h3 className="font-display text-lg font-semibold text-foreground">{service.title}</h3>

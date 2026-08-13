@@ -73,7 +73,7 @@ export function PageHero({
                   <span
                     className={cn(
                       "rounded-full border px-3 py-1 font-mono text-[0.6rem] uppercase tracking-wider",
-                      dark ? "border-white/15 text-white/55" : "border-steel-200 text-muted-foreground",
+                      dark ? "border-white/20 text-white/75" : "border-steel-200 text-muted-foreground",
                     )}
                   >
                     {badge}
@@ -113,7 +113,7 @@ export function PageHero({
                 <Link
                   href={ctaHref}
                   className={cn(
-                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold",
+                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                     dark ? "bg-cyan text-carbon hover:bg-white" : "bg-navy text-white hover:bg-navy-dark",
                   )}
                 >
@@ -124,7 +124,7 @@ export function PageHero({
                   <Link
                     href={secondaryCtaHref}
                     className={cn(
-                      "inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold",
+                      "inline-flex items-center gap-2 border-b pb-1 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                       dark ? "border-white/30" : "border-navy/30",
                     )}
                   >
@@ -135,12 +135,7 @@ export function PageHero({
               </div>
             </motion.div>
           </div>
-          <div
-            className={cn(
-              "mt-14 flex items-center justify-between border-t pt-5",
-              dark ? "border-white/10 text-white/28" : "border-steel-200 text-steel-400",
-            )}
-          >
+          <div className="hidden">
             <span className="mono-label">Sinergia Industrias</span>
             <span className="font-display text-3xl">{index}</span>
           </div>

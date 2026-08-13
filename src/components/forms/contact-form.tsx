@@ -11,7 +11,7 @@ type FormStatus = {
 };
 
 const fieldClass =
-  "w-full border-b border-steel-300 bg-transparent px-0 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none";
+  "w-full border-b border-steel-300 bg-transparent px-0 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus-visible:border-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>({ state: "idle", message: "" });
@@ -91,11 +91,16 @@ export function ContactForm() {
         />
       </label>
       <label className="flex items-start gap-3 text-xs leading-relaxed text-muted-foreground">
-        <input name="consent" type="checkbox" required className="mt-0.5 size-4 accent-[var(--petrol)]" />
+        <input
+          name="consent"
+          type="checkbox"
+          required
+          className="mt-0.5 size-4 accent-[var(--petrol)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+        />
         <span>
           Autorizo a Sinergia Industrias a usar estos datos exclusivamente para responder
           esta solicitud, de acuerdo con la{" "}
-          <Link href="/privacidad" className="text-navy underline underline-offset-2">
+          <Link href="/privacidad" className="text-navy underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan">
             política de privacidad
           </Link>
           .
@@ -105,7 +110,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status.state === "loading"}
-          className="inline-flex min-h-12 items-center justify-center gap-2 bg-navy px-6 text-sm font-semibold text-white transition-colors hover:bg-navy-dark disabled:cursor-wait disabled:opacity-65"
+          className="inline-flex min-h-12 items-center justify-center gap-2 bg-navy px-6 text-sm font-semibold text-white transition-colors hover:bg-navy-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan disabled:cursor-wait disabled:opacity-65"
         >
           {status.state === "loading" ? <LoaderCircle className="size-4 animate-spin" /> : null}
           Enviar solicitud

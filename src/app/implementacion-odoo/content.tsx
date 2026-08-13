@@ -27,7 +27,7 @@ export default function Content() {
       <PageHero
         variant="dark"
         artifact="odoo"
-        eyebrow="ERP · Transformación digital"
+        eyebrow="ERP · Operación conectada"
         headline="Un sistema que sigue"
         headlineAccent="la lógica de tu empresa"
         subhead="Implementamos Odoo desde tus procesos reales para conectar finanzas, inventario, ventas y operación sin agregar complejidad innecesaria."
@@ -61,14 +61,16 @@ export default function Content() {
               >
                 <OdooPartnerBadge className="mb-6" />
                 <p className="text-base leading-relaxed text-muted-foreground">
-                  Odoo ERP es una poderosa herramienta utilizada mundialmente para dar una solución adaptativa a las diferentes necesidades de organizaciones de todo tipo en ámbitos diversos tales como: la gestión de sus activos, manejo de inventarios, gestión de clientes potenciales, gestión contable, entre muchas otras. A través de su implementación adaptada a cada cliente somos capaces de generar una solución robusta pero acotada a la problemática en poco tiempo gracias a la utilización de herramientas ya existentes para la solución de nuevas problemáticas.
+                  Odoo reúne finanzas, inventario, ventas y otros procesos en una plataforma
+                  modular. Configuramos solo los módulos que la operación necesita y los
+                  conectamos con la forma de trabajo de tu equipo.
                 </p>
 
                 <Link
                   href="https://www.odoo.com/es_ES"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 mono-label underline-offset-4 transition-colors text-navy hover:text-cyan"
+                  className="mt-6 inline-flex items-center gap-2 mono-label text-navy underline-offset-4 transition-colors hover:text-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
                 >
                   Conocer más sobre Odoo{" "}
                   <ArrowRight className="size-3.5" />
@@ -128,9 +130,13 @@ export default function Content() {
           "CIAL",
           "MB Chemicals",
           "Podas Chile",
+          "Jumbo",
+          "Paris",
+          "Easy",
+          "Corona",
+          "Ripley",
+          "Inacap",
         ]}
-        jointVentureLabel="Asalvo"
-        jointVentureClients={["Jumbo", "Paris", "Easy", "Corona", "Ripley", "Inacap"]}
       />
 
       <RelatedServices current="implementacion-odoo" />

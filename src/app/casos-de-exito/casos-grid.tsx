@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CASES = [
   { client: "Moriah", code: "C01", industry: "Leasing Operativo", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80", context: "Moriah Limitada nació en Calama ante la necesidad de empresas de utilizar equipos autónomos: soldadoras, generadores, compresores, luminarias, entre otros. Muchas faenas requieren estos servicios de arriendo y pedidos de fabricación de estructuras.", service: "Realizamos el levantamiento de procesos para obtener un panorama completo sobre su operación y presentar oportunidades de optimización en escala general.", result: "Mejoramos de forma sustancial los tiempos de procesamiento de solicitudes de Leasing y eliminamos partes redundantes de los procesos." },
-  { client: "Tottus", code: "C02", industry: "Supermercados", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80", context: "Cadena de supermercados e hipermercados perteneciente al grupo Falabella. Su servicio enfatiza la atención al cliente y variedad de productos de gama media alta.", service: "Mediante el levantamiento de información para la declaración REP dimos una respuesta robusta a la necesidad de claridad respecto a las implicancias de sus desechos con esta ley.", result: "Diseñamos desde cero un índice innovador que permitió identificar qué tan reciclable es el packaging de los productos y realizar propuestas de mejoras constantes." },
+  { client: "Tottus", code: "C02", industry: "Supermercados", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80", context: "Cadena de supermercados e hipermercados perteneciente al grupo Falabella. Su servicio enfatiza la atención al cliente y variedad de productos de gama media alta.", service: "Levantamos información para la declaración REP y aclaramos las implicancias de los residuos asociados a sus productos.", result: "Diseñamos un índice de reciclabilidad del packaging para orientar propuestas de mejora." },
   { client: "Iansa", code: "C03", industry: "Alimentos", image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80", context: "Empresa de alimentos líder en producción de azúcar de remolacha, endulzantes, legumbres, jugos y pulpas, productos agrícolas y de nutrición animal.", service: "Mediante el levantamiento de información para la declaración REP dimos una respuesta robusta. Implementamos mejoras continuas en cada proceso con sumatoria de valor creciente.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
   { client: "Tresmontes Lucchetti", code: "C04", industry: "Alimentos", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80", context: "Empresa Chilena de alimentos formada a partir de la fusión de la Córpora Tresmontes S.A. y Lucchetti Chile S.A., dedicada a la fabricación de pastas.", service: "Levantamiento de información para la declaración REP. Mejoras continuas en cada proceso con sumatoria de valor creciente en cada implementación.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
   { client: "Aramark", code: "C05", industry: "Alimentación", image: "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1200&q=80", context: "Aramark es una empresa multinacional de alimentación y gestión de instalaciones.", service: "Levantamiento de información para la declaración REP con respuesta robusta a la necesidad de claridad de la organización.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
@@ -16,7 +16,7 @@ const CASES = [
   { client: "Ecostandard", code: "C08", industry: "Residuos", image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1200&q=80", context: "Ecostandard se dedica al manejo responsable y fabricación de sistemas de almacenamiento para residuos y sustancias peligrosas, con 25 años de experiencia en el rubro.", service: "Levantamiento de procesos productivo del área de fabricación. Implementamos el módulo MRP de Odoo para control en tiempo real de materias primas, inventarios y pedidos, además de CRM para gestión de oportunidades.", result: "Reducción en tiempos de fabricación, automatización de tareas no consideradas antes, mejora sustancial en el ratio de conversión de clientes potenciales a regulares." },
   { client: "MB Chemicals", code: "C09", industry: "Sanitización", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80", context: "Empresa con amplia trayectoria en el rubro de la sanitización industrial, prestando servicios actualmente en la región metropolitana.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para la digitalización y centralización en nube.", result: "Agenda de servicios, manejo integral y en tiempo real del inventario. Unificación de información y procesos de trabajadores." },
   { client: "Red Circular", code: "C10", industry: "Economía Circular", image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=80", context: "Red Circular es una iniciativa que nace con el objetivo de promover el establecimiento de proyectos de economía circular en América Latina.", service: "Levantamiento de procesos productivo e implementación del módulo MRP de Odoo para control de materias primas, inventarios y pedidos. Integración de CRM.", result: "Optimización de la línea de producción, mejora en la comunicación entre módulos y aumento del ratio de conversión de clientes." },
-  { client: "CIAL", code: "C11", industry: "Trabajo en Altura", image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80", context: "CIAL Group es una empresa nacional especialista y certificada en trabajo en altura y protección contra caídas, con soluciones innovadoras para la seguridad de trabajadores.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para digitalización y centralización en nube de servicios de certificación.", result: "Agenda de servicios, manejo integral de inventario, unificación de información de la organización y procesos de trabajadores." },
+  { client: "CIAL", code: "C11", industry: "Trabajo en Altura", image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80", context: "CIAL Group es una empresa nacional especializada y certificada en trabajo en altura y protección contra caídas.", service: "Implementación de Odoo ERP para digitalizar y centralizar los servicios de certificación.", result: "Agenda de servicios, manejo de inventario y unificación de información y procesos de trabajadores." },
   { client: "Podas Chile", code: "C12", industry: "Servicios Forestales", image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80", context: "Podas Chile SPA es una empresa nacional especialista en poda y corte preventivo nativo, eliminación de troncos y ramas muertas.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para digitalización y centralización en nube.", result: "Agenda de servicios, manejo integral de inventario, unificación de información de la organización." },
 ];
 
@@ -68,65 +68,66 @@ export function CasosGrid() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            Cada proyecto es una historia de transformación. Desde el diagnóstico
-            hasta los resultados, aquí están los hechos.
+            Cada caso reúne el contexto, el trabajo realizado y los resultados disponibles.
           </motion.p>
 
           {/* Slider container — full width */}
-          <div
-            className="mt-14 relative outline-none focus-visible:ring-2 focus-visible:ring-cyan"
-            role="region"
-            aria-roledescription="carrusel"
-            aria-label="Casos de éxito"
-            tabIndex={0}
-            onKeyDown={handleKeyDown}
-          >
-            <AnimatePresence mode="wait">
-              <CaseSlide
-                key={CASES[current].code}
-                study={CASES[current]}
-                current={current}
-                total={total}
-              />
-            </AnimatePresence>
+          <div className="relative">
+            <div
+              className="mt-14 relative outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              role="region"
+              aria-roledescription="carrusel"
+              aria-label="Casos de éxito"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+            >
+              <AnimatePresence mode="wait">
+                <CaseSlide
+                  key={CASES[current].code}
+                  study={CASES[current]}
+                  current={current}
+                  total={total}
+                />
+              </AnimatePresence>
+            </div>
 
-            {/* Navigation arrows */}
-            <button
-              onClick={prev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
-              aria-label="Caso anterior"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-white/20 bg-carbon/60 backdrop-blur-sm text-white hover:bg-cyan hover:border-cyan transition-all duration-200"
-              aria-label="Caso siguiente"
-            >
-              <ChevronRight className="size-5" />
-            </button>
+            <div className="mt-4 flex justify-between sm:contents">
+              <button
+                onClick={prev}
+                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-all duration-200 hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:absolute sm:left-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:hover:border-cyan sm:hover:bg-cyan"
+                aria-label="Caso anterior"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+              <button
+                onClick={next}
+                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-all duration-200 hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:absolute sm:right-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:hover:border-cyan sm:hover:bg-cyan"
+                aria-label="Caso siguiente"
+              >
+                <ChevronRight className="size-5" />
+              </button>
+            </div>
           </div>
 
           {/* Dots navigation */}
-          <div className="mt-8 flex justify-center gap-2" role="tablist" aria-label="Seleccionar caso">
+          <div className="mt-8 hidden justify-center sm:flex" role="group" aria-label="Seleccionar caso">
             {CASES.map((c, i) => (
               <button
                 key={c.code}
                 onClick={() => setCurrent(i)}
-                role="tab"
-                aria-selected={i === current}
                 aria-label={`Caso ${i + 1}: ${c.client}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                aria-current={i === current ? "true" : undefined}
+                className={`group grid size-9 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan ${
                   i === current
-                    ? "w-8 bg-cyan"
-                    : "w-2 bg-steel-300 hover:bg-steel-400"
+                    ? "after:h-2 after:w-8 after:rounded-full after:bg-cyan"
+                    : "after:size-2 after:rounded-full after:bg-steel-300 hover:after:bg-steel-400"
                 }`}
               />
             ))}
           </div>
 
           {/* Active case info below dots */}
-          <div className="mt-4 text-center">
+          <div className="mt-6 text-center sm:mt-4">
             <span className="mono-label text-steel-400">
               {CASES[current].code} — {CASES[current].client} ·{" "}
               {CASES[current].industry}

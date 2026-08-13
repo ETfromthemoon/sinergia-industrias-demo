@@ -53,7 +53,7 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeMenus}
-          className="relative z-10 flex items-center py-2 transition-all"
+          className="relative z-10 flex items-center py-2 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
           aria-label="Sinergia Consultores, inicio"
         >
           <BrandLogo
@@ -74,7 +74,7 @@ export function Navbar() {
               onClick={closeMenus}
               aria-current={pathname === link.href ? "page" : undefined}
               className={cn(
-                "whitespace-nowrap text-[0.78rem] font-semibold transition-colors",
+                "whitespace-nowrap text-[0.78rem] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                 transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
                 pathname === link.href && (transparent ? "text-white" : "text-navy"),
               )}
@@ -86,13 +86,12 @@ export function Navbar() {
           <button
             type="button"
             className={cn(
-              "flex items-center gap-1.5 whitespace-nowrap text-[0.78rem] font-semibold transition-colors",
+              "flex items-center gap-1.5 whitespace-nowrap text-[0.78rem] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
               transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
             )}
             aria-expanded={servicesOpen}
             aria-controls="solutions-megamenu"
             onMouseEnter={() => setServicesOpen(true)}
-            onFocus={() => setServicesOpen(true)}
             onClick={() => setServicesOpen(true)}
           >
             Soluciones
@@ -105,7 +104,7 @@ export function Navbar() {
             href="/contacto"
             onClick={closeMenus}
             className={cn(
-              "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-all sm:inline-flex",
+              "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:inline-flex",
               transparent
                 ? "bg-white text-navy hover:bg-cyan"
                 : "bg-navy text-white hover:-translate-y-0.5 hover:bg-navy-dark",
@@ -117,11 +116,12 @@ export function Navbar() {
           <button
             type="button"
             className={cn(
-              "grid size-11 place-items-center lg:hidden",
+              "grid size-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan lg:hidden",
               transparent ? "text-white" : "text-foreground",
             )}
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMobileOpen((open) => !open)}
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -152,7 +152,7 @@ export function Navbar() {
                     key={service.href}
                     href={service.href}
                     onClick={closeMenus}
-                    className="group relative min-w-0 border-l border-steel-200 px-5 py-2 transition-colors hover:bg-steel-50"
+                    className="group relative min-w-0 border-l border-steel-200 px-5 py-2 transition-colors hover:bg-steel-50 focus-visible:bg-steel-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                   >
                     <span className="font-mono text-[0.62rem] text-cyan-deep">
                       {String(index + 1).padStart(2, "0")} / {service.eyebrow}
@@ -173,6 +173,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -185,7 +186,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={closeMenus}
-                  className="flex items-center justify-between border-b border-steel-100 py-3 text-sm font-semibold"
+                  className="flex items-center justify-between border-b border-steel-100 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {link.label}
                   <ArrowUpRight className="size-4 text-steel-400" />
@@ -197,7 +198,7 @@ export function Navbar() {
                   key={service.href}
                   href={service.href}
                   onClick={closeMenus}
-                  className="grid grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-steel-100 py-3"
+                  className="grid grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-steel-100 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   <span className="font-mono text-[0.65rem] text-cyan-deep">
                     {String(index + 1).padStart(2, "0")}
@@ -209,7 +210,7 @@ export function Navbar() {
               <Link
                 href="/contacto"
                 onClick={closeMenus}
-                className="mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white"
+                className="mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               >
                 Hablemos de tu proyecto
                 <ArrowUpRight className="size-4" />

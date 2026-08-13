@@ -10,16 +10,13 @@ type SectionLabelProps = {
 };
 
 /** Swiss/blueprint mono label:  [ 02 ] ─── SERVICIOS */
-export function SectionLabel({ index, children, tone = "light", className }: SectionLabelProps) {
+export function SectionLabel({ children, tone = "light", className }: SectionLabelProps) {
   const color =
     tone === "dark"
-      ? "text-white/60"
+      ? "text-white/75"
       : tone === "accent"
         ? "text-cyan"
         : "text-navy";
-  const line =
-    tone === "dark" ? "bg-white/20" : tone === "accent" ? "bg-cyan/40" : "bg-steel-300";
-
   return (
     <motion.div
       className={cn("flex items-center gap-3", className)}
@@ -28,8 +25,6 @@ export function SectionLabel({ index, children, tone = "light", className }: Sec
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <span className={cn("mono-label tabular", color)}>[ {index} ]</span>
-      <span className={cn("h-px w-8", line)} />
       <span className={cn("mono-label", color)}>{children}</span>
     </motion.div>
   );
