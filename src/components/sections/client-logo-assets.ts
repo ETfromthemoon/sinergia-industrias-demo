@@ -1,8 +1,8 @@
 export const CLIENT_LOGOS = {
   "Arriendo Legal": { src: "/client-logos/arriendo-legal.png", alt: "Arriendo Legal", inverse: true },
-  Aramark: { src: "/client-logos/aramark.svg", alt: "Aramark" },
+  Aramark: { src: "/client-logos/aramark.png", alt: "Aramark" },
   Asalvo: { src: "/client-logos/asalvo.png", alt: "Asalvo" },
-  CIAL: { src: "/client-logos/cial.svg", alt: "CIAL" },
+  CIAL: { src: "/client-logos/cial.png", alt: "CIAL" },
   "CV Trading": { src: "/client-logos/cv-trading.png", alt: "CV Trading" },
   Corona: { src: "/client-logos/corona.png", alt: "Corona" },
   Dimerc: { src: "/client-logos/dimerc.png", alt: "Dimerc" },
@@ -22,6 +22,20 @@ export const CLIENT_LOGOS = {
   Vinderchile: { src: "/client-logos/vinderchile.png", alt: "Vinder Chile" },
 } as const;
 
-export const ALL_CLIENTS = Object.keys(CLIENT_LOGOS) as Array<keyof typeof CLIENT_LOGOS>;
+// Keep this list aligned with the client band published on sinergiaindustrias.cl.
+export const ALL_CLIENTS = [
+  "Tottus",
+  "Aramark",
+  "Iansa",
+  "Tresmontes Lucchetti",
+  "Dimerc",
+  "Asalvo",
+  "Ecostandard",
+  "CV Trading",
+  "Vinderchile",
+  "Red Circular",
+  "Moriah",
+  "CIAL",
+] as const satisfies readonly (keyof typeof CLIENT_LOGOS)[];
 
 export type ClientName = keyof typeof CLIENT_LOGOS;
