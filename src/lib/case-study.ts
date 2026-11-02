@@ -7,6 +7,7 @@ export type CaseStudy = {
   service: string;
   result: string;
   image?: string;
+  imagePosition?: string;
 };
 
 /**

@@ -6,18 +6,167 @@ import { SectionLabel } from "@/components/ui/section-label";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CASES = [
-  { client: "Moriah", code: "C01", industry: "Leasing Operativo", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80", context: "Moriah Limitada nació en Calama ante la necesidad de empresas de utilizar equipos autónomos: soldadoras, generadores, compresores, luminarias, entre otros. Muchas faenas requieren estos servicios de arriendo y pedidos de fabricación de estructuras.", service: "Realizamos el levantamiento de procesos para obtener un panorama completo sobre su operación y presentar oportunidades de optimización en escala general.", result: "Mejoramos de forma sustancial los tiempos de procesamiento de solicitudes de Leasing y eliminamos partes redundantes de los procesos." },
-  { client: "Tottus", code: "C02", industry: "Supermercados", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80", context: "Cadena de supermercados e hipermercados perteneciente al grupo Falabella. Su servicio enfatiza la atención al cliente y variedad de productos de gama media alta.", service: "Levantamos información para la declaración REP y aclaramos las implicancias de los residuos asociados a sus productos.", result: "Diseñamos un índice de reciclabilidad del packaging para orientar propuestas de mejora." },
-  { client: "Iansa", code: "C03", industry: "Alimentos", image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80", context: "Empresa de alimentos líder en producción de azúcar de remolacha, endulzantes, legumbres, jugos y pulpas, productos agrícolas y de nutrición animal.", service: "Mediante el levantamiento de información para la declaración REP dimos una respuesta robusta. Implementamos mejoras continuas en cada proceso con sumatoria de valor creciente.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
-  { client: "Tresmontes Lucchetti", code: "C04", industry: "Alimentos", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80", context: "Empresa Chilena de alimentos formada a partir de la fusión de la Córpora Tresmontes S.A. y Lucchetti Chile S.A., dedicada a la fabricación de pastas.", service: "Levantamiento de información para la declaración REP. Mejoras continuas en cada proceso con sumatoria de valor creciente en cada implementación.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
-  { client: "Aramark", code: "C05", industry: "Alimentación", image: "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=1200&q=80", context: "Aramark es una empresa multinacional de alimentación y gestión de instalaciones.", service: "Levantamiento de información para la declaración REP con respuesta robusta a la necesidad de claridad de la organización.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
-  { client: "Dimerc", code: "C06", industry: "Distribución", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80", context: "Dimerc fue creada en 1997 para distribuir y abastecer de productos de oficina al segmento de empresas, desde PYMES hasta grandes corporaciones.", service: "Levantamiento de información para la declaración REP.", result: "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios." },
-  { client: "Asalvo", code: "C07", industry: "Asesoría Ambiental", image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200&q=80", context: "ASALVO es una consultora ambiental con más de 15 años de experiencia en insertar la sostenibilidad ambiental en el centro del negocio, con proyectos de economía circular, gestión de residuos y cumplimiento normativo.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para la digitalización y centralización en nube de toda la información sobre servicios de certificación de clientes.", result: "Agenda de servicios con complemento logístico, manejo integral y en tiempo real del inventario. Todo desde una sola plataforma centralizada." },
-  { client: "Ecostandard", code: "C08", industry: "Residuos", image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1200&q=80", context: "Ecostandard se dedica al manejo responsable y fabricación de sistemas de almacenamiento para residuos y sustancias peligrosas, con 25 años de experiencia en el rubro.", service: "Levantamiento de procesos productivo del área de fabricación. Implementamos el módulo MRP de Odoo para control en tiempo real de materias primas, inventarios y pedidos, además de CRM para gestión de oportunidades.", result: "Reducción en tiempos de fabricación, automatización de tareas no consideradas antes, mejora sustancial en el ratio de conversión de clientes potenciales a regulares." },
-  { client: "MB Chemicals", code: "C09", industry: "Sanitización", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80", context: "Empresa con amplia trayectoria en el rubro de la sanitización industrial, prestando servicios actualmente en la región metropolitana.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para la digitalización y centralización en nube.", result: "Agenda de servicios, manejo integral y en tiempo real del inventario. Unificación de información y procesos de trabajadores." },
-  { client: "Red Circular", code: "C10", industry: "Economía Circular", image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=80", context: "Red Circular es una iniciativa que nace con el objetivo de promover el establecimiento de proyectos de economía circular en América Latina.", service: "Levantamiento de procesos productivo e implementación del módulo MRP de Odoo para control de materias primas, inventarios y pedidos. Integración de CRM.", result: "Optimización de la línea de producción, mejora en la comunicación entre módulos y aumento del ratio de conversión de clientes." },
-  { client: "CIAL", code: "C11", industry: "Trabajo en Altura", image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80", context: "CIAL Group es una empresa nacional especializada y certificada en trabajo en altura y protección contra caídas.", service: "Implementación de Odoo ERP para digitalizar y centralizar los servicios de certificación.", result: "Agenda de servicios, manejo de inventario y unificación de información y procesos de trabajadores." },
-  { client: "Podas Chile", code: "C12", industry: "Servicios Forestales", image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80", context: "Podas Chile SPA es una empresa nacional especialista en poda y corte preventivo nativo, eliminación de troncos y ramas muertas.", service: "Implementación avanzada de Odoo ERP con diferentes módulos para digitalización y centralización en nube.", result: "Agenda de servicios, manejo integral de inventario, unificación de información de la organización." },
+  {
+    client: "MORIAH",
+    code: "C01",
+    industry: "Leasing operativo.",
+    image: "/case-studies/moriah.jpg",
+    imagePosition: "50% 89.8498%",
+    context:
+      "MORIAH Limitada, es un empresa que nació en Calama, ante la necesidad que tienen otras empresas, de utilizar equipos autónomos de toda índole; soldadoras, generadores, compresores, luminarias, entre otros equipos. De esta forma, muchas faenas requieren de estos servicios de arriendo, además de pedidos de fabricación de estructuras.",
+    service:
+      "Realizamos el levantamiento de procesos para Moriah con la finalidad de obtener un panorama completo sobre su operación y presentar oportunidades de optimización en escala general.",
+    result:
+      "A través del levantamiento de procesos pudimos mejorar de forma sustancial los tiempos de procesamiento de solicitudes de Leasing para Moriah y eliminar algunas partes redundantes de los procesos para dar paso a soluciones más compactas para las necesidades de la empresa.",
+  },
+  {
+    client: "TOTTUS",
+    code: "C02",
+    industry: "Supermercados e hipermercados.",
+    image: "/case-studies/tottus.jpg",
+    imagePosition: "50% 89.8498%",
+    context:
+      "Cadena de supermercados e hipermercados perteneciente al grupo Falabella, su servicio enfatiza la atención al cliente y variedad de productos de gama media alta.",
+    service:
+      "Mediante el levantamiento de información para la declaración REP pudimos dar una respuesta robusta a la necesidad de claridad de la organización respecto a las implicancias de sus desechos con esta ley.\n\nAl ser un servicio prestado en reiteradas oportunidades fuimos implementando mejoras continuas en cada proceso, lo cual dio lugar a una sumatoria de valor creciente en cada implementación.\n\nEsa misma mirada integral nos permitió plantear la necesidad del desarrollo de un índice innovador hasta el momento y que aportó y sigue aportando relevancia en la información en la organización.",
+    result:
+      "Diseñado desde cero, este índice nos permitió identificar qué tan reciclable es el packaging de los productos y realizar propuestas de mejoras constantes, aportando valor continuamente incluso una vez finalizado el servicio.",
+  },
+  {
+    client: "IANSA",
+    code: "C03",
+    industry: "Empresa de alimentos: retail y agrícola.",
+    image: "/case-studies/iansa.jpeg",
+    imagePosition: "50% 0.337865%",
+    context:
+      "Iansa, empresa de alimentos líder en producción de azúcar de remolacha, endulzantes, legumbres, jugos y pulpas, productos agrícolas y de nutrición animal.",
+    service:
+      "Mediante el levantamiento de información para la declaración REP pudimos dar una respuesta robusta a la necesidad de claridad de la organización respecto a las implicancias de sus desechos con esta ley.\n\nAl ser un servicio prestado en reiteradas oportunidades fuimos implementando mejoras continuas en cada proceso, lo cual dio lugar a una sumatoria de valor creciente en cada implementación.",
+    result:
+      "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios.",
+  },
+  {
+    client: "TRESMONTES LUCCHETTI",
+    code: "C04",
+    industry: "Importación y fabricacióin de alimentos.",
+    image: "/case-studies/tresmontes-lucchetti.png",
+    imagePosition: "50% 52.699%",
+    context:
+      "TMLUC es una empresa Chilena de alimentos. Formada a partir de la fusión de la Córpora Tresmontes S.A., dedicada a la importación de alimentos, y Lucchetti Chile S.A., dedicada a la fabricación de pastas.",
+    service:
+      "Mediante el levantamiento de información para la declaración REP pudimos dar una respuesta robusta a la necesidad de claridad de la organización respecto a las implicancias de sus desechos con esta ley.\n\nAl ser un servicio prestado en reiteradas oportunidades fuimos implementando mejoras continuas en cada proceso, lo cual dio lugar a una sumatoria de valor creciente en cada implementación.",
+    result:
+      "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios.",
+  },
+  {
+    client: "ARAMARK",
+    code: "C05",
+    industry: "Alimentación y Gestión de instalaciones.",
+    image: "/case-studies/aramark.jpg",
+    imagePosition: "50% 89.8498%",
+    context:
+      "Aramark es una empresa multinacional de alimentación y gestión de instalaciones.",
+    service:
+      "Mediante el levantamiento de información para la declaración REP pudimos dar una respuesta robusta a la necesidad de claridad de la organización respecto a las implicancias de sus desechos con esta ley.\n\nAl ser un servicio prestado en reiteradas oportunidades fuimos implementando mejoras continuas en cada proceso, lo cual dio lugar a una sumatoria de valor creciente en cada implementación.",
+    result:
+      "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios.",
+  },
+  {
+    client: "DIMERC",
+    code: "C06",
+    industry:
+      "Distribución y abastecimiento de productos de oficina al segmento empresas, desde PYMES hasta grandes corporaciones.",
+    image: "/case-studies/dimerc.png",
+    imagePosition: "50% 0.337865%",
+    context:
+      "Empresas DIMERC, Dimerc fue creada en 1997 para distribuir y abastecer de productos de oficina al segmento de empresas, desde PYMES hasta grandes corporaciones. El principal objetivo de Dimerc es solucionar el problema de abastecimiento de insumos no estratégicos para la oficina en Chile.",
+    service:
+      "Mediante el levantamiento de información para la declaración REP pudimos dar una respuesta robusta a la necesidad de claridad de la organización respecto a las implicancias de sus desechos con esta ley.\n\nAl ser un servicio prestado en reiteradas oportunidades fuimos implementando mejoras continuas en cada proceso, lo cual dio lugar a una sumatoria de valor creciente en cada implementación.",
+    result:
+      "Sistematización y levantamiento normativo REP para la declaración de productos prioritarios.",
+  },
+  {
+    client: "ASALVO LIMITADA",
+    code: "C07",
+    industry: "Asesoría ambiental.",
+    image: "/case-studies/asalvo.jpg",
+    imagePosition: "50% 89.8498%",
+    context:
+      "ASALVO es una consultora ambiental cuyo propósito es entregar asesoría ambiental de calidad para todo tipo de empresas, fue creada hace más de 15 años por su director Rodrigo Salvo, Ingeniero Ambiental y Magíster en Ingeniería Ambiental, cuenta con gran experiencia en insertar estratégicamente la sostentabilidad ambiental en el centro del negocio, logrando con éxito a través de los años el desarrollo de proyectos de economía circular, gestión de residuos, LEY REP y cumplimiento normativo.",
+    service:
+      "Se realizó una implementación avanzada de odoo ERP con diferentes módulos, atendiendo a la necesidad de la digitalización y centralización en nube de toda la información sobre servicios de certificación de los clientes.",
+    result:
+      "El servicio de implementación de odoo ERP tuvo como resultado la correcta habilitación de las siguientes funcionalidades: agenda de servicios y complemento logístico para la realización de éstos, manejo integral y en tiempo real del inventario utilizado en sus servicios (materias primas y productos). Todo esto desde una sola plataforma centralizada, en tiempo real y robusta, que permite la unificación tanto de la información de la organización como también de los tiempos y procesos de sus trabajadores.",
+  },
+  {
+    client: "ECOSTANDARD",
+    code: "C08",
+    industry:
+      "Manejo responsable y fabricación de sistemas de almacenamiento para residuos y sustancias peligrosas.",
+    image: "/case-studies/ecostandard.jpg",
+    imagePosition: "50% 89.8498%",
+    context:
+      "Ecostandard se dedica al manejo responsable y fabricación de sistemas de almacenamiento para residuos y sustancias peligrosas, siendo un referente en el mercado por su compromiso con la impecabilidad y por contar con 25 años de experiencia en el rubro, instalaciones de primer nivel y un equipo de expertos para el diseño, fabricación y capacitación sobre el uso adecuado de nuestros productos y asesoría para el correcto cumplimiento de las normativas medioambientales vigentes.",
+    service:
+      "Realizamos el levantamiento de procesos productivo del área de fabricación de la empresa. Implementamos el módulo para la gestión organizacional, en particular el módulo MRP (Material requirement planning) de odoo que permite el control en tiempo real de materias primas, inventarios, pedidos y todos los costos involucrados en el proceso. Además de la integración del proceso de ventas, usando CRM (Customer Relationship Management) para manejar oportunidades y convertirlas en pedidos de fabricación de bodegas de manera oportuna.",
+    result:
+      "A través del levantamiento de procesos pudimos identificar amplias oportunidades de optimización en diferentes áreas de la operación, brindando así una reducción en tiempos de fabricación e implementando mejoras en la automatización de tareas no consideradas antes del servicio.\n\nEl módulo MRP nos permitió optimizar de gran manera la forma en que los diferentes módulos de la línea de producción se comunican, dando paso a un procesamiento optimizado y consistente en la producción de cada pedido.\n\nEl módulo CRM brindó una mejora sustancial a la manera en que los clientes potenciales se relacionan con la organización y por tanto mejoró tangiblemente el ratio de conversión de clientes potenciales a clientes regulares.",
+  },
+  {
+    client: "MB CHEMICALS",
+    code: "C09",
+    industry: "Servicios y articulos de sanitización.",
+    image: "/case-studies/mb-chemicals.jpg",
+    imagePosition: "50% 50%",
+    context:
+      "Empresa con amplia trayectoria en el rubro de la sanitización industrial, prestando servicios actualmente en la región metropolitana.",
+    service:
+      "Se realizó una implementación avanzada de odoo ERP con diferentes módulos, atendiendo a la necesidad de la digitalización y centralización en nube de toda la información sobre servicios de certificación de los clientes.",
+    result:
+      "El servicio de implementación de odoo ERP tuvo como resultado la correcta habilitación de las siguientes funcionalidades: agenda de servicios y complemento logístico para la realización de éstos, manejo integral y en tiempo real del inventario utilizado en sus servicios (materias primas y productos). Todo esto desde una sola plataforma centralizada, en tiempo real y robusta, que permite la unificación tanto de la información de la organización como también de los tiempos y procesos de sus trabajadores.",
+  },
+  {
+    client: "RED CIRCULAR",
+    code: "C10",
+    industry:
+      "Red Circular es una iniciativa que nace con el objetivo de promover el establecimiento de proyectos de economía circular en América Latina.",
+    image: "/case-studies/red-circular.png",
+    imagePosition: "50% 0.337865%",
+    context:
+      "Empresas RED CIRCULAR es una iniciativa que nace con el objetivo de promover el establecimiento de proyectos de economía circular en América Latina.",
+    service:
+      "Realizamos el levantamiento de procesos productivo del área de fabricación de la empresa. Implementamos el módulo para la gestión organizacional, en particular el módulo MRP (Material requirement planning) de odoo que permite el control en tiempo real de materias primas, inventarios, pedidos y todos los costos involucrados en el proceso. Además de la integración del proceso de ventas, usando CRM (Customer Relationship Management) para manejar oportunidades y convertirlas en pedidos de fabricación de bodegas de manera oportuna.",
+    result:
+      "A través del levantamiento de procesos pudimos identificar amplias oportunidades de optimización en diferentes áreas de la operación, brindando así una reducción en tiempos de fabricación e implementando mejoras en la automatización de tareas no consideradas antes del servicio.\n\nEl módulo MRP nos permitió optimizar de gran manera la forma en que los diferentes módulos de la línea de producción se comunican, dando paso a un procesamiento optimizado y consistente en la producción de cada pedido.\n\nEl módulo CRM brindó una mejora sustancial a la manera en que los clientes potenciales se relacionan con la organización y por tanto mejoró tangiblemente el ratio de conversión de clientes potenciales a clientes regulares.",
+  },
+  {
+    client: "CIAL",
+    code: "C11",
+    industry:
+      "CIAL Group, es una empresa nacional local especialista y certificada en todo lo referente a trabajo en altura y protección contra caídas.",
+    image: "/case-studies/cial.png",
+    imagePosition: "50% 56.9608%",
+    context:
+      "CIAL Group, es una empresa nacional local especialista y certificada en todo lo referente a trabajo en altura y protección contra caídas. Trabajan en base a soluciones innovadoras enfocadas principalmente en garantizar la seguridad de los trabajadores e incrementar la productividad y eficiencia de sus procesos y tareas.",
+    service:
+      "Se realizó una implementación avanzada de odoo ERP con diferentes módulos, atendiendo a la necesidad de la digitalización y centralización en nube de toda la información sobre servicios de certificación de los clientes.",
+    result:
+      "El servicio de implementación de odoo ERP tuvo como resultado la correcta habilitación de las siguientes funcionalidades: agenda de servicios y complemento logístico para la realización de éstos, manejo integral y en tiempo real del inventario utilizado en sus servicios (materias primas y productos). Todo esto desde una sola plataforma centralizada, en tiempo real y robusta, que permite la unificación tanto de la información de la organización como también de los tiempos y procesos de sus trabajadores.",
+  },
+  {
+    client: "PODAS CHILE",
+    code: "C12",
+    industry:
+      "PODAS CHILE SPA, es una empresa nacional local especialista en poda y corte preventivo nativo, eliminacion de troncos y ramas muertas.",
+    image: "/case-studies/podas-chile.jpeg",
+    imagePosition: "50% 52.719%",
+    context:
+      "PODAS CHILE SPA, es una empresa nacional local especialista en poda y corte preventivo nativo, eliminacion de troncos y ramas muertas, poda de sección viva por evidente inclinación sobre viviendas.",
+    service:
+      "Se realizó una implementación avanzada de odoo ERP con diferentes módulos, atendiendo a la necesidad de la digitalización y centralización en nube de toda la información sobre servicios de certificación de los clientes.",
+    result:
+      "El servicio de implementación de odoo ERP tuvo como resultado la correcta habilitación de las siguientes funcionalidades: agenda de servicios y complemento logístico para la realización de éstos, manejo integral y en tiempo real del inventario utilizado en sus servicios (materias primas y productos). Todo esto desde una sola plataforma centralizada, en tiempo real y robusta, que permite la unificación tanto de la información de la organización como también de los tiempos y procesos de sus trabajadores.",
+  },
 ];
 
 export function CasosGrid() {

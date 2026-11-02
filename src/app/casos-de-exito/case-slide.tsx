@@ -24,7 +24,10 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: study.image ? `url(${study.image})` : undefined }}
+        style={{
+          backgroundImage: study.image ? `url(${study.image})` : undefined,
+          backgroundPosition: study.imagePosition,
+        }}
       />
 
       {/* Dark overlay gradient — left-to-right + bottom */}
@@ -39,7 +42,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
       <div className="relative z-10 flex flex-col justify-end h-full p-8 sm:p-12 lg:p-16">
         {/* Code + Industry row */}
         <div className="flex items-center gap-4 mb-4">
-          <span className="inline-flex items-center gap-1.5 border border-cyan/30 bg-cyan/10 px-3 py-1 mono-label text-cyan text-xs">
+          <span className="inline-flex max-w-full flex-wrap items-center gap-1.5 border border-cyan/30 bg-cyan/10 px-3 py-1 mono-label text-cyan text-xs leading-relaxed">
             <AnimatedIcon name="building" size={12} />
             {study.industry}
           </span>
@@ -50,19 +53,19 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
           {study.client}
         </h3>
 
-        {/* Context — short version visible */}
-        <p className="max-w-2xl text-base leading-relaxed text-steel-300 mb-8">
+        {/* Context */}
+        <p className="max-w-4xl text-base leading-relaxed text-steel-300 mb-8">
           {study.context}
         </p>
 
-        {/* Three-column specs */}
-        <div className="grid gap-6 sm:grid-cols-3 max-w-3xl">
+        {/* Service and results */}
+        <div className="grid max-w-5xl gap-6 sm:grid-cols-2">
           <div className="border-l-2 border-navy/60 pl-4">
             <span className="mono-label mb-2 block text-white/70 text-xs">
               <AnimatedIcon name="wrench" size={12} className="inline mr-1" />
               SERVICIO
             </span>
-            <p className="text-sm leading-relaxed text-steel-300">
+            <p className="whitespace-pre-line text-sm leading-relaxed text-steel-300">
               {study.service}
             </p>
           </div>
@@ -71,7 +74,7 @@ export function CaseSlide({ study, current, total }: CaseSlideProps) {
               <AnimatedIcon name="trending-up" size={12} className="inline mr-1" />
               RESULTADOS
             </span>
-            <p className="text-sm leading-relaxed text-steel-300">
+            <p className="whitespace-pre-line text-sm leading-relaxed text-steel-300">
               {study.result}
             </p>
           </div>
