@@ -40,8 +40,8 @@ export function PageHero({
     <MotionConfig reducedMotion="user">
       <section
         className={cn(
-          "relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40",
-          dark ? "bg-carbon text-white" : "bg-steel-50 text-foreground",
+          "focus-surface relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40",
+          dark ? "focus-surface--inverse bg-carbon text-white" : "bg-steel-50 text-foreground",
         )}
       >
         {dark ? (
@@ -68,7 +68,7 @@ export function PageHero({
           <div className="grid gap-10 lg:grid-cols-[1.25fr_0.55fr] lg:items-end">
             <div>
               <div className="flex items-center gap-4">
-                <p className={cn("eyebrow", dark && "text-cyan before:bg-cyan")}>{eyebrow}</p>
+                <p className={cn("eyebrow", dark && "eyebrow--inverse")}>{eyebrow}</p>
                 {badge ? (
                   <span
                     className={cn(

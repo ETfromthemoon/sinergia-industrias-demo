@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback, type KeyboardEvent } from "react";
+import { useState, useCallback, useSyncExternalStore, type KeyboardEvent } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { CaseSlide } from "./case-slide";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -169,8 +169,36 @@ const CASES = [
   },
 ];
 
+function subscribeToHash(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+}
+
+function isEcostandardLink() {
+  return window.location.hash === "#ecostandard";
+}
+
+function getServerHash() {
+  return false;
+}
+
 export function CasosGrid() {
-  const [current, setCurrent] = useState(0);
+  const ecostandardLink = useSyncExternalStore(
+    subscribeToHash,
+    isEcostandardLink,
+    getServerHash,
+  );
+
+  return (
+    <CasesCarousel
+      key={ecostandardLink ? "ecostandard" : "all"}
+      initialIndex={ecostandardLink ? CASES.findIndex((study) => study.code === "C08") : 0}
+    />
+  );
+}
+
+function CasesCarousel({ initialIndex }: { initialIndex: number }) {
+  const [current, setCurrent] = useState(initialIndex);
   const total = CASES.length;
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % total), [total]);
@@ -194,7 +222,7 @@ export function CasosGrid() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="bg-background py-24 px-4">
+      <section id="ecostandard" className="focus-surface scroll-mt-24 bg-background py-16 px-4 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <SectionLabel index="01" className="mb-6">
             Evidencia
@@ -223,7 +251,7 @@ export function CasosGrid() {
           {/* Slider container — full width */}
           <div className="relative">
             <div
-              className="mt-14 relative outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              className="relative mt-14"
               role="region"
               aria-roledescription="carrusel"
               aria-label="Casos de éxito"
@@ -243,14 +271,14 @@ export function CasosGrid() {
             <div className="mt-4 flex justify-between sm:contents">
               <button
                 onClick={prev}
-                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-all duration-200 hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:absolute sm:left-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:hover:border-cyan sm:hover:bg-cyan"
+                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:left-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
                 aria-label="Caso anterior"
               >
                 <ChevronLeft className="size-5" />
               </button>
               <button
                 onClick={next}
-                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-all duration-200 hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:absolute sm:right-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:hover:border-cyan sm:hover:bg-cyan"
+                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:right-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
                 aria-label="Caso siguiente"
               >
                 <ChevronRight className="size-5" />
@@ -266,10 +294,10 @@ export function CasosGrid() {
                 onClick={() => setCurrent(i)}
                 aria-label={`Caso ${i + 1}: ${c.client}`}
                 aria-current={i === current ? "true" : undefined}
-                className={`group grid size-9 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan ${
+                className={`grid size-9 place-items-center rounded-full ${
                   i === current
-                    ? "after:h-2 after:w-8 after:rounded-full after:bg-cyan"
-                    : "after:size-2 after:rounded-full after:bg-steel-300 hover:after:bg-steel-400"
+                    ? "after:h-2 after:w-8 after:rounded-full after:bg-cyan-text"
+                    : "after:size-2 after:rounded-full after:bg-steel-600 hover:after:bg-navy"
                 }`}
               />
             ))}
@@ -277,7 +305,7 @@ export function CasosGrid() {
 
           {/* Active case info below dots */}
           <div className="mt-6 text-center sm:mt-4">
-            <span className="mono-label text-steel-400">
+            <span className="mono-label text-text-subtle">
               {CASES[current].code} — {CASES[current].client} ·{" "}
               {CASES[current].industry}
             </span>
