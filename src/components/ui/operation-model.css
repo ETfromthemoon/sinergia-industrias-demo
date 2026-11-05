@@ -1,0 +1,130 @@
+.operation-model {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 640 / 490;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+
+.operation-model__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.operation-model__module {
+  animation: operation-model-assemble 1.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.operation-model__module--north {
+  --operation-model-x: -24px;
+  --operation-model-y: -38px;
+  animation-delay: 0.1s;
+}
+
+.operation-model__module--east {
+  --operation-model-x: 26px;
+  --operation-model-y: -38px;
+  animation-delay: 0.24s;
+}
+
+.operation-model__module--south {
+  --operation-model-x: 30px;
+  --operation-model-y: 24px;
+  animation-delay: 0.38s;
+}
+
+.operation-model__module--west {
+  --operation-model-x: -30px;
+  --operation-model-y: 24px;
+  animation-delay: 0.5s;
+}
+
+.operation-model__core {
+  --operation-model-x: 0px;
+  --operation-model-y: -50px;
+  animation: operation-model-assemble 1.45s 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.operation-model__conduits,
+.operation-model__labels {
+  animation: operation-model-connect 0.8s 1.25s ease-out both;
+}
+
+.operation-model__signal {
+  opacity: 0;
+  animation: operation-model-signal 0.8s 1.55s ease-out both;
+}
+
+@keyframes operation-model-assemble {
+  from {
+    opacity: 0;
+    transform: translate(var(--operation-model-x), var(--operation-model-y));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes operation-model-connect {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes operation-model-signal {
+  0% { opacity: 0; stroke-dashoffset: 1; }
+  20% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; stroke-dashoffset: -0.1; }
+}
+
+@media (max-width: 767px) {
+  .operation-model {
+    aspect-ratio: 1.6;
+  }
+
+  .operation-model__svg {
+    width: 112%;
+    max-width: none;
+    margin-left: -6%;
+    margin-top: -9%;
+  }
+
+  .operation-model__drawing,
+  .operation-model__labels {
+    display: none;
+  }
+
+  .operation-model__module {
+    animation-duration: 0.9s;
+    animation-delay: 0.1s;
+  }
+
+  .operation-model__core {
+    animation-duration: 1s;
+    animation-delay: 0.25s;
+  }
+
+  .operation-model__conduits {
+    animation-duration: 0.45s;
+    animation-delay: 0.85s;
+  }
+
+  .operation-model__signal {
+    animation-duration: 0.45s;
+    animation-delay: 0.95s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .operation-model__module,
+  .operation-model__core,
+  .operation-model__conduits,
+  .operation-model__labels,
+  .operation-model__signal {
+    animation: none;
+  }
+}

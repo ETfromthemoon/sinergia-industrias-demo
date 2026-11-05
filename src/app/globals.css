@@ -17,12 +17,14 @@
   --mist: #e8f5fb;
   --line: #dbe0eb;
   --muted-text: #626981;
+  --text-subtle: var(--muted-text);
 
   --navy: var(--petrol);
   --navy-light: #41496f;
   --navy-dark: var(--petrol-deep);
   --cyan: var(--sage);
   --cyan-deep: #087fa8;
+  --cyan-text: #08769c;
   --signal: var(--copper);
   --signal-deep: #087fa8;
   --carbon: var(--ink);
@@ -82,6 +84,8 @@
   --color-navy-dark: var(--navy-dark);
   --color-cyan: var(--cyan);
   --color-cyan-deep: var(--cyan-deep);
+  --color-cyan-text: var(--cyan-text);
+  --color-text-subtle: var(--text-subtle);
   --color-signal: var(--signal);
   --color-signal-deep: var(--signal-deep);
   --color-carbon: var(--carbon);
@@ -150,6 +154,19 @@
   width: min(100% - 2rem, 74rem);
 }
 
+.focus-surface {
+  --focus-color: var(--navy);
+}
+
+.focus-surface--inverse {
+  --focus-color: var(--cyan);
+}
+
+.focus-surface :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 4px;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -160,6 +177,10 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.eyebrow--inverse {
+  color: var(--cyan);
 }
 
 .eyebrow::before {

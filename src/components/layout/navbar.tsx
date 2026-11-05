@@ -42,9 +42,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        "focus-surface fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         transparent
-          ? "border-white/10 bg-carbon/18 text-white backdrop-blur-[2px]"
+          ? "focus-surface--inverse border-white/10 bg-carbon/18 text-white backdrop-blur-[2px]"
           : "border-steel-200/80 bg-white/94 text-foreground shadow-[0_16px_44px_-38px_rgba(46,51,82,0.65)] backdrop-blur-xl",
       )}
       onMouseLeave={() => setServicesOpen(false)}
@@ -137,11 +137,11 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-x-0 top-full hidden border-y border-steel-200 bg-white text-foreground shadow-[0_32px_80px_-42px_rgba(46,51,82,0.5)] lg:block"
+            className="focus-surface absolute inset-x-0 top-full hidden border-y border-steel-200 bg-white text-foreground shadow-[0_32px_80px_-42px_rgba(46,51,82,0.5)] lg:block"
           >
             <div className="editorial-shell grid grid-cols-[0.55fr_1.45fr] gap-10 py-7">
               <div className="border-r border-steel-200 pr-10">
-                <p className="mono-label text-cyan-deep">Capacidades conectadas</p>
+                <p className="mono-label text-cyan-text">Capacidades conectadas</p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
                   Estrategia, procesos y tecnología articulados para resolver desafíos reales.
                 </p>
@@ -154,7 +154,7 @@ export function Navbar() {
                     onClick={closeMenus}
                     className="group relative min-w-0 border-l border-steel-200 px-5 py-2 transition-colors hover:bg-steel-50 focus-visible:bg-steel-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                   >
-                    <span className="font-mono text-[0.62rem] text-cyan-deep">
+                    <span className="font-mono text-[0.62rem] text-cyan-text">
                       {String(index + 1).padStart(2, "0")} / {service.eyebrow}
                     </span>
                     <span className="mt-3 block text-sm font-bold text-navy">{service.shortTitle}</span>
@@ -177,10 +177,10 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="min-h-[calc(100dvh-4.75rem)] max-h-[calc(100dvh-4.75rem)] overflow-y-auto border-t border-steel-200 bg-white text-foreground lg:hidden"
+            className="focus-surface min-h-[calc(100dvh-4.75rem)] max-h-[calc(100dvh-4.75rem)] overflow-y-auto border-t border-steel-200 bg-white text-foreground lg:hidden"
           >
             <nav className="editorial-shell py-5" aria-label="Navegación móvil">
-              <p className="mono-label mb-2 text-steel-400">Explorar</p>
+              <p className="mono-label mb-2 text-text-subtle">Explorar</p>
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -192,7 +192,7 @@ export function Navbar() {
                   <ArrowUpRight className="size-4 text-steel-400" />
                 </Link>
               ))}
-              <p className="mono-label mb-2 mt-6 text-cyan-deep">Soluciones</p>
+              <p className="mono-label mb-2 mt-6 text-cyan-text">Soluciones</p>
               {SERVICES.map((service, index) => (
                 <Link
                   key={service.href}
@@ -200,7 +200,7 @@ export function Navbar() {
                   onClick={closeMenus}
                   className="grid grid-cols-[2rem_1fr_auto] items-center gap-3 border-b border-steel-100 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
-                  <span className="font-mono text-[0.65rem] text-cyan-deep">
+                  <span className="font-mono text-[0.65rem] text-cyan-text">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="text-sm font-semibold">{service.shortTitle}</span>

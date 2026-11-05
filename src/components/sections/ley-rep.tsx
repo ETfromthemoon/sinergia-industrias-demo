@@ -14,14 +14,13 @@ const DELIVERABLES = [
 export function LeyRepSection() {
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative overflow-hidden bg-navy-dark py-20 text-white sm:py-28">
-        <div aria-hidden className="surface-noise absolute inset-0" />
+      <section className="focus-surface focus-surface--inverse relative overflow-hidden bg-navy-dark py-20 text-white sm:py-28">
         <div className="editorial-shell relative grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <p className="eyebrow text-cyan before:bg-cyan">Cumplimiento Ley REP</p>
-            <h2 className="mt-7 max-w-3xl text-5xl leading-[0.96] text-white sm:text-6xl">
+            <p className="eyebrow eyebrow--inverse">Cumplimiento Ley REP</p>
+            <h2 className="mt-7 max-w-3xl text-[clamp(2.75rem,4.4vw,3.5rem)] leading-[1.04] text-white">
               Cumplir no debería depender de{" "}
-              <em className="font-normal text-cyan">interpretaciones.</em>
+              <span className="text-cyan">interpretaciones.</span>
             </h2>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-white/64">
               Convertimos la Ley 20.920 en un proceso trazable: qué declarar, cómo
@@ -45,7 +44,7 @@ export function LeyRepSection() {
           >
             <div className="flex items-center justify-between border-b border-white/12 pb-5">
               <p className="text-sm font-semibold">Una ruta completa</p>
-              <span className="mono-label text-white/35">Ley 20.920</span>
+              <span className="mono-label text-white/70">Ley 20.920</span>
             </div>
             <div className="mt-2">
               {DELIVERABLES.map(({ icon: Icon, label }, index) => (
@@ -55,7 +54,7 @@ export function LeyRepSection() {
                 >
                   <Icon className="size-4 text-cyan" />
                   <span className="text-sm text-white/75">{label}</span>
-                  <span className="font-mono text-[0.65rem] text-white/30">
+                  <span className="font-mono text-[0.65rem] text-white/65">
                     0{index + 1}
                   </span>
                 </div>

@@ -28,7 +28,7 @@ export default function CasosDeExitoPage() {
           eyebrow="Experiencia aplicada"
           headline="Problemas reales."
           headlineAccent="Trabajo que permanece."
-          subhead="Una selección de organizaciones donde hemos intervenido procesos, sistemas y cumplimiento. Los resultados cualitativos se presentan sin inventar métricas."
+          subhead="Una selección de organizaciones donde hemos intervenido procesos, sistemas y cumplimiento. Conoce el contexto, el servicio realizado y los resultados de cada proyecto."
         />
         <CasosGrid />
         <CtaBand

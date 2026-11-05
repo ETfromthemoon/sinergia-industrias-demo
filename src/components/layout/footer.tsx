@@ -5,7 +5,7 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-carbon-2 text-white">
+    <footer className="focus-surface focus-surface--inverse relative overflow-hidden bg-carbon-2 text-white">
       <div aria-hidden className="surface-noise pointer-events-none absolute inset-0" />
       <div className="editorial-shell relative py-16 sm:py-20">
         <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.25fr_0.75fr_0.75fr]">

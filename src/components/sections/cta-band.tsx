@@ -16,12 +16,12 @@ export function CtaBand({
   ctaHref = "/contacto",
 }: CtaBandProps) {
   return (
-    <section className="relative overflow-hidden bg-navy-dark py-20 text-white sm:py-24">
+    <section className="focus-surface focus-surface--inverse relative overflow-hidden bg-navy-dark py-16 text-white sm:py-20">
       <div aria-hidden className="surface-noise absolute inset-0" />
       <div className="editorial-shell relative grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
         <div>
-          <p className="eyebrow text-cyan before:bg-cyan">Siguiente paso</p>
-          <h2 className="mt-7 max-w-4xl text-5xl leading-[0.98] text-white sm:text-6xl">
+          <p className="eyebrow eyebrow--inverse">Siguiente paso</p>
+          <h2 className="mt-5 max-w-4xl text-4xl leading-tight text-white sm:text-5xl">
             {title}
           </h2>
         </div>

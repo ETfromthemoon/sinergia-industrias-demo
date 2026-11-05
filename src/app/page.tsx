@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="focus-surface">
         <HeroSection />
-        <BrandFilmSection />
         <ServicesSection />
-        <LeyRepSection />
         <FeaturedCaseSection />
+        <BrandFilmSection />
+        <LeyRepSection />
         <MethodSection />
         <ContactSection />
       </main>

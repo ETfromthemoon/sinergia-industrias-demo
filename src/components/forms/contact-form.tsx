@@ -11,7 +11,7 @@ type FormStatus = {
 };
 
 const fieldClass =
-  "w-full border-b border-steel-300 bg-transparent px-0 py-3 text-sm text-foreground placeholder:text-steel-400 focus:border-navy focus:outline-none focus-visible:border-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan";
+  "w-full border-b border-steel-600 bg-transparent px-0 py-3 text-base text-foreground placeholder:text-text-subtle focus:border-navy focus:outline-none focus-visible:border-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>({ state: "idle", message: "" });
@@ -55,7 +55,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6" noValidate>
+    <form onSubmit={onSubmit} className="focus-surface space-y-6" noValidate>
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="block">
           <span className="text-xs font-semibold text-foreground">Nombre</span>
@@ -122,7 +122,7 @@ export function ContactForm() {
             status.state === "error"
               ? "text-destructive"
               : status.state === "success"
-                ? "text-cyan-deep"
+                ? "text-cyan-text"
                 : "text-muted-foreground"
           }`}
         >
