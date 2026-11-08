@@ -1,28 +1,33 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { trackLeadConversion } from "@/lib/analytics";
 
-const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/info@sinergiaindustrias.cl";
+const DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+const FORM_SUBMIT_URL = DEMO_MODE ? "/api/demo-newsletter" : "https://formsubmit.co/ajax/info@sinergiaindustrias.cl";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 export function useFormSubmit() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
+  const submitting = useRef(false);
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>,
     formData?: Record<string, string>
   ) => {
     e.preventDefault();
+    if (submitting.current) return;
+    const form = e.currentTarget;
+    submitting.current = true;
     setStatus("loading");
     setMessage("");
 
     try {
-      const data = formData ?? Object.fromEntries(new FormData(e.currentTarget));
+      const data = formData ?? Object.fromEntries(new FormData(form));
 
       const res = await fetch(FORM_SUBMIT_URL, {
         method: "POST",
@@ -35,14 +40,16 @@ export function useFormSubmit() {
 
       const json = await res.json();
 
-      if (json.success === "true" || json.success === true) {
+      if (res.ok && (json.success === "true" || json.success === true)) {
+        form.reset();
         setStatus("success");
-        setMessage("Suscripción confirmada. Te escribiremos cuando publiquemos algo relevante.");
+        setMessage(DEMO_MODE
+          ? (typeof json.message === "string" ? json.message : "Demo: comprobante de suscripción registrado. No se enviaron correos.")
+          : "Suscripción confirmada. Te escribiremos cuando publiquemos algo relevante.");
         // Evento de conversión para Google Ads / GA4 (no-op si no hay tag instalado).
         trackLeadConversion(
           typeof data.servicio === "string" ? { servicio: data.servicio } : undefined
         );
-        e.currentTarget.reset();
       } else {
         setStatus("error");
         setMessage(json.message || "Error al enviar. Intenta de nuevo.");
@@ -50,6 +57,8 @@ export function useFormSubmit() {
     } catch {
       setStatus("error");
       setMessage("Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.");
+    } finally {
+      submitting.current = false;
     }
   };
 

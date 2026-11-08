@@ -72,7 +72,7 @@ export default function NosotrosContent() {
               </SectionLabel>
               <h2 className="text-4xl leading-[1.02] text-navy sm:text-6xl">
                 La tecnología solo importa cuando{" "}
-                <em className="font-normal text-cyan-deep">resuelve algo real.</em>
+                <span className="text-cyan-deep">resuelve algo real.</span>
               </h2>
               <p className="mt-7 text-base leading-relaxed text-muted-foreground">
                 Sinergia nació al reconocer una brecha: demasiadas organizaciones tienen

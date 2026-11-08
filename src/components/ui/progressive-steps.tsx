@@ -125,8 +125,9 @@ export function ProgressiveSteps({
                   <motion.button
                     key={step.number}
                     onClick={() => goTo(i)}
+                    aria-pressed={isActive}
                     className={cn(
-                      "group relative flex items-center gap-4 border-l-2 px-5 py-4 text-left transition-colors",
+                      "action-step group relative flex items-center gap-4 border-l-2 px-5 py-4 text-left transition-colors",
                       isActive
                         ? isDark
                           ? "border-cyan bg-cyan/5"

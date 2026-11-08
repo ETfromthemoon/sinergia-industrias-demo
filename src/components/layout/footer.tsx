@@ -22,7 +22,7 @@ export function Footer() {
             </Link>
             <h2 className="mt-8 max-w-xl text-4xl leading-[1.02] text-white sm:text-5xl">
               Construimos modelos para{" "}
-              <em className="font-normal text-cyan">el mundo real.</em>
+              <span className="text-cyan">el mundo real.</span>
             </h2>
             <p className="mono-label mt-5 text-white/70">Procesos inteligentes. Impacto real.</p>
             <Link

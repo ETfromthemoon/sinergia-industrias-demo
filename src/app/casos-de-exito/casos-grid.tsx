@@ -271,14 +271,14 @@ function CasesCarousel({ initialIndex }: { initialIndex: number }) {
             <div className="mt-4 flex justify-between sm:contents">
               <button
                 onClick={prev}
-                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:left-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
+                className="action-button flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:left-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
                 aria-label="Caso anterior"
               >
                 <ChevronLeft className="size-5" />
               </button>
               <button
                 onClick={next}
-                className="flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:right-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
+                className="action-button flex size-12 items-center justify-center border border-steel-200 bg-white text-navy transition-colors duration-200 hover:border-navy hover:bg-navy hover:text-white sm:absolute sm:right-4 sm:top-1/2 sm:z-20 sm:-translate-y-1/2 sm:border-white/20 sm:bg-carbon/60 sm:text-white sm:backdrop-blur-sm sm:[--focus-color:var(--cyan)] sm:hover:border-cyan sm:hover:bg-cyan sm:hover:text-carbon"
                 aria-label="Caso siguiente"
               >
                 <ChevronRight className="size-5" />
@@ -294,7 +294,7 @@ function CasesCarousel({ initialIndex }: { initialIndex: number }) {
                 onClick={() => setCurrent(i)}
                 aria-label={`Caso ${i + 1}: ${c.client}`}
                 aria-current={i === current ? "true" : undefined}
-                className={`grid size-9 place-items-center rounded-full ${
+                className={`action-dot grid size-9 place-items-center rounded-full ${
                   i === current
                     ? "after:h-2 after:w-8 after:rounded-full after:bg-cyan-text"
                     : "after:size-2 after:rounded-full after:bg-steel-600 hover:after:bg-navy"

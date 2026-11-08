@@ -116,7 +116,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
             >
               <Link
                 href={`/blog/${featured.slug}`}
-                className="group inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
+                className="action-button group inline-flex items-center gap-2 bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)]"
               >
                 Leer artículo completo
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -242,7 +242,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       Escribimos sobre procesos, tecnología ERP y cumplimiento normativo. Sin spam, solo cuando hay algo que vale la pena leer.
                     </p>
 
-                    <form onSubmit={handleSubmit} className="mt-6 flex gap-2">
+                    <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-2 sm:flex-row">
                       <input type="hidden" name="_subject" value="Suscripción Blog — Sinergia Industrias" />
                       <input
                         type="email"
@@ -251,13 +251,13 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         placeholder="tu@email.com"
                         required
                         autoComplete="email"
-                        className="flex-1 border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 transition-colors focus:border-cyan focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                        className="min-w-0 flex-1 border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 transition-colors focus:border-cyan focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                       />
                       {status !== "success" ? (
                         <button
                           type="submit"
                           disabled={status === "loading"}
-                          className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shrink-0"
+                          className="action-button bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_32px_-4px_oklch(0.60_0.105_208_/_0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shrink-0"
                         >
                           {status === "loading" ? "..." : "Suscribirme"}
                         </button>
@@ -289,13 +289,13 @@ export default function BlogContent({ posts }: BlogContentProps) {
                     <div className="mt-6 flex flex-wrap gap-3">
                       <Link
                         href="/contacto"
-                        className="bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
+                        className="action-button bg-cyan px-6 py-3 text-sm font-semibold text-carbon transition-all duration-200 hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep"
                       >
                         Conversemos tu proyecto
                       </Link>
                       <a
                         href="mailto:info@sinergiaindustrias.cl"
-                        className="border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep inline-flex items-center gap-1.5"
+                        className="action-button border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-deep inline-flex items-center gap-1.5"
                       >
                         info@sinergiaindustrias.cl
                       </a>

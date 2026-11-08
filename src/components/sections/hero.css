@@ -67,11 +67,11 @@
   text-wrap: balance;
 }
 
-.operation-hero__title em {
+.operation-hero__title-accent {
   display: block;
   margin-top: 0.12em;
   color: var(--cyan);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .operation-hero__description {

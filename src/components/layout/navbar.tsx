@@ -86,7 +86,7 @@ export function Navbar() {
           <button
             type="button"
             className={cn(
-              "flex items-center gap-1.5 whitespace-nowrap text-[0.78rem] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+              "action-button px-2 py-2 flex items-center gap-1.5 whitespace-nowrap text-[0.78rem] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
               transparent ? "text-white/72 hover:text-white" : "text-ink-soft hover:text-navy",
             )}
             aria-expanded={servicesOpen}
@@ -104,7 +104,7 @@ export function Navbar() {
             href="/contacto"
             onClick={closeMenus}
             className={cn(
-              "hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:inline-flex",
+              "action-button hidden items-center gap-2 px-5 py-2.5 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan sm:inline-flex",
               transparent
                 ? "bg-white text-navy hover:bg-cyan"
                 : "bg-navy text-white hover:-translate-y-0.5 hover:bg-navy-dark",
@@ -116,7 +116,7 @@ export function Navbar() {
           <button
             type="button"
             className={cn(
-              "grid size-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan lg:hidden",
+              "action-button grid size-11 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan lg:hidden",
               transparent ? "text-white" : "text-foreground",
             )}
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
@@ -210,7 +210,7 @@ export function Navbar() {
               <Link
                 href="/contacto"
                 onClick={closeMenus}
-                className="mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+                className="action-button mt-5 flex items-center justify-center gap-2 bg-navy px-5 py-3.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               >
                 Hablemos de tu proyecto
                 <ArrowUpRight className="size-4" />

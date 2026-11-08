@@ -5,76 +5,36 @@ funcionales y prepararlo para evaluación de **Google Ads**. El segundo paso
 (SEO / motores de IA) está al final como roadmap separado.
 
 - **Stack:** Next.js 16 (SSG) + React 19 + Tailwind v4. Deploy en **Vercel**
-  (push a `main` = deploy).
+  (rama de producción por verificar en la configuración de Vercel).
 - **Dominio / correo:** `sinergiaindustrias.cl` e `info@sinergiaindustrias.cl`
   ya operativos.
 
 ---
 
-## Paso 0 — Verificación crítica de formularios (BLOQUEANTE)
+## Paso 0 — Verificar los dos flujos de formulario
 
-Los formularios de contacto envían vía **FormSubmit.co** al correo
-`info@sinergiaindustrias.cl` (`src/components/ui/form-submit.tsx`). FormSubmit
-exige una **activación única**: hasta que alguien confirme el correo, el
-formulario dice "enviado" pero **no llega nada**.
+La implementación actual tiene transportes diferentes:
 
-**Hazlo antes de gastar un peso en Google Ads:**
+- **Contacto** (Inicio y `/contacto`): `ContactForm` → `/api/contact` → **Resend**. Requiere `RESEND_API_KEY` y `CONTACT_FROM_EMAIL` con remitente validado. Sin configuración responde 503 y ofrece WhatsApp/email. La validación exige nombre, empresa, email, mensaje y consentimiento.
+- **Suscripción del blog**: `useFormSubmit` → **FormSubmit.co**. El servicio debe estar activado para el destinatario configurado. No hay una base propia de suscriptores.
 
-1. Entra al sitio en producción y envía el formulario de `/contacto` con datos
-   de prueba reales.
-2. Abre el buzón `info@sinergiaindustrias.cl`. Si hay un correo de FormSubmit
-   pidiendo confirmar la dirección → **confírmalo** (un clic).
-3. Envía el formulario otra vez y confirma que el mensaje **llega** al buzón.
-4. Si no llega: revisa spam y verifica que `info@` recibe correo externo.
+Para una demo se prueban validación, espera, éxito y errores con transporte controlado, sin enviar a personas reales. Esa evidencia comprueba la interfaz y el contrato de la API; **no demuestra recepción de correo**.
 
-> Sin este paso, toda inversión en Ads genera leads que se pierden en silencio.
+`npm run demo` prepara el modo local con aviso visible: ambos formularios guardan recibos en `scripts/shots/demo-inbox/` y nunca llaman a los proveedores. Este modo exige las dos variables de demo, origen local y ausencia del entorno Vercel. Debe usarse sólo con datos sintéticos y no publicarse como compilación comercial.
 
----
+Para declarar entrega externa de extremo a extremo, preparar un destino de prueba autorizado, comprobar remitente y configuración, enviar un caso sintético y verificar su recepción. No confundir una respuesta HTTP satisfactoria con correo recibido. No publicar credenciales en capturas o informes.
 
-## Paso 1 — Formularios: cómo conectarlos con correo (las 3 opciones)
+## Paso 1 — Candidata y publicación
 
-### Opción A — FormSubmit.co (actual · gratis · sin servidor) ← elegida
+La rama de producción debe comprobarse en Vercel. Las instrucciones históricas que asumían `main` o `master` no son evidencia vigente. Antes de publicar: identificar el commit candidato, confirmar los checks y el resultado de la demo, y comprobar que la URL corresponde a ese mismo código.
 
-Es lo que ya está implementado y lo recomendado para salir **ya** a Google Ads.
-
-1. El formulario hace POST a `formsubmit.co/ajax/info@sinergiaindustrias.cl`.
-2. Confirmar el correo una sola vez (Paso 0).
-3. Ya incluye protección anti-spam: captcha de FormSubmit (`_captcha`) + honeypot.
-4. Si en el futuro llega spam, activar reCAPTCHA desde el panel de FormSubmit.
-
-- **Ventajas:** cero costo, cero infraestructura, funciona en sitio estático.
-- **Límites:** dependes de un tercero gratuito, no guardas los leads en una base
-  de datos, personalización del correo limitada.
-
-### Opción B — API propia + email transaccional (recomendada a mediano plazo)
-
-Cuando quieran independencia de terceros y correos con la marca propia.
-
-1. Crear una **API route** en Next: `src/app/api/contacto/route.ts` (Vercel la
-   sirve como función serverless, sin costo fijo).
-2. Enviar el correo con **Resend** (o SendGrid) desde el dominio propio.
-   Requiere verificar **SPF/DKIM** en el DNS de `sinergiaindustrias.cl`.
-3. Guardar las credenciales como variables de entorno en Vercel
-   (`RESEND_API_KEY`, correo destino).
-4. Apuntar el hook `useFormSubmit` a `/api/contacto` en vez de a FormSubmit.
-- **Ventajas:** sin terceros, correos con tu dominio, validación server-side,
-  control total. **Costo:** Resend tiene plan gratuito generoso.
-
-### Opción C — Plataforma con base de datos (a futuro, si quieren CRM)
-
-1. Todo lo de la Opción B **+** guardar cada lead en **Supabase (Postgres)**.
-2. Panel de leads / mini-CRM y autenticación.
-- **Ventajas:** histórico de leads, métricas, seguimiento comercial.
-- **Costo/tiempo:** el mayor de los tres; 1-2 semanas de desarrollo.
-
-> **Para Google Ads basta la Opción A verificada.** B y C quedan como roadmap.
+La revisión de demo del 8/11 se documenta en `docs/demo-readiness-2026-11-08.md`. No se habilita una nueva integración ni se realiza una publicación por el solo hecho de completar esa revisión.
 
 ---
 
 ## Paso 2 — Medición de conversiones para Google Ads
 
-Ya está implementado en código: al enviarse un formulario con éxito, el sitio
-dispara el evento **`generate_lead`** hacia `dataLayer` (GTM) y `gtag`
+El hook de suscripción del blog dispara, tras una respuesta exitosa del servicio, el evento **`generate_lead`** hacia `dataLayer` (GTM) y `gtag`
 (GA4 / Google Ads). Ver `src/lib/analytics.ts`. Es **no-op** hasta que se
 instale el tag, así que no rompe nada.
 
@@ -90,13 +50,13 @@ instale el tag, así que no rompe nada.
    enviar el formulario.
 
 > Cuando tengas el **GTM ID / GA4 ID**, se instala el snippet y las conversiones
-> quedan midiendo. El disparo del evento ya está listo.
+> quedan midiendo. El formulario de contacto no usa ese hook; su medición debe verificarse por separado.
 
 ---
 
 ## Paso 3 — Checklist "listo para Google Ads"
 
-- [ ] Paso 0 completado: un lead de prueba llegó al correo.
+- [ ] Ambos transportes de formulario verificados con un destino de prueba autorizado.
 - [ ] Tag de GTM/GA4 instalado y conversión `generate_lead` midiendo.
 - [ ] Metadata y OpenGraph correctos por página (ya configurados).
 - [ ] `robots.txt` y `sitemap.xml` sirviéndose (generados por Next).

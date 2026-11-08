@@ -20,7 +20,7 @@ export function HeroSection() {
 
             <h1 id="hero-title" className="operation-hero__title">
               Construimos modelos{" "}
-              <em>para el mundo real.</em>
+              <span className="operation-hero__title-accent">para el mundo real.</span>
             </h1>
 
             <p className="operation-hero__description">
@@ -29,11 +29,11 @@ export function HeroSection() {
             </p>
 
             <div className="operation-hero__actions">
-              <Link href="/contacto" className="operation-hero__primary">
+              <Link href="/contacto" className="operation-hero__primary action-button">
                 Evaluar mi proyecto
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
-              <Link href="/casos-de-exito" className="operation-hero__secondary">
+              <Link href="/casos-de-exito" className="operation-hero__secondary action-button">
                 Ver experiencia
                 <ArrowDownRight aria-hidden="true" size={18} />
               </Link>

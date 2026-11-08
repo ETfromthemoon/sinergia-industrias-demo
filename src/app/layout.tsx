@@ -54,10 +54,12 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
   },
-  robots: { index: true, follow: true },
+  robots: { index: process.env.NEXT_PUBLIC_DEMO_MODE !== "true", follow: true },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const isDemo = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+  const isCloudDemo = process.env.SINERGIA_CLOUD_DEMO_MODE === "true";
   return (
     <html
       lang="es"
@@ -72,9 +74,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className={cn("min-h-full flex flex-col bg-background text-foreground", isDemo && "pb-24 sm:pb-14")}>
         <OrganizationJsonLd />
         {children}
+        {isDemo ? (
+          <aside data-demo-mode="true" aria-label="Modo de demostración" className="fixed inset-x-0 bottom-0 z-[70] border-t border-white/20 bg-carbon px-4 py-3 text-center text-sm text-white">
+            {isCloudDemo ? <><strong>Demo online.</strong> Validamos el formulario y guardamos sólo un comprobante sin datos personales. No enviamos correos.</>
+              : <><strong>Demo local.</strong> Los formularios guardan un recibo local; no envían correos.</>}
+          </aside>
+        ) : null}
       </body>
     </html>
   );

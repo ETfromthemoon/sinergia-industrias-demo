@@ -29,7 +29,7 @@ export function CtaBand({
           <p className="text-sm leading-relaxed text-white/60">{subhead}</p>
           <Link
             href={ctaHref}
-            className="group mt-7 inline-flex items-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon hover:bg-white"
+            className="action-button group mt-7 inline-flex items-center gap-2 bg-cyan px-6 py-3.5 text-sm font-semibold text-carbon hover:bg-white"
           >
             {ctaLabel}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />

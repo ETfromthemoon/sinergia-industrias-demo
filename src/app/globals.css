@@ -18,6 +18,10 @@
   --line: #dbe0eb;
   --muted-text: #626981;
   --text-subtle: var(--muted-text);
+  --action: #166b47;
+  --action-hover: #105236;
+  --action-soft: #e8f5ee;
+  --action-bright: #86efac;
 
   --navy: var(--petrol);
   --navy-light: #41496f;
@@ -130,6 +134,7 @@
     font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
   }
   ::selection {
     background: color-mix(in oklab, var(--sage) 55%, white);
@@ -142,6 +147,57 @@
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* Controls share the requested green action color; brand surfaces stay blue. */
+:is(a, button).action-button,
+:is(a, button).action-button:hover {
+  background-color: var(--action);
+  border-color: var(--action);
+  color: white;
+}
+
+:is(a, button).action-button:hover:not(:disabled) {
+  background-color: var(--action-hover);
+  border-color: var(--action-hover);
+}
+
+:is(a, button).action-button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--action);
+}
+
+.action-dot::after,
+.action-dot > span {
+  background-color: var(--action);
+}
+
+.action-dot[aria-current="true"]::after,
+.action-dot[aria-current="true"] > span {
+  background-color: var(--action-hover);
+}
+
+.action-step {
+  border-left-color: var(--action);
+}
+
+.action-step[aria-pressed="true"] {
+  background-color: var(--action-soft);
+  color: var(--ink);
+}
+
+.action-step[aria-pressed="true"] > span:first-child {
+  border-color: var(--action);
+  color: var(--action);
+}
+
+.action-step[aria-pressed="true"] > div > span:first-child {
+  color: var(--ink);
+}
+
+.action-step[aria-pressed="true"] > span:last-child {
+  background-color: var(--action);
 }
 
 .tabular {

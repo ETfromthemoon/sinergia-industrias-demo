@@ -172,7 +172,7 @@ export function ModuleSlider<T>({
           <>
             <motion.button
               onClick={prev}
-              className="absolute -left-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+              className="action-button absolute -left-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               aria-label="Anterior"
             >
@@ -180,7 +180,7 @@ export function ModuleSlider<T>({
             </motion.button>
             <motion.button
               onClick={next}
-              className="absolute -right-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+              className="action-button absolute -right-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center border border-steel-200 bg-white/90 text-navy shadow-sm backdrop-blur-sm transition-colors hover:border-navy hover:bg-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               aria-label="Siguiente"
             >
@@ -195,7 +195,7 @@ export function ModuleSlider<T>({
               <motion.button
                 key={i}
                 onClick={() => { setDirection(i > page ? 1 : -1); setPage(i); }}
-                className="group grid size-9 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="action-dot group grid size-9 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
                 aria-label={`Ir a página ${i + 1}`}
                 aria-current={i === page ? "true" : undefined}

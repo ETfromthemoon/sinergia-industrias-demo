@@ -49,7 +49,7 @@ export function BlogCta() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/contacto"
-            className="group inline-flex items-center gap-2 bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy-dark"
+            className="action-button group inline-flex items-center gap-2 bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy-dark"
           >
             Agendar reunión
             <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />

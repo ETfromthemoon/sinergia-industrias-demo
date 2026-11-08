@@ -56,7 +56,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="focus-surface space-y-6" noValidate>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <label className="block">
           <span className="text-xs font-semibold text-foreground">Nombre</span>
           <input className={fieldClass} name="name" required placeholder="Tu nombre" autoComplete="name" />
@@ -66,7 +66,7 @@ export function ContactForm() {
           <input className={fieldClass} name="company" required placeholder="Nombre de la empresa" autoComplete="organization" />
         </label>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <label className="block">
           <span className="text-xs font-semibold text-foreground">Email corporativo</span>
           <input className={fieldClass} name="email" type="email" required placeholder="nombre@empresa.cl" autoComplete="email" />
@@ -110,7 +110,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status.state === "loading"}
-          className="inline-flex min-h-12 items-center justify-center gap-2 bg-navy px-6 text-sm font-semibold text-white transition-colors hover:bg-navy-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan disabled:cursor-wait disabled:opacity-65"
+          className="action-button inline-flex min-h-12 items-center justify-center gap-2 bg-navy px-6 text-sm font-semibold text-white transition-colors hover:bg-navy-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan disabled:cursor-wait disabled:opacity-65"
         >
           {status.state === "loading" ? <LoaderCircle className="size-4 animate-spin" /> : null}
           Enviar solicitud

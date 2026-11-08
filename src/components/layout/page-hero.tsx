@@ -90,9 +90,9 @@ export function PageHero({
                 {headlineAccent ? (
                   <>
                     <br />
-                    <em className={cn("font-normal", dark ? "text-cyan" : "text-navy")}>
+                    <span className={cn(dark ? "text-cyan" : "text-navy")}>
                       {headlineAccent}
-                    </em>
+                    </span>
                   </>
                 ) : null}
               </motion.h1>
@@ -113,7 +113,7 @@ export function PageHero({
                 <Link
                   href={ctaHref}
                   className={cn(
-                    "group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+                    "action-button group inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                     dark ? "bg-cyan text-carbon hover:bg-white" : "bg-navy text-white hover:bg-navy-dark",
                   )}
                 >

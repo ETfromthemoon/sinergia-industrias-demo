@@ -12,8 +12,8 @@ export function ContactSection() {
   return (
     <section id="contacto" className="focus-surface scroll-mt-24 bg-background py-16 sm:py-20">
       <div className="editorial-shell">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <div className="min-w-0">
             <h2 className="max-w-md text-4xl leading-[1.08] text-navy sm:text-5xl">
               Empecemos por entender el problema.
             </h2>
@@ -31,8 +31,8 @@ export function ContactSection() {
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="flex min-h-11 items-center gap-3 text-base text-foreground transition-colors hover:text-navy"
                 >
-                  <Icon className="size-4 text-cyan-text" />
-                  {label}
+                  <Icon className="size-4 shrink-0 text-cyan-text" />
+                  <span className="min-w-0 [overflow-wrap:anywhere]">{label}</span>
                 </a>
               ))}
               <p className="flex items-start gap-3 pt-1 text-sm text-muted-foreground">
@@ -42,7 +42,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="border border-steel-200 bg-white p-6 sm:p-8 lg:p-10">
+          <div className="min-w-0 border border-steel-200 bg-white p-6 sm:p-8 lg:p-10">
             <ContactForm />
           </div>
         </div>
