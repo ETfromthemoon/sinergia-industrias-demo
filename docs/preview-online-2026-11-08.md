@@ -78,5 +78,14 @@ Extracto sanitizado para el coordinador:
 
 Evidencias privadas: `scripts/shots/demo-review/cloud/results.json`,
 `cloud/persistence.json`, `cloud/local-server-closed.json` y `cloud-storage-privileges.json`.
+
+## Contraste de evidencia primaria (20/11/2026)
+
+- `results.json`, fechado `2026-11-08T19:13:34.084Z`, contiene `passed: 34`, `failed: 0` y 34 comprobaciones: 22 rutas, ocho layouts a 375/1440 px, creación de recibos de contacto y newsletter, rechazo online de origen ajeno/cuerpo excesivo y ausencia de excepciones de aplicación. La evidencia original sigue privada porque incluye datos de acceso temporal.
+- `persistence.json`, verificado `2026-11-08T19:14:35Z`, registra dos recibos cotejados, seis columnas (`id`, `flow`, `created_at`, `email_sent`, `field_count`, `input_bytes`), `personalDataStored: false` y `externalEmailsSent: false`. Los UUID y datos de prueba no se publican.
+- `share-recheck-after-doc-deploy.json` confirma que el 8/11 a las 19:20:54Z la página inicial y `/contacto` respondieron 200 en el deployment documental `dpl_8iB8bmaBMsNFCmXdDKiFg4RNFvsL`. Ese enlace temporal venció el 9/11; no se presenta como acceso actual.
+- El 20/11, `web_fetch_vercel_url` de la cuenta Vercel devolvió HTTP 200 y HTML con títulos correctos para `/` y `/contacto` del deployment documental. Este acceso autenticado confirma ambas páginas en esa fecha; los formularios y la persistencia no se reejecutaron en esta revisión.
+
+Estado de entrega: revisión abierta hasta comprobar de nuevo los formularios online y disponer de un enlace temporal vigente para la presentación al cliente. El resultado del revisor automático `needs_work` se conserva como evaluación del informe, no como fallo funcional demostrado.
 Los recibos sintéticos permanecen en la base aislada como evidencia; la prueba de cuota
 se revirtió dentro de su transacción y no dejó filas adicionales.
