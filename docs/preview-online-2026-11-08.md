@@ -11,6 +11,7 @@ en una base Neon dedicada. No envía correo ni conserva los datos personales del
 - Commit de aplicación publicado y verificado: `7cd97b43ea55e9eac8ed822ff80cb0ea3b400ebe`.
 - Preview canónica: https://sinergia-industrias-demo-36ayfna1p-sergio-astudillo-s-projects.vercel.app
 - Deployment: `dpl_BUZmY6xTCNWHRnpMwhy4Y1AoQ9VV`, estado READY, entorno preview, generado por la integración Git desde ese SHA.
+- El commit documental posterior `1a172c562685f31e33174db6a72cb4cb1b82071d` generó `dpl_8iB8bmaBMsNFCmXdDKiFg4RNFvsL` (READY). La API de Vercel atribuye cada deployment a su commit respectivo; `git diff --name-only 7cd97b4 1a172c5` muestra sólo este informe. Esta constatación del 20/11/2026 vincula ambos despliegues con el mismo código de aplicación, pero no sustituye una nueva prueba funcional ni verifica por sí sola el acceso temporal.
 - Acceso: se conserva la protección del proyecto Vercel. La URL anónima redirige a Vercel (302); el enlace temporal de acceso fue verificado en un navegador aislado. Ese enlace permanece fuera de Git.
 - Este informe se respalda en un commit documental posterior al commit de aplicación probado; no cambia la aplicación.
 
