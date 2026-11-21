@@ -87,5 +87,12 @@ Evidencias privadas: `scripts/shots/demo-review/cloud/results.json`,
 - El 20/11, `web_fetch_vercel_url` de la cuenta Vercel devolvió HTTP 200 y HTML con títulos correctos para `/` y `/contacto` del deployment documental. Este acceso autenticado confirma ambas páginas en esa fecha; los formularios y la persistencia no se reejecutaron en esta revisión.
 
 Estado de entrega: revisión abierta hasta comprobar de nuevo los formularios online y disponer de un enlace temporal vigente para la presentación al cliente. El resultado del revisor automático `needs_work` se conserva como evaluación del informe, no como fallo funcional demostrado.
+
+## Revalidación online (21/11/2026)
+
+- Se creó un nuevo acceso temporal privado para `dpl_8iB8bmaBMsNFCmXdDKiFg4RNFvsL` (READY, commit documental `1a172c5`, código de aplicación `7cd97b4`). Vercel informó que el enlace está vigente hasta el 22/11; se conserva sólo en `scripts/shots/demo-review/preview-access.json`, ignorado por Git.
+- `node scripts/cloud-demo-smoke.mjs` terminó con código 0: **34 PASS / 0 FAIL**. Recorrió las 22 rutas, ocho layouts, ambos formularios desde la interfaz y los rechazos de origen ajeno/cuerpo excesivo; sin mocks de transporte ni errores de aplicación. `cloud/results.json` guarda la salida del 21/11 a las 15:05:58Z; la salida del 8/11 se conservó en `cloud/results-20261108.backup.json`.
+- La consulta de sólo lectura en el proyecto Neon aislado `sinergia-demo-receipts-20261108` encontró exactamente los dos UUID devueltos por los formularios, con flujos `contact` y `newsletter` y `email_sent=false` en ambos. `cloud/persistence-20261121.json` conserva el cotejo privado; este informe omite los UUID.
+- Esta revalidación cubre la demo online actual. La entrega al cliente sigue pendiente de una presentación y su aceptación; el enlace temporal debe renovarse si se usa después del 22/11.
 Los recibos sintéticos permanecen en la base aislada como evidencia; la prueba de cuota
 se revirtió dentro de su transacción y no dejó filas adicionales.
